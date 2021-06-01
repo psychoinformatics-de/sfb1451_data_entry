@@ -39,10 +39,22 @@
         <h4 class="mb-3">General information</h4>
     </div>
     <div class="row">
-        <div class="col-md-6 entry-label">Projekt-Code
+        <div class="col-md-6">
+            <label for="subject-group">Projekt-Code</label>
         </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="project-code" name="project-code" placeholder="" required>
+        <div class="col-md-6">
+            <select name="subject-group" id="subject-group">
+                <option value="b2">B2</option>
+                <option value="b3">B3</option>
+                <option value="b4">B4</option>
+                <option value="b5">B5</option>
+                <option value="c2">C2</option>
+                <option value="c3">C3</option>
+                <option value="c4">C4</option>
+                <option value="c5">C5</option>
+                <option value="c6">C6</option>
+                <option value="c7">C7</option>
+            </select>
         </div>
     </div>
     <div class="row">
@@ -56,28 +68,43 @@
         <div class="col-md-6">Geburtsdatum
         </div>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="date-of-birth" name="date-of-birth" placeholder="tt.mm.jjjj" required>
+            <input type="date" class="form-control" id="date-of-birth" name="date-of-birth" placeholder="tt.mm.jjjj" required>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">Geschlecht
+        <div class="col-md-6">
+            <label for="sex">Geschlecht</label>
         </div>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="sex" name="sex" placeholder="" required>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="sex" id="sex-m" value="male"> m
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="sex" id="sex-f" value="female"> w
+                </label>
+            </div>
+            <div class="form-check form-check-inline disabled">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="sex" id="sex-d" value="diverse"> d
+                </label>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">Test-Datum
         </div>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="test-date" name="test-date" placeholder="" required>
+            <input type="date" class="form-control" id="test-date" name="test-date" placeholder="" required>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">Wiederholte Testung
         </div>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="repeated-test" name="repeated-test" placeholder="" required>
+            <input type="bool" class="form-control" id="repeated-test" name="repeated-test" placeholder="" required>
         </div>
     </div>
     <div class="row">
@@ -89,6 +116,7 @@
                 <option value="healthy">Gesund</option>
                 <option value="patient">Patient</option>
             </select>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-6">Haupterkrankung
@@ -101,21 +129,36 @@
         <div class="col-md-6">Datum Erstsymptom
         </div>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="date-first-symptom" name="date-first-symptom" placeholder="" required>
+            <input type="date" class="form-control" id="date-first-symptom" name="date-first-symptom" placeholder="" required>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">Datum Diagnose
         </div>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="date-diagnosis" name="date-diagnosis" placeholder="" required>
+            <input type="date" class="form-control" id="date-diagnosis" name="date-diagnosis" placeholder="" required>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">Stärker betroffene Hand
+        <div class="col-md-6">
+            <label for="sex">Stärker betroffene Hand</label>
         </div>
         <div class="col-md-6">
-            <input type="text" class="form-control" id="stronger-impacted-hand" name="stronger-impacted-hand" placeholder="" required>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-left" value="left"> links
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-right" value="right"> rechts
+                </label>
+            </div>
+            <div class="form-check form-check-inline disabled">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-none" value="none"> keine
+                </label>
+            </div>
         </div>
     </div>
 </div>
