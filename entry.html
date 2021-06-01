@@ -10,9 +10,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Checkout example for Bootstrap</title>
+    <title>SFB Z03 - Motor Assessment Center - Checkliste</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/checkout/">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/form-validation.css" rel="stylesheet">
 
@@ -23,64 +22,561 @@
 <div class="container">
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h2>Checkout form</h2>
-        <p class="lead">Below is an example form built entirely with Bootstrap's form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+        <h2>SFB Z03 - Motor Assessment Center - Checkliste</h2>
+        <p class="lead">This is a prototype of the motor assessment data entry page. To provide feedback, please
+            create an issue in our
+            <a href="https://github.com/psychoinformatics-de/sfb1451_data_entry/issues/new/choose">issue tracker</a>.
+        </p>
+    </div>
+</div>
+
+
+
+<form class="needs-validation" novalidate>
+
+<div class="container">
+    <div class="row">
+        <h4 class="mb-3">General information</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Projekt-Code
+        </div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="project-code" name="project-code" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Probanden-Pseudonym
+        </div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="subject-pseudonym" name="subject_pseudonym" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Geburtsdatum
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="date-of-birth" name="date-of-birth" placeholder="tt.mm.jjjj" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Geschlecht
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="sex" name="sex" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Test-Datum
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="test-date" name="test-date" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Wiederholte Testung
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="repeated-test" name="repeated-test" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="subject-group">Probandengruppe</label>
+        </div>
+        <div class="col-md-6">
+            <select name="subject-group" id="subject-group">
+                <option value="healthy">Gesund</option>
+                <option value="patient">Patient</option>
+            </select>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Haupterkrankung
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="main-disease" name="main-disease" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Datum Erstsymptom
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="date-first-symptom" name="date-first-symptom" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Datum Diagnose
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="date-diagnosis" name="date-diagnosis" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">Stärker betroffene Hand
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="form-control" id="stronger-impacted-hand" name="stronger-impacted-hand" placeholder="" required>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <h4 class="mb-3">Motor assessment - Basic motor abilities</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Handedness questionaire
+        </div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="handedness-questionaire" name="handedness-questionaire" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label"></div>
+        <div class="col-md-3 entry-value">Links</div>
+        <div class="col-md-3 entry-value">Rechts</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Maximum Finger-Tapping-Frequency (FTF)</div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="maximum-ftf-left" name="maximum-ftf-left" placeholder="" required>
+        </div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="maximum-ftf-right" name="maximum-ftf-right" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Maximum Grip Strength (GS)</div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="maximum-gs-left" name="maximum-gs-left" placeholder="" required>
+        </div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="maximum-gs-right" name="maximum-gs-right" placeholder="" required>
+        </div>
+    </div>
+</div>
+
+<p></p>
+<div class="container">
+    <div class="row">
+        <h4 class="mb-3">Motor assessment - Complex motor abilities/praxis</h4>
+    </div>
+    <div class="col-md-6 entry-label"><h5>Purdue Pegboard Test</h5></div>
+    <div class="row">
+        <div class="col-md-6 entry-label"></div>
+        <div class="col-md-3 entry-value">Links</div>
+        <div class="col-md-3 entry-value">Rechts</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Purdue Pegboard Test</div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="purdue-pegboard-left" name="purdue-pegboard-left" placeholder="" required>
+        </div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="perdue-pegboard-right" name="purdue-pegboard-right" placeholder="" required>
+        </div>
+    </div>
+    <div class="row"><h5> </h5></div>
+    <div class="row"><h5>Jebsen Taylor Hand Function Test (JTT)</h5></div>
+    <div class="row">
+        <div class="col-md-6 entry-label"></div>
+        <div class="col-md-3 entry-value">Links</div>
+        <div class="col-md-3 entry-value">Rechts</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Karten drehen</div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="jtt-left" name="jtt-left" placeholder="" required>
+        </div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="jtt-right" name="jtt-right" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">kleine Gegenstände</div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="small-things-left" name="small-things-left" placeholder="" required>
+        </div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="small-things-right" name="small-things-right" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">simuliertes Füttern</div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="simulated-feeding-left" name="simulated-feeding-left" placeholder="" required>
+        </div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="simulated-feeding-right" name="simulated-feeding-right" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Damesteine</div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="checkers-left" name="checkers-left" placeholder="" required>
+        </div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="checkers-right" name="checkers-right" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">große, leichte Gegenstände</div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="large-light-things-left" name="large-light-things-left" placeholder="" required>
+        </div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="large-light-things-right" name="large-light-things-right" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">große, schwere Gegenstände</div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="large-heavy-things-left" name="large-heavy-things-left" placeholder="" required>
+        </div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="large-heavy-things-right" name="larger-heavy-things-right" placeholder="" required>
+        </div>
+    </div>
+    <div class="row"><h5>Action Research Arm Test (ARAT)</h5></div>
+    <div class="row">
+        <div class="col-md-6 entry-label"></div>
+        <div class="col-md-3 entry-value">Links</div>
+        <div class="col-md-3 entry-value">Rechts</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Punktzahl</div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="arat-left" name="arat-left" placeholder="" required>
+        </div>
+        <div class="col-md-3 entry-value">
+            <input type="text" class="form-control" id="arat-right" name="arat-right" placeholder="" required>
+        </div>
+    </div>
+    <div class="row"><h5>Timed-Up-and-Go test (TUG)</h5></div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Durchführbarkeit</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="tug-applicable" name="tug-applicable" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">ausgeführter TUG (aTUG)</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="executed-tug" name="executed-tug" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">vorgestellter TUG (vTUG)</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="imagined-tug" name="imagined-tug" placeholder="" required>
+        </div>
+    </div>
+
+    <p></p>
+    <div class="row">
+        <h4 class="mb-3">Motor assessment - Cognitive motor abilities</h4>
+    </div>
+    <div class="col-md-6 entry-label"><h5>Go/Nogo-Task</h5></div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Anzahl Fehler insgesamt</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Anzahl erkannte Fehler</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Reaktionszeit korrekte Antwort</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="go-nogo-correct-answer-time" name="go-nogo-correct-answer-time" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Reaktionszeit erkannte Antwort</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="go-nogo-recognized-error-time" name="go-nogo-recognized-error-time" placeholder="" required>
+        </div>
+    </div>
+
+    <div class="col-md-6 entry-label"><h5>Cologne Apraxie Screening (KAS)</h5></div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Pantomime - Bukko-Facial</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kas-pantomime-bukko-facial" name="kas-pantomime-bukko-facial" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Pantomime - Arm-Hand</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kas-pantomime-arm-hand" name="kas-pantomime-arm-hand" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Imitation Bukko-Facial</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kas-imitation-bukko-facial" name="kas-imitation-bukko-facial" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Imitation - Arm-Hand</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kas-imitation-arm-hand" name="kas-imitation-arm-hand" placeholder="" required>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <h4 class="mb-3">Neuropsychological/cognitive assessment</h4>
+    </div>
+    <div class="row">
+        <h5 class="col-md-6 entry-label">Kölner neuropsychologisches Screening für Schlaganfallpatienten (KöpSS)</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Testbarkeit</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-performed" name="kopss-performed" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">1 - Orientierung</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-orientation" name="kopss-orientation" placeholder="0-9" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">2 - Sprache</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-speech" name="kopss-speech" placeholder="0-18" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">3 - Praxie</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-praxie" name="kopss-praxie" placeholder="0-18" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">4 - Visuell Räumliche Leistung</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" placeholder="0-17" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">5 - Rechnen</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-calculating" name="kopss-calculating" placeholder="0-8" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">6 - Exekutive Leistung/Aufmerksamkeit</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" placeholder="0-18" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">7 - Visuell Räumliche Leistung</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" placeholder="0-20" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Affekt</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-affect" name="kopss-affect" placeholder="0-9" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Verhaltensbeobachtung</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-behavior-observation" name="kopss-behavior-observation" placeholder="0-9" required>
+        </div>
     </div>
 
     <div class="row">
-        <div class="col-md-10">
-            <h4 class="mb-3">Billing address</h4>
-            <form class="needs-validation" novalidate>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="firstName">First name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                        <div class="invalid-feedback">
-                            Valid first name is required.
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="lastName">Last name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                        <div class="invalid-feedback">
-                            Valid last name is required.
-                        </div>
-                    </div>
-                </div>
+        <h5 class="col-md-6 entry-label">Aphasia Check Liste (short version, ACL-K)</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Lautes Lesen</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="acl-s-loud-reading" name="acl-s-loud-reading" placeholder="0.0-9.0" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Farb-Figur-Test</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="acl-s-color-form-test" name="acl-s-color-form-test" placeholder="0-12" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Supermarktaufgabe</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="acl-s-supermarket-task" name="acl-s-supermarket-task" placeholder="0-10" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Kommunikationsfähigkeit</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="acl-s-communication-ability" name="acl-s-communication-ability" placeholder="0-9" required>
+        </div>
+    </div>
 
-                <div class="mb-3">
-                    <label for="username">Username</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">@</span>
-                        </div>
-                        <input type="text" class="form-control" id="username" placeholder="Username" required>
-                        <div class="invalid-feedback" style="width: 100%;">
-                            Your username is required.
-                        </div>
-                    </div>
-                </div>
+    <div class="row">
+        <h5 class="col-md-6 entry-label">Beck Depression Inventory (BDI II)</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Punktzahl</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="bdi-ii-score" name="bdi-ii-score" placeholder="0-63" required>
+        </div>
+    </div>
 
-                <div class="mb-3">
-                    <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                    <div class="invalid-feedback">
-                        Please enter a valid email address for shipping updates.
-                    </div>
-                </div>
+    <div class="row">
+        <h5 class="col-md-6 entry-label">Mongomery-Asberg Depression rating Scale (MADRS)</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Punktzahl</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="madrs-score" name="madrs-score" placeholder="0-60" required>
+        </div>
+    </div>
 
-                <div class="mb-3">
-                    <label for="address">Address</label>
-                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-                    <div class="invalid-feedback">
-                        Please enter your shipping address.
-                    </div>
-                </div>
+    <div class="row">
+        <h5 class="col-md-6 entry-label">DemTec</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Wortliste</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="acl-s-color-form-test" name="acl-s-color-form-test" placeholder="0-3" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Zahlen umwandeln</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="acl-s-color-form-test" name="acl-s-color-form-test" placeholder="0-3" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Supermarktaufgabe</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="acl-s-color-form-test" name="acl-s-color-form-test" placeholder="0-4" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Zahlenfolge rückwärts</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="acl-s-color-form-test" name="acl-s-color-form-test" placeholder="0-3" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Erneute Abfrage der Wortliste</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="acl-s-color-form-test" name="acl-s-color-form-test" placeholder="0-5" required>
+        </div>
+    </div>
 
-                <div class="mb-3">
-                    <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                    <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                </div>
+    <div class="row">
+        <h5 class="col-md-6 entry-label">Trail Making Test (TMT)</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Zeit TMT A</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="acl-s-color-form-test" name="acl-s-color-form-test" placeholder="0.0-150.0" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Zeit TMT B</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="acl-s-color-form-test" name="acl-s-color-form-test" placeholder="0.0-300.0" required>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <h4 class="mb-3">Global Scores</h4>
+    </div>
+    <div class="row">
+        <h5 class="col-md-6 entry-label">Modified Rankin scale (mRS)</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Punktzahl</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-performed" name="kopss-performed" placeholder="0-6" required>
+        </div>
+    </div>
+    <div class="row">
+        <h5 class="col-md-6 entry-label">EuroQol 5 (5Q-5D)</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Code aus Antworten</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-orientation" name="kopss-orientation" placeholder="1-5,1-5,1-5,1-5,1-5 (Beispiel: 12522)" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Visuelle Analogscala (VAS)</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-orientation" name="kopss-orientation" placeholder="0-100" required>
+        </div>
+    </div>
+    <div class="row">
+        <h5 class="col-md-6 entry-label">Level/years of education</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">Zahlenwert nach ISCED</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-orientation" name="kopss-orientation" placeholder="0-6" required>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <h4 class="mb-3">Additional Diagnostic</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">MRT</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-performed" name="kopss-performed" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">EEG</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-performed" name="kopss-performed" placeholder="" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">blood sampling</div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="kopss-performed" name="kopss-performed" placeholder="" required>
+        </div>
+    </div>
+</div>
+
+<div>
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Daten speichern</button>
+</div>
+
+</form>
+
+
+<!--
+<div class="container">
+        <form class="needs-validation" novalidate>
+        <div class="col-md-12">
+        </div>
+
 
                 <div class="row">
                     <div class="col-md-5 mb-3">
@@ -175,8 +671,11 @@
                 <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
             </form>
         </div>
-    </div>
+</div>
+-->
 
+
+<div>
     <footer class="my-5 pt-5 text-muted text-center text-small">
         <p class="mb-1">&copy; 2017-2018 Company Name</p>
         <ul class="list-inline">
