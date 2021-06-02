@@ -195,19 +195,17 @@
         </div>
         <div class="col-md-6">
             <div class="form-check form-check-inline">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-left" value="left"> links
-                </label>
+                <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-left" value="left" required>
+                <label class="form-check-label" for="stronger-impacted-hand-left">links</label>
             </div>
             <div class="form-check form-check-inline">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-right" value="right"> rechts
-                </label>
+                <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-right" value="right" required>
+                <label class="form-check-label" for="stronger-impacted-hand-right">rechts</label>
             </div>
-            <div class="form-check form-check-inline disabled">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-none" value="none"> keine
-                </label>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-none" value="none" required>
+                <label class="form-check-label" for="stronger-impacted-hand-none">keine</label>
+                <span class="invalid-feedback">Stärker betroffene Hand nicht ausgewählt.</span>
             </div>
         </div>
     </div>
