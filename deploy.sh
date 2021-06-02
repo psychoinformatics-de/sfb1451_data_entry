@@ -7,7 +7,7 @@ mkdir -p www
 cp entry.html www
 cp -r css js www
 
-git add -r www
+git add www
 git commit -m "pre-deploy commitment"
 
 git checkout deploy
