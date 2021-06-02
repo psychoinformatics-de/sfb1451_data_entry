@@ -12,5 +12,6 @@ git commit -m "pre-deploy commitment"
 
 git checkout deploy
 git merge master -m "deploy merge"
+git push
 
 git checkout master
