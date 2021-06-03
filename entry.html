@@ -19,6 +19,7 @@
 
 <body class="bg-light">
 
+
 <div class="container">
     <div class="py-5 text-center">
         <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
@@ -135,10 +136,10 @@
             <label for="subject-group">Probandengruppe</label>
         </div>
         <div class="col-md-6">
-            <select name="subject-group" id="subject-group" required>
+            <select name="subject-group" id="subject-group" onchange="patientUpdateElement();" required>
                 <option value="">Bitte auswählen</option>
-                <option value="healthy">Gesund</option>
-                <option value="patient">Patient</option>
+                <option value="healthy" onselect="collapsePatient()">Gesund</option>
+                <option value="patient" onselect="showPatient()">Patient</option>
             </select>
             <div class="invalid-feedback">
                 Probandengruppe nicht ausgewählt.
@@ -146,69 +147,74 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <label for="main-disease">Haupterkrankung</label>
+    <div class="collapse collapsed" id="patient-collapse">
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="main-disease">Haupterkrankung</label>
+            </div>
+            <div class="col-md-6">
+                <select name="subject-group" id="main-disease" required>
+                    <option value="">Bitte auswählen</option>
+                    <option value="healthy">Schlaganfall</option>
+                    <option value="parkinson">Parkinson</option>
+                    <option value="tic">Tic</option>
+                    <option value="depression">Depression</option>
+                    <option value="alzheimer">Alzheimer</option>
+                </select>
+                <div class="invalid-feedback">
+                    Probandengruppe nicht ausgewählt.
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            <select name="subject-group" id="main-disease" required>
-                <option value="">Bitte auswählen</option>
-                <option value="healthy">Schlaganfall</option>
-                <option value="parkinson">Parkinson</option>
-                <option value="tic">Tic</option>
-                <option value="depression">Depression</option>
-                <option value="alzheimer">Alzheimer</option>
-            </select>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="date-first-symptom">Datum Erstsymptom</label>
+            </div>
+            <div class="col-md-6">
+                <input type="date" class="form-control" id="date-first-symptom" name="date-first-symptom" placeholder="" required>
+            </div>
             <div class="invalid-feedback">
-                Probandengruppe nicht ausgewählt.
+                Datum des Erstsymptoms nicht angegeben.
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="date-diagnosis">Datum Diagnose</label>
+            </div>
+            <div class="col-md-6">
+                <input type="date" class="form-control" id="date-diagnosis" name="date-diagnosis" placeholder="" required>
+            </div>
+            <div class="invalid-feedback">
+                Datum der Diagnose nicht angegeben.
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label for="stronger-impacted-hand-left">Stärker betroffene Hand</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-left" value="left" required>
+                    <label class="form-check-label" for="stronger-impacted-hand-left">links</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-right" value="right" required>
+                    <label class="form-check-label" for="stronger-impacted-hand-right">rechts</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-none" value="none" required>
+                    <label class="form-check-label" for="stronger-impacted-hand-none">keine</label>
+                    <span class="invalid-feedback">Stärker betroffene Hand nicht ausgewählt.</span>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <label for="date-first-symptom">Datum Erstsymptom</label>
-        </div>
-        <div class="col-md-6">
-            <input type="date" class="form-control" id="date-first-symptom" name="date-first-symptom" placeholder="" required>
-        </div>
-        <div class="invalid-feedback">
-            Datum des Erstsymptoms nicht angegeben.
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <label for="date-diagnosis">Datum Diagnose</label>
-        </div>
-        <div class="col-md-6">
-            <input type="date" class="form-control" id="date-diagnosis" name="date-diagnosis" placeholder="" required>
-        </div>
-        <div class="invalid-feedback">
-            Datum der Diagnose nicht angegeben.
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-            <label for="stronger-impacted-hand-left">Stärker betroffene Hand</label>
-        </div>
-        <div class="col-md-6">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-left" value="left" required>
-                <label class="form-check-label" for="stronger-impacted-hand-left">links</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-right" value="right" required>
-                <label class="form-check-label" for="stronger-impacted-hand-right">rechts</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-none" value="none" required>
-                <label class="form-check-label" for="stronger-impacted-hand-none">keine</label>
-                <span class="invalid-feedback">Stärker betroffene Hand nicht ausgewählt.</span>
-            </div>
-        </div>
-    </div>
 </div>
 
 
@@ -1099,6 +1105,32 @@
             })
     })()
 </script>
+
+<script>
+    let patientSelectElement = document.getElementById("subject-group");
+    let patientCollapseElement = document.getElementById("patient-collapse");
+    let patientCollapse = new bootstrap.Collapse(patientCollapseElement, {hide: true});
+
+    function hidePatient() {
+        //let patientCollapse = new bootstrap.Collapse(patientCollapseElement, {hide: true});
+        patientCollapse.hide()
+    }
+    function showPatient() {
+        //let patientCollapse = new bootstrap.Collapse(patientCollapseElement, {show: true});
+        patientCollapse.show()
+    }
+
+    function patientUpdateElement() {
+        x = patientSelectElement.selectedIndex;
+        if (x === 2) {
+            showPatient();
+        }
+        else {
+            hidePatient();
+        }
+    }
+</script>
+
 </body>
 </html>
 
