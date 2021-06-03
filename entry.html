@@ -131,7 +131,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row pt-3">
         <div class="col-md-6">
             <label for="subject-group">Probandengruppe</label>
         </div>
@@ -139,7 +139,7 @@
             <select name="subject-group" id="subject-group" onchange="patientUpdateElement();" required>
                 <option value="">Bitte auswählen</option>
                 <option value="healthy" onselect="collapsePatient()">Gesund</option>
-                <option value="patient" onselect="showPatient()">Patient</option>
+                <option value="patient" onselect="showCollapsable()">Patient</option>
             </select>
             <div class="invalid-feedback">
                 Probandengruppe nicht ausgewählt.
@@ -147,7 +147,7 @@
         </div>
     </div>
 
-    <div class="collapse collapsed" id="patient-collapse">
+    <div class="collapse collapsed pt-3" id="patient-collapse">
 
         <div class="row">
             <div class="col-md-6">
@@ -678,116 +678,120 @@
             <label for="kopss-applicable">Testbarkeit</label>
         </div>
         <div class="col-md-6">
-            <input type="checkbox" class="form-check-input" id="kopss-applicable" name="kopss-applicable" placeholder="">
+            <input type="checkbox" class="form-check-input" id="kopss-applicable" name="kopss-applicable" onchange="kopssUpdateElement();">
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kopss-orientation">1 - Orientierung (gewichteter Domänenwert)</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required>
-            <div class="invalid-feedback">
-                Ganzzahl zwischen 0 und 9 erwartet.
-            </div>
-        </div>
-    </div>
+    <div class="collapse collapsed pt-3" id="kopss-collapse">
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kopss-speech">2 - Sprache (gewichteter Domänenwert)</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required>
-            <div class="invalid-feedback">
-                Ganzzahl zwischen 0 und 18 erwartet.
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="kopss-orientation">1 - Orientierung (gewichteter Domänenwert)</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="text" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required>
+                <div class="invalid-feedback">
+                    Ganzzahl zwischen 0 und 9 erwartet.
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kopss-praxie">3 - Praxie (gewichteter Domänenwert)</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required>
-            <div class="invalid-feedback">
-                Ganzzahl zwischen 0 und 18 erwartet.
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="kopss-speech">2 - Sprache (gewichteter Domänenwert)</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="text" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required>
+                <div class="invalid-feedback">
+                    Ganzzahl zwischen 0 und 18 erwartet.
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kopss-visual-spacial-performance">4 - Visuell Räumliche Leistung (gewichteter Domänenwert)</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" min="0" max="17" step="1" placeholder="0 - 17" required>
-            <div class="invalid-feedback">
-                Ganzzahl zwischen 0 und 17 erwartet.
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="kopss-praxie">3 - Praxie (gewichteter Domänenwert)</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="text" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required>
+                <div class="invalid-feedback">
+                    Ganzzahl zwischen 0 und 18 erwartet.
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kopss-calculating">5 - Rechnen (gewichteter Domänenwert)</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required>
-            <div class="invalid-feedback">
-                Ganzzahl zwischen 0 und 8 erwartet.
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="kopss-visual-spacial-performance">4 - Visuell Räumliche Leistung (gewichteter Domänenwert)</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="text" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" min="0" max="17" step="1" placeholder="0 - 17" required>
+                <div class="invalid-feedback">
+                    Ganzzahl zwischen 0 und 17 erwartet.
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kopss-executive-performance">6 - Exekutive Leistung/Aufmerksamkeit (gewichteter Domänenwert)</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required>
-            <div class="invalid-feedback">
-                Ganzzahl zwischen 0 und 18 erwartet.
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="kopss-calculating">5 - Rechnen (gewichteter Domänenwert)</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="text" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required>
+                <div class="invalid-feedback">
+                    Ganzzahl zwischen 0 und 8 erwartet.
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kopss-memory">7 - Gedächtnis (gewichteter Domänenwert)</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required>
-            <div class="invalid-feedback">
-                Ganzzahl zwischen 0 und 20 erwartet.
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="kopss-executive-performance">6 - Exekutive Leistung/Aufmerksamkeit (gewichteter Domänenwert)</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="text" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required>
+                <div class="invalid-feedback">
+                    Ganzzahl zwischen 0 und 18 erwartet.
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kopss-affect">Affekt</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kopss-affect" name="kopss-affect" min="0" max="9" step="1" placeholder="0 - 9" required>
-            <div class="invalid-feedback">
-                Ganzzahl zwischen 0 und 9 erwartet.
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="kopss-memory">7 - Gedächtnis (gewichteter Domänenwert)</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="text" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required>
+                <div class="invalid-feedback">
+                    Ganzzahl zwischen 0 und 20 erwartet.
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kopss-behavior-observation">Verhaltensbeobachtung</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kopss-behavior-observation" name="kopss-behavior-observation" min="0" max="9" step="1" placeholder="0 - 9" required>
-            <div class="invalid-feedback">
-                Ganzzahl zwischen 0 und 9 erwartet.
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="kopss-affect">Affekt</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="text" class="form-control" id="kopss-affect" name="kopss-affect" min="0" max="9" step="1" placeholder="0 - 9" required>
+                <div class="invalid-feedback">
+                    Ganzzahl zwischen 0 und 9 erwartet.
+                </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="kopss-behavior-observation">Verhaltensbeobachtung</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="text" class="form-control" id="kopss-behavior-observation" name="kopss-behavior-observation" min="0" max="9" step="1" placeholder="0 - 9" required>
+                <div class="invalid-feedback">
+                    Ganzzahl zwischen 0 und 9 erwartet.
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="row pt-3"><h5>Aphasia Check Liste (short version, ACL-K)</h5></div>
@@ -1109,26 +1113,42 @@
 <script>
     let patientSelectElement = document.getElementById("subject-group");
     let patientCollapseElement = document.getElementById("patient-collapse");
-    let patientCollapse = new bootstrap.Collapse(patientCollapseElement, {hide: true});
+    let patientCollapse = null;
 
-    function hidePatient() {
-        //let patientCollapse = new bootstrap.Collapse(patientCollapseElement, {hide: true});
-        patientCollapse.hide()
+    let kopssCheckboxElement = document.getElementById("kopss-applicable");
+    let kopssCollapseElement = document.getElementById("kopss-collapse");
+    let kopssCollapse = null;
+
+    function hideCollapsable(obj) {
+        obj.hide();
     }
-    function showPatient() {
-        //let patientCollapse = new bootstrap.Collapse(patientCollapseElement, {show: true});
-        patientCollapse.show()
+
+    function showCollapsable(obj) {
+        obj.show();
     }
 
     function patientUpdateElement() {
-        x = patientSelectElement.selectedIndex;
-        if (x === 2) {
-            showPatient();
+        if (patientSelectElement.selectedIndex === 2) {
+            if (patientCollapse === null)
+                patientCollapse = new bootstrap.Collapse(patientCollapseElement);
+            showCollapsable(patientCollapse);
         }
         else {
-            hidePatient();
+            hideCollapsable(patientCollapse);
         }
     }
+
+    function kopssUpdateElement() {
+        if (kopssCheckboxElement.checked === true) {
+            if (kopssCollapse === null)
+                kopssCollapse = new bootstrap.Collapse(kopssCollapseElement, {hide: true});
+            showCollapsable(kopssCollapse);
+        }
+        else {
+            hideCollapsable(kopssCollapse);
+        }
+    }
+
 </script>
 
 </body>
