@@ -521,38 +521,42 @@
             <label for="tug-applicable">Durchführbarkeit</label>
         </div>
         <div class="col-md-6">
-            <input type="checkbox" class="form-check-input" id="tug-applicable" name="tug-applicable" placeholder="">
+            <input type="checkbox" class="form-check-input" id="tug-applicable" name="tug-applicable" onchange="tugUpdateElement();">
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="executed-tug">ausgeführter TUG (aTUG)</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <div class="input-group">
-                <input type="number" class="form-control" id="executed-tug" name="executed-tug" min="0" max="60" placeholder="0.0 - 60.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
-                    Zahlenwert zwischen 0.0 und 60.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="collapse collapsed pt-3" id="tug-collapse">
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="imagined-tug">vorgestellter TUG (vTUG)</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <div class="input-group">
-                <input type="number" class="form-control" id="imagined-tug" name="imagined-tug" min="0" max="60" placeholder="0.0 - 60.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
-                    Zahlenwert zwischen 0.0 und 60.0 erwartet.
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="executed-tug">ausgeführter TUG (aTUG)</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <div class="input-group">
+                    <input type="number" class="form-control" id="executed-tug" name="executed-tug" min="0" max="60" placeholder="0.0 - 60.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback">
+                        Zahlenwert zwischen 0.0 und 60.0 erwartet.
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="imagined-tug">vorgestellter TUG (vTUG)</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <div class="input-group">
+                    <input type="number" class="form-control" id="imagined-tug" name="imagined-tug" min="0" max="60" placeholder="0.0 - 60.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback">
+                        Zahlenwert zwischen 0.0 und 60.0 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="row pt-5">
@@ -1119,6 +1123,10 @@
     let kopssCollapseElement = document.getElementById("kopss-collapse");
     let kopssCollapse = null;
 
+    let tugCheckboxElement = document.getElementById("tug-applicable");
+    let tugCollapseElement = document.getElementById("tug-collapse");
+    let tugCollapse = null;
+
     function hideCollapsable(obj) {
         obj.hide();
     }
@@ -1146,6 +1154,17 @@
         }
         else {
             hideCollapsable(kopssCollapse);
+        }
+    }
+
+    function tugUpdateElement() {
+        if (tugCheckboxElement.checked === true) {
+            if (tugCollapse === null)
+                tugCollapse = new bootstrap.Collapse(tugCollapseElement, {hide: true});
+            showCollapsable(tugCollapse);
+        }
+        else {
+            hideCollapsable(tugCollapse);
         }
     }
 
