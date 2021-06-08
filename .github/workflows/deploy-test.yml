@@ -18,4 +18,4 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Pushd deploy branch
-      run: ./deploy-test
+      run: ./deploy-test.sh
