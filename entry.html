@@ -233,7 +233,7 @@
             <label for="laterality-quotient">Laterality Quotient</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="laterality-quotient" name="laterality-quotient" placeholder="-100  -  100" required>
+            <input type="number" class="form-control" id="laterality-quotient" name="laterality-quotient" min="-100" max="100" step="1" placeholder="-100  -  100" required>
         </div>
     </div>
 
@@ -529,11 +529,11 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="executed-tug">ausgeführter TUG (aTUG)</label>
+                <label for="tug-executed">ausgeführter TUG (aTUG)</label>
             </div>
             <div class="col-md-6 entry-value">
                 <div class="input-group">
-                    <input type="number" class="form-control" id="executed-tug" name="executed-tug" min="0" max="60" placeholder="0.0 - 60.0" required>
+                    <input type="number" class="form-control" id="tug-executed" name="tug-executed" min="0" max="60" placeholder="0.0 - 60.0" required>
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback">
                         Zahlenwert zwischen 0.0 und 60.0 erwartet.
@@ -544,11 +544,11 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="imagined-tug">vorgestellter TUG (vTUG)</label>
+                <label for="tug-imagined">vorgestellter TUG (vTUG)</label>
             </div>
             <div class="col-md-6 entry-value">
                 <div class="input-group">
-                    <input type="number" class="form-control" id="imagined-tug" name="imagined-tug" min="0" max="60" placeholder="0.0 - 60.0" required>
+                    <input type="number" class="form-control" id="tug-imagined" name="tug-imagined" min="0" max="60" placeholder="0.0 - 60.0" required>
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback">
                         Zahlenwert zwischen 0.0 und 60.0 erwartet.
@@ -570,7 +570,7 @@
             <label for="go-nogo-total-errors">Anzahl Fehler insgesamt</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="360" step="1" placeholder="0 - 360" required>
+            <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="360" step="1" placeholder="0 - 360" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 360 erwartet.
             </div>
@@ -582,7 +582,7 @@
             <label for="go-nogo-recognized-errors">Anzahl erkannte Fehler</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" min="0" max="360" step="1" placeholder="0 - 360" required>
+            <input type="number" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" min="0" max="360" step="1" placeholder="0 - 360" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 360 erwartet.
             </div>
@@ -626,7 +626,7 @@
             <label for="kas-pantomime-bukko-facial">Pantomime - Bukko-Facial</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kas-pantomime-bukko-facial" name="kas-pantomime-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required>
+            <input type="number" class="form-control" id="kas-pantomime-bukko-facial" name="kas-pantomime-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 20 erwartet.
             </div>
@@ -638,7 +638,7 @@
             <label for="kas-pantomime-arm-hand">Pantomime - Arm-Hand</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kas-pantomime-arm-hand" name="kas-pantomime-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required>
+            <input type="number" class="form-control" id="kas-pantomime-arm-hand" name="kas-pantomime-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 20 erwartet.
             </div>
@@ -650,7 +650,7 @@
             <label for="kas-imitation-bukko-facial">Imitation - Bukko-Facial</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kas-imitation-bukko-facial" name="kas-imitation-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required>
+            <input type="number" class="form-control" id="kas-imitation-bukko-facial" name="kas-imitation-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 20 erwartet.
             </div>
@@ -662,7 +662,7 @@
             <label for="kas-imitation-arm-hand">Imitation - Arm-Hand</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="kas-imitation-arm-hand" name="kas-imitation-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required>
+            <input type="number" class="form-control" id="kas-imitation-arm-hand" name="kas-imitation-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 20 erwartet.
             </div>
@@ -693,7 +693,7 @@
                 <label for="kopss-orientation">1 - Orientierung (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="text" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required>
+                <input type="number" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
@@ -705,7 +705,7 @@
                 <label for="kopss-speech">2 - Sprache (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="text" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required>
+                <input type="number" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
@@ -717,7 +717,7 @@
                 <label for="kopss-praxie">3 - Praxie (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="text" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required>
+                <input type="number" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
@@ -729,7 +729,7 @@
                 <label for="kopss-visual-spacial-performance">4 - Visuell Räumliche Leistung (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="text" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" min="0" max="17" step="1" placeholder="0 - 17" required>
+                <input type="number" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" min="0" max="17" step="1" placeholder="0 - 17" required>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 17 erwartet.
                 </div>
@@ -741,7 +741,7 @@
                 <label for="kopss-calculating">5 - Rechnen (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="text" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required>
+                <input type="number" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 8 erwartet.
                 </div>
@@ -753,7 +753,7 @@
                 <label for="kopss-executive-performance">6 - Exekutive Leistung/Aufmerksamkeit (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="text" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required>
+                <input type="number" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
@@ -765,7 +765,7 @@
                 <label for="kopss-memory">7 - Gedächtnis (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="text" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required>
+                <input type="number" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 20 erwartet.
                 </div>
@@ -777,7 +777,7 @@
                 <label for="kopss-affect">Affekt</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="text" class="form-control" id="kopss-affect" name="kopss-affect" min="0" max="9" step="1" placeholder="0 - 9" required>
+                <input type="number" class="form-control" id="kopss-affect" name="kopss-affect" min="0" max="9" step="1" placeholder="0 - 9" required>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
@@ -789,7 +789,7 @@
                 <label for="kopss-behavior-observation">Verhaltensbeobachtung</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="text" class="form-control" id="kopss-behavior-observation" name="kopss-behavior-observation" min="0" max="9" step="1" placeholder="0 - 9" required>
+                <input type="number" class="form-control" id="kopss-behavior-observation" name="kopss-behavior-observation" min="0" max="9" step="1" placeholder="0 - 9" required>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
@@ -805,7 +805,7 @@
             <label for="acl-k-loud-reading">Lautes Lesen</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="acl-k-loud-reading" name="acl-k-loud-reading" min="0.0" max="9.0" placeholder="0.0 - 9.0" required>
+            <input type="number" class="form-control" id="acl-k-loud-reading" name="acl-k-loud-reading" min="0.0" max="9.0" placeholder="0.0 - 9.0" required>
             <div class="invalid-feedback">
                 Zhalenwert zwischen 0.0 und 9.0 erwartet.
             </div>
@@ -817,7 +817,7 @@
             <label for="acl-k-color-form-test">Farb-Figur-Test</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="acl-k-color-form-test" name="acl-k-color-form-test" min="0" max="12" step="1" placeholder="0 - 12" required>
+            <input type="number" class="form-control" id="acl-k-color-form-test" name="acl-k-color-form-test" min="0" max="12" step="1" placeholder="0 - 12" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 12 erwartet.
             </div>
@@ -829,7 +829,7 @@
             <label for="acl-k-supermarket-task">Supermarktaufgabe</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="acl-k-supermarket-task" name="acl-k-supermarket-task" min="0" max="10" step="1" placeholder="0 - 10" required>
+            <input type="number" class="form-control" id="acl-k-supermarket-task" name="acl-k-supermarket-task" min="0" max="10" step="1" placeholder="0 - 10" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 10 erwartet.
             </div>
@@ -841,7 +841,7 @@
             <label for="acl-k-communication-ability">Kommunikationsfähigkeit</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="acl-k-communication-ability" name="acl-k-communication-ability" min="0" max="9" step="1" placeholder="0 - 9" required>
+            <input type="number" class="form-control" id="acl-k-communication-ability" name="acl-k-communication-ability" min="0" max="9" step="1" placeholder="0 - 9" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 9 erwartet.
             </div>
@@ -855,7 +855,7 @@
             <label for="bdi-ii-score">Punktzahl</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="bdi-ii-score" name="bdi-ii-score" min="0" max="63" step="1" placeholder="0 - 63" required>
+            <input type="number" class="form-control" id="bdi-ii-score" name="bdi-ii-score" min="0" max="63" step="1" placeholder="0 - 63" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 63 erwartet.
             </div>
@@ -869,7 +869,7 @@
             <label for="madrs-score">Punktzahl</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="madrs-score" name="madrs-score" min="0" max="60" step="1" placeholder="0 - 60" required>
+            <input type="number" class="form-control" id="madrs-score" name="madrs-score" min="0" max="60" step="1" placeholder="0 - 60" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 60 erwartet.
             </div>
@@ -883,7 +883,7 @@
             <label for="demtec-wordlist">Wortliste</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="demtec-wordlist" name="demtec-wordlist" min="0" max="3" step="1" placeholder="0 - 3" required>
+            <input type="number" class="form-control" id="demtec-wordlist" name="demtec-wordlist" min="0" max="3" step="1" placeholder="0 - 3" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 3 erwartet.
             </div>
@@ -895,7 +895,7 @@
             <label for="demtec-convert-numbers">Zahlen umwandeln</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="demtec-convert-numbers" name="demtec-convert-numbers" min="0" max="3" step="1" placeholder="0 - 3" required>
+            <input type="number" class="form-control" id="demtec-convert-numbers" name="demtec-convert-numbers" min="0" max="3" step="1" placeholder="0 - 3" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 3 erwartet.
             </div>
@@ -907,7 +907,7 @@
             <label for="demtec-supermarket-task">Supermarktaufgabe</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="demtec-supermarket-task" name="demtec-supermarket-task" min="0" max="4" step="1" placeholder="0 - 4" required>
+            <input type="number" class="form-control" id="demtec-supermarket-task" name="demtec-supermarket-task" min="0" max="4" step="1" placeholder="0 - 4" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 4 erwartet.
             </div>
@@ -919,7 +919,7 @@
             <label for="demtec-numbers-reverse">Zahlenfolge rückwärts</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="demtec-numbers-reverse" name="demtec-numbers-reverse" min="0" max="3" step="1" placeholder="0 - 3" required>
+            <input type="number" class="form-control" id="demtec-numbers-reverse" name="demtec-numbers-reverse" min="0" max="3" step="1" placeholder="0 - 3" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 3 erwartet.
             </div>
@@ -931,7 +931,7 @@
             <label for="demtec-wordlist-recall">Erneute Abfrage der Wortliste</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="demtec-wordlist-recall" name="demtec-wordlist-recall" min="0" max="5" step="1" placeholder="0 - 5" required>
+            <input type="number" class="form-control" id="demtec-wordlist-recall" name="demtec-wordlist-recall" min="0" max="5" step="1" placeholder="0 - 5" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 5 erwartet.
             </div>
@@ -983,7 +983,7 @@
             <label for="mrs-score">Punktzahl</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="mrs-score" name="mrs-score" min="0" max="6" step="1" placeholder="0 - 6" required>
+            <input type="number" class="form-control" id="mrs-score" name="mrs-score" min="0" max="6" step="1" placeholder="0 - 6" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 6 erwartet.
             </div>
@@ -997,9 +997,9 @@
             <label for="euroqol-code">Code aus Antworten</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="euroqol-code" name="euroqol-code" min="11111" max="55555" step="1" placeholder="XXXXX mit X aus 1 - 5" required>
+            <input type="text" class="form-control" id="euroqol-code" name="euroqol-code" pattern="[1-5]{5}" placeholder="XXXXX mit X jeweils aus 1 - 5" required>
             <div class="invalid-feedback">
-                Antwort-Code ist nicht korrekt.
+                Antwort-Code ist nicht korrekt. Erwartet sind 5 Nummern aus 1 - 5, z.B. 31235
             </div>
         </div>
     </div>
@@ -1010,7 +1010,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <div class="input-group">
-                <input type="text" class="form-control" id="euroqol-vas" name="euroqol-vas" min="0" max="100" step="1" placeholder="0 - 100" required>
+                <input type="number" class="form-control" id="euroqol-vas" name="euroqol-vas" min="0" max="100" step="1" placeholder="0 - 100" required>
                 <div class="input-group-text">%</div>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 100 erwartet.
@@ -1026,7 +1026,7 @@
             <label for="isced-value">Zahlenwert nach ISCED</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="isced-value" name="isced-value" min="0" max="6" step="1" placeholder="0 - 6" required>
+            <input type="number" class="form-control" id="isced-value" name="isced-value" min="0" max="6" step="1" placeholder="0 - 6" required>
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 6 erwartet.
             </div>
@@ -1076,6 +1076,9 @@
 <div class="container pt-5">
     <div class="row">
         <button class="btn btn-primary btn-lg btn-block" type="submit">Daten prüfen und speichern</button>
+        <!--
+        <button class="btn btn-primary btn-lg btn-block" type="submit" formaction="http://localhost/cgi-bin/store_data_1.py" formmethod="post">Daten prüfen und speichern</button>
+        -->
     </div>
 </div>
 
@@ -1092,7 +1095,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
 <script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
         'use strict'
 
@@ -1111,7 +1113,7 @@
                     form.classList.add('was-validated')
                 }, false)
             })
-    })()
+    })();
 </script>
 
 <script>
@@ -1172,25 +1174,3 @@
 
 </body>
 </html>
-
-<!--
-<!doctype html>
-<html lang="de">
-<head>
-    <meta charset="utf-8">
-    <title>SFB Z03 - Motor Assessment Center - Checkliste</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    <form>
-        <label data-below="rat" for="handedness">Handedness questionnaire</label>
-        <input data-above="dog" name="handedness" id="handedness" type="text">
-    </form>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-<script src="js/verify.js"></script>
-
-</body>
-</html>
--->
