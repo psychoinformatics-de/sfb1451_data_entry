@@ -22,5 +22,5 @@ jobs:
     - name: Show environment
       run: env
     - name: List content
-      run: ls
+      run: ls ..
   
