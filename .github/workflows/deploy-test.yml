@@ -18,4 +18,9 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Pushd deploy branch
-      run: ./deploy-test.sh
+      run: pwd
+    - name: Show environment
+      run: env
+    - name: List content
+      run: ls
+  
