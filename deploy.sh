@@ -1,17 +1,15 @@
 #!/usr/bin/env bash
 
-git checkout master
+git checkout deploy
 
 mkdir -p www
 
-cp entry.html www
+git cat-file blob master:entry.html >www/entry.html
 cp -r css js www
 
 git add www
-git commit -m "pre-deploy commitment"
+git commit -m "pre-deploy commit"
 
-git checkout deploy
-git merge master -m "deploy merge"
 git push
 
 git checkout master
