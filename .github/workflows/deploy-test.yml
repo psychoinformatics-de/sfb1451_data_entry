@@ -17,7 +17,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
-    - name: Pushd deploy branch
+    - name: Show working directory
       run: pwd
     - name: Show environment
       run: env
