@@ -25,9 +25,9 @@ jobs:
           path: sfb1451_data_entry
           fetch-depth: 0
 
-    - name: List content
-      run: ls
+      - name: List content
+        run: ls
 
-    - name: Execute deploy script
-      run: ./deploy.sh
-      
+     - name: Execute deploy script
+       run: ./deploy.sh
+     
