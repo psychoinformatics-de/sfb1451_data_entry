@@ -1,0 +1,38 @@
+# Deploy manually
+
+name: Deploy Test
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  # This workflow contains a single job called "greet"
+  deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      - name: Checkout tools repo
+        uses: actions/checkout@v2
+        with:
+          repository: psychoinformatics-de/sfb1451_data_entry
+          path: sfb1451_data_entry
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          cd sfb1451_data_entry
+          git config --global user.email "christian.moench@web.de"
+          git config --global user.name "${GITHUB_ACTOR}"
+
+      - name: Execute deploy test script
+        run: |
+          cd sfb1451_data_entry
+          ./deploy-test.sh
+
