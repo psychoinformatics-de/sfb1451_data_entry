@@ -28,6 +28,6 @@ jobs:
       - name: List content
         run: ls
 
-     - name: Execute deploy script
-       run: ./deploy.sh
+      - name: Execute deploy script
+        run: ./deploy.sh
      
