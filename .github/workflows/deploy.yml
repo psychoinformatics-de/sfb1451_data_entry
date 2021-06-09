@@ -25,10 +25,11 @@ jobs:
           path: sfb1451_data_entry
           fetch-depth: 0
 
-      - name: List content
+      - name: Configure git
         run: |
           cd sfb1451_data_entry
-          ls
+          git config --global user.email "christian.moench@web.de"
+          git config --global user.name "${GITHUB_ACTOR}"
 
       - name: Execute deploy script
         run: |
