@@ -1,4 +1,4 @@
-# This is a basic workflow that is manually triggered
+y# This is a basic workflow that is manually triggered
 
 name: Manual workflow
 
@@ -26,8 +26,12 @@ jobs:
           fetch-depth: 0
 
       - name: List content
-        run: ls
+        run: |
+          cd sfb1451_data_entry
+          ls
 
       - name: Execute deploy script
-        run: ./deploy.sh
-     
+        run: |
+          cd sfb1451_data_entry
+          ./deploy.sh
+
