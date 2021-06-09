@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x -e
+
 git checkout deploy
 
 mkdir -p www
