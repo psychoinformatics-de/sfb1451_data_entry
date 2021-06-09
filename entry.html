@@ -237,7 +237,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row pt-2">
         <div class="col-md-6 entry-label">
             <label for="maximum-ftf-left">Maximum Finger-Tapping-Frequency (FTF)</label>
             <label class="visually-hidden" for="maximum-ftf-right">Maximum Finger-Tapping-Frequency (FTF)</label>
@@ -246,7 +246,7 @@
             <div class="input-group">
                 <div class="input-group-text">Links</div>
                 <input type="number" class="form-control" id="maximum-ftf-left" name="maximum-ftf-left" min="0.0" max="10.0" placeholder="0.0 - 10.0" required>
-                <div class="input-group-text">Hz</div>
+                <div class="input-group-text">Hz&nbsp;</div>
                 <div class="invalid-feedback">
                     Zahlenwert zwischen 0.0 und 10.0 erwartet.
                 </div>
@@ -256,7 +256,7 @@
             <div class="input-group">
                 <div class="input-group-text">Rechts</div>
                 <input type="number" class="form-control" id="maximum-ftf-right" name="maximum-ftf-right" min="0.0" max="10.0" placeholder="0.0 - 10.0" required>
-                <div class="input-group-text">Hz</div>
+                <div class="input-group-text">Hz&nbsp;</div>
                 <div class="invalid-feedback">
                     Zahlenwert zwischen 0.0 und 10.0 erwartet.
                 </div>
@@ -265,6 +265,15 @@
     </div>
 
     <div class="row">
+        <div class="col-md-6 entry-label">
+            <label for="ftf-incorrectly-executed">FTF unsauber ausgeführt</label>
+        </div>
+        <div class="col-md-6">
+            <input type="checkbox" class="form-check-input" id="ftf-incorrectly-executed" name="ftf-incorrectly-executed" placeholder="">
+        </div>
+    </div>
+
+    <div class="row pt-2">
         <div class="col-md-6 entry-label">
             <label for="maximum-gs-left">Maximum Grip Strength (GS)</label>
             <label class="visually-hidden" for="maximum-gs-right">Maximum Grip Strength (GS)</label>
@@ -487,7 +496,16 @@
         </div>
     </div>
 
-    <div class="row pt-3"><h5>Action Research Arm Test (ARAT)</h5></div>
+    <div class="row pt-1">
+        <div class="col-md-6 entry-label">
+            <label for="jtt-incorrectly-executed">JTT unsauber ausgeführt</label>
+        </div>
+        <div class="col-md-6">
+            <input type="checkbox" class="form-check-input" id="jtt-incorrectly-executed" name="jtt-incorrectly-executed" placeholder="">
+        </div>
+    </div>
+
+    <div class="row pt-4"><h5>Action Research Arm Test (ARAT)</h5></div>
 
     <div class="row">
         <div class="col-md-6 entry-label">
@@ -557,6 +575,15 @@
             </div>
         </div>
 
+        <div class="row pt-1">
+            <div class="col-md-6 entry-label">
+                <label for="tug-incorrectly-executed">TUG unsauber ausgeführt</label>
+            </div>
+            <div class="col-md-6">
+                <input type="checkbox" class="form-check-input" id="tug-incorrectly-executed" name="tug-incorrectly-executed" placeholder="">
+            </div>
+        </div>
+
     </div>
 
     <div class="row pt-5">
@@ -619,7 +646,16 @@
         </div>
     </div>
 
-    <div class="row pt-3"><h5>Cologne Apraxie Screening (KAS)</h5></div>
+    <div class="row pt-1">
+        <div class="col-md-6 entry-label">
+            <label for="go-nogo-incorrectly-executed">Go/Nogo-Task unsauber ausgeführt</label>
+        </div>
+        <div class="col-md-6">
+            <input type="checkbox" class="form-check-input" id="go-nogo-incorrectly-executed" name="go-nogo-incorrectly-executed" placeholder="">
+        </div>
+    </div>
+
+    <div class="row pt-4"><h5>Cologne Apraxie Screening (KAS)</h5></div>
 
     <div class="row">
         <div class="col-md-6 entry-label">
@@ -957,6 +993,15 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
+            <label for="tmt-a-incorrectly-executed">TMT A unsauber ausgeführt</label>
+        </div>
+        <div class="col-md-6">
+            <input type="checkbox" class="form-check-input" id="tmt-a-incorrectly-executed" name="tmt-a-incorrectly-executed" placeholder="">
+        </div>
+    </div>
+
+    <div class="row pt-3">
+        <div class="col-md-6 entry-label">
             <label for="time-tmt-b">Zeit TMT B</label>
         </div>
         <div class="col-md-6 entry-value">
@@ -969,6 +1014,16 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-6 entry-label">
+            <label for="tmt-b-incorrectly-executed">TMT B unsauber ausgeführt</label>
+        </div>
+        <div class="col-md-6">
+            <input type="checkbox" class="form-check-input" id="tmt-b-incorrectly-executed" name="tmt-b-incorrectly-executed" placeholder="">
+        </div>
+    </div>
+
 </div>
 
 
