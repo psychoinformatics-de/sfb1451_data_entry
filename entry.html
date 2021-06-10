@@ -562,6 +562,15 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
+                <label for="tug-a-incorrectly-executed">aTUG unsauber ausgeführt</label>
+            </div>
+            <div class="col-md-6">
+                <input type="checkbox" class="form-check-input" id="tug-a-incorrectly-executed" name="tug-a-incorrectly-executed" placeholder="">
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-md-6 entry-label">
                 <label for="tug-imagined">vorgestellter TUG (vTUG)</label>
             </div>
             <div class="col-md-6 entry-value">
@@ -575,12 +584,12 @@
             </div>
         </div>
 
-        <div class="row pt-1">
+        <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="tug-incorrectly-executed">TUG unsauber ausgeführt</label>
+                <label for="tug-v-incorrectly-executed">vTUG unsauber ausgeführt</label>
             </div>
             <div class="col-md-6">
-                <input type="checkbox" class="form-check-input" id="tug-incorrectly-executed" name="tug-incorrectly-executed" placeholder="">
+                <input type="checkbox" class="form-check-input" id="tug-v-incorrectly-executed" name="tug-v-incorrectly-executed" placeholder="">
             </div>
         </div>
 
@@ -662,7 +671,7 @@
             <label for="kas-pantomime-bukko-facial">Pantomime - Bukko-Facial</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="kas-pantomime-bukko-facial" name="kas-pantomime-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required>
+            <input type="number" class="form-control" id="kas-pantomime-bukko-facial" name="kas-pantomime-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 20 erwartet.
             </div>
@@ -674,7 +683,7 @@
             <label for="kas-pantomime-arm-hand">Pantomime - Arm-Hand</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="kas-pantomime-arm-hand" name="kas-pantomime-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required>
+            <input type="number" class="form-control" id="kas-pantomime-arm-hand" name="kas-pantomime-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 20 erwartet.
             </div>
@@ -686,7 +695,7 @@
             <label for="kas-imitation-bukko-facial">Imitation - Bukko-Facial</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="kas-imitation-bukko-facial" name="kas-imitation-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required>
+            <input type="number" class="form-control" id="kas-imitation-bukko-facial" name="kas-imitation-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 20 erwartet.
             </div>
@@ -698,12 +707,22 @@
             <label for="kas-imitation-arm-hand">Imitation - Arm-Hand</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="kas-imitation-arm-hand" name="kas-imitation-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required>
+            <input type="number" class="form-control" id="kas-imitation-arm-hand" name="kas-imitation-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 20 erwartet.
             </div>
         </div>
     </div>
+
+    <div class="row pt-2">
+        <div class="col-md-6 entry-label">
+            <label for="kas-sum">KAS Summe</label>
+        </div>
+        <div class="col-md-6 entry-value">
+            <input type="number" class="form-control" id="kas-sum" name="kas-sum" disabled>
+        </div>
+    </div>
+
 </div>
 
 
@@ -1097,12 +1116,59 @@
     <div class="row">
         <div class="col-md-6 entry-label">
             <label for="additional-mrt">MRT</label>
-            <label for="additional-mrt-url" class="visually-hidden">MRT-URL</label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="checkbox" class="form-check-input" id="additional-mrt" name="additional-mrt" placeholder="">
-            <input type="url" class="form-control" id="additional-mrt-url" name="additional-mrt" placeholder="Link zu Dateien" disabled>
         </div>
+    </div>
+
+    <div class="collapse collapsed pt-3" id="mrt-collapse">
+
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="additional-mrt-url">Link zu MRT-Dateien</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="url" class="form-control" id="additional-mrt-url" name="additional-mrt" placeholder="http://..." disabled>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="mrt-resting-state">Resting-state</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="checkbox" class="form-check-input" id="mrt-resting-state" name="mrt-resting-state" placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="mrt-tapping-task">Tapping-Task</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="checkbox" class="form-check-input" id="mrt-tapping-task" name="mrt-tapping-task" placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="mrt-anatomical-representation">Anatomische Darstellung</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="checkbox" class="form-check-input" id="mrt-anatomical-representation" name="mrt-anatomical-representation" placeholder="">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="mrt-dti">DTI</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="checkbox" class="form-check-input" id="mrt-dti" name="mrt-dti" placeholder="">
+            </div>
+        </div>
+
     </div>
 
     <div class="row pt-3">
@@ -1233,6 +1299,35 @@
         else {
             hideCollapsable(tugCollapse);
         }
+    }
+
+</script>
+
+<script>
+    function sumInputs(source_elements) {
+        let result = 0;
+        for (const se of source_elements) {
+            if (se.value !== "") {
+                let value = parseInt(se.value);
+                if (isNaN(value)) {
+                    return "";
+                }
+                result += value;
+            }
+        }
+        return result.toString();
+    }
+
+    function kasSum() {
+        let source_elements = [
+            document.getElementById("kas-pantomime-bukko-facial"),
+            document.getElementById("kas-pantomime-arm-hand"),
+            document.getElementById("kas-imitation-bukko-facial"),
+            document.getElementById("kas-imitation-arm-hand"),
+        ];
+        let sumString = sumInputs(source_elements);
+        let dest_element = document.getElementById("kas-sum");
+        dest_element.value = sumString;
     }
 
 </script>
