@@ -871,7 +871,7 @@
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="acl-k-loud-reading" name="acl-k-loud-reading" min="0.0" max="9.0" placeholder="0.0 - 9.0" required oninput="aclKSum();">
             <div class="invalid-feedback">
-                Zhalenwert zwischen 0.0 und 9.0 erwartet.
+                Zahlenwert zwischen 0.0 und 9.0 erwartet.
             </div>
         </div>
     </div>
@@ -949,14 +949,14 @@
         </div>
     </div>
 
-    <div class="row pt-3"><h5>DemTec</h5></div>
+    <div class="row pt-3"><h5>DemTect</h5></div>
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="demtec-wordlist">Wortliste</label>
+            <label for="demtect-wordlist">Wortliste</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="demtec-wordlist" name="demtec-wordlist" min="0" max="3" step="1" placeholder="0 - 3" required>
+            <input type="number" class="form-control" id="demtect-wordlist" name="demtect-wordlist" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 3 erwartet.
             </div>
@@ -965,10 +965,10 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="demtec-convert-numbers">Zahlen umwandeln</label>
+            <label for="demtect-convert-numbers">Zahlen umwandeln</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="demtec-convert-numbers" name="demtec-convert-numbers" min="0" max="3" step="1" placeholder="0 - 3" required>
+            <input type="number" class="form-control" id="demtect-convert-numbers" name="demtect-convert-numbers" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 3 erwartet.
             </div>
@@ -977,10 +977,10 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="demtec-supermarket-task">Supermarktaufgabe</label>
+            <label for="demtect-supermarket-task">Supermarktaufgabe</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="demtec-supermarket-task" name="demtec-supermarket-task" min="0" max="4" step="1" placeholder="0 - 4" required>
+            <input type="number" class="form-control" id="demtect-supermarket-task" name="demtect-supermarket-task" min="0" max="4" step="1" placeholder="0 - 4" required oninput="demtectSum();">
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 4 erwartet.
             </div>
@@ -989,10 +989,10 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="demtec-numbers-reverse">Zahlenfolge rückwärts</label>
+            <label for="demtect-numbers-reverse">Zahlenfolge rückwärts</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="demtec-numbers-reverse" name="demtec-numbers-reverse" min="0" max="3" step="1" placeholder="0 - 3" required>
+            <input type="number" class="form-control" id="demtect-numbers-reverse" name="demtect-numbers-reverse" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 3 erwartet.
             </div>
@@ -1001,13 +1001,22 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="demtec-wordlist-recall">Erneute Abfrage der Wortliste</label>
+            <label for="demtect-wordlist-recall">Erneute Abfrage der Wortliste</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="demtec-wordlist-recall" name="demtec-wordlist-recall" min="0" max="5" step="1" placeholder="0 - 5" required>
+            <input type="number" class="form-control" id="demtect-wordlist-recall" name="demtect-wordlist-recall" min="0" max="5" step="1" placeholder="0 - 5" required oninput="demtectSum();">
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 5 erwartet.
             </div>
+        </div>
+    </div>
+
+    <div class="row pt-2">
+        <div class="col-md-6 entry-label">
+            <label for="demtect-sum">DemTect Summe</label>
+        </div>
+        <div class="col-md-6 entry-value">
+            <input type="number" class="form-control" id="demtect-sum" name="demtect-sum" disabled>
         </div>
     </div>
 
@@ -1372,6 +1381,19 @@
         ];
         let sumString = sumInputs(source_elements);
         let dest_element = document.getElementById("acl-k-sum");
+        dest_element.value = sumString;
+    }
+
+    function demtectSum() {
+        let source_elements = [
+            document.getElementById("demtect-wordlist"),
+            document.getElementById("demtect-convert-numbers"),
+            document.getElementById("demtect-supermarket-task"),
+            document.getElementById("demtect-numbers-reverse"),
+            document.getElementById("demtect-wordlist-recall"),
+        ];
+        let sumString = sumInputs(source_elements);
+        let dest_element = document.getElementById("demtect-sum");
         dest_element.value = sumString;
     }
 
