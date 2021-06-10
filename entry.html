@@ -748,7 +748,7 @@
                 <label for="kopss-orientation">1 - Orientierung (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required>
+                <input type="number" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required oninput="kopssSum();">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
@@ -760,7 +760,7 @@
                 <label for="kopss-speech">2 - Sprache (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required>
+                <input type="number" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
@@ -772,7 +772,7 @@
                 <label for="kopss-praxie">3 - Praxie (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required>
+                <input type="number" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
@@ -784,7 +784,7 @@
                 <label for="kopss-visual-spacial-performance">4 - Visuell Räumliche Leistung (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" min="0" max="17" step="1" placeholder="0 - 17" required>
+                <input type="number" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" min="0" max="17" step="1" placeholder="0 - 17" required oninput="kopssSum();">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 17 erwartet.
                 </div>
@@ -796,7 +796,7 @@
                 <label for="kopss-calculating">5 - Rechnen (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required>
+                <input type="number" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required oninput="kopssSum();">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 8 erwartet.
                 </div>
@@ -808,7 +808,7 @@
                 <label for="kopss-executive-performance">6 - Exekutive Leistung/Aufmerksamkeit (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required>
+                <input type="number" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
@@ -820,14 +820,23 @@
                 <label for="kopss-memory">7 - Gedächtnis (gewichteter Domänenwert)</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required>
+                <input type="number" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kopssSum();">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 20 erwartet.
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row pt-2">
+            <div class="col-md-6 entry-label">
+                <label for="kopss-sum">KöpSS Summe</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="kopss-sum" name="kopss-sum" disabled>
+            </div>
+        </div>
+
+        <div class="row pt-3">
             <div class="col-md-6 entry-label">
                 <label for="kopss-affect">Affekt</label>
             </div>
@@ -860,7 +869,7 @@
             <label for="acl-k-loud-reading">Lautes Lesen</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="acl-k-loud-reading" name="acl-k-loud-reading" min="0.0" max="9.0" placeholder="0.0 - 9.0" required>
+            <input type="number" class="form-control" id="acl-k-loud-reading" name="acl-k-loud-reading" min="0.0" max="9.0" placeholder="0.0 - 9.0" required oninput="aclKSum();">
             <div class="invalid-feedback">
                 Zhalenwert zwischen 0.0 und 9.0 erwartet.
             </div>
@@ -872,7 +881,7 @@
             <label for="acl-k-color-form-test">Farb-Figur-Test</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="acl-k-color-form-test" name="acl-k-color-form-test" min="0" max="12" step="1" placeholder="0 - 12" required>
+            <input type="number" class="form-control" id="acl-k-color-form-test" name="acl-k-color-form-test" min="0" max="12" step="1" placeholder="0 - 12" required oninput="aclKSum();">
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 12 erwartet.
             </div>
@@ -884,7 +893,7 @@
             <label for="acl-k-supermarket-task">Supermarktaufgabe</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="acl-k-supermarket-task" name="acl-k-supermarket-task" min="0" max="10" step="1" placeholder="0 - 10" required>
+            <input type="number" class="form-control" id="acl-k-supermarket-task" name="acl-k-supermarket-task" min="0" max="10" step="1" placeholder="0 - 10" required oninput="aclKSum();">
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 10 erwartet.
             </div>
@@ -896,10 +905,19 @@
             <label for="acl-k-communication-ability">Kommunikationsfähigkeit</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="acl-k-communication-ability" name="acl-k-communication-ability" min="0" max="9" step="1" placeholder="0 - 9" required>
+            <input type="number" class="form-control" id="acl-k-communication-ability" name="acl-k-communication-ability" min="0" max="9" step="1" placeholder="0 - 9" required oninput="aclKSum();">
             <div class="invalid-feedback">
                 Ganzzahl zwischen 0 und 9 erwartet.
             </div>
+        </div>
+    </div>
+
+    <div class="row pt-2">
+        <div class="col-md-6 entry-label">
+            <label for="acl-k-sum">ACL-K Summe</label>
+        </div>
+        <div class="col-md-6 entry-value">
+            <input type="number" class="form-control" id="acl-k-sum" name="acl-k-sum" disabled>
         </div>
     </div>
 
@@ -1308,7 +1326,7 @@
         let result = 0;
         for (const se of source_elements) {
             if (se.value !== "") {
-                let value = parseInt(se.value);
+                let value = parseFloat(se.value);
                 if (isNaN(value)) {
                     return "";
                 }
@@ -1327,6 +1345,33 @@
         ];
         let sumString = sumInputs(source_elements);
         let dest_element = document.getElementById("kas-sum");
+        dest_element.value = sumString;
+    }
+
+    function kopssSum() {
+        let source_elements = [
+            document.getElementById("kopss-orientation"),
+            document.getElementById("kopss-speech"),
+            document.getElementById("kopss-praxie"),
+            document.getElementById("kopss-visual-spacial-performance"),
+            document.getElementById("kopss-calculating"),
+            document.getElementById("kopss-executive-performance"),
+            document.getElementById("kopss-memory"),
+        ];
+        let sumString = sumInputs(source_elements);
+        let dest_element = document.getElementById("kopss-sum");
+        dest_element.value = sumString;
+    }
+
+    function aclKSum() {
+        let source_elements = [
+            document.getElementById("acl-k-loud-reading"),
+            document.getElementById("acl-k-color-form-test"),
+            document.getElementById("acl-k-supermarket-task"),
+            document.getElementById("acl-k-communication-ability"),
+        ];
+        let sumString = sumInputs(source_elements);
+        let dest_element = document.getElementById("acl-k-sum");
         dest_element.value = sumString;
     }
 
