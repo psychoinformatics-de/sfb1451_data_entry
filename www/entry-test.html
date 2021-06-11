@@ -1,7 +1,4 @@
-<!--
- Based on Bootstrap's Checkout example
- check https://getbootstrap.com/docs/5.0/examples/
- -->
+<!-- Uses Bootstrap -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -46,7 +43,7 @@
             <label for="project-code">Projekt-Code</label>
         </div>
         <div class="col-md-6">
-            <select name="project-code" id="project-code" required>
+            <select class="form-select" name="project-code" id="project-code" required>
                 <option value="">Bitte auswählen</option>
                 <option value="b2">B2</option>
                 <option value="b3">B3</option>
@@ -136,7 +133,7 @@
             <label for="subject-group">Probandengruppe</label>
         </div>
         <div class="col-md-6">
-            <select name="subject-group" id="subject-group" onchange="patientUpdateElement();" required>
+            <select class="form-select" name="subject-group" id="subject-group" onchange="patientUpdateElement();" required>
                 <option value="">Bitte auswählen</option>
                 <option value="healthy" onselect="collapsePatient()">Gesund</option>
                 <option value="patient" onselect="showCollapsable()">Patient</option>
@@ -154,7 +151,7 @@
                 <label for="main-disease">Haupterkrankung</label>
             </div>
             <div class="col-md-6">
-                <select name="subject-group" id="main-disease" required>
+                <select class="form-select" name="subject-group" id="main-disease" required>
                     <option value="">Bitte auswählen</option>
                     <option value="healthy">Schlaganfall</option>
                     <option value="parkinson">Parkinson</option>
@@ -262,7 +259,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="ftf-incorrectly-executed">FTF unsauber ausgeführt</label>
+            <label class="form-check-label" for="ftf-incorrectly-executed">FTF unsauber ausgeführt</label>
         </div>
         <div class="col-md-6">
             <input type="checkbox" class="form-check-input" id="ftf-incorrectly-executed" name="ftf-incorrectly-executed" placeholder="">
@@ -494,7 +491,7 @@
 
     <div class="row pt-1">
         <div class="col-md-6 entry-label">
-            <label for="jtt-incorrectly-executed">JTT unsauber ausgeführt</label>
+            <label class="form-check-label" for="jtt-incorrectly-executed">JTT unsauber ausgeführt</label>
         </div>
         <div class="col-md-6">
             <input type="checkbox" class="form-check-input" id="jtt-incorrectly-executed" name="jtt-incorrectly-executed" placeholder="">
@@ -532,7 +529,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="tug-applicable">Durchführbarkeit</label>
+            <label class="form-check-label" for="tug-applicable">Durchführbarkeit</label>
         </div>
         <div class="col-md-6">
             <input type="checkbox" class="form-check-input" id="tug-applicable" name="tug-applicable" onchange="tugUpdateElement();">
@@ -558,7 +555,7 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="tug-a-incorrectly-executed">aTUG unsauber ausgeführt</label>
+                <label class="form-check-label" for="tug-a-incorrectly-executed">aTUG unsauber ausgeführt</label>
             </div>
             <div class="col-md-6">
                 <input type="checkbox" class="form-check-input" id="tug-a-incorrectly-executed" name="tug-a-incorrectly-executed" placeholder="">
@@ -582,7 +579,7 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="tug-v-incorrectly-executed">vTUG unsauber ausgeführt</label>
+                <label class="form-check-label" for="tug-v-incorrectly-executed">vTUG unsauber ausgeführt</label>
             </div>
             <div class="col-md-6">
                 <input type="checkbox" class="form-check-input" id="tug-v-incorrectly-executed" name="tug-v-incorrectly-executed" placeholder="">
@@ -653,7 +650,7 @@
 
     <div class="row pt-1">
         <div class="col-md-6 entry-label">
-            <label for="go-nogo-incorrectly-executed">Go/Nogo-Task unsauber ausgeführt</label>
+            <label class="form-check-label" for="go-nogo-incorrectly-executed">Go/Nogo-Task unsauber ausgeführt</label>
         </div>
         <div class="col-md-6">
             <input type="checkbox" class="form-check-input" id="go-nogo-incorrectly-executed" name="go-nogo-incorrectly-executed" placeholder="">
@@ -731,10 +728,10 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="kopss-applicable">Testbarkeit</label>
+            <label class="form-check-label" for="kopss-applicable">Testbarkeit</label>
         </div>
         <div class="col-md-6">
-            <input type="checkbox" class="form-check-input" id="kopss-applicable" name="kopss-applicable" onchange="kopssUpdateElement();">
+            <input type="checkbox" class="form-check-input" aria-expanded="false" id="kopss-applicable" name="kopss-applicable" onchange="kopssUpdateElement();">
         </div>
     </div>
 
@@ -1036,7 +1033,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="tmt-a-incorrectly-executed">TMT A unsauber ausgeführt</label>
+            <label class="form-check-label" for="tmt-a-incorrectly-executed">TMT A unsauber ausgeführt</label>
         </div>
         <div class="col-md-6">
             <input type="checkbox" class="form-check-input" id="tmt-a-incorrectly-executed" name="tmt-a-incorrectly-executed" placeholder="">
@@ -1060,7 +1057,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="tmt-b-incorrectly-executed">TMT B unsauber ausgeführt</label>
+            <label class="form-check-label" for="tmt-b-incorrectly-executed">TMT B unsauber ausgeführt</label>
         </div>
         <div class="col-md-6">
             <input type="checkbox" class="form-check-input" id="tmt-b-incorrectly-executed" name="tmt-b-incorrectly-executed" placeholder="">
@@ -1139,57 +1136,73 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="additional-mrt">MRT</label>
+            <label class="form-check-label" for="additional-mrt">MRT</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="checkbox" class="form-check-input" id="additional-mrt" name="additional-mrt" placeholder="">
+            <input type="checkbox" class="form-check-input" id="additional-mrt" name="additional-mrt" placeholder="" onchange="mrtUpdateElement();">
         </div>
     </div>
 
-    <div class="collapse collapsed pt-3" id="mrt-collapse">
+    <div class="collapse pt-3" id="mrt-collapse">
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="additional-mrt-url">Link zu MRT-Dateien</label>
+                <label class="visually-hidden" for="additional-mrt-url">Link zu MRT-Dateien</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="url" class="form-control" id="additional-mrt-url" name="additional-mrt" placeholder="http://..." disabled>
+                <input type="url" class="form-control" id="additional-mrt-url" name="additional-mrt" placeholder="Link zu MRT Dateien" disabled>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="mrt-resting-state">Resting-state</label>
-            </div>
             <div class="col-md-6 entry-value">
-                <input type="checkbox" class="form-check-input" id="mrt-resting-state" name="mrt-resting-state" placeholder="">
+            </div>
+            <div class="col-md-6 entry-label">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="mrt-resting-state" name="mrt-resting-state">
+                    <label class="form-check-label" for="mrt-resting-state">
+                        Resting-State
+                    </label>
+                </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="mrt-tapping-task">Tapping-Task</label>
-            </div>
             <div class="col-md-6 entry-value">
-                <input type="checkbox" class="form-check-input" id="mrt-tapping-task" name="mrt-tapping-task" placeholder="">
+            </div>
+            <div class="col-md-6 entry-label">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="mrt-tapping-task" name="mrt-tapping-task">
+                    <label class="form-check-label" for="mrt-tapping-task">
+                        Tapping-Task
+                    </label>
+                </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="mrt-anatomical-representation">Anatomische Darstellung</label>
-            </div>
             <div class="col-md-6 entry-value">
-                <input type="checkbox" class="form-check-input" id="mrt-anatomical-representation" name="mrt-anatomical-representation" placeholder="">
+            </div>
+            <div class="col-md-6 entry-label">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="mrt-anatomical-representation" name="mrt-anatomical-representation">
+                    <label class="form-check-label" for="mrt-anatomical-representation">
+                        Anatomische Darstellung
+                    </label>
+                </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="mrt-dti">DTI</label>
-            </div>
             <div class="col-md-6 entry-value">
-                <input type="checkbox" class="form-check-input" id="mrt-dti" name="mrt-dti" placeholder="">
+            </div>
+            <div class="col-md-6 entry-label">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="mrt-dti" name="mrt-dti">
+                    <label class="form-check-label" for="mrt-anatomical-representation">
+                        DTI
+                    </label>
+                </div>
             </div>
         </div>
 
@@ -1197,23 +1210,31 @@
 
     <div class="row pt-3">
         <div class="col-md-6 entry-label">
-            <label for="additional-eeg">EEG</label>
-            <label for="additional-eeg-url" class="visually-hidden">EEG-URL</label>
+            <label class="form-check-label" for="additional-eeg">EEG</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="checkbox" class="form-check-input" id="additional-eeg" name="additional-eeg" placeholder="">
-            <input type="url" class="form-control" id="additional-eeg-url" name="additional-eeg" placeholder="Link zu Dateien" disabled>
+            <input type="checkbox" class="form-check-input" id="additional-eeg" name="additional-eeg" placeholder="" onchange="eegUpdateElement();">
+        </div>
+        <div class="col-md-6 entry-label">
+            <label class="form-check-label visually-hidden" for="additional-eeg-url">Link zu EEG Dateien</label>
+        </div>
+        <div class="col-md-6 entry-value">
+            <input type="url" class="form-control" id="additional-eeg-url" name="additional-eeg" placeholder="Link zu EEG Dateien" disabled>
         </div>
     </div>
 
     <div class="row pt-3">
         <div class="col-md-6 entry-label">
-            <label for="additional-blood-sampling">Blutproben</label>
-            <label for="additional-blood-sampling-url" class="visually-hidden">EEG-URL</label>
+            <label class="form-check-label" for="additional-blood-sampling">Blutproben</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="checkbox" class="form-check-input" id="additional-blood-sampling" name="additional-blood-sampling" placeholder="">
-            <input type="url" class="form-control" id="additional-blood-sampling-url" name="additional-blood-sampling" placeholder="Link zu Dateien" disabled>
+            <input type="checkbox" class="form-check-input" id="additional-blood-sampling" name="additional-blood-sampling" placeholder="" onchange="bloodSamplingUpdateElement();">
+        </div>
+        <div class="col-md-6 entry-label">
+            <label class="form-check-label visually-hidden" for="additional-blood-sampling-url">Link zu Blood Sampling Dateien</label>
+        </div>
+        <div class="col-md-6 entry-value">
+            <input type="url" class="form-control" id="additional-blood-sampling-url" name="additional-blood-sampling" placeholder="Link zu Blood Sampling Dateien" disabled>
         </div>
     </div>
 </div>
@@ -1284,6 +1305,14 @@
     let tugCollapseElement = document.getElementById("tug-collapse");
     let tugCollapse = null;
 
+    let mrtCheckboxElement = document.getElementById("additional-mrt");
+    let mrtCollapseElement = document.getElementById("mrt-collapse");
+    let mrtCollapse = null;
+
+    let eegCheckboxElement = document.getElementById("additional-eeg");
+
+    let bloodSamplingCheckboxElement = document.getElementById("additional-blood-sampling");
+
     function hideCollapsable(obj) {
         obj.hide();
     }
@@ -1322,6 +1351,37 @@
         }
         else {
             hideCollapsable(tugCollapse);
+        }
+    }
+
+    function mrtUpdateElement() {
+        if (mrtCheckboxElement.checked === true) {
+            if (mrtCollapse === null)
+                mrtCollapse = new bootstrap.Collapse(mrtCollapseElement, {hide: true});
+            showCollapsable(mrtCollapse);
+            document.getElementById("additional-mrt-url").disabled = false;
+        }
+        else {
+            hideCollapsable(mrtCollapse);
+            document.getElementById("additional-mrt-url").disabled = true;
+        }
+    }
+
+    function eegUpdateElement() {
+        if (eegCheckboxElement.checked === true) {
+            document.getElementById("additional-eeg-url").disabled = false;
+        }
+        else {
+            document.getElementById("additional-eeg-url").disabled = true;
+        }
+    }
+
+    function bloodSamplingUpdateElement() {
+        if (bloodSamplingCheckboxElement.checked === true) {
+            document.getElementById("additional-blood-sampling-url").disabled = false;
+        }
+        else {
+            document.getElementById("additional-blood-sampling-url").disabled = true;
         }
     }
 
