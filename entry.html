@@ -259,7 +259,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="ftf-incorrectly-executed">FTF unsauber ausgeführt</label>
+            <label class="form-check-label" for="ftf-incorrectly-executed">Kein korrektes Tippen möglich.</label>
         </div>
         <div class="col-md-6">
             <input type="checkbox" class="form-check-input" id="ftf-incorrectly-executed" name="ftf-incorrectly-executed" placeholder="">
@@ -491,7 +491,7 @@
 
     <div class="row pt-1">
         <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="jtt-incorrectly-executed">JTT unsauber ausgeführt</label>
+            <label class="form-check-label" for="jtt-incorrectly-executed">Aufgaben trotz Zeitüberschreitung durchführbar.</label>
         </div>
         <div class="col-md-6">
             <input type="checkbox" class="form-check-input" id="jtt-incorrectly-executed" name="jtt-incorrectly-executed" placeholder="">
@@ -526,18 +526,7 @@
     </div>
 
     <div class="row pt-3"><h5>Timed-Up-and-Go test (TUG)</h5></div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="tug-applicable">Durchführbar</label>
-        </div>
-        <div class="col-md-6">
-            <input type="checkbox" class="form-check-input" id="tug-applicable" name="tug-applicable" onchange="tugUpdateElement();">
-        </div>
-    </div>
-
-    <div class="collapse collapsed pt-3" id="tug-collapse">
-
+    
         <div class="row">
             <div class="col-md-6 entry-label">
                 <label for="tug-executed">ausgeführter TUG (aTUG)</label>
@@ -552,10 +541,19 @@
                 </div>
             </div>
         </div>
+        
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label class="form-check-label" for="tug-a-incorrectly-executed">aTUG nicht durchführbar.</label>
+            </div>
+            <div class="col-md-6">
+                <input type="checkbox" class="form-check-input" id="tug-a-incorrectly-executed" name="tug-a-incorrectly-executed" placeholder="">
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label class="form-check-label" for="tug-a-incorrectly-executed">aTUG nur mit Hilfmittel durchführbar</label>
+                <label class="form-check-label" for="tug-a-incorrectly-executed">aTUG mit Hilfmittel durchführbar.</label>
             </div>
             <div class="col-md-6">
                 <input type="checkbox" class="form-check-input" id="tug-a-incorrectly-executed" name="tug-a-incorrectly-executed" placeholder="">
@@ -574,6 +572,15 @@
                         Zahlenwert zwischen 0.0 und 60.0 erwartet.
                     </div>
                 </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label class="form-check-label" for="tug-a-incorrectly-executed">vTUG nicht durchführbar.</label>
+            </div>
+            <div class="col-md-6">
+                <input type="checkbox" class="form-check-input" id="tug-a-incorrectly-executed" name="tug-a-incorrectly-executed" placeholder="">
             </div>
         </div>
     </div>
@@ -640,7 +647,7 @@
 
     <div class="row pt-1">
         <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="go-nogo-incorrectly-executed">Go/Nogo-Task unsauber ausgeführt</label>
+            <label class="form-check-label" for="go-nogo-incorrectly-executed">Go/Nogo-Task nicht korrekt durchführbar.</label>
         </div>
         <div class="col-md-6">
             <input type="checkbox" class="form-check-input" id="go-nogo-incorrectly-executed" name="go-nogo-incorrectly-executed" placeholder="">
