@@ -595,12 +595,28 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
+            <label for="go-nogo-block-count">Durchgeführte Blöcke</label>
+        </div>
+        <div class="col-md-6 entry-value">
+            <select class="form-select" name="project-code" id="go-nogo-block-count" required onchange="updateGoNogoBlockCount();">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row pt-3">
+        <div class="col-md-6 entry-label">
             <label for="go-nogo-total-errors">Anzahl Fehler insgesamt</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="360" step="1" placeholder="0 - 360" required>
-            <div class="invalid-feedback">
-                Ganzzahl zwischen 0 und 360 erwartet.
+            <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 60" required>
+            <div class="invalid-feedback" id="go-nogo-total-errors-invalid-feedback">
+                Ganzzahl zwischen 0 und 60 erwartet.
             </div>
         </div>
     </div>
@@ -610,9 +626,9 @@
             <label for="go-nogo-recognized-errors">Anzahl erkannte Fehler</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" min="0" max="360" step="1" placeholder="0 - 360" required>
-            <div class="invalid-feedback">
-                Ganzzahl zwischen 0 und 360 erwartet.
+            <input type="number" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" min="0" max="60" step="1" placeholder="0 - 60" required>
+            <div class="invalid-feedback" id="go-nogo-recognized-errors-invalid-feedback">
+                Ganzzahl zwischen 0 und 60 erwartet.
             </div>
         </div>
     </div>
@@ -1480,6 +1496,31 @@
         let sumString = sumInputs(source_elements);
         let dest_element = document.getElementById("demtect-sum");
         dest_element.value = sumString;
+    }
+
+</script>
+
+<script>
+    function updateGoNogoBlockCount() {
+        let totalErrors = document.getElementById("go-nogo-total-errors");
+        let recognizedErrors = document.getElementById("go-nogo-recognized-errors");
+
+        let totalErrorFeedback = document.getElementById("go-nogo-total-errors-invalid-feedback");
+        let recognizedErrorFeedback = document.getElementById("go-nogo-recognized-errors-invalid-feedback");
+
+        const blockCountSelector = document.getElementById("go-nogo-block-count");
+        const blockCount = parseInt(blockCountSelector.value);
+
+        const maxNumber = blockCount * 60;
+        const maxNumberString = maxNumber.toString()
+
+        totalErrors.max = maxNumberString;
+        recognizedErrors.max = maxNumberString;
+        totalErrors.placeholder = "0 - " + maxNumberString;
+        recognizedErrors.placeholder = "0 - " + maxNumberString;
+
+        totalErrorFeedback.innerText = "Ganzzahl zwischen 0 und " + (blockCount * 60).toString() + " erwartet";
+        recognizedErrorFeedback.innerText = "Ganzzahl zwischen 0 und " + (blockCount * 60).toString() + " erwartet";
     }
 
 </script>
