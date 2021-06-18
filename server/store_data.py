@@ -31,23 +31,36 @@ def application(environ, start_response):
         environment = [f"{key}: {value}" for key, value in environ.items()]
 
         request_body = environ["wsgi.input"].read(request_body_size)
-        entered_data = parse_qs(request_body)
+        entered_data = parse_qs(request_body, encoding="utf-8")
 
         result = "\n".join(
             [f"{key}: {value}" for key, value in entered_data.items()])
 
+        print(result, file=sys.stderr)
+        time_stamp = str(time.time())
+
         json_data = {
-            key.decode("utf-8"): convert_value(value[0]) for key, value in entered_data.items()
+            "source": {
+                "time_stamp": time_stamp,
+                "version": entered_data[b"form-data-version"][0].decode("utf-8"),
+                "origin": environ["HTTP_ORIGIN"]
+            },
+            "data": {
+                **{
+                    key.decode("utf-8"): convert_value(value[0])
+                    for key, value in entered_data.items()
+                    if key != b"form-data-version"
+                }
+            }
         }
 
-        file_name = str(time.time())
-        with open(file_name, "x") as f:
+        with open(time_stamp + ".json", "x") as f:
             json.dump(json_data, f)
 
         status = "200 OK"
         output = [
-            f"Referenz: {file_name}\n".encode("utf-8"),
-            "\n".join(environment).encode("utf-8"),
+            f"Referenz: {time_stamp}\n".encode("utf-8"),
+            ("\n".join(environment) + "\n").encode("utf-8"),
             result.encode("utf-8")
         ]
 
