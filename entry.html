@@ -155,10 +155,10 @@
 
         <div class="row">
             <div class="col-md-6">
-                <label for="main-disease">Haupterkrankung<span class="required-indicator">*</span></label>
+                <label for="patient-main-disease">Haupterkrankung<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6">
-                <select class="form-select" name="subject-group" id="main-disease" data-inm-collapse-id="patient-collapse" required>
+                <select class="form-select" name="patient-main-disease" id="patient-main-disease" data-inm-collapse-id="patient-collapse" required disabled>
                     <option value="">Bitte auswählen</option>
                     <option value="healthy">Schlaganfall</option>
                     <option value="parkinson">Parkinson</option>
@@ -174,14 +174,14 @@
 
         <div class="row pt-2">
             <div class="col-md-6">
-                <label for="year-first-symptom">Datum Erstsymptom (soweit bekannt)</label>
+                <label for="patient-year-first-symptom">Datum Erstsymptom (soweit bekannt)</label>
             </div>
             <div class="col-md-6">
                 <div class="input-group">
                     <span class="input-group-text ">Jahr</span>
-                    <input type="number" class="form-control" min="1900" max="2050" id="year-first-symptom" name="year-first-symptom" placeholder="--">
+                    <input type="number" class="form-control" min="1900" max="2050" id="patient-year-first-symptom" name="patient-year-first-symptom" placeholder="--">
                     <span class="input-group-text">Monat</span>
-                    <select class="form-select" id="month-first-symptom" name="month-first-symptom">
+                    <select class="form-select" id="patient-month-first-symptom" name="patient-month-first-symptom">
                         <option value="">--</option>
                         <option value="1">Januar</option>
                         <option value="2">Februar</option>
@@ -197,7 +197,7 @@
                         <option value="12">Dezember</option>
                     </select>
                     <span class="input-group-text">Tag</span>
-                    <select class="form-select" id="day-first-symptom" name="day-first-symptom">
+                    <select class="form-select" id="patient-day-first-symptom" name="patient-day-first-symptom">
                         <option value="">--</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -237,14 +237,14 @@
 
         <div class="row pt-2">
             <div class="col-md-6">
-                <label for="year-diagnosis">Datum Diagnose (soweit bekannt)</label>
+                <label for="patient-year-diagnosis">Datum Diagnose (soweit bekannt)</label>
             </div>
             <div class="col-md-6">
                 <div class="input-group">
                     <span class="input-group-text ">Jahr</span>
-                    <input type="number" class="form-control" min="1900" max="2050" id="year-diagnosis" name="year-diagnosis" placeholder="--">
+                    <input type="number" class="form-control" min="1900" max="2050" id="patient-year-diagnosis" name="patient-year-diagnosis" placeholder="--">
                     <span class="input-group-text">Monat</span>
-                    <select class="form-select" id="month-diagnosis" name="month-diagnosis">
+                    <select class="form-select" id="patient-month-diagnosis" name="patient-month-diagnosis">
                         <option value="">--</option>
                         <option value="1">Januar</option>
                         <option value="2">Februar</option>
@@ -260,7 +260,7 @@
                         <option value="12">Dezember</option>
                     </select>
                     <span class="input-group-text">Tag</span>
-                    <select class="form-select" id="day-diagnosis" name="day-diagnosis">
+                    <select class="form-select" id="patient-day-diagnosis" name="patient-day-diagnosis">
                         <option value="">--</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -300,20 +300,20 @@
 
         <div class="row pt-2">
             <div class="col-md-6">
-                <label for="stronger-impacted-hand-left">Stärker betroffene Hand<span class="required-indicator">*</span></label>
+                <label for="patient-stronger-impacted-hand-left">Stärker betroffene Hand<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-left" data-inm-collapse-id="patient-collapse" value="left" required>
-                    <label class="form-check-label" for="stronger-impacted-hand-left">Links</label>
+                    <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-left" data-inm-collapse-id="patient-collapse" value="left" required disabled>
+                    <label class="form-check-label" for="patient-stronger-impacted-hand-left">Links</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-right" data-inm-collapse-id="patient-collapse" value="right" required>
-                    <label class="form-check-label" for="stronger-impacted-hand-right">Rechts</label>
+                    <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-right" data-inm-collapse-id="patient-collapse" value="right" required disabled>
+                    <label class="form-check-label" for="patient-stronger-impacted-hand-right">Rechts</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-none" data-inm-collapse-id="patient-collapse" value="none" required>
-                    <label class="form-check-label" for="stronger-impacted-hand-none">Keine</label>
+                    <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-none" data-inm-collapse-id="patient-collapse" value="none" required disabled>
+                    <label class="form-check-label" for="patient-stronger-impacted-hand-none">Keine</label>
                     <span class="invalid-feedback">Stärker betroffene Hand nicht ausgewählt.</span>
                 </div>
             </div>
@@ -875,7 +875,7 @@
                 <label for="kopss-orientation">Orientierung<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <input type="number" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
@@ -887,7 +887,7 @@
                 <label for="kopss-speech">Sprache<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <input type="number" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
@@ -899,7 +899,7 @@
                 <label for="kopss-praxie">Praxie<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <input type="number" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
@@ -911,7 +911,7 @@
                 <label for="kopss-visual-spacial-performance">Visuell Räumliche Leistung<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" min="0" max="17" step="1" placeholder="0 - 17" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <input type="number" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" min="0" max="17" step="1" placeholder="0 - 17" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 17 erwartet.
                 </div>
@@ -923,7 +923,7 @@
                 <label for="kopss-calculating">Rechnen<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <input type="number" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 8 erwartet.
                 </div>
@@ -935,7 +935,7 @@
                 <label for="kopss-executive-performance">Exekutive Leistung/Aufmerksamkeit<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <input type="number" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
@@ -947,7 +947,7 @@
                 <label for="kopss-memory">Gedächtnis<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <input type="number" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 20 erwartet.
                 </div>
@@ -968,7 +968,7 @@
                 <label for="kopss-affect">Affekt<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-affect" name="kopss-affect" min="0" max="9" step="1" placeholder="0 - 9" required data-inm-collapse-id="kopss-collapse">
+                <input type="number" class="form-control" id="kopss-affect" name="kopss-affect" min="0" max="9" step="1" placeholder="0 - 9" required data-inm-collapse-id="kopss-collapse" disabled>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
@@ -980,7 +980,7 @@
                 <label for="kopss-behavior-observation">Verhaltensbeobachtung<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-behavior-observation" name="kopss-behavior-observation" min="0" max="9" step="1" placeholder="0 - 9" required data-inm-collapse-id="kopss-collapse">
+                <input type="number" class="form-control" id="kopss-behavior-observation" name="kopss-behavior-observation" min="0" max="9" step="1" placeholder="0 - 9" required data-inm-collapse-id="kopss-collapse" disabled>
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
@@ -1310,7 +1310,7 @@
             </div>
             <div class="col-md-6 entry-label">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="additional-mrt-resting-state" name="additional-mrt-resting-state">
+                    <input class="form-check-input" type="checkbox" id="additional-mrt-resting-state" name="additional-mrt-resting-state" disabled>
                     <label class="form-check-label" for="additional-mrt-resting-state">
                         Resting-State
                     </label>
@@ -1323,7 +1323,7 @@
             </div>
             <div class="col-md-6 entry-label">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="additional-mrt-tapping-task" name="additional-mrt-tapping-task">
+                    <input class="form-check-input" type="checkbox" id="additional-mrt-tapping-task" name="additional-mrt-tapping-task" disabled>
                     <label class="form-check-label" for="additional-mrt-tapping-task">
                         Tapping-Task
                     </label>
@@ -1336,7 +1336,7 @@
             </div>
             <div class="col-md-6 entry-label">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="additional-mrt-anatomical-representation" name="additional-mrt-anatomical-representation">
+                    <input class="form-check-input" type="checkbox" id="additional-mrt-anatomical-representation" name="additional-mrt-anatomical-representation" disabled>
                     <label class="form-check-label" for="additional-mrt-anatomical-representation">
                         Anatomische Darstellung
                     </label>
@@ -1349,7 +1349,7 @@
             </div>
             <div class="col-md-6 entry-label">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="additional-mrt-dti" name="additional-mrt-dti">
+                    <input class="form-check-input" type="checkbox" id="additional-mrt-dti" name="additional-mrt-dti" disabled>
                     <label class="form-check-label" for="additional-mrt-dti">
                         DTI
                     </label>
@@ -1438,10 +1438,24 @@
                         event.preventDefault();
                         event.stopPropagation();
                     }
+                    /*
+                    if (!validateContent(form)) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    */
                     form.classList.add('was-validated');
                 }, false)
             })
     })();
+</script>
+
+
+<script>
+    function validateContent(form) {
+        return true;
+    }
+
 </script>
 
 <script>
@@ -1471,7 +1485,7 @@
             if (element !== null) {
                 let childNodes = element.getElementsByTagName("*");
                 for (let childNode of childNodes) {
-                    childNode.disabled = true;
+                    childNode.setAttribute("disabled", "true");
                 }
             }
         }
@@ -1483,7 +1497,7 @@
             if (element !== null) {
                 let childNodes = element.getElementsByTagName("*");
                 for (let childNode of childNodes) {
-                    childNode.disabled = false;
+                    childNode.removeAttribute("disabled");
                 }
             }
         }

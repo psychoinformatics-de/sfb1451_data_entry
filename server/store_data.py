@@ -28,8 +28,11 @@ def application(environ, start_response):
         except (ValueError):
             request_body_size = 0
 
+        environment = [f"{key}: {value}" for key, value in environ.items()]
+
         request_body = environ["wsgi.input"].read(request_body_size)
         entered_data = parse_qs(request_body)
+
         result = "\n".join(
             [f"{key}: {value}" for key, value in entered_data.items()])
 
@@ -42,7 +45,11 @@ def application(environ, start_response):
             json.dump(json_data, f)
 
         status = "200 OK"
-        output = [f"Referenz: {file_name}\n".encode("utf-8"), result.encode("utf-8")]
+        output = [
+            f"Referenz: {file_name}\n".encode("utf-8"),
+            "\n".join(environment).encode("utf-8"),
+            result.encode("utf-8")
+        ]
 
     else:
 
