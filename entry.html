@@ -12,6 +12,13 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/form-validation.css" rel="stylesheet">
 
+    <style>
+        .required-indicator {
+            color: lightcoral;
+            font-weight: bold;
+            visibility: visible;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
@@ -40,7 +47,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <label for="project-code">Projekt-Code</label>
+            <label for="project-code">Projekt-Code<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6">
             <select class="form-select" name="project-code" id="project-code" required>
@@ -64,7 +71,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="subject-pseudonym">Probanden-Pseudonym</label>
+            <label for="subject-pseudonym">Probanden-Pseudonym<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="text" class="form-control" id="subject-pseudonym" name="subject-pseudonym" placeholder="" required>
@@ -76,7 +83,7 @@
 
     <div class="row pt-2">
         <div class="col-md-6">
-            <label for="date-of-birth">Geburtsdatum</label>
+            <label for="date-of-birth">Geburtsdatum<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6">
             <input type="date" class="form-control" id="date-of-birth" name="date-of-birth" required>
@@ -88,7 +95,7 @@
 
     <div class="row pt-1">
         <div class="col-md-6">
-            <label for="sex-m">Geschlecht</label>
+            <label for="sex-m">Geschlecht<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6">
             <div class="form-check form-check-inline">
@@ -109,7 +116,7 @@
 
     <div class="row pt-2">
         <div class="col-md-6">
-            <label for="test-date">Test-Datum</label>
+            <label for="test-date">Test-Datum<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6">
             <input type="date" class="form-control" id="test-date" name="test-date" placeholder="" required>
@@ -124,13 +131,13 @@
             <label for="repeated-test">Wiederholte Testung</label>
         </div>
         <div class="col-md-6">
-            <input type="checkbox" class="form-check-input" id="repeated-test" name="repeated-test" placeholder="">
+            <input type="checkbox" class="form-check-input" id="repeated-test" name="repeated-test">
         </div>
     </div>
 
     <div class="row pt-3">
         <div class="col-md-6">
-            <label for="subject-group">Probandengruppe</label>
+            <label for="subject-group">Probandengruppe<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6">
             <select class="form-select" name="subject-group" id="subject-group" onchange="patientUpdateElement();" required>
@@ -148,10 +155,10 @@
 
         <div class="row">
             <div class="col-md-6">
-                <label for="main-disease">Haupterkrankung</label>
+                <label for="main-disease">Haupterkrankung<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6">
-                <select class="form-select" name="subject-group" id="main-disease" required>
+                <select class="form-select" name="subject-group" id="main-disease" data-inm-collapse-id="patient-collapse" required>
                     <option value="">Bitte auswählen</option>
                     <option value="healthy">Schlaganfall</option>
                     <option value="parkinson">Parkinson</option>
@@ -160,7 +167,7 @@
                     <option value="alzheimer">Alzheimer</option>
                 </select>
                 <div class="invalid-feedback">
-                    Probandengruppe nicht ausgewählt.
+                    Haupterkrankung nicht ausgewählt.
                 </div>
             </div>
         </div>
@@ -172,9 +179,9 @@
             <div class="col-md-6">
                 <div class="input-group">
                     <span class="input-group-text ">Jahr</span>
-                    <input type="number" class="form-control" min="1900" max="2050" id="year-first-symptom" placeholder="--">
+                    <input type="number" class="form-control" min="1900" max="2050" id="year-first-symptom" name="year-first-symptom" placeholder="--">
                     <span class="input-group-text">Monat</span>
-                    <select class="form-select" id="month-first-symptom">
+                    <select class="form-select" id="month-first-symptom" name="month-first-symptom">
                         <option value="">--</option>
                         <option value="1">Januar</option>
                         <option value="2">Februar</option>
@@ -190,7 +197,7 @@
                         <option value="12">Dezember</option>
                     </select>
                     <span class="input-group-text">Tag</span>
-                    <select class="form-select" id="day-first-symptom">
+                    <select class="form-select" id="day-first-symptom" name="day-first-symptom">
                         <option value="">--</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -235,9 +242,9 @@
             <div class="col-md-6">
                 <div class="input-group">
                     <span class="input-group-text ">Jahr</span>
-                    <input type="number" class="form-control" min="1900" max="2050" id="year-diagnosis" placeholder="--">
+                    <input type="number" class="form-control" min="1900" max="2050" id="year-diagnosis" name="year-diagnosis" placeholder="--">
                     <span class="input-group-text">Monat</span>
-                    <select class="form-select" id="month-diagnosis">
+                    <select class="form-select" id="month-diagnosis" name="month-diagnosis">
                         <option value="">--</option>
                         <option value="1">Januar</option>
                         <option value="2">Februar</option>
@@ -253,7 +260,7 @@
                         <option value="12">Dezember</option>
                     </select>
                     <span class="input-group-text">Tag</span>
-                    <select class="form-select" id="day-diagnosis">
+                    <select class="form-select" id="day-diagnosis" name="day-diagnosis">
                         <option value="">--</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -293,19 +300,19 @@
 
         <div class="row pt-2">
             <div class="col-md-6">
-                <label for="stronger-impacted-hand-left">Stärker betroffene Hand</label>
+                <label for="stronger-impacted-hand-left">Stärker betroffene Hand<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-left" value="left" required>
+                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-left" data-inm-collapse-id="patient-collapse" value="left" required>
                     <label class="form-check-label" for="stronger-impacted-hand-left">Links</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-right" value="right" required>
+                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-right" data-inm-collapse-id="patient-collapse" value="right" required>
                     <label class="form-check-label" for="stronger-impacted-hand-right">Rechts</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-none" value="none" required>
+                    <input class="form-check-input" type="radio" name="stronger-impacted-hand" id="stronger-impacted-hand-none" data-inm-collapse-id="patient-collapse" value="none" required>
                     <label class="form-check-label" for="stronger-impacted-hand-none">Keine</label>
                     <span class="invalid-feedback">Stärker betroffene Hand nicht ausgewählt.</span>
                 </div>
@@ -325,7 +332,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="laterality-quotient">Händigkeitsfragebogen: Lateralitäts-Quotient </label>
+            <label for="laterality-quotient">Händigkeitsfragebogen: Lateralitäts-Quotient<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="laterality-quotient" name="laterality-quotient" min="-100" max="100" step="1" placeholder="-100  -  100" required>
@@ -334,7 +341,7 @@
 
     <div class="row pt-2">
         <div class="col-md-6 entry-label">
-            <label for="maximum-ftf-left">Maximale Fingertipp-Geschwindigkeit (FTF)</label>
+            <label for="maximum-ftf-left">Maximale Fingertipp-Geschwindigkeit (FTF)<span class="required-indicator">*</span></label>
             <label class="visually-hidden" for="maximum-ftf-right">Maximale Fingertipp-Geschiwndigkeit (FTF)</label>
         </div>
         <div class="col-md-3 entry-value">
@@ -371,7 +378,7 @@
     <div class="row pt-2">
         <div class="col-md-6 entry-label">
             <label for="maximum-gs-left">Maximale Griffkraft</label>
-            <label class="visually-hidden" for="maximum-gs-right">Maximale Griffkraft</label>
+            <label class="visually-hidden" for="maximum-gs-right">Maximale Griffkraft<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-3 entry-value">
             <div class="input-group">
@@ -404,13 +411,13 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="purdue-pegboard-left">Anzahl gesteckter Stäbchen</label>
+            <label for="purdue-pegboard-left">Anzahl gesteckter Stäbchen<span class="required-indicator">*</span></label>
             <label class="visually-hidden" for="purdue-pegboard-right">Anzahl gesteckter Stäbchen</label>
         </div>
         <div class="col-md-3 entry-value">
             <div class="input-group">
                 <div class="input-group-text">Links</div>
-                <input type="number" class="form-control" id="purdue-pegboard-left" name="purdue-pegboard-left" min="0.0" max="25.0" step="any" placeholder="0.0 - 25.0" required>
+                <input type="number" class="form-control" id="purdue-pegboard-left" name="purdue-pegboard-left" min="0" max="25" step="1" placeholder="0.0 - 25.0" required>
                 <div class="invalid-feedback">
                     Zahlenwert zwischen 0.0 und 25.0 erwartet.
                 </div>
@@ -419,7 +426,7 @@
         <div class="col-md-3 entry-value">
             <div class="input-group">
                 <div class="input-group-text">Rechts</div>
-                <input type="number" class="form-control" id="purdue-pegboard-right" name="purdue-pegboard-right" min="0.0" max="25.0" step="any" placeholder="0.0 - 25.0" required>
+                <input type="number" class="form-control" id="purdue-pegboard-right" name="purdue-pegboard-right" min="0" max="25" step="1" placeholder="0.0 - 25.0" required>
                 <div class="invalid-feedback">
                     Zahlenwert zwischen 0.0 und 25.0 erwartet.
                 </div>
@@ -431,7 +438,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="turn-cards-left">Karten drehen</label>
+            <label for="turn-cards-left">Karten drehen<span class="required-indicator">*</span></label>
             <label class="visually-hidden" for="turn-cards-right">Karten drehen</label>
         </div>
         <div class="col-md-3 entry-value">
@@ -458,7 +465,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="small-things-left">Kleine Gegenstände</label>
+            <label for="small-things-left">Kleine Gegenstände<span class="required-indicator">*</span></label>
             <label class="visually-hidden" for="small-things-right">Kleine Gegenstände</label>
         </div>
         <div class="col-md-3 entry-value">
@@ -485,7 +492,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="simulated-feeding-left">Simuliertes Füttern</label>
+            <label for="simulated-feeding-left">Simuliertes Füttern<span class="required-indicator">*</span></label>
             <label class="visually-hidden" for="simulated-feeding-right">Simuliertes Füttern</label>
         </div>
         <div class="col-md-3 entry-value">
@@ -512,7 +519,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="checkers-left">Damesteine stapeln</label>
+            <label for="checkers-left">Damesteine stapeln<span class="required-indicator">*</span></label>
             <label class="visually-hidden" for="checkers-right">Damesteine stapeln</label>
         </div>
         <div class="col-md-3 entry-value">
@@ -539,7 +546,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="large-light-things-left">Große, leichte Gegenstände</label>
+            <label for="large-light-things-left">Große, leichte Gegenstände<span class="required-indicator">*</span></label>
             <label class="visually-hidden" for="large-light-things-right">Große, leichte Gegenstände</label>
         </div>
         <div class="col-md-3 entry-value">
@@ -566,7 +573,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="large-heavy-things-left">Große, schwere Gegenstände</label>
+            <label for="large-heavy-things-left">Große, schwere Gegenstände<span class="required-indicator">*</span></label>
             <label class="visually-hidden" for="large-heavy-things-right">Große, schwere Gegenstände</label>
         </div>
         <div class="col-md-3 entry-value">
@@ -604,7 +611,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="arat-left">ARAT Punktzahl</label>
+            <label for="arat-left">ARAT Punktzahl<span class="required-indicator">*</span></label>
             <label class="visually-hidden" for="arat-right">Punktzahl</label>
         </div>
         <div class="col-md-3 entry-value">
@@ -631,7 +638,7 @@
     
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="tug-executed">ausgeführter TUG (aTUG)</label>
+                <label for="tug-executed">ausgeführter TUG (aTUG)<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
                 <div class="input-group">
@@ -664,7 +671,7 @@
 
         <div class="row pt-1">
             <div class="col-md-6 entry-label">
-                <label for="tug-imagined">vorgestellter TUG (vTUG)</label>
+                <label for="tug-imagined">vorgestellter TUG (vTUG)<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
                 <div class="input-group">
@@ -713,7 +720,7 @@
 
     <div class="row pt-3">
         <div class="col-md-6 entry-label">
-            <label for="go-nogo-total-errors">Anzahl Fehler insgesamt</label>
+            <label for="go-nogo-total-errors">Anzahl Fehler insgesamt<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 60" required>
@@ -725,7 +732,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="go-nogo-recognized-errors">Anzahl erkannte Fehler</label>
+            <label for="go-nogo-recognized-errors">Anzahl erkannte Fehler<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" min="0" max="60" step="1" placeholder="0 - 60" required>
@@ -737,7 +744,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="go-nogo-correct-answer-time">Reaktionszeit korrekte Antwort</label>
+            <label for="go-nogo-correct-answer-time">Reaktionszeit korrekte Antwort<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <div class="input-group">
@@ -752,7 +759,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="go-nogo-recognized-error-time">Reaktionszeit erkannte Fehler</label>
+            <label for="go-nogo-recognized-error-time">Reaktionszeit erkannte Fehler<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <div class="input-group">
@@ -778,7 +785,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="kas-pantomime-bukko-facial">Pantomime: Bukko-Facial</label>
+            <label for="kas-pantomime-bukko-facial">Pantomime: Bukko-Facial<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="kas-pantomime-bukko-facial" name="kas-pantomime-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
@@ -790,7 +797,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="kas-pantomime-arm-hand">Pantomime: Arm-Hand</label>
+            <label for="kas-pantomime-arm-hand">Pantomime: Arm-Hand<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="kas-pantomime-arm-hand" name="kas-pantomime-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
@@ -802,7 +809,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="kas-imitation-bukko-facial">Imitation: Bukko-Facial</label>
+            <label for="kas-imitation-bukko-facial">Imitation: Bukko-Facial<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="kas-imitation-bukko-facial" name="kas-imitation-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
@@ -814,7 +821,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="kas-imitation-arm-hand">Imitation: Arm-Hand</label>
+            <label for="kas-imitation-arm-hand">Imitation: Arm-Hand<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="kas-imitation-arm-hand" name="kas-imitation-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
@@ -865,10 +872,10 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="kopss-orientation">Orientierung</label>
+                <label for="kopss-orientation">Orientierung<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required oninput="kopssSum();">
+                <input type="number" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
@@ -877,10 +884,10 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="kopss-speech">Sprache</label>
+                <label for="kopss-speech">Sprache<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();">
+                <input type="number" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
@@ -889,10 +896,10 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="kopss-praxie">Praxie</label>
+                <label for="kopss-praxie">Praxie<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();">
+                <input type="number" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
@@ -901,10 +908,10 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="kopss-visual-spacial-performance">Visuell Räumliche Leistung</label>
+                <label for="kopss-visual-spacial-performance">Visuell Räumliche Leistung<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" min="0" max="17" step="1" placeholder="0 - 17" required oninput="kopssSum();">
+                <input type="number" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" min="0" max="17" step="1" placeholder="0 - 17" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 17 erwartet.
                 </div>
@@ -913,10 +920,10 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="kopss-calculating">Rechnen</label>
+                <label for="kopss-calculating">Rechnen<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required oninput="kopssSum();">
+                <input type="number" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 8 erwartet.
                 </div>
@@ -925,10 +932,10 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="kopss-executive-performance">Exekutive Leistung/Aufmerksamkeit</label>
+                <label for="kopss-executive-performance">Exekutive Leistung/Aufmerksamkeit<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();">
+                <input type="number" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
@@ -937,10 +944,10 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="kopss-memory">Gedächtnis</label>
+                <label for="kopss-memory">Gedächtnis<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kopssSum();">
+                <input type="number" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 20 erwartet.
                 </div>
@@ -958,10 +965,10 @@
 
         <div class="row pt-3">
             <div class="col-md-6 entry-label">
-                <label for="kopss-affect">Affekt</label>
+                <label for="kopss-affect">Affekt<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-affect" name="kopss-affect" min="0" max="9" step="1" placeholder="0 - 9" required>
+                <input type="number" class="form-control" id="kopss-affect" name="kopss-affect" min="0" max="9" step="1" placeholder="0 - 9" required data-inm-collapse-id="kopss-collapse">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
@@ -970,10 +977,10 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="kopss-behavior-observation">Verhaltensbeobachtung</label>
+                <label for="kopss-behavior-observation">Verhaltensbeobachtung<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-behavior-observation" name="kopss-behavior-observation" min="0" max="9" step="1" placeholder="0 - 9" required>
+                <input type="number" class="form-control" id="kopss-behavior-observation" name="kopss-behavior-observation" min="0" max="9" step="1" placeholder="0 - 9" required data-inm-collapse-id="kopss-collapse">
                 <div class="invalid-feedback">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
@@ -994,7 +1001,7 @@
     
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="acl-k-loud-reading">Lautes Lesen</label>
+            <label for="acl-k-loud-reading">Lautes Lesen<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="acl-k-loud-reading" name="acl-k-loud-reading" min="0.0" max="9.0" step="any" placeholder="0.0 - 9.0" required oninput="aclKSum();">
@@ -1006,7 +1013,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="acl-k-color-form-test">Farb-Figur-Test</label>
+            <label for="acl-k-color-form-test">Farb-Figur-Test<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="acl-k-color-form-test" name="acl-k-color-form-test" min="0" max="12" step="1" placeholder="0 - 12" required oninput="aclKSum();">
@@ -1018,7 +1025,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="acl-k-supermarket-task">Supermarktaufgabe</label>
+            <label for="acl-k-supermarket-task">Supermarktaufgabe<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="acl-k-supermarket-task" name="acl-k-supermarket-task" min="0" max="10" step="1" placeholder="0 - 10" required oninput="aclKSum();">
@@ -1030,7 +1037,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="acl-k-communication-ability">Kommunikationsfähigkeit</label>
+            <label for="acl-k-communication-ability">Kommunikationsfähigkeit<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="acl-k-communication-ability" name="acl-k-communication-ability" min="0" max="9" step="1" placeholder="0 - 9" required oninput="aclKSum();">
@@ -1053,7 +1060,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="bdi-ii-score">Punktzahl</label>
+            <label for="bdi-ii-score">Punktzahl<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="bdi-ii-score" name="bdi-ii-score" min="0" max="63" step="1" placeholder="0 - 63" required>
@@ -1067,7 +1074,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="madrs-score">Punktzahl</label>
+            <label for="madrs-score">Punktzahl<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="madrs-score" name="madrs-score" min="0" max="60" step="1" placeholder="0 - 60" required>
@@ -1091,7 +1098,7 @@
     
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="demtect-wordlist">Wortliste</label>
+            <label for="demtect-wordlist">Wortliste<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="demtect-wordlist" name="demtect-wordlist" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
@@ -1103,7 +1110,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="demtect-convert-numbers">Zahlen umwandeln</label>
+            <label for="demtect-convert-numbers">Zahlen umwandeln<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="demtect-convert-numbers" name="demtect-convert-numbers" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
@@ -1115,7 +1122,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="demtect-supermarket-task">Supermarktaufgabe</label>
+            <label for="demtect-supermarket-task">Supermarktaufgabe<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="demtect-supermarket-task" name="demtect-supermarket-task" min="0" max="4" step="1" placeholder="0 - 4" required oninput="demtectSum();">
@@ -1127,7 +1134,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="demtect-numbers-reverse">Zahlenfolge rückwärts</label>
+            <label for="demtect-numbers-reverse">Zahlenfolge rückwärts<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="demtect-numbers-reverse" name="demtect-numbers-reverse" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
@@ -1139,7 +1146,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="demtect-wordlist-recall">Erneute Abfrage der Wortliste</label>
+            <label for="demtect-wordlist-recall">Erneute Abfrage der Wortliste<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="demtect-wordlist-recall" name="demtect-wordlist-recall" min="0" max="5" step="1" placeholder="0 - 5" required oninput="demtectSum();">
@@ -1162,7 +1169,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="time-tmt-a">Zeit TMT A</label>
+            <label for="time-tmt-a">Zeit TMT A<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <div class="input-group">
@@ -1186,7 +1193,7 @@
 
     <div class="row pt-3">
         <div class="col-md-6 entry-label">
-            <label for="time-tmt-b">Zeit TMT B</label>
+            <label for="time-tmt-b">Zeit TMT B<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <div class="input-group">
@@ -1219,7 +1226,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="mrs-score">Punktzahl</label>
+            <label for="mrs-score">Punktzahl<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="mrs-score" name="mrs-score" min="0" max="6" step="1" placeholder="0 - 6" required>
@@ -1233,7 +1240,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="euroqol-code">Code aus Antworten</label>
+            <label for="euroqol-code">Code aus Antworten<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="text" class="form-control" id="euroqol-code" name="euroqol-code" pattern="[1-5]{5}" placeholder="XXXXX mit X jeweils aus 1 - 5" required>
@@ -1245,7 +1252,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="euroqol-vas">Visuelle Analogskala (VAS)</label>
+            <label for="euroqol-vas">Visuelle Analogskala (VAS)<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <div class="input-group">
@@ -1262,7 +1269,7 @@
 
     <div class="row">
         <div class="col-md-6 entry-label">
-            <label for="isced-value">Zahlenwert nach ISCED</label>
+            <label for="isced-value">Zahlenwert nach ISCED<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="isced-value" name="isced-value" min="0" max="6" step="1" placeholder="0 - 6" required>
@@ -1294,7 +1301,7 @@
                 <label class="visually-hidden" for="additional-mrt-url">Link zu MRT-Dateien</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="url" class="form-control" id="additional-mrt-url" name="additional-mrt" placeholder="Link zu MRT Dateien" disabled>
+                <input type="url" class="form-control" id="additional-mrt-url" name="additional-mrt-url" placeholder="Link zu MRT Dateien" disabled>
             </div>
         </div>
 
@@ -1303,8 +1310,8 @@
             </div>
             <div class="col-md-6 entry-label">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="mrt-resting-state" name="mrt-resting-state">
-                    <label class="form-check-label" for="mrt-resting-state">
+                    <input class="form-check-input" type="checkbox" id="additional-mrt-resting-state" name="additional-mrt-resting-state">
+                    <label class="form-check-label" for="additional-mrt-resting-state">
                         Resting-State
                     </label>
                 </div>
@@ -1316,8 +1323,8 @@
             </div>
             <div class="col-md-6 entry-label">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="mrt-tapping-task" name="mrt-tapping-task">
-                    <label class="form-check-label" for="mrt-tapping-task">
+                    <input class="form-check-input" type="checkbox" id="additional-mrt-tapping-task" name="additional-mrt-tapping-task">
+                    <label class="form-check-label" for="additional-mrt-tapping-task">
                         Tapping-Task
                     </label>
                 </div>
@@ -1329,8 +1336,8 @@
             </div>
             <div class="col-md-6 entry-label">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="mrt-anatomical-representation" name="mrt-anatomical-representation">
-                    <label class="form-check-label" for="mrt-anatomical-representation">
+                    <input class="form-check-input" type="checkbox" id="additional-mrt-anatomical-representation" name="additional-mrt-anatomical-representation">
+                    <label class="form-check-label" for="additional-mrt-anatomical-representation">
                         Anatomische Darstellung
                     </label>
                 </div>
@@ -1342,8 +1349,8 @@
             </div>
             <div class="col-md-6 entry-label">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="mrt-dti" name="mrt-dti">
-                    <label class="form-check-label" for="mrt-dti">
+                    <input class="form-check-input" type="checkbox" id="additional-mrt-dti" name="additional-mrt-dti">
+                    <label class="form-check-label" for="additional-mrt-dti">
                         DTI
                     </label>
                 </div>
@@ -1363,7 +1370,7 @@
             <label class="form-check-label visually-hidden" for="additional-eeg-url">Link zu EEG Dateien</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="url" class="form-control" id="additional-eeg-url" name="additional-eeg" placeholder="Link zu EEG Dateien" disabled>
+            <input type="url" class="form-control" id="additional-eeg-url" name="additional-eeg-url" placeholder="Link zu EEG Dateien" disabled>
         </div>
     </div>
 
@@ -1378,7 +1385,7 @@
             <label class="form-check-label visually-hidden" for="additional-blood-sampling-url">Link zu Blood Sampling Dateien</label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="url" class="form-control" id="additional-blood-sampling-url" name="additional-blood-sampling" placeholder="Link zu Blutproben Dateien" disabled>
+            <input type="url" class="form-control" id="additional-blood-sampling-url" name="additional-blood-sampling-url" placeholder="Link zu Blutproben Dateien" disabled>
         </div>
     </div>
 </div>
@@ -1397,10 +1404,10 @@
 
 <div class="container pt-5">
     <div class="row">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Daten prüfen und speichern</button>
         <!--
-        <button class="btn btn-primary btn-lg btn-block" type="submit" formaction="http://localhost/cgi-bin/store_data_1.py" formmethod="post">Daten prüfen und speichern</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Daten prüfen und speichern</button>
         -->
+        <button class="btn btn-primary btn-lg btn-block" type="submit" formaction="http://localhost:8000" formmethod="post">Daten prüfen und speichern</button>
     </div>
 </div>
 
@@ -1428,11 +1435,10 @@
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
                     if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
+                        event.preventDefault();
+                        event.stopPropagation();
                     }
-
-                    form.classList.add('was-validated')
+                    form.classList.add('was-validated');
                 }, false)
             })
     })();
@@ -1459,24 +1465,38 @@
 
     let bloodSamplingCheckboxElement = document.getElementById("additional-blood-sampling");
 
-    function hideCollapsable(obj) {
-        if (obj !== null)
+    function hideCollapsable(obj, element) {
+        if (obj !== null) {
             obj.hide();
+            if (element !== null) {
+                let childNodes = element.getElementsByTagName("*");
+                for (let childNode of childNodes) {
+                    childNode.disabled = true;
+                }
+            }
+        }
     }
 
-    function showCollapsable(obj) {
-        if (obj !== null)
+    function showCollapsable(obj, element) {
+        if (obj !== null) {
             obj.show();
+            if (element !== null) {
+                let childNodes = element.getElementsByTagName("*");
+                for (let childNode of childNodes) {
+                    childNode.disabled = false;
+                }
+            }
+        }
     }
 
     function patientUpdateElement() {
         if (patientSelectElement.selectedIndex === 2) {
             if (patientCollapse === null)
                 patientCollapse = new bootstrap.Collapse(patientCollapseElement);
-            showCollapsable(patientCollapse);
+            showCollapsable(patientCollapse, patientCollapseElement);
         }
         else {
-            hideCollapsable(patientCollapse);
+            hideCollapsable(patientCollapse, patientCollapseElement);
         }
     }
 
@@ -1484,10 +1504,10 @@
         if (kopssCheckboxElement.checked === true) {
             if (kopssCollapse === null)
                 kopssCollapse = new bootstrap.Collapse(kopssCollapseElement, {hide: true});
-            showCollapsable(kopssCollapse);
+            showCollapsable(kopssCollapse, kopssCollapseElement);
         }
         else {
-            hideCollapsable(kopssCollapse);
+            hideCollapsable(kopssCollapse, kopssCollapseElement);
         }
     }
 
@@ -1495,10 +1515,10 @@
         if (tugCheckboxElement.checked === true) {
             if (tugCollapse === null)
                 tugCollapse = new bootstrap.Collapse(tugCollapseElement, {hide: true});
-            showCollapsable(tugCollapse);
+            showCollapsable(tugCollapse, tugCollapseElement);
         }
         else {
-            hideCollapsable(tugCollapse);
+            hideCollapsable(tugCollapse, tugCollapseElement);
         }
     }
 
@@ -1506,12 +1526,10 @@
         if (mrtCheckboxElement.checked === true) {
             if (mrtCollapse === null)
                 mrtCollapse = new bootstrap.Collapse(mrtCollapseElement, {hide: true});
-            showCollapsable(mrtCollapse);
-            document.getElementById("additional-mrt-url").disabled = false;
+            showCollapsable(mrtCollapse, mrtCollapseElement);
         }
         else {
-            hideCollapsable(mrtCollapse);
-            document.getElementById("additional-mrt-url").disabled = true;
+            hideCollapsable(mrtCollapsem mrtCollapseElement);
         }
     }
 
