@@ -1415,20 +1415,8 @@
 
 
 <div class="container pt-5">
-
     <div class="row">
-        <div class="col-md-3">
-            <h5 class="mb-3"><label for="finger-print">Fingerabdruck</label></h5>
-        </div>
-        <div class="col-md-1">
-            <button type="button" class="btn btn-secondary btn-sm" onclick="updateFingerPrint();">Aktualisieren</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div id="finger-print">
-            </div>
-        </div>
+        <button class="btn btn-secondary btn-lg btn-block" type="button" onclick="updateFingerPrint();">Eingaben prüfen</button>
     </div>
 </div>
 
@@ -1445,11 +1433,24 @@
 
 
 <div class="container pt-5">
+
     <div class="row">
-        <!--
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Daten prüfen und speichern</button>
-        -->
-        <button class="btn btn-primary btn-lg btn-block" type="submit" formaction="http://localhost:8000" formmethod="post">Daten prüfen und speichern</button>
+        <div class="col-md-3">
+            <h5 class="mb-3"><label for="finger-print">Fingerabdruck</label></h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="finger-print">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container pt-5">
+    <div class="row">
+        <button class="btn btn-primary btn-lg btn-block" type="submit" id="submit-button" formaction="http://localhost:8000" formmethod="post" disabled>Daten speichern</button>
     </div>
 </div>
 
@@ -1902,10 +1903,13 @@
     function updateFingerPrint() {
         let fingerPrintElement = document.getElementById("finger-print");
         let entryForm = document.getElementById("entry-form");
+        let submitButton = document.getElementById("submit-button");
         if (validateForm(entryForm) === false) {
-            fingerPrintElement.innerHTML = "Fingerabruck icht verfügbar, da Eingaben ungültig sind.";
+            fingerPrintElement.innerHTML = "Fingerabruck nicht verfügbar, da Eingaben ungültig sind.";
+            submitButton.setAttribute("disabled", "");
         } else {
             fingerPrintElement.innerHTML = createFingerPrint();
+            submitButton.removeAttribute("disabled");
         }
     }
 
