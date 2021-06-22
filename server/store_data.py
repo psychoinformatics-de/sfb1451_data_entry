@@ -1,7 +1,12 @@
 import json
 import time
+import subprocess
+from pathlib import Path
 from typing import Union
 from urllib.parse import parse_qs
+
+
+dataset_root = Path(".")
 
 
 def convert_value(value: str) -> Union[str, float, int]:
@@ -16,6 +21,17 @@ def convert_value(value: str) -> Union[str, float, int]:
         pass
 
     return value
+
+
+
+def add_file_to_dataset(dataset_root: Path, file: Path):
+    subprocess.run([
+        "datalad",
+        "save",
+        "-d", str(dataset_root),
+        "-m", "adding file",
+        str(file)],
+        check=True)
 
 
 def application(environ, start_response):
@@ -52,8 +68,14 @@ def application(environ, start_response):
             }
         }
 
-        with open(time_stamp + ".json", "x") as f:
+        directory = dataset_root / "input" / json_data["source"]["version"]
+        directory.mkdir(parents=True, exist_ok=True)
+
+        output_file = directory / (time_stamp + ".json")
+        with output_file.open("x") as f:
             json.dump(json_data, f)
+
+        add_file_to_dataset(dataset_root, directory / output_file)
 
         status = "200 OK"
         output = [
