@@ -48,6 +48,19 @@
     </div>
 
     <div class="row">
+        <div class="col-md-6 entry-label">
+            <label for="data-entry-employee">Name Datenerfasser<span class="required-indicator">*</span></label>
+        </div>
+        <div class="col-md-6 entry-value">
+            <input type="text" class="form-control" id="data-entry-employee" name="data-entry-employee" placeholder="" required>
+            <div class="invalid-feedback field-validity">
+                Name des Datenerfassers nicht angegeben.
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
         <div class="col-md-6">
             <label for="project-code">Projekt-Code<span class="required-indicator">*</span></label>
         </div>
@@ -66,7 +79,7 @@
                 <option value="c7">C7</option>
                 <option value="z3">Z3</option>
             </select>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Projekt-Code nicht ausgewählt.
             </div>
         </div>
@@ -78,7 +91,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="text" class="form-control" id="subject-pseudonym" name="subject-pseudonym" placeholder="" required>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Probanden Pseudonym nicht angegeben.
             </div>
         </div>
@@ -90,7 +103,7 @@
         </div>
         <div class="col-md-6">
             <input type="date" class="form-control" id="date-of-birth" name="date-of-birth" required>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Geburtsdatum nicht angegeben.
             </div>
         </div>
@@ -101,29 +114,29 @@
             <label for="sex-m">Geschlecht<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="sex" id="sex-m" value="male" required>
-                <label class="form-check-label" for="sex-m">m</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="sex" id="sex-f" value="female" required>
-                <label class="form-check-label" for="sex-f">w</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="sex" id="sex-d" value="diverse" required>
-                <label class="form-check-label" for="sex-d">d</label>
-                <span class="invalid-feedback">Geschlecht nicht ausgewählt.</span>
-            </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sex" id="sex-m" value="male" required>
+                    <label class="form-check-label" for="sex-m">m</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sex" id="sex-f" value="female" required>
+                    <label class="form-check-label" for="sex-f">w</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="sex" id="sex-d" value="diverse" required>
+                    <label class="form-check-label" for="sex-d">d</label>
+                    <div class="invalid-feedback field-validity">Geschlecht nicht ausgewählt.</div>
+                </div>
         </div>
     </div>
 
     <div class="row pt-2">
         <div class="col-md-6">
-            <label for="test-date">Test-Datum<span class="required-indicator">*</span></label>
+            <label for="date-of-test">Test-Datum<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6">
-            <input type="date" class="form-control" id="test-date" name="test-date" placeholder="" required>
-            <div class="invalid-feedback">
+            <input type="date" class="form-control" id="date-of-test" name="date-of-test" placeholder="" required>
+            <div class="invalid-feedback field-validity">
                 Test-Datum nicht angegeben.
             </div>
         </div>
@@ -148,7 +161,7 @@
                 <option value="healthy" onselect="collapsePatient()">Gesund</option>
                 <option value="patient" onselect="showCollapsable()">Patient</option>
             </select>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Probandengruppe nicht ausgewählt.
             </div>
         </div>
@@ -169,7 +182,7 @@
                     <option value="depression">Depression</option>
                     <option value="alzheimer">Alzheimer</option>
                 </select>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Haupterkrankung nicht ausgewählt.
                 </div>
             </div>
@@ -317,7 +330,7 @@
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-none" data-inm-collapse-id="patient-collapse" value="none" required disabled>
                     <label class="form-check-label" for="patient-stronger-impacted-hand-none">Keine</label>
-                    <span class="invalid-feedback">Stärker betroffene Hand nicht ausgewählt.</span>
+                    <span class="invalid-feedback field-validity">Stärker betroffene Hand nicht ausgewählt.</span>
                 </div>
             </div>
         </div>
@@ -348,21 +361,21 @@
             <label class="visually-hidden" for="maximum-ftf-right">Maximale Fingertipp-Geschiwndigkeit (FTF)</label>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Links</div>
                 <input type="number" class="form-control" id="maximum-ftf-left" name="maximum-ftf-left" min="0.0" max="10.0" step="any" placeholder="0.0 - 10.0" required>
                 <div class="input-group-text">Hz&nbsp;</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 10.0 erwartet.
                 </div>
             </div>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Rechts</div>
                 <input type="number" class="form-control" id="maximum-ftf-right" name="maximum-ftf-right" min="0.0" max="10.0" step="any" placeholder="0.0 - 10.0" required>
                 <div class="input-group-text">Hz&nbsp;</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 10.0 erwartet.
                 </div>
             </div>
@@ -384,21 +397,21 @@
             <label class="visually-hidden" for="maximum-gs-right">Maximale Griffkraft<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Links</div>
                 <input type="number" class="form-control" id="maximum-gs-left" name="maximum-gs-left" min="0.0" max="160.0" step="any" placeholder="0.0 - 160.0" required>
                 <div class="input-group-text">kPa</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 160.0 erwartet.
                 </div>
             </div>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Rechts</div>
                 <input type="number" class="form-control" id="maximum-gs-right" name="maximum-gs-right" min="0.0" max="160.0" step="any" placeholder="0.0 - 160.0" required>
                 <div class="input-group-text">kPa</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 160.0 erwartet.
                 </div>
             </div>
@@ -418,19 +431,19 @@
             <label class="visually-hidden" for="purdue-pegboard-right">Anzahl gesteckter Stäbchen</label>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Links</div>
                 <input type="number" class="form-control" id="purdue-pegboard-left" name="purdue-pegboard-left" min="0" max="25" step="1" placeholder="0.0 - 25.0" required>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 25.0 erwartet.
                 </div>
             </div>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Rechts</div>
                 <input type="number" class="form-control" id="purdue-pegboard-right" name="purdue-pegboard-right" min="0" max="25" step="1" placeholder="0.0 - 25.0" required>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 25.0 erwartet.
                 </div>
             </div>
@@ -445,21 +458,21 @@
             <label class="visually-hidden" for="turn-cards-right">Karten drehen</label>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Links</div>
                 <input type="number" class="form-control" id="turn-cards-left" name="turn-cards-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Rechts</div>
                 <input type="number" class="form-control" id="turn-cards-right" name="turn-cards-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
@@ -472,21 +485,21 @@
             <label class="visually-hidden" for="small-things-right">Kleine Gegenstände</label>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Links</div>
                 <input type="number" class="form-control" id="small-things-left" name="small-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Rechts</div>
                 <input type="number" class="form-control" id="small-things-right" name="small-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
@@ -499,21 +512,21 @@
             <label class="visually-hidden" for="simulated-feeding-right">Simuliertes Füttern</label>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Links</div>
                 <input type="number" class="form-control" id="simulated-feeding-left" name="simulated-feeding-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Rechts</div>
                 <input type="number" class="form-control" id="simulated-feeding-right" name="simulated-feeding-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
@@ -526,21 +539,21 @@
             <label class="visually-hidden" for="checkers-right">Damesteine stapeln</label>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Links</div>
                 <input type="number" class="form-control" id="checkers-left" name="checkers-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Rechts</div>
                 <input type="number" class="form-control" id="checkers-right" name="checkers-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
@@ -553,21 +566,21 @@
             <label class="visually-hidden" for="large-light-things-right">Große, leichte Gegenstände</label>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Links</div>
                 <input type="number" class="form-control" id="large-light-things-left" name="large-light-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Rechts</div>
                 <input type="number" class="form-control" id="large-light-things-right" name="large-light-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
@@ -580,21 +593,21 @@
             <label class="visually-hidden" for="large-heavy-things-right">Große, schwere Gegenstände</label>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Links</div>
                 <input type="number" class="form-control" id="large-heavy-things-left" name="large-heavy-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Rechts</div>
                 <input type="number" class="form-control" id="large-heavy-things-right" name="large-heavy-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
@@ -618,19 +631,19 @@
             <label class="visually-hidden" for="arat-right">Punktzahl</label>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Links</div>
                 <input type="number" class="form-control" id="arat-left" name="arat-left" min="0" max="57" step="1" placeholder="0 - 57" required>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 57 erwartet.
                 </div>
             </div>
         </div>
         <div class="col-md-3 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <div class="input-group-text">Rechts</div>
                 <input type="number" class="form-control" id="arat-right" name="arat-right" min="0" max="57" step="1" placeholder="0 - 57" required>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 57 erwartet.
                 </div>
             </div>
@@ -644,10 +657,10 @@
                 <label for="tug-executed">ausgeführter TUG (aTUG)<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <div class="input-group">
+                <div class="input-group has-validation">
                     <input type="number" class="form-control" id="tug-executed" name="tug-executed" min="0" max="60" step="any" placeholder="0.0 - 60.0" required>
                     <div class="input-group-text">s</div>
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 60.0 erwartet.
                     </div>
                 </div>
@@ -677,10 +690,10 @@
                 <label for="tug-imagined">vorgestellter TUG (vTUG)<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <div class="input-group">
+                <div class="input-group has-validation">
                     <input type="number" class="form-control" id="tug-imagined" name="tug-imagined" min="0" max="60" step="any" placeholder="0.0 - 60.0" required>
                     <div class="input-group-text">s</div>
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 60.0 erwartet.
                     </div>
                 </div>
@@ -727,7 +740,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 60" required>
-            <div class="invalid-feedback" id="go-nogo-total-errors-invalid-feedback">
+            <div class="invalid-feedback field-validity" id="go-nogo-total-errors-invalid-feedback">
                 Ganzzahl zwischen 0 und 60 erwartet.
             </div>
         </div>
@@ -739,7 +752,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" min="0" max="60" step="1" placeholder="0 - 60" required>
-            <div class="invalid-feedback" id="go-nogo-recognized-errors-invalid-feedback">
+            <div class="invalid-feedback field-validity" id="go-nogo-recognized-errors-invalid-feedback">
                 Ganzzahl zwischen 0 und 60 erwartet.
             </div>
         </div>
@@ -750,10 +763,10 @@
             <label for="go-nogo-correct-answer-time">Reaktionszeit korrekte Antwort<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <input type="number" class="form-control" id="go-nogo-correct-answer-time" name="go-nogo-correct-answer-time" min="50.0" max="1200.0" step="any" placeholder="50.0 - 1200.0" required>
                 <div class="input-group-text">ms</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 50.0 und 1200.0 erwartet.
                 </div>
             </div>
@@ -765,10 +778,10 @@
             <label for="go-nogo-recognized-error-time">Reaktionszeit erkannte Fehler<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <input type="number" class="form-control" id="go-nogo-recognized-error-time" name="go-nogo-recognized-error-time" min="50.0" max="800.0" step="any" placeholder="50.0 - 800.0" required>
                 <div class="input-group-text">ms</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 50.0 und 800.0 erwartet.
                 </div>
             </div>
@@ -792,7 +805,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="kas-pantomime-bukko-facial" name="kas-pantomime-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 20 erwartet.
             </div>
         </div>
@@ -804,7 +817,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="kas-pantomime-arm-hand" name="kas-pantomime-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 20 erwartet.
             </div>
         </div>
@@ -816,7 +829,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="kas-imitation-bukko-facial" name="kas-imitation-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 20 erwartet.
             </div>
         </div>
@@ -828,7 +841,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="kas-imitation-arm-hand" name="kas-imitation-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 20 erwartet.
             </div>
         </div>
@@ -877,7 +890,7 @@
             </div>
             <div class="col-md-6 entry-value">
                 <input type="number" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
             </div>
@@ -889,7 +902,7 @@
             </div>
             <div class="col-md-6 entry-value">
                 <input type="number" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
             </div>
@@ -901,7 +914,7 @@
             </div>
             <div class="col-md-6 entry-value">
                 <input type="number" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
             </div>
@@ -913,7 +926,7 @@
             </div>
             <div class="col-md-6 entry-value">
                 <input type="number" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" min="0" max="17" step="1" placeholder="0 - 17" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 17 erwartet.
                 </div>
             </div>
@@ -925,7 +938,7 @@
             </div>
             <div class="col-md-6 entry-value">
                 <input type="number" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 8 erwartet.
                 </div>
             </div>
@@ -937,7 +950,7 @@
             </div>
             <div class="col-md-6 entry-value">
                 <input type="number" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 18 erwartet.
                 </div>
             </div>
@@ -949,7 +962,7 @@
             </div>
             <div class="col-md-6 entry-value">
                 <input type="number" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 20 erwartet.
                 </div>
             </div>
@@ -970,7 +983,7 @@
             </div>
             <div class="col-md-6 entry-value">
                 <input type="number" class="form-control" id="kopss-affect" name="kopss-affect" min="0" max="9" step="1" placeholder="0 - 9" required data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
             </div>
@@ -982,7 +995,7 @@
             </div>
             <div class="col-md-6 entry-value">
                 <input type="number" class="form-control" id="kopss-behavior-observation" name="kopss-behavior-observation" min="0" max="9" step="1" placeholder="0 - 9" required data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
             </div>
@@ -1006,7 +1019,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="acl-k-loud-reading" name="acl-k-loud-reading" min="0.0" max="9.0" step="any" placeholder="0.0 - 9.0" required oninput="aclKSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Zahlenwert zwischen 0.0 und 9.0 erwartet.
             </div>
         </div>
@@ -1018,7 +1031,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="acl-k-color-form-test" name="acl-k-color-form-test" min="0" max="12" step="1" placeholder="0 - 12" required oninput="aclKSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 12 erwartet.
             </div>
         </div>
@@ -1030,7 +1043,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="acl-k-supermarket-task" name="acl-k-supermarket-task" min="0" max="10" step="1" placeholder="0 - 10" required oninput="aclKSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 10 erwartet.
             </div>
         </div>
@@ -1042,7 +1055,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="acl-k-communication-ability" name="acl-k-communication-ability" min="0" max="9" step="1" placeholder="0 - 9" required oninput="aclKSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 9 erwartet.
             </div>
         </div>
@@ -1065,7 +1078,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="bdi-ii-score" name="bdi-ii-score" min="0" max="63" step="1" placeholder="0 - 63" required>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 63 erwartet.
             </div>
         </div>
@@ -1079,7 +1092,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="madrs-score" name="madrs-score" min="0" max="60" step="1" placeholder="0 - 60" required>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 60 erwartet.
             </div>
         </div>
@@ -1101,7 +1114,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="demtect-wordlist" name="demtect-wordlist" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 3 erwartet.
             </div>
         </div>
@@ -1113,7 +1126,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="demtect-convert-numbers" name="demtect-convert-numbers" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 3 erwartet.
             </div>
         </div>
@@ -1125,7 +1138,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="demtect-supermarket-task" name="demtect-supermarket-task" min="0" max="4" step="1" placeholder="0 - 4" required oninput="demtectSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 4 erwartet.
             </div>
         </div>
@@ -1137,7 +1150,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="demtect-numbers-reverse" name="demtect-numbers-reverse" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 3 erwartet.
             </div>
         </div>
@@ -1149,7 +1162,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="demtect-wordlist-recall" name="demtect-wordlist-recall" min="0" max="5" step="1" placeholder="0 - 5" required oninput="demtectSum();">
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 5 erwartet.
             </div>
         </div>
@@ -1171,10 +1184,10 @@
             <label for="time-tmt-a">Zeit TMT A<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <input type="number" class="form-control" id="time-tmt-a" name="time-tmt-a" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 150.0 erwartet.
                 </div>
             </div>
@@ -1195,10 +1208,10 @@
             <label for="time-tmt-b">Zeit TMT B<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <input type="number" class="form-control" id="time-tmt-b" name="time-tmt-b" min="0.0" max="300.0" step="any" placeholder="0.0 - 300.0" required>
                 <div class="input-group-text">s</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 300.0 erwartet.
                 </div>
             </div>
@@ -1229,7 +1242,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="mrs-score" name="mrs-score" min="0" max="6" step="1" placeholder="0 - 6" required>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 6 erwartet.
             </div>
         </div>
@@ -1243,7 +1256,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="text" class="form-control" id="euroqol-code" name="euroqol-code" pattern="[1-5]{5}" placeholder="XXXXX mit X jeweils aus 1 - 5" required>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Antwort-Code ist nicht korrekt. Erwartet sind 5 Nummern aus 1 - 5, z.B. 31235
             </div>
         </div>
@@ -1254,10 +1267,10 @@
             <label for="euroqol-vas">Visuelle Analogskala (VAS)<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
-            <div class="input-group">
+            <div class="input-group has-validation">
                 <input type="number" class="form-control" id="euroqol-vas" name="euroqol-vas" min="0" max="100" step="1" placeholder="0 - 100" required>
                 <div class="input-group-text">%</div>
-                <div class="invalid-feedback">
+                <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 100 erwartet.
                 </div>
             </div>
@@ -1272,7 +1285,7 @@
         </div>
         <div class="col-md-6 entry-value">
             <input type="number" class="form-control" id="isced-value" name="isced-value" min="0" max="6" step="1" placeholder="0 - 6" required>
-            <div class="invalid-feedback">
+            <div class="invalid-feedback field-validity">
                 Ganzzahl zwischen 0 und 6 erwartet.
             </div>
         </div>
@@ -1402,6 +1415,32 @@
 
 
 <div class="container pt-5">
+
+    <div class="row">
+        <div class="col-3">
+            <h5 class="mb-3"><label for="finger-print">Fingerabdruck</label></h5>
+        </div>
+        <div class="col-1">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="updateFingerPrint();">Aktualisieren</button>
+        </div>
+    </div>
+    <div class="row" id="finger-print">
+    </div>
+</div>
+
+
+<div class="container pt-5 visually-hidden" id="content-validation-errors" style="color: #dc3545;">
+
+    <div class="row">
+        <h5 class="mb-3"><label for="content-validation-error-messages">Folgende Fehler müssen vor dem Speichern korrigiert werden:</label></h5>
+    </div>
+
+    <div class="row" id="content-validation-error-messages">
+    </div>
+</div>
+
+
+<div class="container pt-5">
     <div class="row">
         <!--
         <button class="btn btn-primary btn-lg btn-block" type="submit">Daten prüfen und speichern</button>
@@ -1423,6 +1462,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
 <script>
+
     (function () {
         'use strict'
 
@@ -1433,16 +1473,21 @@
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
+                    let fieldValidity = form.checkValidity();
+                    if (fieldValidity === false) {
                         event.preventDefault();
                         event.stopPropagation();
                     }
-                    /*
-                    if (!validateContent(form)) {
-                        event.preventDefault();
-                        event.stopPropagation();
+
+                    let contentValidityErrors = validateContent(form);
+                    let contentErrorElement = document.getElementById("content-validation-errors");
+                    let contentErrorMessageElement = document.getElementById("content-validation-error-messages");
+                    if (contentValidityErrors.length !== 0) {
+                        contentErrorElement.classList.remove("visually-hidden");
+                        contentErrorMessageElement.innerHTML = contentValidityErrors.join("<BR>\n");
+                    } else {
+                        contentErrorElement.classList.add("visually-hidden");
                     }
-                    */
                     form.classList.add('was-validated');
                 }, false)
             })
@@ -1451,8 +1496,87 @@
 
 
 <script>
+    function getContentOfElementNamed(name) {
+        const elementArray = document.getElementsByName(name);
+        if (elementArray.length === 1)
+            return elementArray[0].value;
+        return null;
+    }
+
+    function compareDate(date_a, date_b) {
+        let [year_a, month_a, day_a] = date_a;
+        let [year_b, month_b, day_b] = date_b;
+
+        if (year_a == null || year_b == null)
+            return 0;
+
+        if (year_a !== year_b)
+            return year_a - year_b;
+
+        if (month_a == null || month_b == null)
+            return 0;
+
+        if (month_a !== month_b)
+            return month_a - month_b;
+
+        if (day_a == null || day_b == null)
+            return 0;
+
+        return day_a - day_b;
+    }
+
+    function parseDate(dateArray) {
+        let result = dateArray.map(function (x) {
+            const result = parseInt(x);
+            if (isNaN(result))
+                return null;
+            return result;
+        })
+        if (result.length !== 3)
+            return [null, null, null];
+        return result;
+    }
+
+    function validateDates() {
+        let result = [];
+
+        const birthDate = parseDate(getContentOfElementNamed("date-of-birth").split("-"));
+        const testDate = parseDate(getContentOfElementNamed("date-of-test").split("-"));
+        const firstSymptomDate = parseDate([
+            getContentOfElementNamed("patient-year-first-symptom"),
+            getContentOfElementNamed("patient-month-first-symptom"),
+            getContentOfElementNamed("patient-day-first-symptom")]);
+
+        const diagnosisDate = parseDate([
+            getContentOfElementNamed("patient-year-diagnosis"),
+            getContentOfElementNamed("patient-month-diagnosis"),
+            getContentOfElementNamed("patient-day-diagnosis")]);
+
+        if (compareDate(birthDate, firstSymptomDate) > 0)
+            result.push("Das Geburtsdatum muß vor dem Datum der ersten Symptome liegen");
+
+        if (compareDate(birthDate, diagnosisDate) > 0)
+            result.push("Das Geburtsdatum muß vor dem Datum der Diagnose liegen");
+
+        if (compareDate(birthDate, testDate) > 0)
+            result.push("Das Geburtsdatum muß vor dem Testdatum liegen");
+
+        if (compareDate(firstSymptomDate, diagnosisDate) > 0)
+            result.push("Das Datum der ersten Symptome muß vor dem Datum der Diagnose liegen");
+
+        if (compareDate(firstSymptomDate, testDate) > 0)
+            result.push("Das Datum der ersten Symptome muß vor dem Datum des Tests liegen");
+
+        if (compareDate(diagnosisDate, testDate) > 0)
+            result.push("Das Datum der Diagnose muß vor dem Datum des Tests liegen");
+
+        return result;
+    }
+
     function validateContent(form) {
-        return true;
+        dateErrors = validateDates();
+        console.log(dateErrors);
+        return dateErrors;
     }
 
 </script>
@@ -1631,6 +1755,132 @@
         let sumString = sumInputs(source_elements);
         let dest_element = document.getElementById("demtect-sum");
         dest_element.value = sumString;
+    }
+
+</script>
+
+<script>
+    function getContentOfElementWithId(elementId) {
+        return document.getElementById(elementId).value;
+    }
+
+    function createFingerPrint() {
+        let nameArray = [
+            "form-data-version",
+            "data-entry-employee",
+            "subject-pseudonym",
+            "date-of-birth",
+            "sex-m",
+            "sex-f",
+            "sex-d",
+            "date-of-test",
+            "repeated-test",
+            "patient-year-first-symptom",
+            "patient-year-diagnosis",
+            "patient-stronger-impacted-hand-left",
+            "patient-collapse",
+            "patient-stronger-impacted-hand-right",
+            "patient-collapse",
+            "patient-stronger-impacted-hand-none",
+            "patient-collapse",
+            "laterality-quotient",
+            "maximum-ftf-left",
+            "maximum-ftf-right",
+            "ftf-incorrectly-executed",
+            "maximum-gs-left",
+            "maximum-gs-right",
+            "purdue-pegboard-left",
+            "purdue-pegboard-right",
+            "turn-cards-left",
+            "turn-cards-right",
+            "small-things-left",
+            "small-things-right",
+            "simulated-feeding-left",
+            "simulated-feeding-right",
+            "checkers-left",
+            "checkers-right",
+            "large-light-things-left",
+            "large-light-things-right",
+            "large-heavy-things-left",
+            "large-heavy-things-right",
+            "jtt-incorrectly-executed",
+            "arat-left",
+            "arat-right",
+            "tug-executed",
+            "tug-a-incorrectly-executed",
+            "tug-v-incorrectly-executed",
+            "tug-imagined",
+            "tug-v-not-executable",
+            "go-nogo-total-errors",
+            "go-nogo-recognized-errors",
+            "go-nogo-correct-answer-time",
+            "go-nogo-recognized-error-time",
+            "go-nogo-incorrectly-executed",
+            "kas-pantomime-bukko-facial",
+            "kas-pantomime-arm-hand",
+            "kas-imitation-bukko-facial",
+            "kas-imitation-arm-hand",
+            "kas-sum",
+            "kopss-applicable",
+            "kopss-orientation",
+            "kopss-collapse",
+            "kopss-speech",
+            "kopss-collapse",
+            "kopss-praxie",
+            "kopss-collapse",
+            "kopss-visual-spacial-performance",
+            "kopss-collapse",
+            "kopss-calculating",
+            "kopss-collapse",
+            "kopss-executive-performance",
+            "kopss-collapse",
+            "kopss-memory",
+            "kopss-collapse",
+            "kopss-sum",
+            "kopss-affect",
+            "kopss-collapse",
+            "kopss-behavior-observation",
+            "kopss-collapse",
+            "acl-k-loud-reading",
+            "acl-k-color-form-test",
+            "acl-k-supermarket-task",
+            "acl-k-communication-ability",
+            "acl-k-sum",
+            "bdi-ii-score",
+            "madrs-score",
+            "demtect-wordlist",
+            "demtect-convert-numbers",
+            "demtect-supermarket-task",
+            "demtect-numbers-reverse",
+            "demtect-wordlist-recall",
+            "demtect-sum",
+            "time-tmt-a",
+            "tmt-a-incorrectly-executed",
+            "time-tmt-b",
+            "tmt-b-incorrectly-executed",
+            "mrs-score",
+            "euroqol-code",
+            "euroqol-vas",
+            "isced-value",
+            "additional-mrt",
+            "additional-mrt-url",
+            "additional-mrt-resting-state",
+            "additional-mrt-tapping-task",
+            "additional-mrt-anatomical-representation",
+            "additional-mrt-dti",
+            "additional-eeg",
+            "additional-eeg-url",
+            "additional-blood-sampling",
+            "additional-blood-sampling-url"
+        ];
+        let valueArray = nameArray.map(getContentOfElementNamed);
+        contentString = valueArray.join(";");
+        return contentString;
+    }
+
+    function updateFingerPrint() {
+        let fingerPrintElement = document.getElementById("finger-print");
+        fingerPrintElement.innerHTML = createFingerPrint();
     }
 
 </script>
