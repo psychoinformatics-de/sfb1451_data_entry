@@ -37,7 +37,7 @@
 
 
 
-<form class="needs-validation" novalidate>
+<form class="needs-validation" id="entry-form" novalidate>
 
 <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="1.0">
 
@@ -1417,14 +1417,18 @@
 <div class="container pt-5">
 
     <div class="row">
-        <div class="col-3">
+        <div class="col-md-3">
             <h5 class="mb-3"><label for="finger-print">Fingerabdruck</label></h5>
         </div>
-        <div class="col-1">
+        <div class="col-md-1">
             <button type="button" class="btn btn-secondary btn-sm" onclick="updateFingerPrint();">Aktualisieren</button>
         </div>
     </div>
-    <div class="row" id="finger-print">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="finger-print">
+            </div>
+        </div>
     </div>
 </div>
 
@@ -1463,6 +1467,29 @@
 
 <script>
 
+    function validateForm(form) {
+
+        form.classList.remove("inm-invalid");
+
+        let fieldValidity = form.checkValidity();
+        if (fieldValidity === false) {
+            form.classList.add("inm-invalid");
+        }
+
+        let contentValidityErrors = validateContent(form);
+        let contentErrorElement = document.getElementById("content-validation-errors");
+        let contentErrorMessageElement = document.getElementById("content-validation-error-messages");
+        if (contentValidityErrors.length !== 0) {
+            contentErrorElement.classList.remove("visually-hidden");
+            contentErrorMessageElement.innerHTML = contentValidityErrors.join("<BR>\n");
+            form.classList.add("inm-invalid");
+        } else {
+            contentErrorElement.classList.add("visually-hidden");
+        }
+        form.classList.add('was-validated');
+        return (fieldValidity === true && contentValidityErrors.length === 0);
+    }
+
     (function () {
         'use strict'
 
@@ -1473,22 +1500,10 @@
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
-                    let fieldValidity = form.checkValidity();
-                    if (fieldValidity === false) {
+                    if (validateForm(form) === false) {
                         event.preventDefault();
                         event.stopPropagation();
                     }
-
-                    let contentValidityErrors = validateContent(form);
-                    let contentErrorElement = document.getElementById("content-validation-errors");
-                    let contentErrorMessageElement = document.getElementById("content-validation-error-messages");
-                    if (contentValidityErrors.length !== 0) {
-                        contentErrorElement.classList.remove("visually-hidden");
-                        contentErrorMessageElement.innerHTML = contentValidityErrors.join("<BR>\n");
-                    } else {
-                        contentErrorElement.classList.add("visually-hidden");
-                    }
-                    form.classList.add('was-validated');
                 }, false)
             })
     })();
@@ -1761,7 +1776,12 @@
 
 <script>
     function getContentOfElementWithId(elementId) {
-        return document.getElementById(elementId).value;
+        let element = document.getElementById(elementId);
+        if (element.type === "checkbox")
+            return element.checked;
+        if (element.type === "radio")
+            return element.checked;
+        return element.value;
     }
 
     function createFingerPrint() {
@@ -1871,16 +1891,22 @@
             "additional-eeg",
             "additional-eeg-url",
             "additional-blood-sampling",
-            "additional-blood-sampling-url"
+            "additional-blood-sampling-url",
+            "additional-remarks"
         ];
-        let valueArray = nameArray.map(getContentOfElementNamed);
+        let valueArray = nameArray.map(getContentOfElementWithId);
         contentString = valueArray.join(";");
         return contentString;
     }
 
     function updateFingerPrint() {
         let fingerPrintElement = document.getElementById("finger-print");
-        fingerPrintElement.innerHTML = createFingerPrint();
+        let entryForm = document.getElementById("entry-form");
+        if (validateForm(entryForm) === false) {
+            fingerPrintElement.innerHTML = "Fingerabruck icht verfügbar, da Eingaben ungültig sind.";
+        } else {
+            fingerPrintElement.innerHTML = createFingerPrint();
+        }
     }
 
 </script>
