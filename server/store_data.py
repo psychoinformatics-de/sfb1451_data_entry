@@ -23,7 +23,6 @@ def convert_value(value: str) -> Union[str, float, int]:
     return value
 
 
-
 def add_file_to_dataset(dataset_root: Path, file: Path):
     subprocess.run([
         "datalad",
@@ -75,7 +74,7 @@ def application(environ, start_response):
         with output_file.open("x") as f:
             json.dump(json_data, f)
 
-        add_file_to_dataset(dataset_root, directory / output_file)
+        # add_file_to_dataset(dataset_root, directory / output_file)
 
         status = "200 OK"
         output = [
