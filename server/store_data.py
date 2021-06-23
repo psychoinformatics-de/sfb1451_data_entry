@@ -6,9 +6,6 @@ from typing import Union
 from urllib.parse import parse_qs
 
 
-dataset_root = Path(".")
-
-
 def convert_value(value: str) -> Union[str, float, int]:
     try:
         return int(value)
@@ -34,6 +31,8 @@ def add_file_to_dataset(dataset_root: Path, file: Path):
 
 
 def application(environ, start_response):
+
+    dataset_root = environ["de.inm7.sfb1451.entry.dataset_root "]
 
     request_method = environ["REQUEST_METHOD"]
     if request_method == "POST":
