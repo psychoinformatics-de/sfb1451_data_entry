@@ -32,7 +32,7 @@ def add_file_to_dataset(dataset_root: Path, file: Path):
 
 def application(environ, start_response):
 
-    dataset_root = environ["de.inm7.sfb1451.entry.dataset_root "]
+    dataset_root = Path(environ["de.inm7.sfb1451.entry.dataset_root"])
 
     request_method = environ["REQUEST_METHOD"]
     if request_method == "POST":
