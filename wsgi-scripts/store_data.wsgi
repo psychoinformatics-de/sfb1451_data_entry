@@ -36,6 +36,7 @@ def add_file_to_dataset(dataset_root: Path, file: Path, home: Path):
     return subprocess.run(
         [
             "git",
+            "--git-dir", str(dataset_root / ".git"),
             "rev-parse",
             "HEAD"
         ],
