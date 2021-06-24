@@ -1402,8 +1402,8 @@
     </div>
 </div>
 
-<div class="container pt-5">
 
+<div class="container pt-5">
     <div class="row">
         <h5 class="mb-3"><label for="additional-remarks">Weitere Anmerkungen</label></h5>
     </div>
@@ -1445,8 +1445,21 @@
             </div>
         </div>
     </div>
+
     <input type="text" id="hashed-string" name="hashed-string" style="visibility: hidden;" value="">
     <input type="text" id="hash-value" name="hash-value" style="visibility: hidden;" value="">
+
+</div>
+
+
+<div class="container pt-5 ">
+    <div class="row">
+        <h5 class="mb-3"><label for="additional-remarks">Signaturdaten</label></h5>
+    </div>
+
+    <div class="row">
+        <textarea rows="4" id="signature-data" name="signature-data" placeholder="Signaturdaten" disabled></textarea>
+    </div>
 </div>
 
 
@@ -1917,12 +1930,16 @@
         let submitButton = document.getElementById("submit-button");
         let hashedStringElement = document.getElementById("hashed-string");
         let hashValueElement = document.getElementById("hash-value");
+        let signatureDataElement = document.getElementById("signature-data");
+
         if (validateForm(entryForm) === false) {
             fingerPrintElement.innerHTML = "Fingerabruck nicht verfügbar, da Eingaben ungültig sind.";
             submitButton.setAttribute("disabled", "");
+            signatureDataElement.setAttribute("disabled", "");
         } else {
             const contentString = getContentString();
             hashedStringElement.setAttribute("value", contentString);
+            signatureDataElement.removeAttribute("disabled");
             digestMessage(contentString).then(hashHex => {
                 console.log(hashHex);
                 fingerPrintElement.innerHTML = hashHex;
