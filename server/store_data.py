@@ -21,7 +21,7 @@ def convert_value(value: str) -> Union[str, float, int]:
     return value
 
 
-def add_file_to_dataset(dataset_root: Path, file: Path):
+def add_file_to_dataset(dataset_root: Path, file: Path, home: Path):
     subprocess.run(
         [
             "datalad",
@@ -30,7 +30,8 @@ def add_file_to_dataset(dataset_root: Path, file: Path):
             "-m", f"adding file {file}",
             str(file)
         ],
-        check=True)
+        check=True,
+        env={"HOME": str(home)})
 
     return subprocess.run(
         [
@@ -45,6 +46,7 @@ def add_file_to_dataset(dataset_root: Path, file: Path):
 def application(environ, start_response):
 
     dataset_root = Path(environ["de.inm7.sfb1451.entry.dataset_root"])
+    home = Path(environ["de.inm7.sfb1451.entry.home"])
 
     request_method = environ["REQUEST_METHOD"]
     if request_method == "POST":
@@ -85,7 +87,7 @@ def application(environ, start_response):
         with output_file.open("x") as f:
             json.dump(json_data, f)
 
-        commit_hash = add_file_to_dataset(dataset_root, directory / output_file)
+        commit_hash = add_file_to_dataset(dataset_root, directory / output_file, home)
 
         status = "200 OK"
         output = [
