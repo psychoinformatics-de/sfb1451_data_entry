@@ -1,6 +1,7 @@
 import json
 import time
 import subprocess
+import sys
 from pathlib import Path
 from typing import Union
 from urllib.parse import parse_qs
@@ -20,19 +21,32 @@ def convert_value(value: str) -> Union[str, float, int]:
     return value
 
 
-def add_file_to_dataset(dataset_root: Path, file: Path):
-    subprocess.run([
-        "datalad",
-        "save",
-        "-d", str(dataset_root),
-        "-m", "adding file",
-        str(file)],
-        check=True)
+def add_file_to_dataset(dataset_root: Path, file: Path, home: Path):
+    subprocess.run(
+        [
+            "datalad",
+            "save",
+            "-d", str(dataset_root),
+            "-m", f"adding file {file}",
+            str(file)
+        ],
+        check=True,
+        env={"HOME": str(home)})
+
+    return subprocess.run(
+        [
+            "git",
+            "rev-parse",
+            "HEAD"
+        ],
+        check=True,
+        stdout=subprocess.PIPE).stdout.decode().strip()
 
 
 def application(environ, start_response):
 
     dataset_root = Path(environ["de.inm7.sfb1451.entry.dataset_root"])
+    home = Path(environ["de.inm7.sfb1451.entry.home"])
 
     request_method = environ["REQUEST_METHOD"]
     if request_method == "POST":
@@ -73,11 +87,11 @@ def application(environ, start_response):
         with output_file.open("x") as f:
             json.dump(json_data, f)
 
-        # add_file_to_dataset(dataset_root, directory / output_file)
+        commit_hash = add_file_to_dataset(dataset_root, directory / output_file, home)
 
         status = "200 OK"
         output = [
-            f"Referenz: {time_stamp}\n".encode("utf-8"),
+            f"Referenz: {time_stamp}-{commit_hash}\n".encode("utf-8"),
             ("\n".join(environment) + "\n").encode("utf-8"),
             result.encode("utf-8")
         ]
