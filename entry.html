@@ -1446,6 +1446,7 @@
         </div>
     </div>
     <input type="text" id="hashed-string" name="hashed-string" style="visibility: hidden;" value="">
+    <input type="text" id="hash-value" name="hash-value" style="visibility: hidden;" value="">
 </div>
 
 
@@ -1915,6 +1916,7 @@
         let entryForm = document.getElementById("entry-form");
         let submitButton = document.getElementById("submit-button");
         let hashedStringElement = document.getElementById("hashed-string");
+        let hashValueElement = document.getElementById("hash-value");
         if (validateForm(entryForm) === false) {
             fingerPrintElement.innerHTML = "Fingerabruck nicht verfügbar, da Eingaben ungültig sind.";
             submitButton.setAttribute("disabled", "");
@@ -1924,6 +1926,7 @@
             digestMessage(contentString).then(hashHex => {
                 console.log(hashHex);
                 fingerPrintElement.innerHTML = hashHex;
+                hashValueElement.value = hashHex;
                 submitButton.removeAttribute("disabled");
             }).catch(err => {
                 console.log(err);
