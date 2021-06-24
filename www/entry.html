@@ -1445,6 +1445,7 @@
             </div>
         </div>
     </div>
+    <input type="text" id="hashed-string" name="hashed-string" style="visibility: hidden;" value="">
 </div>
 
 
@@ -1785,7 +1786,7 @@
         return element.value;
     }
 
-    function createFingerPrint() {
+    function getContentString() {
         let nameArray = [
             "form-data-version",
             "data-entry-employee",
@@ -1896,20 +1897,39 @@
             "additional-remarks"
         ];
         let valueArray = nameArray.map(getContentOfElementWithId);
-        contentString = valueArray.join(";");
+        let contentString = valueArray.join(";");
+        console.log("contentString: " + contentString);
         return contentString;
+    }
+
+    async function digestMessage(message) {
+        const msgUint8 = new TextEncoder().encode(message);                           // encode as (utf-8) Uint8Array
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);           // hash the message
+        const hashArray = Array.from(new Uint8Array(hashBuffer));                     // convert buffer to byte array
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // convert bytes to hex string
+        return hashHex;
     }
 
     function updateFingerPrint() {
         let fingerPrintElement = document.getElementById("finger-print");
         let entryForm = document.getElementById("entry-form");
         let submitButton = document.getElementById("submit-button");
+        let hashedStringElement = document.getElementById("hashed-string");
         if (validateForm(entryForm) === false) {
             fingerPrintElement.innerHTML = "Fingerabruck nicht verfügbar, da Eingaben ungültig sind.";
             submitButton.setAttribute("disabled", "");
         } else {
-            fingerPrintElement.innerHTML = createFingerPrint();
-            submitButton.removeAttribute("disabled");
+            const contentString = getContentString();
+            hashedStringElement.setAttribute("value", contentString);
+            digestMessage(contentString).then(hashHex => {
+                console.log(hashHex);
+                fingerPrintElement.innerHTML = hashHex;
+                submitButton.removeAttribute("disabled");
+            }).catch(err => {
+                console.log(err);
+                fingerPrintElement.innerHTML = "Fingerabruck nicht verfügbar: " + err;
+                submitButton.setAttribute("disabled", "");
+            });
         }
     }
 

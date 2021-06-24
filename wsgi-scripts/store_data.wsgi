@@ -55,7 +55,7 @@ def application(environ, start_response):
             "source": {
                 "time_stamp": time_stamp,
                 "version": entered_data["form-data-version"][0],
-                "origin": environ["HTTP_ORIGIN"]
+                "remote_address": environ["REMOTE_ADDR"]
             },
             "data": {
                 **{
