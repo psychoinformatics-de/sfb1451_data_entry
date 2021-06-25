@@ -176,7 +176,7 @@
             <div class="col-md-6">
                 <select class="form-select" name="patient-main-disease" id="patient-main-disease" data-inm-collapse-id="patient-collapse" required disabled>
                     <option value="">Bitte auswählen</option>
-                    <option value="healthy">Schlaganfall</option>
+                    <option value="stroke">Schlaganfall</option>
                     <option value="parkinson">Parkinson</option>
                     <option value="tic">Tic</option>
                     <option value="depression">Depression</option>
@@ -678,10 +678,10 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label class="form-check-label" for="tug-v-incorrectly-executed">aTUG mit Hilfmittel durchführbar.</label>
+                <label class="form-check-label" for="tug-a-tools-required">aTUG mit Hilfmittel durchführbar.</label>
             </div>
             <div class="col-md-6">
-                <input type="checkbox" class="form-check-input" id="tug-v-incorrectly-executed" name="tug-v-incorrectly-executed" placeholder="">
+                <input type="checkbox" class="form-check-input" id="tug-a-tools-required" name="tug-a-tools-required" placeholder="">
             </div>
         </div>
 
@@ -723,7 +723,7 @@
             <label for="go-nogo-block-count">Durchgeführte Blöcke</label>
         </div>
         <div class="col-md-6 entry-value">
-            <select class="form-select" name="project-code" id="go-nogo-block-count" required onchange="updateGoNogoBlockCount();">
+            <select class="form-select" name="go-nogo-block-count" id="go-nogo-block-count" required onchange="updateGoNogoBlockCount();">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -922,10 +922,10 @@
 
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="kopss-visual-spacial-performance">Visuell Räumliche Leistung<span class="required-indicator">*</span></label>
+                <label for="kopss-visual-spatial-performance">Visuell Räumliche Leistung<span class="required-indicator">*</span></label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-visual-spacial-performance" name="kopss-visual-spacial-performance" min="0" max="17" step="1" placeholder="0 - 17" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
+                <input type="number" class="form-control" id="kopss-visual-spatial-performance" name="kopss-visual-spatial-performance" min="0" max="17" step="1" placeholder="0 - 17" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
                 <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 17 erwartet.
                 </div>
@@ -1454,7 +1454,7 @@
 
 <div class="container pt-5 ">
     <div class="row">
-        <h5 class="mb-3"><label for="additional-remarks">Signaturdaten</label></h5>
+        <h5 class="mb-3"><label for="signature-data">Signaturdaten</label></h5>
     </div>
 
     <div class="row">
@@ -1753,7 +1753,7 @@
             document.getElementById("kopss-orientation"),
             document.getElementById("kopss-speech"),
             document.getElementById("kopss-praxie"),
-            document.getElementById("kopss-visual-spacial-performance"),
+            document.getElementById("kopss-visual-spatial-performance"),
             document.getElementById("kopss-calculating"),
             document.getElementById("kopss-executive-performance"),
             document.getElementById("kopss-memory"),
@@ -1794,16 +1794,17 @@
     function getContentOfElementWithId(elementId) {
         let element = document.getElementById(elementId);
         if (element.type === "checkbox")
-            return element.checked;
+            return elementId + ":" + element.checked;
         if (element.type === "radio")
-            return element.checked;
-        return element.value;
+            return elementId + ":" + element.checked;
+        return elementId + ":" + element.value;
     }
 
     function getContentString() {
         let nameArray = [
             "form-data-version",
             "data-entry-employee",
+            "project-code",
             "subject-pseudonym",
             "date-of-birth",
             "sex-m",
@@ -1812,13 +1813,15 @@
             "date-of-test",
             "repeated-test",
             "patient-year-first-symptom",
+            "patient-month-first-symptom",
+            "patient-day-first-symptom",
             "patient-year-diagnosis",
+            "patient-month-diagnosis",
+            "patient-day-diagnosis",
+            "patient-main-disease",
             "patient-stronger-impacted-hand-left",
-            "patient-collapse",
             "patient-stronger-impacted-hand-right",
-            "patient-collapse",
             "patient-stronger-impacted-hand-none",
-            "patient-collapse",
             "laterality-quotient",
             "maximum-ftf-left",
             "maximum-ftf-right",
@@ -1844,9 +1847,10 @@
             "arat-right",
             "tug-executed",
             "tug-a-incorrectly-executed",
-            "tug-v-incorrectly-executed",
+            "tug-a-tools-required",
             "tug-imagined",
             "tug-v-not-executable",
+            "go-nogo-block-count",
             "go-nogo-total-errors",
             "go-nogo-recognized-errors",
             "go-nogo-correct-answer-time",
@@ -1856,32 +1860,20 @@
             "kas-pantomime-arm-hand",
             "kas-imitation-bukko-facial",
             "kas-imitation-arm-hand",
-            "kas-sum",
             "kopss-applicable",
             "kopss-orientation",
-            "kopss-collapse",
             "kopss-speech",
-            "kopss-collapse",
             "kopss-praxie",
-            "kopss-collapse",
-            "kopss-visual-spacial-performance",
-            "kopss-collapse",
+            "kopss-visual-spatial-performance",
             "kopss-calculating",
-            "kopss-collapse",
             "kopss-executive-performance",
-            "kopss-collapse",
             "kopss-memory",
-            "kopss-collapse",
-            "kopss-sum",
             "kopss-affect",
-            "kopss-collapse",
             "kopss-behavior-observation",
-            "kopss-collapse",
             "acl-k-loud-reading",
             "acl-k-color-form-test",
             "acl-k-supermarket-task",
             "acl-k-communication-ability",
-            "acl-k-sum",
             "bdi-ii-score",
             "madrs-score",
             "demtect-wordlist",
@@ -1889,7 +1881,6 @@
             "demtect-supermarket-task",
             "demtect-numbers-reverse",
             "demtect-wordlist-recall",
-            "demtect-sum",
             "time-tmt-a",
             "tmt-a-incorrectly-executed",
             "time-tmt-b",
