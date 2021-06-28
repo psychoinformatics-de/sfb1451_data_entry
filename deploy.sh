@@ -13,9 +13,9 @@ fi
 git checkout deploy
 
 master_version_file=master-version${suffix}
-touch master_version_file
+touch ${master_version_file}
 new_master=$(git rev-parse master)
-current_master=$(cat master_version_file)
+current_master=$(cat ${master_version_file})
 
 
 if [ "${new_master}" == "${current_master}" ]; then
@@ -23,8 +23,8 @@ if [ "${new_master}" == "${current_master}" ]; then
   exit 0
 fi
 
-echo "${new_master}" > master_version_file
-git add master_version_file
+echo "${new_master}" > ${master_version_file}
+git add ${master_version_file}
 
 
 # Generate document root
