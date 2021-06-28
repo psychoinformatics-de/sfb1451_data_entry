@@ -282,11 +282,15 @@ vTUG nicht durchführbar:                    {checkbox_message(json_data["tug-v-
 
 --- Go/Nogo-Task ---
 Durchgeführte Blöcke:                       {json_data["go-nogo-block-count"]}
+Reaktionszeit korrekte Antwort:             {json_data["go-nogo-correct-answer-time"]}
 Anzahl Fehler insgesamt:                    {json_data["go-nogo-total-errors"]}
 Anzahl erkannte Fehler:                     {json_data["go-nogo-recognized-errors"]}
-Reaktionszeit korrekte Antwort:             {json_data["go-nogo-correct-answer-time"]}
-Reaktionszeit erkannte Fehler:              {json_data["go-nogo-recognized-error-time"]}
-Unkorrekte Durchführung des Go/Nogo-Tasks:  {json_data["go-nogo-incorrectly-executed"]}
+"""
+    if int(json_data["go-nogo-recognized-errors"] > 0:
+        message += f"""Reaktionszeit erkannte Fehler:              {json_data["go-nogo-recognized-error-time"]}
+"""
+
+    message += f"""Unkorrekte Durchführung des Go/Nogo-Tasks:  {json_data["go-nogo-incorrectly-executed"]}
 
 --- Cologne Apraxie Screening (KAS) ---
 Pantomime: Bukko-Facial:    {json_data["kas-pantomime-bukko-facial"]}
