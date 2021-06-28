@@ -20,6 +20,7 @@ current_master=$(cat ${master_version_file})
 
 if [ "${new_master}" == "${current_master}" ]; then
   echo "latest master version already deployed"
+  git checkout master
   exit 0
 fi
 
