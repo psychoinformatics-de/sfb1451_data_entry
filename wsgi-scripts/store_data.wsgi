@@ -290,7 +290,7 @@ Anzahl erkannte Fehler:                     {json_data["go-nogo-recognized-error
         message += f"""Reaktionszeit erkannte Fehler:              {json_data["go-nogo-recognized-error-time"]}
 """
 
-    message += f"""Unkorrekte Durchführung des Go/Nogo-Tasks:  {json_data["go-nogo-incorrectly-executed"]}
+    message += f"""Unkorrekte Durchführung des Go/Nogo-Tasks:  {checkbox_message(json_data["go-nogo-incorrectly-executed"])}
 
 --- Cologne Apraxie Screening (KAS) ---
 Pantomime: Bukko-Facial:    {json_data["kas-pantomime-bukko-facial"]}
