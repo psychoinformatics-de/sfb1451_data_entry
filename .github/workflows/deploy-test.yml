@@ -34,5 +34,5 @@ jobs:
       - name: Execute deploy test script
         run: |
           cd sfb1451_data_entry
-          ./deploy-test.sh
+          ./deploy.sh test
 
