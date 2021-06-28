@@ -716,7 +716,9 @@
         <h4 class="mb-3">Motorische Testung: Kognitive Fähigkeiten</h4>
     </div>
 
-    <div class="row"><h5>Go/Nogo-Task</h5></div>
+    <div class="row">
+        <h5>Go/Nogo-Task</h5>
+    </div>
 
     <div class="row">
         <div class="col-md-6 entry-label">
@@ -736,6 +738,21 @@
 
     <div class="row pt-3">
         <div class="col-md-6 entry-label">
+            <label for="go-nogo-correct-answer-time">Reaktionszeit korrekte Antwort<span class="required-indicator">*</span></label>
+        </div>
+        <div class="col-md-6 entry-value">
+            <div class="input-group has-validation">
+                <input type="number" class="form-control" id="go-nogo-correct-answer-time" name="go-nogo-correct-answer-time" min="50.0" max="1200.0" step="any" placeholder="50.0 - 1200.0" required>
+                <div class="input-group-text">ms</div>
+                <div class="invalid-feedback field-validity">
+                    Zahlenwert zwischen 50.0 und 1200.0 erwartet.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row pt-1">
+        <div class="col-md-6 entry-label">
             <label for="go-nogo-total-errors">Anzahl Fehler insgesamt<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
@@ -751,35 +768,20 @@
             <label for="go-nogo-recognized-errors">Anzahl erkannte Fehler<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" min="0" max="60" step="1" placeholder="0 - 60" required>
+            <input type="number" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" min="0" max="60" step="1" placeholder="0 - 60" required  onchange="checkRecognizedErrors();">
             <div class="invalid-feedback field-validity" id="go-nogo-recognized-errors-invalid-feedback">
                 Ganzzahl zwischen 0 und 60 erwartet.
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="go-nogo-correct-answer-time">Reaktionszeit korrekte Antwort<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <div class="input-group has-validation">
-                <input type="number" class="form-control" id="go-nogo-correct-answer-time" name="go-nogo-correct-answer-time" min="50.0" max="1200.0" step="any" placeholder="50.0 - 1200.0" required>
-                <div class="input-group-text">ms</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 50.0 und 1200.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
+    <div class="row visually-hidden" id="go-nogo-recognized-error-time-div">
         <div class="col-md-6 entry-label">
             <label for="go-nogo-recognized-error-time">Reaktionszeit erkannte Fehler<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
             <div class="input-group has-validation">
-                <input type="number" class="form-control" id="go-nogo-recognized-error-time" name="go-nogo-recognized-error-time" min="50.0" max="800.0" step="any" placeholder="50.0 - 800.0" required>
+                <input type="number" class="form-control" id="go-nogo-recognized-error-time" name="go-nogo-recognized-error-time" min="50.0" max="800.0" step="any" placeholder="50.0 - 800.0" required disabled>
                 <div class="input-group-text">ms</div>
                 <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 50.0 und 800.0 erwartet.
@@ -1979,6 +1981,21 @@
         }
     }
 
+</script>
+
+<script>
+    function checkRecognizedErrors() {
+        let recognizedErrors = parseInt(document.getElementById("go-nogo-recognized-errors").value);
+        let recognizedErrorsReactionTime = document.getElementById("go-nogo-recognized-error-time");
+        let recognizedErrorsReactionTimeDiv = document.getElementById("go-nogo-recognized-error-time-div");
+        if (recognizedErrors != null && recognizedErrors > 0) {
+            recognizedErrorsReactionTimeDiv.classList.remove("visually-hidden");
+            recognizedErrorsReactionTime.removeAttribute("disabled");
+        } else {
+            recognizedErrorsReactionTimeDiv.classList.add("visually-hidden");
+            recognizedErrorsReactionTime.setAttribute("disabled", "");
+        }
+    }
 </script>
 
 <script>
