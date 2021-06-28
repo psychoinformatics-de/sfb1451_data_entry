@@ -13,9 +13,9 @@ fi
 git checkout deploy
 
 master-version-file=master-version${suffix}
-touch master-version-file
+touch master_version_file
 new_master=$(git rev-parse master)
-current_master=$(cat master-version-file)
+current_master=$(cat master_version_file)
 
 
 if [ "${new_master}" == "${current_master}" ]; then
@@ -23,20 +23,20 @@ if [ "${new_master}" == "${current_master}" ]; then
   exit 0
 fi
 
-echo "${new_master}" > master-version-file
-git add master-version-file
+echo "${new_master}" > master_version_file
+git add master_version_file
 
 
 # Generate document root
-html-file=entry${suffix}.html
+html_file=entry${suffix}.html
 
 mkdir -p www
 
-git cat-file blob master:entry.html >"www/${html-file}"
+git cat-file blob master:entry.html >"www/${html_file}"
 cp -r css js www
 
 git add www
-git add "www/${html-file}"
+git add "www/${html_file}"
 
 
 # Generate WSGI directory
