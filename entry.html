@@ -1488,9 +1488,9 @@
         form.classList.remove("inm-invalid");
 
         let fieldValidity = form.checkValidity();
-        //if (fieldValidity === false) {
-        //    form.classList.add("inm-invalid");
-        //}
+        if (fieldValidity === false) {
+            form.classList.add("inm-invalid");
+        }
 
         let contentValidityErrors = validateContent(form);
         let contentErrorElement = document.getElementById("content-validation-errors");
