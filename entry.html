@@ -433,7 +433,7 @@
         <div class="col-md-3 entry-value">
             <div class="input-group has-validation">
                 <div class="input-group-text">Links</div>
-                <input type="number" class="form-control" id="purdue-pegboard-left" name="purdue-pegboard-left" min="0" max="25" step="1" placeholder="0.0 - 25.0" required>
+                <input type="number" class="form-control" id="purdue-pegboard-left" name="purdue-pegboard-left" min="0" max="25" step="Any" placeholder="0.0 - 25.0" required>
                 <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 25.0 erwartet.
                 </div>
@@ -442,7 +442,7 @@
         <div class="col-md-3 entry-value">
             <div class="input-group has-validation">
                 <div class="input-group-text">Rechts</div>
-                <input type="number" class="form-control" id="purdue-pegboard-right" name="purdue-pegboard-right" min="0" max="25" step="1" placeholder="0.0 - 25.0" required>
+                <input type="number" class="form-control" id="purdue-pegboard-right" name="purdue-pegboard-right" min="0" max="25" step="Any" placeholder="0.0 - 25.0" required>
                 <div class="invalid-feedback field-validity">
                     Zahlenwert zwischen 0.0 und 25.0 erwartet.
                 </div>
@@ -1488,9 +1488,9 @@
         form.classList.remove("inm-invalid");
 
         let fieldValidity = form.checkValidity();
-        if (fieldValidity === false) {
-            form.classList.add("inm-invalid");
-        }
+        //if (fieldValidity === false) {
+        //    form.classList.add("inm-invalid");
+        //}
 
         let contentValidityErrors = validateContent(form);
         let contentErrorElement = document.getElementById("content-validation-errors");
@@ -1604,10 +1604,42 @@
         return result;
     }
 
+    function validateLaterality() {
+        const subject_group = getContentOfElementNamed("subject-group");
+        if (subject_group === "patient") {
+            const affectedHandElements = document.getElementsByName("patient-stronger-impacted-hand");
+            let affectedHand = Array.from(affectedHandElements).map(element => {
+                return element.checked === true;
+            });
+            console.log(affectedHand);
+        }
+        if (affectedHand[2] === true)
+            return [];
+
+        const orderDescription = [
+            "kleiner",
+            "größer"
+        ];
+
+        let factor = null;
+        let expectedOrder = null;
+        if (affectedHand[0] === true) {
+            factor = 1.0;
+            expectedOrder = [0, 0, 0, 0, 1]
+        }
+
+        if (affectedHand[1] === true) {
+            factor = -1.0;
+            expectedOrder = [1, 1, 1, 1, 0]
+        }
+        return [];
+    }
+
     function validateContent(form) {
-        dateErrors = validateDates();
-        console.log(dateErrors);
-        return dateErrors;
+        let errorMessages = validateDates();
+        errorMessages.concat(validateLaterality());
+        console.log(errorMessages);
+        return errorMessages;
     }
 
 </script>
