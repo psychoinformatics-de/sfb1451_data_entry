@@ -286,7 +286,7 @@ Reaktionszeit korrekte Antwort:             {json_data["go-nogo-correct-answer-t
 Anzahl Fehler insgesamt:                    {json_data["go-nogo-total-errors"]}
 Anzahl erkannte Fehler:                     {json_data["go-nogo-recognized-errors"]}
 """
-    if int(json_data["go-nogo-recognized-errors"] > 0:
+    if int(json_data["go-nogo-recognized-errors"]) > 0:
         message += f"""Reaktionszeit erkannte Fehler:              {json_data["go-nogo-recognized-error-time"]}
 """
 
