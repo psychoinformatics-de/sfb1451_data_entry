@@ -12,7 +12,7 @@ fi
 
 git checkout deploy
 
-master-version-file=master-version${suffix}
+master_version_file=master-version${suffix}
 touch master_version_file
 new_master=$(git rev-parse master)
 current_master=$(cat master_version_file)
