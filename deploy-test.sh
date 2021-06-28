@@ -11,7 +11,7 @@ git cat-file blob master:entry.html >www/entry-test.html
 cp -r css js www
 
 git add www
-git add www/entry.html
+git add www/entry-test.html
 
 # Generate WSGI directory
 mkdir -p wsgi-scripts
