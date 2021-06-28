@@ -1688,6 +1688,8 @@
             if (element !== null) {
                 let childNodes = element.getElementsByTagName("*");
                 for (let childNode of childNodes) {
+                    if (childNode.id === "kopss-sum")
+                        continue;
                     childNode.removeAttribute("disabled");
                 }
             }
