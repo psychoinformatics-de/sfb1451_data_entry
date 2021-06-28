@@ -136,6 +136,7 @@ auto_fields = {
     "tug-a-tools-required": ["off"],
     "tug-v-not-executable": ["off"],
     "go-nogo-incorrectly-executed": ["off"],
+    "go-nogo-recognized-error-time": [""],
     "kopss-applicable": ["off"],
     "tmt-a-incorrectly-executed": ["off"],
     "tmt-b-incorrectly-executed": ["off"],
