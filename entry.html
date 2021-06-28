@@ -1606,13 +1606,16 @@
 
     function validateLaterality() {
         const subject_group = getContentOfElementNamed("subject-group");
-        if (subject_group === "patient") {
-            const affectedHandElements = document.getElementsByName("patient-stronger-impacted-hand");
-            let affectedHand = Array.from(affectedHandElements).map(element => {
-                return element.checked === true;
-            });
-            console.log(affectedHand);
-        }
+
+        if (subject_group !== "patient")
+            return [];
+
+        let affectedHand = null;
+        const affectedHandElements = document.getElementsByName("patient-stronger-impacted-hand");
+        affectedHand = Array.from(affectedHandElements).map(element => {
+            return element.checked === true;
+        });
+
         if (affectedHand[2] === true)
             return [];
 
