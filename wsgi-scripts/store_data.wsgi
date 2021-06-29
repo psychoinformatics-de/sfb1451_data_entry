@@ -207,6 +207,14 @@ def sex_message(value):
     }[value]
 
 
+def hand_message(value):
+    return {
+        "left": "Links",
+        "right": "Rechts",
+        "none": "Keine"
+    }[value]
+
+
 def date_message(year, month, day):
     return "-".join([
         x
@@ -241,7 +249,7 @@ Probandengruppe:            {json_data["subject-group"]}
         message += f"""Haupterkrankung:            {json_data["patient-main-disease"]}
 Erstsymptome:               {date_message(json_data["patient-year-first-symptom"], json_data["patient-month-first-symptom"], json_data["patient-day-first-symptom"])}
 Diagnose:                   {date_message(json_data["patient-year-diagnosis"], json_data["patient-month-diagnosis"], json_data["patient-day-diagnosis"])}
-Stärker betroffene Hand:    {json_data["patient-stronger-impacted-hand"]}
+Stärker betroffene Hand:    {hand_message(json_data["patient-stronger-impacted-hand"])}
 """
 
     message += f"""
@@ -355,18 +363,18 @@ Code aus Antworten:             {json_data["euroqol-code"]}
 Visuelle Analogskala (VAS):     {json_data["euroqol-vas"]}
 
 --- Anzahl Ausbildungsjahre ---
-Zahlenwert nach ISCED:      {json_data["isced-value"]}
+Zahlenwert nach ISCED:          {json_data["isced-value"]}
 
 
 -- Weitere Diagnostik --
-MRT: {checkbox_message(json_data["additional-mrt"])}
+MRT:                            {checkbox_message(json_data["additional-mrt"])}
    Link zu MRT-Daten:           {json_data["additional-mrt-url"]}
    Resting State:               {checkbox_message(json_data["additional-mrt-resting-state"])}
    Tapping Task:                {checkbox_message(json_data["additional-mrt-tapping-task"])}
    Anatomische Darstellung:     {checkbox_message(json_data["additional-mrt-anatomical-representation"])}
    DTI:                         {checkbox_message(json_data["additional-mrt-dti"])}
 
-EEG: {checkbox_message(json_data["additional-eeg"])}
+EEG:                            {checkbox_message(json_data["additional-eeg"])}
    Link zu EEG-Daten:           {json_data["additional-eeg-url"]}
 
 Blutproben:                     {checkbox_message(json_data["additional-blood-sampling"])}
