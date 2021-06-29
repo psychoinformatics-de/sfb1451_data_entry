@@ -1669,9 +1669,24 @@
         return messages;
     }
 
+    function validateGoNogoErrors() {
+        let totalErrors = parseInt(document.getElementById("go-nogo-total-errors").value);
+        if (totalErrors != null && totalErrors > 0) {
+            let recognizedErrorsElement = document.getElementById("go-nogo-recognized-errors");
+            const recognizedErrors = parseInt(recognizedErrorsElement.value);
+            if (recognizedErrors != null && recognizedErrors > 0) {
+                if (recognizedErrors > totalErrors) {
+                    return ["Go/Nogo-Task: die Anzahl der erkannten Fehler muß kleiner oder gleich zur Anzahl der Fehler insgesamt sein"];
+                }
+            }
+        }
+        return [];
+    }
+
     function validateContent(form) {
         let errorMessages = validateDates();
         errorMessages = errorMessages.concat(validateLaterality());
+        errorMessages = errorMessages.concat(validateGoNogoErrors());
         console.log(errorMessages);
         return errorMessages;
     }
