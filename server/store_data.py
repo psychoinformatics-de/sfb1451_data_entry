@@ -355,18 +355,18 @@ Code aus Antworten:             {json_data["euroqol-code"]}
 Visuelle Analogskala (VAS):     {json_data["euroqol-vas"]}
 
 --- Anzahl Ausbildungsjahre ---
-Zahlenwert nach ISCED:      {json_data["isced-value"]}
+Zahlenwert nach ISCED:          {json_data["isced-value"]}
 
 
 -- Weitere Diagnostik --
-MRT: {checkbox_message(json_data["additional-mrt"])}
+MRT:                            {checkbox_message(json_data["additional-mrt"])}
    Link zu MRT-Daten:           {json_data["additional-mrt-url"]}
    Resting State:               {checkbox_message(json_data["additional-mrt-resting-state"])}
    Tapping Task:                {checkbox_message(json_data["additional-mrt-tapping-task"])}
    Anatomische Darstellung:     {checkbox_message(json_data["additional-mrt-anatomical-representation"])}
    DTI:                         {checkbox_message(json_data["additional-mrt-dti"])}
 
-EEG: {checkbox_message(json_data["additional-eeg"])}
+EEG:                            {checkbox_message(json_data["additional-eeg"])}
    Link zu EEG-Daten:           {json_data["additional-eeg-url"]}
 
 Blutproben:                     {checkbox_message(json_data["additional-blood-sampling"])}
