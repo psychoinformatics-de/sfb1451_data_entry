@@ -1636,22 +1636,12 @@
         if (affectedHand[2] === true)
             return [];
 
-        const orderDescription = [
-            "kleiner",
-            "größer"
-        ];
-
         let factor = null;
-        let expectedOrder = null;
-        if (affectedHand[0] === true) {
+        if (affectedHand[0] === true)
             factor = 1.0;
-            expectedOrder = [0, 0, 0, 0, 1]
-        }
 
-        if (affectedHand[1] === true) {
+        if (affectedHand[1] === true)
             factor = -1.0;
-            expectedOrder = [1, 1, 1, 1, 0]
-        }
 
         let checkPairs = [
             ["Maximale Fingertipp-Geschwindigkeit", "maximum-ftf-left", "maximum-ftf-right", 1.0],
@@ -1668,7 +1658,7 @@
 
         let messages = [];
         for (let checkPair of checkPairs) {
-            messages = messages.concat(checkLeftRight(checkPair[1], checkPair[2], checkPair[3], checkPair[0]));
+            messages = messages.concat(checkLeftRight(checkPair[1], checkPair[2], checkPair[3] * factor, checkPair[0]));
         }
 
         console.log(messages);
