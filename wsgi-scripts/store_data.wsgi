@@ -100,7 +100,6 @@ dependent_fields = {
             "kopss-calculating",
             "kopss-executive-performance",
             "kopss-memory",
-            "kopss-sum",
             "kopss-affect",
             "kopss-behavior-observation",
         ]
