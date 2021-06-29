@@ -136,6 +136,7 @@ auto_fields = {
     "tug-a-tools-required": ["off"],
     "tug-v-not-executable": ["off"],
     "go-nogo-incorrectly-executed": ["off"],
+    "go-nogo-recognized-errors": ["0"],
     "go-nogo-recognized-error-time": [""],
     "kopss-applicable": ["off"],
     "tmt-a-incorrectly-executed": ["off"],
@@ -284,11 +285,12 @@ vTUG nicht durchführbar:                    {checkbox_message(json_data["tug-v-
 Durchgeführte Blöcke:                       {json_data["go-nogo-block-count"]}
 Reaktionszeit korrekte Antwort:             {json_data["go-nogo-correct-answer-time"]}
 Anzahl Fehler insgesamt:                    {json_data["go-nogo-total-errors"]}
-Anzahl erkannte Fehler:                     {json_data["go-nogo-recognized-errors"]}
 """
-    if int(json_data["go-nogo-recognized-errors"]) > 0:
-        message += f"""Reaktionszeit erkannte Fehler:              {json_data["go-nogo-recognized-error-time"]}
-"""
+
+    if int(json_data["go-nogo-total-errors"]) > 0:
+        message += f"Anzahl erkannte Fehler:                     {json_data['go-nogo-recognized-errors']}\n"
+        if int(json_data["go-nogo-recognized-errors"]) > 0:
+            message += f"Reaktionszeit erkannte Fehler:              {json_data['go-nogo-recognized-error-time']}\n"
 
     message += f"""Unkorrekte Durchführung des Go/Nogo-Tasks:  {checkbox_message(json_data["go-nogo-incorrectly-executed"])}
 
