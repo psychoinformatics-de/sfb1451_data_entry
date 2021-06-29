@@ -756,38 +756,42 @@
             <label for="go-nogo-total-errors">Anzahl Fehler insgesamt<span class="required-indicator">*</span></label>
         </div>
         <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 60" required>
+            <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 60" required onchange="checkTotalErrors();">
             <div class="invalid-feedback field-validity" id="go-nogo-total-errors-invalid-feedback">
                 Ganzzahl zwischen 0 und 60 erwartet.
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="go-nogo-recognized-errors">Anzahl erkannte Fehler<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" min="0" max="60" step="1" placeholder="0 - 60" required  onchange="checkRecognizedErrors();">
-            <div class="invalid-feedback field-validity" id="go-nogo-recognized-errors-invalid-feedback">
-                Ganzzahl zwischen 0 und 60 erwartet.
-            </div>
-        </div>
-    </div>
+    <div class="visually-hidden" id="go-nogo-error-display">
 
-    <div class="row visually-hidden" id="go-nogo-recognized-error-time-div">
-        <div class="col-md-6 entry-label">
-            <label for="go-nogo-recognized-error-time">Reaktionszeit erkannte Fehler<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <div class="input-group has-validation">
-                <input type="number" class="form-control" id="go-nogo-recognized-error-time" name="go-nogo-recognized-error-time" min="50.0" max="800.0" step="any" placeholder="50.0 - 800.0" required disabled>
-                <div class="input-group-text">ms</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 50.0 und 800.0 erwartet.
+        <div class="row">
+            <div class="col-md-6 entry-label">
+                <label for="go-nogo-recognized-errors">Anzahl erkannte Fehler<span class="required-indicator">*</span></label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" min="0" max="60" step="1" placeholder="0 - 60" required onchange="checkRecognizedErrors();">
+                <div class="invalid-feedback field-validity" id="go-nogo-recognized-errors-invalid-feedback">
+                    Ganzzahl zwischen 0 und 60 erwartet.
                 </div>
             </div>
         </div>
+
+        <div class="row visually-hidden" id="go-nogo-recognized-error-time-div">
+            <div class="col-md-6 entry-label">
+                <label for="go-nogo-recognized-error-time">Reaktionszeit erkannte Fehler<span class="required-indicator">*</span></label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <div class="input-group has-validation">
+                    <input type="number" class="form-control" id="go-nogo-recognized-error-time" name="go-nogo-recognized-error-time" min="50.0" max="800.0" step="any" placeholder="50.0 - 800.0" required disabled>
+                    <div class="input-group-text">ms</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 50.0 und 800.0 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="row pt-1">
@@ -2023,6 +2027,20 @@
             recognizedErrorsReactionTime.setAttribute("disabled", "");
         }
     }
+
+    function checkTotalErrors() {
+        let totalErrors = parseInt(document.getElementById("go-nogo-total-errors").value);
+        let goNogoErrorBlock = document.getElementById("go-nogo-error-display");
+        let recognizedErrors = document.getElementById("go-nogo-recognized-errors");
+        if (totalErrors != null && totalErrors > 0) {
+            goNogoErrorBlock.classList.remove("visually-hidden");
+            recognizedErrors.removeAttribute("disabled");
+        } else {
+            goNogoErrorBlock.classList.add("visually-hidden");
+            recognizedErrors.setAttribute("disabled", "");
+        }
+    }
+
 </script>
 
 <script>
