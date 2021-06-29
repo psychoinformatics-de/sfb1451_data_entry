@@ -207,6 +207,14 @@ def sex_message(value):
     }[value]
 
 
+def hand_message(value):
+    return {
+        "left": "Links",
+        "right": "Rechts",
+        "none": "Keine"
+    }[value]
+
+
 def date_message(year, month, day):
     return "-".join([
         x
@@ -241,7 +249,7 @@ Probandengruppe:            {json_data["subject-group"]}
         message += f"""Haupterkrankung:            {json_data["patient-main-disease"]}
 Erstsymptome:               {date_message(json_data["patient-year-first-symptom"], json_data["patient-month-first-symptom"], json_data["patient-day-first-symptom"])}
 Diagnose:                   {date_message(json_data["patient-year-diagnosis"], json_data["patient-month-diagnosis"], json_data["patient-day-diagnosis"])}
-Stärker betroffene Hand:    {json_data["patient-stronger-impacted-hand"]}
+Stärker betroffene Hand:    {hand_message(json_data["patient-stronger-impacted-hand"])}
 """
 
     message += f"""
