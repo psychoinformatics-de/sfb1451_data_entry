@@ -1606,6 +1606,21 @@
         return result;
     }
 
+    function checkLeftRight(left_id, right_id, factor, message) {
+        let leftValue = parseFloat(document.getElementById(left_id).value);
+        let rightValue = parseFloat(document.getElementById(right_id).value);
+
+        leftValue *= factor;
+        rightValue *= factor;
+
+        if (leftValue >= rightValue) {
+            let index = parseInt(factor) + 1;
+            let relationDescription = ["größer", null, "kleiner"][index];
+            return [message + ": Wert für Links muß " + relationDescription + " sein als Wert für Rechts"];
+        }
+        return [];
+    }
+
     function validateLaterality() {
         const subject_group = getContentOfElementNamed("subject-group");
 
@@ -1637,12 +1652,32 @@
             factor = -1.0;
             expectedOrder = [1, 1, 1, 1, 0]
         }
-        return [];
+
+        let checkPairs = [
+            ["Maximale Fingertipp-Geschwindigkeit", "maximum-ftf-left", "maximum-ftf-right", 1.0],
+            ["Maximale Griffkraft", "maximum-gs-left", "maximum-gs-right", 1.0],
+            ["Purdue Pegboard Test: Anzahl gesteckter Stäbchen", "purdue-pegboard-left", "purdue-pegboard-right", 1.0],
+            ["JTT: Karten drehen", "turn-cards-left", "turn-cards-right", -1.0],
+            ["JTT: kleine Gegenstände", "small-things-left", "small-things-right", -1.0],
+            ["JTT: simuliertes Füttern", "simulated-feeding-left", "simulated-feeding-right", -1.0],
+            ["JTT: Damesteine stappeln", "checkers-left", "checkers-right", -1.0],
+            ["JTT: große, leichte Gegenstände", "large-light-things-left", "large-light-things-right", -1.0],
+            ["JTT: große, schwere Gegenstände", "large-heavy-things-left", "large-heavy-things-right", -1.0],
+            ["ARAT: Punktzahl", "arat-left", "arat-right", 1.0]
+        ];
+
+        let messages = [];
+        for (let checkPair of checkPairs) {
+            messages = messages.concat(checkLeftRight(checkPair[1], checkPair[2], checkPair[3], checkPair[0]));
+        }
+
+        console.log(messages);
+        return messages;
     }
 
     function validateContent(form) {
         let errorMessages = validateDates();
-        errorMessages.concat(validateLaterality());
+        errorMessages = errorMessages.concat(validateLaterality());
         console.log(errorMessages);
         return errorMessages;
     }
