@@ -1,6 +1,0 @@
-#!/bin/bash
-
-echo 200 OK
-echo Content-type: "text/plain"
-echo
-env
