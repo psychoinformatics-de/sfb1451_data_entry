@@ -29,7 +29,7 @@ git add ${master_version_file}
 
 
 # Generate document root
-html_file=entry${suffix}.html
+html_file=index${suffix}.html
 
 mkdir -p www
 
