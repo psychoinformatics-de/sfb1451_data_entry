@@ -34,7 +34,16 @@ html_file=index${suffix}.html
 mkdir -p www
 
 git cat-file blob master:entry.html >"www/${html_file}"
-cp -r css js www
+
+
+mkdir -p www/js
+git cat-file blob master:js/verify.js >"www/js/verify.js"
+
+mkdir -p www/css
+git cat-file blob master:css/bootstrap.min.css >"www/css/bootstrap.min.css"
+git cat-file blob master:css/bootstrap.min.css.map >"www/css/bootstrap.min.css.map"
+git cat-file blob master:css/form-validation.css >"www/css/form-validation.css"
+
 
 git add www
 git add "www/${html_file}"
