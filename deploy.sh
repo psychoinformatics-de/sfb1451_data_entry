@@ -4,7 +4,8 @@ set -x -e
 
 
 local_part=z03
-destination_dir="www/${local_part}"
+#destination_dir="www/${local_part}"
+destination_dir="www"
 
 
 suffix=""
