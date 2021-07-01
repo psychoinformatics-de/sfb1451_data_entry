@@ -2,6 +2,11 @@
 
 set -x -e
 
+
+local_part=z03
+destination_dir="www/${local_part}"
+
+
 suffix=""
 if [ "$#" -gt "0" ]; then
   if [ "$1" == "test" ]; then
@@ -31,22 +36,22 @@ git add ${master_version_file}
 # Generate document root
 html_file=index${suffix}.html
 
-mkdir -p www
+mkdir -p "${destination_dir}"
 
-git cat-file blob master:entry.html >"www/${html_file}"
-
-
-mkdir -p www/js
-git cat-file blob master:js/verify.js >"www/js/verify.js"
-
-mkdir -p www/css
-git cat-file blob master:css/bootstrap.min.css >"www/css/bootstrap.min.css"
-git cat-file blob master:css/bootstrap.min.css.map >"www/css/bootstrap.min.css.map"
-git cat-file blob master:css/form-validation.css >"www/css/form-validation.css"
+git cat-file blob master:entry.html >"${destination_dir}/${html_file}"
 
 
-git add www
-git add "www/${html_file}"
+mkdir -p "${destination_dir}/js"
+git cat-file blob master:js/verify.js >"${destination_dir}/js/verify.js"
+
+mkdir -p "${destination_dir}/css"
+git cat-file blob master:css/bootstrap.min.css >"${destination_dir}/css/bootstrap.min.css"
+git cat-file blob master:css/bootstrap.min.css.map >"${destination_dir}/css/bootstrap.min.css.map"
+git cat-file blob master:css/form-validation.css >"${destination_dir}/css/form-validation.css"
+
+
+git add "${destination_dir}"
+git add "${destination_dir}/${html_file}"
 
 
 # Generate WSGI directory
