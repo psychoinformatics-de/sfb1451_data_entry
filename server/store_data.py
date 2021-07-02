@@ -1,8 +1,9 @@
+import hashlib
 import json
 import time
 import subprocess
 from pathlib import Path
-from typing import Union
+from typing import Dict, List, Union
 from urllib.parse import parse_qs
 
 
@@ -85,7 +86,8 @@ required_fields = [
     "additional-eeg-url",
     "additional-blood-sampling",
     "additional-blood-sampling-url",
-    "additional-remarks"
+    "additional-remarks",
+    "hash-value"
 ]
 
 
@@ -109,7 +111,6 @@ dependent_fields = {
         "patient": [
             "patient-main-disease",
             "patient-stronger-impacted-hand",
-            # The following are added by auto_fields
             "patient-year-first-symptom",
             "patient-month-first-symptom",
             "patient-day-first-symptom",
@@ -120,8 +121,12 @@ dependent_fields = {
     }
 }
 
-
+# Browsers might not send disabled or empty input fields at all.
+# All entries in auto_fields will be added to the incoming field
+# set, if they are not present.
 auto_fields = {
+    "patient-main-disease": [""],
+    "patient-stronger-impacted-hand": [""],
     "patient-year-first-symptom": [""],
     "patient-month-first-symptom": [""],
     "patient-day-first-symptom": [""],
@@ -135,9 +140,18 @@ auto_fields = {
     "tug-a-tools-required": ["off"],
     "tug-v-not-executable": ["off"],
     "go-nogo-incorrectly-executed": ["off"],
-    "go-nogo-recognized-errors": ["0"],
+    "go-nogo-recognized-errors": [""],
     "go-nogo-recognized-error-time": [""],
     "kopss-applicable": ["off"],
+    "kopss-orientation": [""],
+    "kopss-speech": [""],
+    "kopss-praxie": [""],
+    "kopss-visual-spatial-performance": [""],
+    "kopss-calculating": [""],
+    "kopss-executive-performance": [""],
+    "kopss-memory": [""],
+    "kopss-affect": [""],
+    "kopss-behavior-observation": [""],
     "tmt-a-incorrectly-executed": ["off"],
     "tmt-b-incorrectly-executed": ["off"],
     "additional-mrt": ["off"],
@@ -152,6 +166,7 @@ auto_fields = {
     "additional-blood-sampling-url": [""],
     "additional-remarks": [""],
     "signature-data": [""],
+    "hash-value": [""]
 }
 
 
@@ -388,6 +403,134 @@ Blutproben:                     {checkbox_message(json_data["additional-blood-sa
     return message
 
 
+def get_string_content(_: str,field_content: List[str]) -> str:
+    return field_content[0]
+
+
+def get_checkbox_content(field_name: str, field_content: List[str]) -> str:
+    if field_content[0] == "off":
+        return "False"
+    elif field_content[0] == "on":
+        return "True"
+    raise ValueError(
+        f"illegal value for checkbox field {field_name}: {field_content[0]}")
+
+
+def get_number_content(_: str,field_content: List[str]) -> str:
+    if field_content[0] == "":
+        return ""
+    number = float(field_content[0])
+    if number == int(number):
+        number = int(number)
+    return str(number)
+
+
+hashed_content_fields = [
+    ["form-data-version", get_string_content],
+    ["data-entry-employee", get_string_content],
+    ["project-code", get_string_content],
+    ["subject-pseudonym", get_string_content],
+    ["date-of-birth", get_string_content],
+    ["sex", get_string_content],
+    ["date-of-test", get_string_content],
+    ["repeated-test", get_checkbox_content],
+    ["patient-year-first-symptom", get_string_content],
+    ["patient-month-first-symptom", get_string_content],
+    ["patient-day-first-symptom", get_string_content],
+    ["patient-year-diagnosis", get_string_content],
+    ["patient-month-diagnosis", get_string_content],
+    ["patient-day-diagnosis", get_string_content],
+    ["patient-main-disease", get_string_content],
+    ["patient-stronger-impacted-hand", get_string_content],
+    ["laterality-quotient", get_number_content],
+    ["maximum-ftf-left", get_number_content],
+    ["maximum-ftf-right", get_number_content],
+    ["ftf-incorrectly-executed", get_checkbox_content],
+    ["maximum-gs-left", get_number_content],
+    ["maximum-gs-right", get_number_content],
+    ["purdue-pegboard-left", get_number_content],
+    ["purdue-pegboard-right", get_number_content],
+    ["turn-cards-left", get_number_content],
+    ["turn-cards-right", get_number_content],
+    ["small-things-left", get_number_content],
+    ["small-things-right", get_number_content],
+    ["simulated-feeding-left", get_number_content],
+    ["simulated-feeding-right", get_number_content],
+    ["checkers-left", get_number_content],
+    ["checkers-right", get_number_content],
+    ["large-light-things-left", get_number_content],
+    ["large-light-things-right", get_number_content],
+    ["large-heavy-things-left", get_number_content],
+    ["large-heavy-things-right", get_number_content],
+    ["jtt-incorrectly-executed", get_checkbox_content],
+    ["arat-left", get_number_content],
+    ["arat-right", get_number_content],
+    ["tug-executed", get_number_content],
+    ["tug-a-incorrectly-executed", get_checkbox_content],
+    ["tug-a-tools-required", get_checkbox_content],
+    ["tug-imagined", get_number_content],
+    ["tug-v-not-executable", get_checkbox_content],
+    ["go-nogo-block-count", get_number_content],
+    ["go-nogo-total-errors", get_number_content],
+    ["go-nogo-recognized-errors", get_number_content],
+    ["go-nogo-correct-answer-time", get_number_content],
+    ["go-nogo-recognized-error-time", get_number_content],
+    ["go-nogo-incorrectly-executed", get_checkbox_content],
+    ["kas-pantomime-bukko-facial", get_number_content],
+    ["kas-pantomime-arm-hand", get_number_content],
+    ["kas-imitation-bukko-facial", get_number_content],
+    ["kas-imitation-arm-hand", get_number_content],
+    ["kopss-applicable", get_checkbox_content],
+    ["kopss-orientation", get_number_content],
+    ["kopss-speech", get_number_content],
+    ["kopss-praxie", get_number_content],
+    ["kopss-visual-spatial-performance", get_number_content],
+    ["kopss-calculating", get_number_content],
+    ["kopss-executive-performance", get_number_content],
+    ["kopss-memory", get_number_content],
+    ["kopss-affect", get_number_content],
+    ["kopss-behavior-observation", get_number_content],
+    ["acl-k-loud-reading", get_number_content],
+    ["acl-k-color-form-test", get_number_content],
+    ["acl-k-supermarket-task", get_number_content],
+    ["acl-k-communication-ability", get_number_content],
+    ["bdi-ii-score", get_number_content],
+    ["madrs-score", get_number_content],
+    ["demtect-wordlist", get_number_content],
+    ["demtect-convert-numbers", get_number_content],
+    ["demtect-supermarket-task", get_number_content],
+    ["demtect-numbers-reverse", get_number_content],
+    ["demtect-wordlist-recall", get_number_content],
+    ["time-tmt-a", get_number_content],
+    ["tmt-a-incorrectly-executed", get_checkbox_content],
+    ["time-tmt-b", get_number_content],
+    ["tmt-b-incorrectly-executed", get_checkbox_content],
+    ["mrs-score", get_number_content],
+    ["euroqol-code", get_string_content],
+    ["euroqol-vas", get_number_content],
+    ["isced-value", get_number_content],
+    ["additional-mrt", get_checkbox_content],
+    ["additional-mrt-url", get_string_content],
+    ["additional-mrt-resting-state", get_checkbox_content],
+    ["additional-mrt-tapping-task", get_checkbox_content],
+    ["additional-mrt-anatomical-representation", get_checkbox_content],
+    ["additional-mrt-dti", get_checkbox_content],
+    ["additional-eeg", get_checkbox_content],
+    ["additional-eeg-url", get_string_content],
+    ["additional-blood-sampling", get_checkbox_content],
+    ["additional-blood-sampling-url", get_string_content],
+    ["additional-remarks", get_string_content]
+]
+
+
+def get_canonic_content_string(field_set: Dict[str, List[str]]) -> str:
+    field_strings = [
+        f"{field_name}:{processor(field_name, field_set[field_name])}"
+        for field_name, processor in hashed_content_fields
+    ]
+    return ";".join(field_strings)
+
+
 def application(environ, start_response):
 
     dataset_root = Path(environ["de.inm7.sfb1451.entry.dataset_root"])
@@ -417,6 +560,12 @@ def application(environ, start_response):
         for key, value in auto_fields.items():
             if key not in entered_data:
                 entered_data[key] = value
+
+        # Check the hash value
+        local_hash_string = get_canonic_content_string(entered_data)
+        assert local_hash_string == entered_data["hashed-string"][0]
+        local_hash_value = hashlib.sha256(local_hash_string.encode()).hexdigest()
+        assert local_hash_value == entered_data["hash-value"][0]
 
         # Create posted data dictionary
         json_object = dict()
@@ -470,7 +619,12 @@ def application(environ, start_response):
             #"3-------------\n".encode(),
             #(posted_data_string + "\n").encode("utf-8"),
             #"4-------------\n".encode(),
-            #json.dumps(json_data, indent=4).encode()
+            #json.dumps(json_data, indent=4).encode(),
+            #"5-------------\n".encode(),
+            #(local_hash_string + "\n").encode(),
+            #(entered_data["hashed-string"][0] + "\n").encode(),
+            #(hashlib.sha256(local_hash_string.encode()).hexdigest() + "\n").encode(),
+            #f"==: {local_hash_string == entered_data['hashed-string'][0]}\n".encode()
         ]
 
     else:
