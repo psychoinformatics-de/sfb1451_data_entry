@@ -175,7 +175,7 @@ def add_file_to_dataset(dataset_root: Path, file: Path, home: Path):
             "datalad",
             "save",
             "-d", str(dataset_root),
-            "-m", f"adding file {file}",
+            "-m", f"adding file {file.relative_to(dataset_root)}",
             str(file)
         ],
         check=True,
