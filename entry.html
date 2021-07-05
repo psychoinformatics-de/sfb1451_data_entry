@@ -40,6 +40,7 @@
 <form class="needs-validation" id="entry-form" novalidate>
 
 <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="1.0">
+<input type="text" id="data-entry-domain" name="data-entry-domain" style="visibility: hidden;" value="de.sfb1451.z03">
 
 <div class="container">
 
@@ -1916,6 +1917,7 @@
     function getContentString() {
         let nameArray = [
             ["form-data-version", getStringContent],
+            ["data-entry-domain", getStringContent],
             ["data-entry-employee", getStringContent],
             ["project-code", getStringContent],
             ["subject-pseudonym", getStringContent],
