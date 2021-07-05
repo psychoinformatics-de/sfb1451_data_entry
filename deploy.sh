@@ -4,7 +4,14 @@ set -x -e
 
 
 local_part=z03
-destination_dir="www/${local_part}"
+local_part=""
+
+
+if [ "X${local_part}" != "X"]; then
+  destination_dir="www/${local_part}"
+else
+  destination_dir="www"
+fi
 
 
 suffix=""
