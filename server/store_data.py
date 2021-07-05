@@ -10,6 +10,8 @@ from urllib.parse import parse_qs
 # Those fields are required in the user input. They can either
 # come from the posted data or from the auto_fields-array.
 required_fields = [
+    "form-data-version",
+    "data-entry-domain",
     "data-entry-employee",
     "project-code",
     "subject-pseudonym",
@@ -209,8 +211,8 @@ def add_file_to_dataset(dataset_root: Path, file: Path, home: Path):
 
 def checkbox_message(value):
     return {
-        "on": "ja",
-        "off": "nein"
+        True: "ja",
+        False: "nein"
     }[value]
 
 
@@ -427,6 +429,7 @@ def get_number_content(_: str,field_content: List[str]) -> str:
 
 hashed_content_fields = [
     ["form-data-version", get_string_content],
+    ["data-entry-domain", get_string_content],
     ["data-entry-employee", get_string_content],
     ["project-code", get_string_content],
     ["subject-pseudonym", get_string_content],
@@ -523,6 +526,137 @@ hashed_content_fields = [
 ]
 
 
+def get_string_value(value: str):
+    if len(value) == 0:
+        return None
+    return value
+
+
+def get_int_value(value: str):
+    if len(value) == 0:
+        return None
+    return int(value)
+
+
+def get_float_value(value: str):
+    if len(value) == 0:
+        return None
+    return float(value)
+
+
+def get_checkbox_value(value: str):
+    return {
+        "on": True,
+        "off": False
+    }[value]
+
+
+field_value_fetcher = {
+    "form-data-version": get_string_value,
+    "data-entry-domain": get_string_value,
+    "data-entry-employee": get_string_value,
+    "project-code": get_string_value,
+    "subject-pseudonym": get_string_value,
+    "date-of-birth": get_string_value,
+    "sex": get_string_value,
+    "date-of-test": get_string_value,
+    "repeated-test": get_checkbox_value,
+    "patient-year-first-symptom": get_string_value,
+    "patient-month-first-symptom": get_string_value,
+    "patient-day-first-symptom": get_string_value,
+    "patient-year-diagnosis": get_string_value,
+    "patient-month-diagnosis": get_string_value,
+    "patient-day-diagnosis": get_string_value,
+    "patient-main-disease": get_string_value,
+    "patient-stronger-impacted-hand": get_string_value,
+    "laterality-quotient": get_int_value,
+    "maximum-ftf-left": get_float_value,
+    "maximum-ftf-right": get_float_value,
+    "ftf-incorrectly-executed": get_checkbox_value,
+    "maximum-gs-left": get_float_value,
+    "maximum-gs-right": get_float_value,
+    "purdue-pegboard-left": get_float_value,
+    "purdue-pegboard-right": get_float_value,
+    "turn-cards-left": get_float_value,
+    "turn-cards-right": get_float_value,
+    "small-things-left": get_float_value,
+    "small-things-right": get_float_value,
+    "simulated-feeding-left": get_float_value,
+    "simulated-feeding-right": get_float_value,
+    "checkers-left": get_float_value,
+    "checkers-right": get_float_value,
+    "large-light-things-left": get_float_value,
+    "large-light-things-right": get_float_value,
+    "large-heavy-things-left": get_float_value,
+    "large-heavy-things-right": get_float_value,
+    "jtt-incorrectly-executed": get_checkbox_value,
+    "arat-left": get_int_value,
+    "arat-right": get_int_value,
+    "tug-executed": get_float_value,
+    "tug-a-incorrectly-executed": get_checkbox_value,
+    "tug-a-tools-required": get_checkbox_value,
+    "tug-imagined": get_float_value,
+    "tug-v-not-executable": get_checkbox_value,
+    "go-nogo-block-count": get_int_value,
+    "go-nogo-total-errors": get_int_value,
+    "go-nogo-recognized-errors": get_int_value,
+    "go-nogo-correct-answer-time": get_float_value,
+    "go-nogo-recognized-error-time": get_float_value,
+    "go-nogo-incorrectly-executed": get_checkbox_value,
+    "kas-pantomime-bukko-facial": get_int_value,
+    "kas-pantomime-arm-hand": get_int_value,
+    "kas-imitation-bukko-facial": get_int_value,
+    "kas-imitation-arm-hand": get_int_value,
+    "kopss-applicable": get_checkbox_value,
+    "kopss-orientation": get_int_value,
+    "kopss-speech": get_int_value,
+    "kopss-praxie": get_int_value,
+    "kopss-visual-spatial-performance": get_int_value,
+    "kopss-calculating": get_int_value,
+    "kopss-executive-performance": get_int_value,
+    "kopss-memory": get_int_value,
+    "kopss-affect": get_int_value,
+    "kopss-behavior-observation": get_int_value,
+    "acl-k-loud-reading": get_float_value,
+    "acl-k-color-form-test": get_int_value,
+    "acl-k-supermarket-task": get_int_value,
+    "acl-k-communication-ability": get_int_value,
+    "bdi-ii-score": get_int_value,
+    "madrs-score": get_int_value,
+    "demtect-wordlist": get_int_value,
+    "demtect-convert-numbers": get_int_value,
+    "demtect-supermarket-task": get_int_value,
+    "demtect-numbers-reverse": get_int_value,
+    "demtect-wordlist-recall": get_int_value,
+    "time-tmt-a": get_float_value,
+    "tmt-a-incorrectly-executed": get_checkbox_value,
+    "time-tmt-b": get_float_value,
+    "tmt-b-incorrectly-executed": get_checkbox_value,
+    "mrs-score": get_int_value,
+    "euroqol-code": get_string_value,
+    "euroqol-vas": get_int_value,
+    "isced-value": get_int_value,
+    "additional-mrt": get_checkbox_value,
+    "additional-mrt-url": get_string_value,
+    "additional-mrt-resting-state": get_checkbox_value,
+    "additional-mrt-tapping-task": get_checkbox_value,
+    "additional-mrt-anatomical-representation": get_checkbox_value,
+    "additional-mrt-dti": get_checkbox_value,
+    "additional-eeg": get_checkbox_value,
+    "additional-eeg-url": get_string_value,
+    "additional-blood-sampling": get_checkbox_value,
+    "additional-blood-sampling-url": get_string_value,
+    "additional-remarks": get_string_value
+}
+
+
+def get_field_value(fields, field_name):
+    value = fields[field_name][0]
+    if field_name in field_value_fetcher:
+        return field_value_fetcher[field_name](value)
+    return value
+
+
 def get_canonic_content_string(field_set: Dict[str, List[str]]) -> str:
     field_strings = [
         f"{field_name}:{processor(field_name, field_set[field_name])}"
@@ -563,9 +697,24 @@ def application(environ, start_response):
 
         # Check the hash value
         local_hash_string = get_canonic_content_string(entered_data)
-        assert local_hash_string == entered_data["hashed-string"][0]
+        if local_hash_string != entered_data["hashed-string"][0]:
+            status = "400 BAD REQUEST"
+            output = ["Hashed string does not match submitted values".encode("utf-8")]
+            output_length = sum([len(line) for line in output])
+            response_headers = [('Content-type', 'text/plain; charset=utf-8'),
+                                ('Content-Length', str(output_length))]
+            start_response(status, response_headers)
+            return output
+
         local_hash_value = hashlib.sha256(local_hash_string.encode()).hexdigest()
-        assert local_hash_value == entered_data["hash-value"][0]
+        if local_hash_value != entered_data["hash-value"][0]:
+            status = "400 BAD REQUEST"
+            output = ["Server side hash value does not match submitted hash value".encode("utf-8")]
+            output_length = sum([len(line) for line in output])
+            response_headers = [('Content-type', 'text/plain; charset=utf-8'),
+                                ('Content-Length', str(output_length))]
+            start_response(status, response_headers)
+            return output
 
         # Create posted data dictionary
         json_object = dict()
@@ -573,15 +722,15 @@ def application(environ, start_response):
         # Read the mandatory keys
         for key in required_fields:
             # This will throw an error, if the key is not available
-            json_object[key] = entered_data[key][0]
+            json_object[key] = get_field_value(entered_data, key)
 
         # Check for dependent keys:
         for controlling_variable in dependent_fields:
             control_value = entered_data[controlling_variable][0]
             for key in dependent_fields[controlling_variable][control_value]:
-                json_object[key] = entered_data[key][0]
+                json_object[key] = get_field_value(entered_data, key)
 
-        time_stamp = str(time.time())
+        time_stamp = time.time()
 
         json_data = {
             "source": {
@@ -599,10 +748,13 @@ def application(environ, start_response):
             "data": json_object
         }
 
+        import sys
+        print(repr(json_object), file=sys.stderr)
+
         directory = dataset_root / "input" / json_data["source"]["version"]
         directory.mkdir(parents=True, exist_ok=True)
 
-        output_file = directory / (time_stamp + ".json")
+        output_file = directory / (str(time_stamp) + ".json")
         with output_file.open("x") as f:
             json.dump(json_data, f)
 
@@ -632,9 +784,9 @@ def application(environ, start_response):
         status = "400 BAD REQUEST"
         output = ["Only post method allowed".encode("utf-8")]
 
-    output_lenght = sum([len(line) for line in output])
+    output_length = sum([len(line) for line in output])
     response_headers = [('Content-type', 'text/plain; charset=utf-8'),
-                        ('Content-Length', str(output_lenght))]
+                        ('Content-Length', str(output_length))]
     start_response(status, response_headers)
 
     return output
