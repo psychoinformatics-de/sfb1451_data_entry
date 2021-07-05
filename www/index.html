@@ -40,6 +40,7 @@
 <form class="needs-validation" id="entry-form" novalidate>
 
 <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="1.0">
+<input type="text" id="data-entry-domain" name="data-entry-domain" style="visibility: hidden;" value="de.sfb1451.z03">
 
 <div class="container">
 
@@ -1883,117 +1884,144 @@
 </script>
 
 <script>
-    function getContentOfElementWithId(elementId) {
+    function getStringContent(elementId) {
+        return document.getElementById(elementId).value;
+    }
+
+    function getCheckboxContent(elementId) {
         let element = document.getElementById(elementId);
-        if (element.type === "checkbox")
-            return elementId + ":" + element.checked;
-        if (element.type === "radio")
-            return elementId + ":" + element.checked;
-        return elementId + ":" + element.value;
+        if (element.checked === true) {
+            return "True";
+        }
+        return "False";
+    }
+
+    function getNumberContent(elementId) {
+        let element = document.getElementById(elementId);
+        let value = parseFloat(element.value);
+        if (isNaN(value))
+            return "";
+        return value.toString();
+    }
+
+    function getRadioButtonContent(elementIds) {
+        let checkedElements = elementIds.filter(elementId => {
+            return (document.getElementById(elementId).checked === true);
+        });
+
+        if (checkedElements.length === 1)
+            return document.getElementById(checkedElements[0]).value;
+        return "";
     }
 
     function getContentString() {
         let nameArray = [
-            "form-data-version",
-            "data-entry-employee",
-            "project-code",
-            "subject-pseudonym",
-            "date-of-birth",
-            "sex-m",
-            "sex-f",
-            "sex-d",
-            "date-of-test",
-            "repeated-test",
-            "patient-year-first-symptom",
-            "patient-month-first-symptom",
-            "patient-day-first-symptom",
-            "patient-year-diagnosis",
-            "patient-month-diagnosis",
-            "patient-day-diagnosis",
-            "patient-main-disease",
-            "patient-stronger-impacted-hand-left",
-            "patient-stronger-impacted-hand-right",
-            "patient-stronger-impacted-hand-none",
-            "laterality-quotient",
-            "maximum-ftf-left",
-            "maximum-ftf-right",
-            "ftf-incorrectly-executed",
-            "maximum-gs-left",
-            "maximum-gs-right",
-            "purdue-pegboard-left",
-            "purdue-pegboard-right",
-            "turn-cards-left",
-            "turn-cards-right",
-            "small-things-left",
-            "small-things-right",
-            "simulated-feeding-left",
-            "simulated-feeding-right",
-            "checkers-left",
-            "checkers-right",
-            "large-light-things-left",
-            "large-light-things-right",
-            "large-heavy-things-left",
-            "large-heavy-things-right",
-            "jtt-incorrectly-executed",
-            "arat-left",
-            "arat-right",
-            "tug-executed",
-            "tug-a-incorrectly-executed",
-            "tug-a-tools-required",
-            "tug-imagined",
-            "tug-v-not-executable",
-            "go-nogo-block-count",
-            "go-nogo-total-errors",
-            "go-nogo-recognized-errors",
-            "go-nogo-correct-answer-time",
-            "go-nogo-recognized-error-time",
-            "go-nogo-incorrectly-executed",
-            "kas-pantomime-bukko-facial",
-            "kas-pantomime-arm-hand",
-            "kas-imitation-bukko-facial",
-            "kas-imitation-arm-hand",
-            "kopss-applicable",
-            "kopss-orientation",
-            "kopss-speech",
-            "kopss-praxie",
-            "kopss-visual-spatial-performance",
-            "kopss-calculating",
-            "kopss-executive-performance",
-            "kopss-memory",
-            "kopss-affect",
-            "kopss-behavior-observation",
-            "acl-k-loud-reading",
-            "acl-k-color-form-test",
-            "acl-k-supermarket-task",
-            "acl-k-communication-ability",
-            "bdi-ii-score",
-            "madrs-score",
-            "demtect-wordlist",
-            "demtect-convert-numbers",
-            "demtect-supermarket-task",
-            "demtect-numbers-reverse",
-            "demtect-wordlist-recall",
-            "time-tmt-a",
-            "tmt-a-incorrectly-executed",
-            "time-tmt-b",
-            "tmt-b-incorrectly-executed",
-            "mrs-score",
-            "euroqol-code",
-            "euroqol-vas",
-            "isced-value",
-            "additional-mrt",
-            "additional-mrt-url",
-            "additional-mrt-resting-state",
-            "additional-mrt-tapping-task",
-            "additional-mrt-anatomical-representation",
-            "additional-mrt-dti",
-            "additional-eeg",
-            "additional-eeg-url",
-            "additional-blood-sampling",
-            "additional-blood-sampling-url",
-            "additional-remarks"
+            ["form-data-version", getStringContent],
+            ["data-entry-domain", getStringContent],
+            ["data-entry-employee", getStringContent],
+            ["project-code", getStringContent],
+            ["subject-pseudonym", getStringContent],
+            ["date-of-birth", getStringContent],
+            ["sex", getRadioButtonContent, ["sex-m", "sex-f", "sex-d"]],
+            ["date-of-test", getStringContent],
+            ["repeated-test", getCheckboxContent],
+            ["patient-year-first-symptom", getStringContent],
+            ["patient-month-first-symptom", getStringContent],
+            ["patient-day-first-symptom", getStringContent],
+            ["patient-year-diagnosis", getStringContent],
+            ["patient-month-diagnosis", getStringContent],
+            ["patient-day-diagnosis", getStringContent],
+            ["patient-main-disease", getStringContent],
+            ["patient-stronger-impacted-hand", getRadioButtonContent, [
+                "patient-stronger-impacted-hand-left",
+                "patient-stronger-impacted-hand-right",
+                "patient-stronger-impacted-hand-none"]],
+            ["laterality-quotient", getNumberContent],
+            ["maximum-ftf-left", getNumberContent],
+            ["maximum-ftf-right", getNumberContent],
+            ["ftf-incorrectly-executed", getCheckboxContent],
+            ["maximum-gs-left", getNumberContent],
+            ["maximum-gs-right", getNumberContent],
+            ["purdue-pegboard-left", getNumberContent],
+            ["purdue-pegboard-right", getNumberContent],
+            ["turn-cards-left", getNumberContent],
+            ["turn-cards-right", getNumberContent],
+            ["small-things-left", getNumberContent],
+            ["small-things-right", getNumberContent],
+            ["simulated-feeding-left", getNumberContent],
+            ["simulated-feeding-right", getNumberContent],
+            ["checkers-left", getNumberContent],
+            ["checkers-right", getNumberContent],
+            ["large-light-things-left", getNumberContent],
+            ["large-light-things-right", getNumberContent],
+            ["large-heavy-things-left", getNumberContent],
+            ["large-heavy-things-right", getNumberContent],
+            ["jtt-incorrectly-executed", getCheckboxContent],
+            ["arat-left", getNumberContent],
+            ["arat-right", getNumberContent],
+            ["tug-executed", getNumberContent],
+            ["tug-a-incorrectly-executed", getCheckboxContent],
+            ["tug-a-tools-required", getCheckboxContent],
+            ["tug-imagined", getNumberContent],
+            ["tug-v-not-executable", getCheckboxContent],
+            ["go-nogo-block-count", getNumberContent],
+            ["go-nogo-total-errors", getNumberContent],
+            ["go-nogo-recognized-errors", getNumberContent],
+            ["go-nogo-correct-answer-time", getNumberContent],
+            ["go-nogo-recognized-error-time", getNumberContent],
+            ["go-nogo-incorrectly-executed", getCheckboxContent],
+            ["kas-pantomime-bukko-facial", getNumberContent],
+            ["kas-pantomime-arm-hand", getNumberContent],
+            ["kas-imitation-bukko-facial", getNumberContent],
+            ["kas-imitation-arm-hand", getNumberContent],
+            ["kopss-applicable", getCheckboxContent],
+            ["kopss-orientation", getNumberContent],
+            ["kopss-speech", getNumberContent],
+            ["kopss-praxie", getNumberContent],
+            ["kopss-visual-spatial-performance", getNumberContent],
+            ["kopss-calculating", getNumberContent],
+            ["kopss-executive-performance", getNumberContent],
+            ["kopss-memory", getNumberContent],
+            ["kopss-affect", getNumberContent],
+            ["kopss-behavior-observation", getNumberContent],
+            ["acl-k-loud-reading", getNumberContent],
+            ["acl-k-color-form-test", getNumberContent],
+            ["acl-k-supermarket-task", getNumberContent],
+            ["acl-k-communication-ability", getNumberContent],
+            ["bdi-ii-score", getNumberContent],
+            ["madrs-score", getNumberContent],
+            ["demtect-wordlist", getNumberContent],
+            ["demtect-convert-numbers", getNumberContent],
+            ["demtect-supermarket-task", getNumberContent],
+            ["demtect-numbers-reverse", getNumberContent],
+            ["demtect-wordlist-recall", getNumberContent],
+            ["time-tmt-a", getNumberContent],
+            ["tmt-a-incorrectly-executed", getCheckboxContent],
+            ["time-tmt-b", getNumberContent],
+            ["tmt-b-incorrectly-executed", getCheckboxContent],
+            ["mrs-score", getNumberContent],
+            ["euroqol-code", getStringContent],
+            ["euroqol-vas", getNumberContent],
+            ["isced-value", getNumberContent],
+            ["additional-mrt", getCheckboxContent],
+            ["additional-mrt-url", getStringContent],
+            ["additional-mrt-resting-state", getCheckboxContent],
+            ["additional-mrt-tapping-task", getCheckboxContent],
+            ["additional-mrt-anatomical-representation", getCheckboxContent],
+            ["additional-mrt-dti", getCheckboxContent],
+            ["additional-eeg", getCheckboxContent],
+            ["additional-eeg-url", getStringContent],
+            ["additional-blood-sampling", getCheckboxContent],
+            ["additional-blood-sampling-url", getStringContent],
+            ["additional-remarks", getStringContent]
         ];
-        let valueArray = nameArray.map(getContentOfElementWithId);
+        let valueArray = nameArray.map(spec => {
+            if (spec.length === 2) {
+                return spec[0] + ":" + spec[1].apply(null, [spec[0]]);
+            }
+            return spec[0] + ":" + spec[1].apply(null, [spec[2]]);
+        });
+
         let contentString = valueArray.join(";");
         console.log("contentString: " + contentString);
         return contentString;
