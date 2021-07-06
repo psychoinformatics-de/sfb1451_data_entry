@@ -6,6 +6,8 @@ from pathlib import Path
 from typing import Dict, List, Union
 from urllib.parse import parse_qs
 
+from jinja2 import Environment, PackageLoader, select_autoescape
+
 
 # Those fields are required in the user input. They can either
 # come from the posted data or from the auto_fields-array.
@@ -226,24 +228,38 @@ def sex_message(value):
 
 def hand_message(value):
     return {
-        "left": "Links",
-        "right": "Rechts",
-        "none": "Keine"
+        "left": "links",
+        "right": "rechts",
+        "none": "keine"
     }[value]
 
 
 def date_message(year, month, day):
     return "-".join([
-        x
+        str(x)
         for x in [year, month, day]
-        if x != ""
+        if x is not None
     ])
+
+
+
+def create_result_page(commit_hash: str, time_stamp: float, json_top_data: dict):
+
+    jinja_template_path = Path("server/templates/success.html.jinja2")
+    jinja_template = Environment(autoescape=select_autoescape()).from_string(jinja_template_path.read_text())
+    return jinja_template.render(
+        sub_project="Z03",
+        reference=f"{time_stamp}-{commit_hash}",
+        record=json_top_data["data"],
+        date_message=date_message,
+        hand_message=hand_message,
+        sex_message=sex_message,
+        checkbox_message=checkbox_message)
 
 
 def create_result_message(commit_hash, time_stamp, json_top_data):
 
     json_data = json_top_data["data"]
-
     message = f"""DATEN GESPEICHERT:
 
 Referenz:   {time_stamp}-{commit_hash}
@@ -405,7 +421,7 @@ Blutproben:                     {checkbox_message(json_data["additional-blood-sa
     return message
 
 
-def get_string_content(_: str,field_content: List[str]) -> str:
+def get_string_content(_: str, field_content: List[str]) -> str:
     return field_content[0]
 
 
@@ -418,7 +434,7 @@ def get_checkbox_content(field_name: str, field_content: List[str]) -> str:
         f"illegal value for checkbox field {field_name}: {field_content[0]}")
 
 
-def get_number_content(_: str,field_content: List[str]) -> str:
+def get_number_content(_: str, field_content: List[str]) -> str:
     if field_content[0] == "":
         return ""
     number = float(field_content[0])
@@ -761,6 +777,7 @@ def application(environ, start_response):
         commit_hash = add_file_to_dataset(dataset_root, directory / output_file, home)
 
         result_message = create_result_message(commit_hash, time_stamp, json_data)
+        result_message = create_result_page(commit_hash, time_stamp, json_data)
 
         status = "200 OK"
 
@@ -785,7 +802,7 @@ def application(environ, start_response):
         output = ["Only post method allowed".encode("utf-8")]
 
     output_length = sum([len(line) for line in output])
-    response_headers = [('Content-type', 'text/plain; charset=utf-8'),
+    response_headers = [('Content-type', 'text/html; charset=utf-8'),
                         ('Content-Length', str(output_length))]
     start_response(status, response_headers)
 

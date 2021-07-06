@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Data sucessfully stored</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+
+{%  macro render_lr(description, value) -%}
+    <div class="row">
+        <div class="col-md-6">
+            <p>{{ description }}</p>
+        </div>
+        <div class="col-md-3">
+            <p><label>L:</label>&nbsp;<span>{{ record[value + "-left"] }}</span></p>
+        </div>
+        <div class="col-md-3">
+            <p><label>R:</label>&nbsp;<span>{{ record[value + "-right"] }}</span></p>
+        </div>
+    </div>
+{%  endmacro %}
+
+
+{%  macro render_number(description, key) %}
+
+    <div class="row">
+        <div class="col-md-6 entry-label">
+            <p>{{ description }}</p>
+        </div>
+        <div class="col-md-6">
+            {{ record[key] }}
+        </div>
+    </div>
+
+{%  endmacro %}
+
+
+{%  macro render_string(description, string) %}
+
+    <div class="row">
+        <div class="col-md-6 entry-label">
+            <p>{{ description }}</p>
+        </div>
+        <div class="col-md-6">
+            {{ string }}
+        </div>
+    </div>
+
+{%  endmacro %}
+
+
+<body class="bg-light">
+
+<div class="container">
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h2>{{ sub_project }}: Daten erfolgreich gespeichert</h2>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <h4>Referenz: {{ reference }}</h4>
+    </div>
+</div>
+
+
+<div class="container pt-3">
+
+    <div class="row">
+        <h4 class="mb-3">Allgemeine Informationen</h4>
+    </div>
+
+    {{ render_number("Name Datenerfasser", "data-entry-employee") }}
+    {{ render_number("Projekt-Code", "project-code") }}
+    {{ render_number("Probanden-Pseudonym", "subject-pseudonym") }}
+    {{ render_number("Geburtsdatum", "date-of-birth") }}
+    {{ render_string("Geschlecht", sex_message(record["sex"])) }}
+    {{ render_number("Test-Datum", "date-of-test") }}
+    {{ render_string("Wiederholte Testung", checkbox_message(record["repeated-test"])) }}
+
+    {{ render_number("Probandengruppe", "subject-group") }}
+
+    {% if record["subject-group"] == "patient" %}
+
+        {{ render_number("Haupterkrankung", "patient-main-disease") }}
+        {{ render_string("Datum Erstsymptom", date_message(record["patient-year-first-symptom"], record["patient-month-first-symptom"], record["patient-day-first-symptom"])) }}
+        {{ render_string("Datum Diagnose", date_message(record["patient-year-diagnosis"], record["patient-month-diagnosis"], record["patient-day-diagnosis"])) }}
+        {{ render_string("Stärker betroffene Hand", hand_message(record["patient-stronger-impacted-hand"])) }}
+
+    {%  endif %}
+
+</div>
+
+
+
+<div class="container pt-5">
+    <div class="row">
+        <h4 class="mb-3">Motorische Testung: Basisfähigkeiten</h4>
+    </div>
+
+    {{ render_number("Händigkeitsfragebogen: Lateralitäts-Quotient", "laterality-quotient") }}
+    {{ render_lr("Maximale Fingertipp-Geschwindigkeit (FTF)", "maximum-ftf") }}
+    {{ render_string("Kein korrektes Tippen möglich", checkbox_message(record["ftf-incorrectly-executed"])) }}
+    {{ render_lr("Maximale Griffkraft", "maximum-gs") }}
+
+
+<div class="container pt-5">
+    <div class="row">
+        <h4 class="mb-3">Motorische Testung: Komplexe Fähigkeiten</h4>
+    </div>
+
+    <div class="col-md-6 entry-label"><h5>Purdue Pegboard Test</h5></div>
+
+    {{ render_lr("Anzahl gesteckter Stäbchen", "purdue-pegboard") }}
+
+    <div class="row pt-3"><h5>Jebsen Taylor Hand Function Test (JTT)</h5></div>
+
+    {{ render_lr("Kleine Gegenstände", "turn-cards") }}
+    {{ render_lr("Karten drehen", "small-things") }}
+    {{ render_lr("Simuliertes Füttern", "simulated-feeding") }}
+    {{ render_lr("Damesteine stapeln", "checkers") }}
+    {{ render_lr("Große, leichte Gegenstände", "large-light-things") }}
+    {{ render_lr("Große, schwere Gegenstände", "large-heavy-things") }}
+    {{ render_string("Aufgaben trotz Zeitüberschreitung durchführbar", checkbox_message(record["jtt-incorrectly-executed"])) }}
+
+    <div class="row pt-4"><h5>Action Research Arm Test (ARAT)</h5></div>
+
+    {{ render_lr("Punktzahl", "arat") }}
+
+
+    <div class="row pt-3"><h5>Timed-Up-and-Go test (TUG)</h5></div>
+
+    {{ render_number("ausgeführter TUG (aTUG)", "tug-executed") }}
+    {{ render_string("aTUG trotz Zeitüberschreitung durchführbar", checkbox_message(record["tug-a-incorrectly-executed"])) }}
+    {{ render_string("aTUG mit Hilfmittel durchführbar", checkbox_message(record["tug-a-tools-required"])) }}
+    {{ render_number("vorgestellter TUG (vTUG)", "tug-imagined") }}
+    {{ render_string("vTUG nicht durchführbar", checkbox_message(record["tug-v-not-executable"])) }}
+
+    <div class="container pt-5">
+
+    <div class="row pt-5">
+        <h4 class="mb-3">Motorische Testung: Kognitive Fähigkeiten</h4>
+    </div>
+
+    <div class="row">
+        <h5>Go/Nogo-Task</h5>
+    </div>
+
+    {{ render_number("Durchgeführte Blöcke", "go-nogo-block-count") }}
+    {{ render_number("Reaktionszeit korrekte Antwort", "go-nogo-correct-answer-time") }}
+    {{ render_number("Anzahl Fehler insgesamt", "go-nogo-total-errors") }}
+
+    {% if record["go-nogo-total-errors"] > 0 %}
+
+        {{ render_number("Anzahl erkannte Fehler", "go-nogo-recognized-errors") }}
+
+        {% if record["go-nogo-recognized-errors"] > 0 %}
+
+            {{ render_number("Reaktionszeit erkannte Fehler", "go-nogo-recognized-error-time") }}
+
+        {%  endif %}
+
+    {%  endif %}
+
+    {{ render_string("Go/Nogo-Task nicht korrekt durchführbar", checkbox_message(record["go-nogo-incorrectly-executed"])) }}
+
+
+    <div class="row pt-4"><h5>Cologne Apraxie Screening (KAS)</h5></div>
+
+   {{ render_number("Pantomime: Bukko-Facial", "kas-pantomime-bukko-facial") }}
+   {{ render_number("Pantomime: Arm-Hand", "kas-pantomime-arm-hand") }}
+   {{ render_number("Imitation: Bukko-Facial", "kas-imitation-bukko-facial") }}
+   {{ render_number("Imitation: Arm-Hand", "kas-imitation-arm-hand") }}
+
+</div>
+
+
+<div class="container pt-5">
+
+    <div class="row"><h4>Neuropsychologische/kognitive Testung</h4></div>
+
+    <div class="row"><h5>Kölner neuropsychologisches Screening für Schlaganfallpatienten (KöpSS)</h5></div>
+
+    {{ render_string("KöpSS durchführbar", checkbox_message(record["kopss-applicable"])) }}
+
+    {%  if record["kopss-applicable"] == True %}
+
+        <div class="row">
+            <div class="col-md-6 entry-label">
+            </div>
+            <div class="col-md-6 entry-value">
+                <div style="text-align: center;">Gewichteter Domänenwert</div>
+            </div>
+        </div>
+
+        {{ render_number("Orientierung", "kopss-orientation") }}
+        {{ render_number("Sprache", "kopss-speech") }}
+        {{ render_number("Praxie", "kopss-praxie") }}
+        {{ render_number("Visuell Räumliche Leistung", "kopss-visual-spatial-performance") }}
+        {{ render_number("Rechnen", "kopss-calculating") }}
+        {{ render_number("Exekutive Leistung/Aufmerksamkeit", "kopss-executive-performance") }}
+        {{ render_number("Gedächtnis", "kopss-memory") }}
+        {{ render_number("Affekt", "kopss-affect") }}
+        {{ render_number("Verhaltensbeobachtung", "kopss-behavior-observation") }}
+
+    {% endif %}
+
+    <div class="row pt-4"><h5>Aphasia Check Liste (short version, ACL-K)</h5></div>
+
+    <div class="row">
+            <div class="col-md-6 entry-label">
+            </div>
+            <div class="col-md-6 entry-value">
+                <div style="text-align: center;">Transformierte Punktzahl</div>
+            </div>
+    </div>
+
+    {{ render_number("Lautes Lesen", "acl-k-loud-reading") }}
+    {{ render_number("Farb-Figur-Test", "acl-k-color-form-test") }}
+    {{ render_number("Supermarktaufgabe", "acl-k-supermarket-task") }}
+    {{ render_number("Kommunikationsfähigkeit", "acl-k-communication-ability") }}
+
+
+    <div class="row pt-3"><h5>Beck Depression Inventory (BDI II)</h5></div>
+
+    {{ render_number("BDI II Punktzahl", "bdi-ii-score") }}
+
+
+    <div class="row pt-3"><h5>Montgomery-Asberg Depression rating Scale (MADRS)</h5></div>
+
+    {{ render_number("MADRS Punktzahl", "madrs-score") }}
+
+
+    <div class="row pt-3"><h5>DemTect</h5></div>
+
+    <div class="row">
+            <div class="col-md-6 entry-label">
+            </div>
+            <div class="col-md-6 entry-value">
+                <div style="text-align: center;">Punkte laut Umrechnungstabelle</div>
+            </div>
+    </div>
+
+    {{ render_number("Wortliste", "demtect-wordlist") }}
+    {{ render_number("Zahlen umwandeln", "demtect-convert-numbers") }}
+    {{ render_number("Supermarktaufgabe", "demtect-supermarket-task") }}
+    {{ render_number("Zahlenfolge rückwärts", "demtect-numbers-reverse") }}
+    {{ render_number("Erneute Abfrage der Wortliste", "demtect-wordlist-recall") }}
+
+
+    <div class="row pt-3"><h5>Trail Making Test (TMT)</h5></div>
+
+    {{ render_number("Zeit TMT A", "time-tmt-a") }}
+    {{ render_string("TMT A trotz Zeitüberschreitung durchführbar", checkbox_message(record["tmt-a-incorrectly-executed"])) }}
+    {{ render_number("Zeit TMT B", "time-tmt-b") }}
+    {{ render_string("TMT B trotz Zeitüberschreitung durchführbar", checkbox_message(record["tmt-b-incorrectly-executed"])) }}
+
+</div>
+
+
+<div class="container pt-5">
+
+    <div class="row"><h4>Allgemeine Scores</h4></div>
+
+    <div class="row"><h5>Modified Rankin scale (mRS)</h5></div>
+
+    {{ render_number("MRS Punktzahl", "mrs-score") }}
+
+    <div class="row pt-3"><h5>EuroQol 5 (5Q-5D)</h5></div>
+
+    {{ render_number("Code aus Antworten", "euroqol-code") }}
+    {{ render_number("Visuelle Analogskala (VAS)", "euroqol-vas") }}
+
+    <div class="row pt-3"><h5>Anzahl Ausbildungsjahre</h5></div>
+
+    {{ render_number("Zahlenwert nach ISCED", "isced-value") }}
+
+</div>
+
+
+<div class="container pt-5">
+
+    <div class="row"><h4 class="mb-3">Weitere Diagnostik</h4></div>
+
+    {{ render_string("MRT", checkbox_message(record["additional-mrt"])) }}
+    {% if record["additional-mrt"] == True %}
+        {{ render_number("Link zu MRT-Dateien", "additional-mrt-url") }}
+        {{ render_number("Resting-State", "additional-mrt-resting-state") }}
+        {{ render_number("Tapping-Task", "additional-mrt-tapping-task") }}
+        {{ render_number("Anatomische Darstellung", "additional-mrt-anatomical-representation") }}
+        {{ render_number("DTI", "additional-mrt-dti") }}
+    {% endif %}
+
+    {{ render_string("EEG", checkbox_message(record["additional-eeg"])) }}
+    {% if record["additional-eeg"] == True %}
+        {{ render_number("Link zu EEG Dateien", "additional-eeg-url") }}
+    {% endif %}
+
+    {{ render_string("Blutproben", checkbox_message(record["additional-blood-sampling"])) }}
+    {% if record["additional-eeg"] == True %}
+        {{ render_number("Link zu Blutproben Dateien", "additional-blood-sampling-url") }}
+    {% endif %}
+
+</div>
+
+
+<div class="container pt-5">
+    <div class="row">
+        <h5 class="mb-3"><label for="additional-remarks">Weitere Anmerkungen</label></h5>
+    </div>
+    <div class="row">
+        <p>{{ record["additional-remarks"] }}</p>
+    </div>
+</div>
+
+
+<div class="container pt-5">
+
+    <div class="row">
+        <div class="col-md-3">
+            <h5 class="mb-3"><label for="finger-print">Hash-Wert</label></h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p>{{ record["hash-value"] }}
+            </p>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+</body>
+</html>
