@@ -243,9 +243,9 @@ def date_message(year, month, day):
 
 
 
-def create_result_page(commit_hash: str, time_stamp: float, json_top_data: dict):
+def create_result_page(commit_hash: str, time_stamp: float, json_top_data: dict, templates_directory: Path):
 
-    jinja_template_path = Path("server/templates/success.html.jinja2")
+    jinja_template_path = templates_directory / "success.html.jinja2"
     jinja_template = Environment(autoescape=select_autoescape()).from_string(jinja_template_path.read_text())
     return jinja_template.render(
         sub_project="Z03",
@@ -685,6 +685,7 @@ def application(environ, start_response):
 
     dataset_root = Path(environ["de.inm7.sfb1451.entry.dataset_root"])
     home = Path(environ["de.inm7.sfb1451.entry.home"])
+    template_directory = Path(environ["de.inm7.sfb1451.entry.templates"])
 
     request_method = environ["REQUEST_METHOD"]
     if request_method == "POST":
@@ -776,8 +777,7 @@ def application(environ, start_response):
 
         commit_hash = add_file_to_dataset(dataset_root, directory / output_file, home)
 
-        result_message = create_result_message(commit_hash, time_stamp, json_data)
-        result_message = create_result_page(commit_hash, time_stamp, json_data)
+        result_message = create_result_page(commit_hash, time_stamp, json_data, template_directory)
 
         status = "200 OK"
 

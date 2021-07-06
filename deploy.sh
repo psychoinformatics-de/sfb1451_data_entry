@@ -48,15 +48,6 @@ mkdir -p "${destination_dir}"
 git cat-file blob master:entry.html >"${destination_dir}/${html_file}"
 
 
-mkdir -p "${destination_dir}/js"
-git cat-file blob master:js/verify.js >"${destination_dir}/js/verify.js"
-
-mkdir -p "${destination_dir}/css"
-git cat-file blob master:css/bootstrap.min.css >"${destination_dir}/css/bootstrap.min.css"
-git cat-file blob master:css/bootstrap.min.css.map >"${destination_dir}/css/bootstrap.min.css.map"
-git cat-file blob master:css/form-validation.css >"${destination_dir}/css/form-validation.css"
-
-
 git add "${destination_dir}"
 git add "${destination_dir}/${html_file}"
 
@@ -66,6 +57,12 @@ mkdir -p wsgi-scripts
 git cat-file blob master:server/store_data.py >wsgi-scripts/store_data.wsgi
 git add wsgi-scripts
 git add wsgi-scripts/store_data.wsgi
+
+mkdir -p templates
+git cat-file blob master:templates/success.html.jinja2 >templates/success.html.jinja2
+git add templates
+git add templates/success.html.jinja2
+
 
 git commit -m "pre-deploy${suffix} commit "
 
