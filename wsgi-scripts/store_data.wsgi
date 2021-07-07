@@ -6,6 +6,8 @@ from pathlib import Path
 from typing import Dict, List, Union
 from urllib.parse import parse_qs
 
+from jinja2 import Environment, PackageLoader, select_autoescape
+
 
 # Those fields are required in the user input. They can either
 # come from the posted data or from the auto_fields-array.
@@ -226,186 +228,36 @@ def sex_message(value):
 
 def hand_message(value):
     return {
-        "left": "Links",
-        "right": "Rechts",
-        "none": "Keine"
+        "left": "links",
+        "right": "rechts",
+        "none": "keine"
     }[value]
 
 
 def date_message(year, month, day):
     return "-".join([
-        x
+        str(x)
         for x in [year, month, day]
-        if x != ""
+        if x is not None
     ])
 
 
-def create_result_message(commit_hash, time_stamp, json_top_data):
 
-    json_data = json_top_data["data"]
+def create_result_page(commit_hash: str, time_stamp: float, json_top_data: dict, templates_directory: Path):
 
-    message = f"""DATEN GESPEICHERT:
-
-Referenz:   {time_stamp}-{commit_hash}
-
-Datenerfasser:  {json_data["data-entry-employee"]}
-
-Project-Code:   {json_data["project-code"]}
-
-Probanden-Pseudonym:    {json_data["subject-pseudonym"]}
-Geburtsdatum:           {json_data["date-of-birth"]}
-Geschlecht:             {sex_message(json_data["sex"])}
-
-Test-Datum:             {json_data["date-of-test"]}
-Wiederholte Testung:    {checkbox_message(json_data["repeated-test"])}
-
-Probandengruppe:            {json_data["subject-group"]}
-"""
-
-    if json_data["subject-group"] == "patient":
-        message += f"""Haupterkrankung:            {json_data["patient-main-disease"]}
-Erstsymptome:               {date_message(json_data["patient-year-first-symptom"], json_data["patient-month-first-symptom"], json_data["patient-day-first-symptom"])}
-Diagnose:                   {date_message(json_data["patient-year-diagnosis"], json_data["patient-month-diagnosis"], json_data["patient-day-diagnosis"])}
-Stärker betroffene Hand:    {hand_message(json_data["patient-stronger-impacted-hand"])}
-"""
-
-    message += f"""
--- Motorische Testung: Basisfähigkeiten --
-
-Händigkeitsfragebogen: Lateralitäts-Quotient:   {json_data["laterality-quotient"]}
-Maximale Fingertipp-Geschwindigkeit (FTF):      L: {json_data["maximum-ftf-left"]}    R: {json_data["maximum-ftf-right"]}
-Kein korrektes Tippen möglich:                  {checkbox_message(json_data["ftf-incorrectly-executed"])}
-Maximale Griffkraft:                            L: {json_data["maximum-gs-left"]}    R: {json_data["maximum-gs-left"]}
+    jinja_template_path = templates_directory / "success.html.jinja2"
+    jinja_template = Environment(autoescape=select_autoescape()).from_string(jinja_template_path.read_text())
+    return jinja_template.render(
+        sub_project="Z03",
+        reference=f"{time_stamp}-{commit_hash}",
+        record=json_top_data["data"],
+        date_message=date_message,
+        hand_message=hand_message,
+        sex_message=sex_message,
+        checkbox_message=checkbox_message)
 
 
--- Motorische Testung: Komplexe Fähigkeiten --
-
---- Purdue Pegboard Test ---
-Anzahl gesteckter Stäbchen:     L: {json_data["purdue-pegboard-left"]}    R: {json_data["purdue-pegboard-right"]}
-
---- Jebsen Taylor Hand Function Test (JTT) ---
-Karten drehen:                  L: {json_data["turn-cards-left"]}    R: {json_data["turn-cards-right"]}
-Kleine Gegenstände:             L: {json_data["small-things-left"]}    R: {json_data["small-things-right"]}
-Simuliertes Füttern:            L: {json_data["simulated-feeding-left"]}    R: {json_data["simulated-feeding-right"]}
-Damesteine stapeln:             L: {json_data["checkers-left"]}    R: {json_data["checkers-right"]}
-Große, leichte Gegenstände:     L: {json_data["large-light-things-left"]}    R: {json_data["large-light-things-right"]}
-Große, schwere Gegenstände:     L: {json_data["large-heavy-things-left"]}    R: {json_data["large-heavy-things-right"]}
-Zeitüberschreitung bei Durchführung der Aufgaben: {checkbox_message(json_data["jtt-incorrectly-executed"])}
-
---- Action Research Arm Test (ARAT) ---
-Punktzahl:      L: {json_data["arat-left"]}   R: {json_data["arat-right"]}
-
---- Timed-Up-and-Go test (TUG) ---
-ausgeführter TUG (aTug):                    {json_data["tug-executed"]}
-Zeitüberschreitung bei aTUG Durchführung:   {checkbox_message(json_data["tug-a-incorrectly-executed"])}
-Hilfmittel bei aTUG Durchführung notwendig: {checkbox_message(json_data["tug-a-tools-required"])}
-vorgestellter TUG (vTUG):                   {json_data["tug-imagined"]}
-vTUG nicht durchführbar:                    {checkbox_message(json_data["tug-v-not-executable"])}
-
-
--- Motorische Testung: Kognitive Fähigkeiten --
-
---- Go/Nogo-Task ---
-Durchgeführte Blöcke:                       {json_data["go-nogo-block-count"]}
-Reaktionszeit korrekte Antwort:             {json_data["go-nogo-correct-answer-time"]}
-Anzahl Fehler insgesamt:                    {json_data["go-nogo-total-errors"]}
-"""
-
-    if int(json_data["go-nogo-total-errors"]) > 0:
-        message += f"Anzahl erkannte Fehler:                     {json_data['go-nogo-recognized-errors']}\n"
-        if int(json_data["go-nogo-recognized-errors"]) > 0:
-            message += f"Reaktionszeit erkannte Fehler:              {json_data['go-nogo-recognized-error-time']}\n"
-
-    message += f"""Unkorrekte Durchführung des Go/Nogo-Tasks:  {checkbox_message(json_data["go-nogo-incorrectly-executed"])}
-
---- Cologne Apraxie Screening (KAS) ---
-Pantomime: Bukko-Facial:    {json_data["kas-pantomime-bukko-facial"]}
-Pantomime: Arm-Hand:        {json_data["kas-pantomime-arm-hand"]}
-Imitation: Bukko-Facial:    {json_data["kas-imitation-bukko-facial"]}
-Imitation: Arm-Hand:        {json_data["kas-imitation-arm-hand"]}
-
-
--- Neuropsychologische/kognitive Testung --
-
---- Kölner neuropsychologisches Screening für Schlaganfallpatienten (KöpSS) ---
-Durchführbar:                       {checkbox_message(json_data["kopss-applicable"])}
-"""
-
-    if json_data["kopss-applicable"] == "on":
-        message += f"""Orientierung:                       {json_data["kopss-orientation"]}
-Sprache:                            {json_data["kopss-speech"]}
-Praxie:                             {json_data["kopss-praxie"]}
-Visuell Räumliche Leistung:         {json_data["kopss-visual-spatial-performance"]}
-Rechnen:                            {json_data["kopss-calculating"]}
-Exekutive Leistung/Aufmerksamkeit:  {json_data["kopss-executive-performance"]}
-Gedächtnis:                         {json_data["kopss-memory"]}
-Affekt:                             {json_data["kopss-affect"]}
-Verhaltensbeobachtung:              {json_data["kopss-behavior-observation"]}
-"""
-
-    message += f"""
---- Aphasia Check Liste (short version, ACL-K) ---
-Lautes Lesen:               {json_data["acl-k-loud-reading"]}
-Farb-Figur-Test:            {json_data["acl-k-color-form-test"]}
-Supermarktaufgabe:          {json_data["acl-k-supermarket-task"]}
-Kommunikationsfähigkeit:    {json_data["acl-k-communication-ability"]}
-
---- Beck Depression Inventory (BDI II) ---
-Punktzahl:  {json_data["bdi-ii-score"]}
-
---- Montgomery-Asberg Depression rating Scale (MADRS) ---
-Punktzahl:  {json_data["madrs-score"]}
-
---- DemTect ---
-Wortliste:                      {json_data["demtect-wordlist"]}
-Zahlen umwandeln:               {json_data["demtect-convert-numbers"]}
-Supermarktaufgabe:              {json_data["demtect-supermarket-task"]}
-Zahlenfolge rückwärts:          {json_data["demtect-numbers-reverse"]}
-Erneute Abfrage der Wortliste:  {json_data["demtect-wordlist-recall"]}
-
---- Trail Making Test (TMT) ---
-Zeit TMT A:                                     {json_data["time-tmt-a"]}
-Zeitüberschreitung bei Durchführung von TMT A:  {checkbox_message(json_data["tmt-a-incorrectly-executed"])}
-Zeit TMT B:                                     {json_data["time-tmt-b"]}
-Zeitüberschreitung bei Durchführung von TMT B:  {checkbox_message(json_data["tmt-b-incorrectly-executed"])}
-
-
--- Allgemeneine Scores --
-
---- Modified Rankin scale (mRS) ---
-Punktzahl:  {json_data["mrs-score"]}
-
---- EuroQol 5 (5Q-5D) ---
-Code aus Antworten:             {json_data["euroqol-code"]}
-Visuelle Analogskala (VAS):     {json_data["euroqol-vas"]}
-
---- Anzahl Ausbildungsjahre ---
-Zahlenwert nach ISCED:          {json_data["isced-value"]}
-
-
--- Weitere Diagnostik --
-MRT:                            {checkbox_message(json_data["additional-mrt"])}
-   Link zu MRT-Daten:           {json_data["additional-mrt-url"]}
-   Resting State:               {checkbox_message(json_data["additional-mrt-resting-state"])}
-   Tapping Task:                {checkbox_message(json_data["additional-mrt-tapping-task"])}
-   Anatomische Darstellung:     {checkbox_message(json_data["additional-mrt-anatomical-representation"])}
-   DTI:                         {checkbox_message(json_data["additional-mrt-dti"])}
-
-EEG:                            {checkbox_message(json_data["additional-eeg"])}
-   Link zu EEG-Daten:           {json_data["additional-eeg-url"]}
-
-Blutproben:                     {checkbox_message(json_data["additional-blood-sampling"])}
-   Link zu Blutproblendaten:    {json_data["additional-blood-sampling-url"]}
-
-   
--- Weitere Bemerkungen --
-{json_data["additional-remarks"]}
-"""
-
-    return message
-
-
-def get_string_content(_: str,field_content: List[str]) -> str:
+def get_string_content(_: str, field_content: List[str]) -> str:
     return field_content[0]
 
 
@@ -418,7 +270,7 @@ def get_checkbox_content(field_name: str, field_content: List[str]) -> str:
         f"illegal value for checkbox field {field_name}: {field_content[0]}")
 
 
-def get_number_content(_: str,field_content: List[str]) -> str:
+def get_number_content(_: str, field_content: List[str]) -> str:
     if field_content[0] == "":
         return ""
     number = float(field_content[0])
@@ -669,6 +521,7 @@ def application(environ, start_response):
 
     dataset_root = Path(environ["de.inm7.sfb1451.entry.dataset_root"])
     home = Path(environ["de.inm7.sfb1451.entry.home"])
+    template_directory = Path(environ["de.inm7.sfb1451.entry.templates"])
 
     request_method = environ["REQUEST_METHOD"]
     if request_method == "POST":
@@ -760,7 +613,7 @@ def application(environ, start_response):
 
         commit_hash = add_file_to_dataset(dataset_root, directory / output_file, home)
 
-        result_message = create_result_message(commit_hash, time_stamp, json_data)
+        result_message = create_result_page(commit_hash, time_stamp, json_data, template_directory)
 
         status = "200 OK"
 
@@ -785,7 +638,7 @@ def application(environ, start_response):
         output = ["Only post method allowed".encode("utf-8")]
 
     output_length = sum([len(line) for line in output])
-    response_headers = [('Content-type', 'text/plain; charset=utf-8'),
+    response_headers = [('Content-type', 'text/html; charset=utf-8'),
                         ('Content-Length', str(output_length))]
     start_response(status, response_headers)
 
