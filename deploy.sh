@@ -15,11 +15,16 @@ fi
 
 
 suffix=""
-if [ "$#" -gt "0" ]; then
+dont_push=""
+while [ "$#" -gt "0" ]; do
   if [ "$1" == "test" ]; then
     suffix="-test"
   fi
-fi
+  if [ "$1" == "--dont-push" ]; then
+    dont_push="1"
+  fi
+  shift
+done
 
 
 git checkout deploy
@@ -66,6 +71,8 @@ git add templates/success.html.jinja2
 
 git commit -m "pre-deploy${suffix} commit "
 
-git push
+if [ "X${dont_push}" == "X" ]; then
+  git push
+fi
 
 git checkout master
