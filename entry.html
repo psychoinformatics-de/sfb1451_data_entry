@@ -38,625 +38,744 @@
 
 <form class="needs-validation" id="entry-form" novalidate>
 
-<input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="1.0">
-<input type="text" id="data-entry-domain" name="data-entry-domain" style="visibility: hidden;" value="de.sfb1451.z03">
-
-<div class="container">
-
-    <div class="row">
-        <h4 class="mb-3">Allgemeine Informationen</h4>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="data-entry-employee">Name Datenerfasser<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="data-entry-employee" name="data-entry-employee" placeholder="" required>
-            <div class="invalid-feedback field-validity">
-                Name des Datenerfassers nicht angegeben.
-            </div>
-        </div>
-    </div>
+    <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="1.0">
+    <input type="text" id="data-entry-domain" name="data-entry-domain" style="visibility: hidden;" value="de.sfb1451.z03">
 
 
-    <div class="row">
-        <div class="col-md-6">
-            <label for="project-code">Projekt-Code<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6">
-            <select class="form-select" name="project-code" id="project-code" required>
-                <option value="">Bitte auswählen</option>
-                <option value="b2">B2</option>
-                <option value="b3">B3</option>
-                <option value="b4">B4</option>
-                <option value="b5">B5</option>
-                <option value="c2">C2</option>
-                <option value="c3">C3</option>
-                <option value="c4">C4</option>
-                <option value="c5">C5</option>
-                <option value="c6">C6</option>
-                <option value="c7">C7</option>
-                <option value="z3">Z3</option>
-            </select>
-            <div class="invalid-feedback field-validity">
-                Projekt-Code nicht ausgewählt.
-            </div>
-        </div>
-    </div>
+    <div class="container-lg">
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="subject-pseudonym">Probanden-Pseudonym<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="subject-pseudonym" name="subject-pseudonym" placeholder="" required>
-            <div class="invalid-feedback field-validity">
-                Probanden Pseudonym nicht angegeben.
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-2">
-        <div class="col-md-6">
-            <label for="date-of-birth">Geburtsdatum<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6">
-            <input type="date" class="form-control" id="date-of-birth" name="date-of-birth" required>
-            <div class="invalid-feedback field-validity">
-                Geburtsdatum nicht angegeben.
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-1">
-        <div class="col-md-6">
-            <label for="sex-m">Geschlecht<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sex" id="sex-m" value="male" required>
-                    <label class="form-check-label" for="sex-m">m</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sex" id="sex-f" value="female" required>
-                    <label class="form-check-label" for="sex-f">w</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sex" id="sex-d" value="diverse" required>
-                    <label class="form-check-label" for="sex-d">d</label>
-                    <div class="invalid-feedback field-validity">Geschlecht nicht ausgewählt.</div>
-                </div>
-        </div>
-    </div>
-
-    <div class="row pt-2">
-        <div class="col-md-6">
-            <label for="date-of-test">Test-Datum<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6">
-            <input type="date" class="form-control" id="date-of-test" name="date-of-test" placeholder="" required>
-            <div class="invalid-feedback field-validity">
-                Test-Datum nicht angegeben.
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-1">
-        <div class="col-md-6 entry-label">
-            <label for="repeated-test">Wiederholte Testung</label>
-        </div>
-        <div class="col-md-6">
-            <input type="checkbox" class="form-check-input" id="repeated-test" name="repeated-test">
-        </div>
-    </div>
-
-    <div class="row pt-3">
-        <div class="col-md-6">
-            <label for="subject-group">Probandengruppe<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6">
-            <select class="form-select" name="subject-group" id="subject-group" onchange="patientUpdateElement();" required>
-                <option value="">Bitte auswählen</option>
-                <option value="healthy" onselect="collapsePatient()">Gesund</option>
-                <option value="patient" onselect="showCollapsable()">Patient</option>
-            </select>
-            <div class="invalid-feedback field-validity">
-                Probandengruppe nicht ausgewählt.
-            </div>
-        </div>
-    </div>
-
-    <div class="collapse collapsed pt-3" id="patient-collapse">
 
         <div class="row">
-            <div class="col-md-6">
-                <label for="patient-main-disease">Haupterkrankung<span class="required-indicator">*</span></label>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-11">
+                <h4 class="mb-3">Allgemeine Informationen</h4>
             </div>
-            <div class="col-md-6">
-                <select class="form-select" name="patient-main-disease" id="patient-main-disease" data-inm-collapse-id="patient-collapse" required disabled>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="data-entry-employee">Name Datenerfasser<span class="required-indicator">*</span></label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="text" class="form-control" id="data-entry-employee" name="data-entry-employee" placeholder="" required>
+                <div class="invalid-feedback field-validity">
+                    Name des Datenerfassers nicht angegeben.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="project-code">Projekt-Code<span class="required-indicator">*</span></label>
+            </div>
+            <div class="col-lg-6">
+                <select class="form-select" name="project-code" id="project-code" required>
                     <option value="">Bitte auswählen</option>
-                    <option value="stroke">Schlaganfall</option>
-                    <option value="parkinson">Parkinson</option>
-                    <option value="tic">Tic</option>
-                    <option value="depression">Depression</option>
-                    <option value="alzheimer">Alzheimer</option>
+                    <option value="b2">B2</option>
+                    <option value="b3">B3</option>
+                    <option value="b4">B4</option>
+                    <option value="b5">B5</option>
+                    <option value="c2">C2</option>
+                    <option value="c3">C3</option>
+                    <option value="c4">C4</option>
+                    <option value="c5">C5</option>
+                    <option value="c6">C6</option>
+                    <option value="c7">C7</option>
+                    <option value="z3">Z3</option>
                 </select>
                 <div class="invalid-feedback field-validity">
-                    Haupterkrankung nicht ausgewählt.
+                    Projekt-Code nicht ausgewählt.
                 </div>
             </div>
         </div>
+
+
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="subject-pseudonym">Probanden-Pseudonym<span class="required-indicator">*</span></label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="text" class="form-control" id="subject-pseudonym" name="subject-pseudonym" placeholder="" required>
+                <div class="invalid-feedback field-validity">
+                    Probanden Pseudonym nicht angegeben.
+                </div>
+            </div>
+        </div>
+
 
         <div class="row pt-2">
-            <div class="col-md-6">
-                <label for="patient-year-first-symptom">Datum Erstsymptom (soweit bekannt)</label>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="date-of-birth">Geburtsdatum<span class="required-indicator">*</span></label>
             </div>
-            <div class="col-md-6">
-                <div class="input-group">
-                    <span class="input-group-text ">Jahr</span>
-                    <input type="number" class="form-control" min="1900" max="2050" id="patient-year-first-symptom" name="patient-year-first-symptom" placeholder="--">
-                    <span class="input-group-text">Monat</span>
-                    <select class="form-select" id="patient-month-first-symptom" name="patient-month-first-symptom">
-                        <option value="">--</option>
-                        <option value="1">Januar</option>
-                        <option value="2">Februar</option>
-                        <option value="3">März</option>
-                        <option value="4">April</option>
-                        <option value="5">Mai</option>
-                        <option value="6">Juni</option>
-                        <option value="7">Juli</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">Oktober</option>
-                        <option value="11">November</option>
-                        <option value="12">Dezember</option>
-                    </select>
-                    <span class="input-group-text">Tag</span>
-                    <select class="form-select" id="patient-day-first-symptom" name="patient-day-first-symptom">
-                        <option value="">--</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                    </select>
+            <div class="col-lg-6">
+                <input type="date" class="form-control" id="date-of-birth" name="date-of-birth" required>
+                <div class="invalid-feedback field-validity">
+                    Geburtsdatum nicht angegeben.
                 </div>
             </div>
         </div>
+
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="sex-m">Geschlecht<span class="required-indicator">*</span></label>
+            </div>
+            <div class="col-lg-6">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" id="sex-m" value="male" required>
+                        <label class="form-check-label" for="sex-m">m</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" id="sex-f" value="female" required>
+                        <label class="form-check-label" for="sex-f">w</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" id="sex-d" value="diverse" required>
+                        <label class="form-check-label" for="sex-d">d</label>
+                        <div class="invalid-feedback field-validity">Geschlecht nicht ausgewählt.</div>
+                    </div>
+            </div>
+        </div>
+
 
         <div class="row pt-2">
-            <div class="col-md-6">
-                <label for="patient-year-diagnosis">Datum Diagnose (soweit bekannt)</label>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="date-of-test">Test-Datum<span class="required-indicator">*</span></label>
             </div>
-            <div class="col-md-6">
-                <div class="input-group">
-                    <span class="input-group-text ">Jahr</span>
-                    <input type="number" class="form-control" min="1900" max="2050" id="patient-year-diagnosis" name="patient-year-diagnosis" placeholder="--">
-                    <span class="input-group-text">Monat</span>
-                    <select class="form-select" id="patient-month-diagnosis" name="patient-month-diagnosis">
-                        <option value="">--</option>
-                        <option value="1">Januar</option>
-                        <option value="2">Februar</option>
-                        <option value="3">März</option>
-                        <option value="4">April</option>
-                        <option value="5">Mai</option>
-                        <option value="6">Juni</option>
-                        <option value="7">Juli</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">Oktober</option>
-                        <option value="11">November</option>
-                        <option value="12">Dezember</option>
-                    </select>
-                    <span class="input-group-text">Tag</span>
-                    <select class="form-select" id="patient-day-diagnosis" name="patient-day-diagnosis">
-                        <option value="">--</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                    </select>
+            <div class="col-lg-6">
+                <input type="date" class="form-control" id="date-of-test" name="date-of-test" placeholder="" required>
+                <div class="invalid-feedback field-validity">
+                    Test-Datum nicht angegeben.
                 </div>
             </div>
         </div>
+
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="repeated-test">Wiederholte Testung</label>
+            </div>
+            <div class="col-lg-6">
+                <input type="checkbox" class="form-check-input" id="repeated-test" name="repeated-test">
+            </div>
+        </div>
+
+
+        <div class="row pt-3">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="subject-group">Probandengruppe<span class="required-indicator">*</span></label>
+            </div>
+            <div class="col-lg-6">
+                <select class="form-select" name="subject-group" id="subject-group" onchange="patientUpdateElement();" required>
+                    <option value="">Bitte auswählen</option>
+                    <option value="healthy" onselect="collapsePatient()">Gesund</option>
+                    <option value="patient" onselect="showCollapsable()">Patient</option>
+                </select>
+                <div class="invalid-feedback field-validity">
+                    Probandengruppe nicht ausgewählt.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="collapse collapsed pt-3" id="patient-collapse">
+
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
+                    <label for="patient-main-disease">Haupterkrankung<span class="required-indicator">*</span></label>
+                </div>
+                <div class="col-lg-6">
+                    <select class="form-select" name="patient-main-disease" id="patient-main-disease" data-inm-collapse-id="patient-collapse" required disabled>
+                        <option value="">Bitte auswählen</option>
+                        <option value="stroke">Schlaganfall</option>
+                        <option value="parkinson">Parkinson</option>
+                        <option value="tic">Tic</option>
+                        <option value="depression">Depression</option>
+                        <option value="alzheimer">Alzheimer</option>
+                    </select>
+                    <div class="invalid-feedback field-validity">
+                        Haupterkrankung nicht ausgewählt.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row pt-2">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
+                    <label for="patient-year-first-symptom">Datum Erstsymptom (soweit bekannt)</label>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <span class="input-group-text ">Jahr</span>
+                        <input type="number" class="form-control" min="1900" max="2050" id="patient-year-first-symptom" name="patient-year-first-symptom" placeholder="--">
+                        <span class="input-group-text">Monat</span>
+                        <select class="form-select" id="patient-month-first-symptom" name="patient-month-first-symptom">
+                            <option value="">--</option>
+                            <option value="1">Januar</option>
+                            <option value="2">Februar</option>
+                            <option value="3">März</option>
+                            <option value="4">April</option>
+                            <option value="5">Mai</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Dezember</option>
+                        </select>
+                        <span class="input-group-text">Tag</span>
+                        <select class="form-select" id="patient-day-first-symptom" name="patient-day-first-symptom">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row pt-2">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
+                    <label for="patient-year-diagnosis">Datum Diagnose (soweit bekannt)</label>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <span class="input-group-text ">Jahr</span>
+                        <input type="number" class="form-control" min="1900" max="2050" id="patient-year-diagnosis" name="patient-year-diagnosis" placeholder="--">
+                        <span class="input-group-text">Monat</span>
+                        <select class="form-select" id="patient-month-diagnosis" name="patient-month-diagnosis">
+                            <option value="">--</option>
+                            <option value="1">Januar</option>
+                            <option value="2">Februar</option>
+                            <option value="3">März</option>
+                            <option value="4">April</option>
+                            <option value="5">Mai</option>
+                            <option value="6">Juni</option>
+                            <option value="7">Juli</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Dezember</option>
+                        </select>
+                        <span class="input-group-text">Tag</span>
+                        <select class="form-select" id="patient-day-diagnosis" name="patient-day-diagnosis">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row pt-2">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
+                    <label for="patient-stronger-impacted-hand-left">Stärker betroffene Hand<span class="required-indicator">*</span></label>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-left" data-inm-collapse-id="patient-collapse" value="left" required disabled>
+                        <label class="form-check-label" for="patient-stronger-impacted-hand-left">Links</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-right" data-inm-collapse-id="patient-collapse" value="right" required disabled>
+                        <label class="form-check-label" for="patient-stronger-impacted-hand-right">Rechts</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-none" data-inm-collapse-id="patient-collapse" value="none" required disabled>
+                        <label class="form-check-label" for="patient-stronger-impacted-hand-none">Keine</label>
+                        <span class="invalid-feedback field-validity">Stärker betroffene Hand nicht ausgewählt.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row pt-5">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-moto-test" checked>
+            </div>
+            <div class="col-lg-11">
+                <h4 class="mb-3">Motorische Testung: Basisfähigkeiten</h4>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-moto-test-lat" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="laterality-quotient">Händigkeitsfragebogen: Lateralitäts-Quotient<span class="required-indicator">*</span></label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="laterality-quotient" name="laterality-quotient" min="-100" max="100" step="1" placeholder="-100  -  100">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen -100 und 100 erwartet.
+                </div>
+            </div>
+        </div>
+
 
         <div class="row pt-2">
-            <div class="col-md-6">
-                <label for="patient-stronger-impacted-hand-left">Stärker betroffene Hand<span class="required-indicator">*</span></label>
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-moto-test-ftf" checked>
             </div>
-            <div class="col-md-6">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-left" data-inm-collapse-id="patient-collapse" value="left" required disabled>
-                    <label class="form-check-label" for="patient-stronger-impacted-hand-left">Links</label>
+            <div class="col-lg-5">
+                <label for="maximum-ftf-left">Maximale Fingertipp-Geschwindigkeit (FTF)<span class="required-indicator">*</span></label>
+                <label class="visually-hidden" for="maximum-ftf-right">Maximale Fingertipp-Geschiwndigkeit (FTF)</label>
+            </div>
+            <div class="col-md-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Links</div>
+                    <input type="number" class="form-control" id="maximum-ftf-left" name="maximum-ftf-left" min="0.0" max="10.0" step="any" placeholder="0.0 - 10.0" required>
+                    <div class="input-group-text">Hz&nbsp;</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 10.0 erwartet.
+                    </div>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-right" data-inm-collapse-id="patient-collapse" value="right" required disabled>
-                    <label class="form-check-label" for="patient-stronger-impacted-hand-right">Rechts</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-none" data-inm-collapse-id="patient-collapse" value="none" required disabled>
-                    <label class="form-check-label" for="patient-stronger-impacted-hand-none">Keine</label>
-                    <span class="invalid-feedback field-validity">Stärker betroffene Hand nicht ausgewählt.</span>
+            </div>
+            <div class="col-md-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Rechts</div>
+                    <input type="number" class="form-control" id="maximum-ftf-right" name="maximum-ftf-right" min="0.0" max="10.0" step="any" placeholder="0.0 - 10.0" required>
+                    <div class="input-group-text">Hz&nbsp;</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 10.0 erwartet.
+                    </div>
                 </div>
             </div>
         </div>
 
-    </div>
-
-</div>
-
-
-
-<div class="container pt-5">
-    <div class="row">
-        <h4 class="mb-3">Motorische Testung: Basisfähigkeiten</h4>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="laterality-quotient">Händigkeitsfragebogen: Lateralitäts-Quotient<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="laterality-quotient" name="laterality-quotient" min="-100" max="100" step="1" placeholder="-100  -  100" required>
-        </div>
-    </div>
-
-    <div class="row pt-2">
-        <div class="col-md-6 entry-label">
-            <label for="maximum-ftf-left">Maximale Fingertipp-Geschwindigkeit (FTF)<span class="required-indicator">*</span></label>
-            <label class="visually-hidden" for="maximum-ftf-right">Maximale Fingertipp-Geschiwndigkeit (FTF)</label>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Links</div>
-                <input type="number" class="form-control" id="maximum-ftf-left" name="maximum-ftf-left" min="0.0" max="10.0" step="any" placeholder="0.0 - 10.0" required>
-                <div class="input-group-text">Hz&nbsp;</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 10.0 erwartet.
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Rechts</div>
-                <input type="number" class="form-control" id="maximum-ftf-right" name="maximum-ftf-right" min="0.0" max="10.0" step="any" placeholder="0.0 - 10.0" required>
-                <div class="input-group-text">Hz&nbsp;</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 10.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="ftf-incorrectly-executed">Kein korrektes Tippen möglich.</label>
-        </div>
-        <div class="col-md-6">
-            <input type="checkbox" class="form-check-input" id="ftf-incorrectly-executed" name="ftf-incorrectly-executed" placeholder="">
-        </div>
-    </div>
-
-    <div class="row pt-2">
-        <div class="col-md-6 entry-label">
-            <label for="maximum-gs-left">Maximale Griffkraft</label>
-            <label class="visually-hidden" for="maximum-gs-right">Maximale Griffkraft<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Links</div>
-                <input type="number" class="form-control" id="maximum-gs-left" name="maximum-gs-left" min="0.0" max="160.0" step="any" placeholder="0.0 - 160.0" required>
-                <div class="input-group-text">kPa</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 160.0 erwartet.
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Rechts</div>
-                <input type="number" class="form-control" id="maximum-gs-right" name="maximum-gs-right" min="0.0" max="160.0" step="any" placeholder="0.0 - 160.0" required>
-                <div class="input-group-text">kPa</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 160.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container pt-5">
-    <div class="row">
-        <h4 class="mb-3">Motorische Testung: Komplexe Fähigkeiten</h4>
-    </div>
-    <div class="col-md-6 entry-label"><h5>Purdue Pegboard Test</h5></div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="purdue-pegboard-left">Anzahl gesteckter Stäbchen<span class="required-indicator">*</span></label>
-            <label class="visually-hidden" for="purdue-pegboard-right">Anzahl gesteckter Stäbchen</label>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Links</div>
-                <input type="number" class="form-control" id="purdue-pegboard-left" name="purdue-pegboard-left" min="0" max="25" step="Any" placeholder="0.0 - 25.0" required>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 25.0 erwartet.
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Rechts</div>
-                <input type="number" class="form-control" id="purdue-pegboard-right" name="purdue-pegboard-right" min="0" max="25" step="Any" placeholder="0.0 - 25.0" required>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 25.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-3"><h5>Jebsen Taylor Hand Function Test (JTT)</h5></div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="turn-cards-left">Karten drehen<span class="required-indicator">*</span></label>
-            <label class="visually-hidden" for="turn-cards-right">Karten drehen</label>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Links</div>
-                <input type="number" class="form-control" id="turn-cards-left" name="turn-cards-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Rechts</div>
-                <input type="number" class="form-control" id="turn-cards-right" name="turn-cards-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="small-things-left">Kleine Gegenstände<span class="required-indicator">*</span></label>
-            <label class="visually-hidden" for="small-things-right">Kleine Gegenstände</label>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Links</div>
-                <input type="number" class="form-control" id="small-things-left" name="small-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Rechts</div>
-                <input type="number" class="form-control" id="small-things-right" name="small-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="simulated-feeding-left">Simuliertes Füttern<span class="required-indicator">*</span></label>
-            <label class="visually-hidden" for="simulated-feeding-right">Simuliertes Füttern</label>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Links</div>
-                <input type="number" class="form-control" id="simulated-feeding-left" name="simulated-feeding-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Rechts</div>
-                <input type="number" class="form-control" id="simulated-feeding-right" name="simulated-feeding-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="checkers-left">Damesteine stapeln<span class="required-indicator">*</span></label>
-            <label class="visually-hidden" for="checkers-right">Damesteine stapeln</label>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Links</div>
-                <input type="number" class="form-control" id="checkers-left" name="checkers-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Rechts</div>
-                <input type="number" class="form-control" id="checkers-right" name="checkers-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="large-light-things-left">Große, leichte Gegenstände<span class="required-indicator">*</span></label>
-            <label class="visually-hidden" for="large-light-things-right">Große, leichte Gegenstände</label>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Links</div>
-                <input type="number" class="form-control" id="large-light-things-left" name="large-light-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Rechts</div>
-                <input type="number" class="form-control" id="large-light-things-right" name="large-light-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="large-heavy-things-left">Große, schwere Gegenstände<span class="required-indicator">*</span></label>
-            <label class="visually-hidden" for="large-heavy-things-right">Große, schwere Gegenstände</label>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Links</div>
-                <input type="number" class="form-control" id="large-heavy-things-left" name="large-heavy-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Rechts</div>
-                <input type="number" class="form-control" id="large-heavy-things-right" name="large-heavy-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-1">
-        <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="jtt-incorrectly-executed">Aufgaben trotz Zeitüberschreitung durchführbar.</label>
-        </div>
-        <div class="col-md-6">
-            <input type="checkbox" class="form-check-input" id="jtt-incorrectly-executed" name="jtt-incorrectly-executed" placeholder="">
-        </div>
-    </div>
-
-    <div class="row pt-4"><h5>Action Research Arm Test (ARAT)</h5></div>
-    
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="arat-left">Punktzahl<span class="required-indicator">*</span></label>
-            <label class="visually-hidden" for="arat-right">Punktzahl</label>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Links</div>
-                <input type="number" class="form-control" id="arat-left" name="arat-left" min="0" max="57" step="1" placeholder="0 - 57" required>
-                <div class="invalid-feedback field-validity">
-                    Ganzzahl zwischen 0 und 57 erwartet.
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 entry-value">
-            <div class="input-group has-validation">
-                <div class="input-group-text">Rechts</div>
-                <input type="number" class="form-control" id="arat-right" name="arat-right" min="0" max="57" step="1" placeholder="0 - 57" required>
-                <div class="invalid-feedback field-validity">
-                    Ganzzahl zwischen 0 und 57 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-3"><h5>Timed-Up-and-Go test (TUG)</h5></div>
-    
+        <!--
         <div class="row">
             <div class="col-md-6 entry-label">
-                <label for="tug-executed">ausgeführter TUG (aTUG)<span class="required-indicator">*</span></label>
+                <label class="form-check-label" for="ftf-incorrectly-executed">Kein korrektes Tippen möglich.</label>
             </div>
-            <div class="col-md-6 entry-value">
+            <div class="col-md-6">
+                <input type="checkbox" class="form-check-input" id="ftf-incorrectly-executed" name="ftf-incorrectly-executed" placeholder="">
+            </div>
+        </div>
+        -->
+
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-moto-test-mgf" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="maximum-gs-left">Maximale Griffkraft</label>
+                <label class="visually-hidden" for="maximum-gs-right">Maximale Griffkraft<span class="required-indicator">*</span></label>
+            </div>
+            <div class="col-md-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Links</div>
+                    <input type="number" class="form-control" id="maximum-gs-left" name="maximum-gs-left" min="0.0" max="160.0" step="any" placeholder="0.0 - 160.0" required>
+                    <div class="input-group-text">kPa</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 160.0 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Rechts</div>
+                    <input type="number" class="form-control" id="maximum-gs-right" name="maximum-gs-right" min="0.0" max="160.0" step="any" placeholder="0.0 - 160.0" required>
+                    <div class="input-group-text">kPa</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 160.0 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-5">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-11">
+                <h4>Motorische Testung: Komplexe Fähigkeiten</h4>
+            </div>
+        </div>
+
+
+        <div class="row pt-3">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-pegboard-test" checked>
+            </div>
+            <div class="col-lg-11">
+                <h5 class="h5">Purdue Pegboard Test</h5>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-pegboard-test-number" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="purdue-pegboard-left">Anzahl gesteckter Stäbchen</label>
+                <label class="visually-hidden" for="purdue-pegboard-right">Anzahl gesteckter Stäbchen</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Links</div>
+                    <input type="number" class="form-control" id="purdue-pegboard-left" name="purdue-pegboard-left" min="0" max="25" step="Any" placeholder="0.0 - 25.0" required>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 25.0 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Rechts</div>
+                    <input type="number" class="form-control" id="purdue-pegboard-right" name="purdue-pegboard-right" min="0" max="25" step="Any" placeholder="0.0 - 25.0" required>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 25.0 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-3">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-jtt" checked>
+            </div>
+            <div class="col-lg-11">
+                <p class="h5">Jebsen Taylor Hand Function Test (JTT)</p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-jtt-turn-cards" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="turn-cards-left">Karten drehen</label>
+                <label class="visually-hidden" for="turn-cards-right">Karten drehen</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Links</div>
+                    <input type="number" class="form-control" id="turn-cards-left" name="turn-cards-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Rechts</div>
+                    <input type="number" class="form-control" id="turn-cards-right" name="turn-cards-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-jtt-small-things" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="small-things-left">Kleine Gegenstände</label>
+                <label class="visually-hidden" for="small-things-right">Kleine Gegenstände</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Links</div>
+                    <input type="number" class="form-control" id="small-things-left" name="small-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Rechts</div>
+                    <input type="number" class="form-control" id="small-things-right" name="small-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-jtt-simulated-feeding" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="simulated-feeding-left">Simuliertes Füttern</label>
+                <label class="visually-hidden" for="simulated-feeding-right">Simuliertes Füttern</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Links</div>
+                    <input type="number" class="form-control" id="simulated-feeding-left" name="simulated-feeding-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Rechts</div>
+                    <input type="number" class="form-control" id="simulated-feeding-right" name="simulated-feeding-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-jtt-checkers" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="checkers-left">Damesteine stapeln</label>
+                <label class="visually-hidden" for="checkers-right">Damesteine stapeln</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Links</div>
+                    <input type="number" class="form-control" id="checkers-left" name="checkers-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Rechts</div>
+                    <input type="number" class="form-control" id="checkers-right" name="checkers-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-jtt-llo" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="large-light-things-left">Große, leichte Gegenstände</label>
+                <label class="visually-hidden" for="large-light-things-right">Große, leichte Gegenstände</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Links</div>
+                    <input type="number" class="form-control" id="large-light-things-left" name="large-light-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Rechts</div>
+                    <input type="number" class="form-control" id="large-light-things-right" name="large-light-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-jtt-lho" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="large-heavy-things-left">Große, schwere Gegenstände</label>
+                <label class="visually-hidden" for="large-heavy-things-right">Große, schwere Gegenstände</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Links</div>
+                    <input type="number" class="form-control" id="large-heavy-things-left" name="large-heavy-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Rechts</div>
+                    <input type="number" class="form-control" id="large-heavy-things-right" name="large-heavy-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label class="form-check-label" for="jtt-incorrectly-executed">Aufgaben trotz Zeitüberschreitung durchführbar</label>
+            </div>
+            <div class="col-lg-6">
+                <input type="checkbox" class="form-check-input" id="jtt-incorrectly-executed" name="jtt-incorrectly-executed" placeholder="">
+            </div>
+        </div>
+
+
+        <div class="row pt-4">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-arat" checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Action Research Arm Test (ARAT)</h5>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-arat-score" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="arat-left">Punktzahl</label>
+                <label class="visually-hidden" for="arat-right">Punktzahl</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Links</div>
+                    <input type="number" class="form-control" id="arat-left" name="arat-left" min="0" max="57" step="1" placeholder="0 - 57" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 57 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Rechts</div>
+                    <input type="number" class="form-control" id="arat-right" name="arat-right" min="0" max="57" step="1" placeholder="0 - 57" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 57 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-3">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-tug" checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Timed-Up-and-Go test (TUG)</h5>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-tug-executed" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="tug-executed">ausgeführter TUG (aTUG)</label>
+            </div>
+            <div class="col-lg-6">
                 <div class="input-group has-validation">
                     <input type="number" class="form-control" id="tug-executed" name="tug-executed" min="0" max="60" step="any" placeholder="0.0 - 60.0" required>
                     <div class="input-group-text">s</div>
@@ -666,30 +785,38 @@
                 </div>
             </div>
         </div>
-        
+
+
         <div class="row">
-            <div class="col-md-6 entry-label">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
                 <label class="form-check-label" for="tug-a-incorrectly-executed">aTUG trotz Zeitüberschreitung durchführbar.</label>
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6">
                 <input type="checkbox" class="form-check-input" id="tug-a-incorrectly-executed" name="tug-a-incorrectly-executed" placeholder="">
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6 entry-label">
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
                 <label class="form-check-label" for="tug-a-tools-required">aTUG mit Hilfmittel durchführbar.</label>
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6">
                 <input type="checkbox" class="form-check-input" id="tug-a-tools-required" name="tug-a-tools-required" placeholder="">
             </div>
         </div>
 
+
         <div class="row pt-1">
-            <div class="col-md-6 entry-label">
-                <label for="tug-imagined">vorgestellter TUG (vTUG)<span class="required-indicator">*</span></label>
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-tug-imagined" checked>
             </div>
-            <div class="col-md-6 entry-value">
+            <div class="col-lg-5">
+                <label for="tug-imagined">vorgestellter TUG (vTUG)</label>
+            </div>
+            <div class="col-lg-6 entry-value">
                 <div class="input-group has-validation">
                     <input type="number" class="form-control" id="tug-imagined" name="tug-imagined" min="0" max="60" step="any" placeholder="0.0 - 60.0" required>
                     <div class="input-group-text">s</div>
@@ -699,7 +826,9 @@
                 </div>
             </div>
         </div>
-        
+
+
+        <!--
         <div class="row">
             <div class="col-md-6 entry-label">
                 <label class="form-check-label" for="tug-v-not-executable">vTUG nicht durchführbar.</label>
@@ -708,628 +837,858 @@
                 <input type="checkbox" class="form-check-input" id="tug-v-not-executable" name="tug-v-not-executable" placeholder="">
             </div>
         </div>
-    </div>
-    
-    <div class="container pt-5">
+        -->
 
-    <div class="row pt-5">
-        <h4 class="mb-3">Motorische Testung: Kognitive Fähigkeiten</h4>
-    </div>
 
-    <div class="row">
-        <h5>Go/Nogo-Task</h5>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="go-nogo-block-count">Durchgeführte Blöcke</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <select class="form-select" name="go-nogo-block-count" id="go-nogo-block-count" required onchange="updateGoNogoBlockCount();">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="row pt-3">
-        <div class="col-md-6 entry-label">
-            <label for="go-nogo-correct-answer-time">Reaktionszeit korrekte Antwort<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <div class="input-group has-validation">
-                <input type="number" class="form-control" id="go-nogo-correct-answer-time" name="go-nogo-correct-answer-time" min="50.0" max="1200.0" step="any" placeholder="50.0 - 1200.0" required>
-                <div class="input-group-text">ms</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 50.0 und 1200.0 erwartet.
-                </div>
+        <div class="row pt-5">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-11">
+                <h4 class="mb-3">Motorische Testung: Kognitive Fähigkeiten</h4>
             </div>
         </div>
-    </div>
 
-    <div class="row pt-1">
-        <div class="col-md-6 entry-label">
-            <label for="go-nogo-total-errors">Anzahl Fehler insgesamt<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 60" required onchange="checkTotalErrors();">
-            <div class="invalid-feedback field-validity" id="go-nogo-total-errors-invalid-feedback">
-                Ganzzahl zwischen 0 und 60 erwartet.
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-go-nogo" checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Go/Nogo-Task</h5>
             </div>
         </div>
-    </div>
 
-    <div class="visually-hidden" id="go-nogo-error-display">
 
         <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="go-nogo-recognized-errors">Anzahl erkannte Fehler<span class="required-indicator">*</span></label>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-block-count">Durchgeführte Blöcke</label>
             </div>
-            <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" min="0" max="60" step="1" placeholder="0 - 60" required onchange="checkRecognizedErrors();">
-                <div class="invalid-feedback field-validity" id="go-nogo-recognized-errors-invalid-feedback">
-                    Ganzzahl zwischen 0 und 60 erwartet.
-                </div>
+            <div class="col-lg-6 entry-value">
+                <select class="form-select" name="go-nogo-block-count" id="go-nogo-block-count" required onchange="updateGoNogoBlockCount();">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
             </div>
         </div>
 
-        <div class="row visually-hidden" id="go-nogo-recognized-error-time-div">
-            <div class="col-md-6 entry-label">
-                <label for="go-nogo-recognized-error-time">Reaktionszeit erkannte Fehler<span class="required-indicator">*</span></label>
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-correct-answer-time">Reaktionszeit korrekte Antwort<span class="required-indicator">*</span></label>
             </div>
-            <div class="col-md-6 entry-value">
+            <div class="col-lg-6 entry-value">
                 <div class="input-group has-validation">
-                    <input type="number" class="form-control" id="go-nogo-recognized-error-time" name="go-nogo-recognized-error-time" min="50.0" max="800.0" step="any" placeholder="50.0 - 800.0" required disabled>
+                    <input type="number" class="form-control" id="go-nogo-correct-answer-time" name="go-nogo-correct-answer-time" min="50.0" max="1200.0" step="any" placeholder="50.0 - 1200.0" required>
                     <div class="input-group-text">ms</div>
                     <div class="invalid-feedback field-validity">
-                        Zahlenwert zwischen 50.0 und 800.0 erwartet.
+                        Zahlenwert zwischen 50.0 und 1200.0 erwartet.
                     </div>
                 </div>
             </div>
         </div>
 
-    </div>
 
-    <div class="row pt-1">
-        <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="go-nogo-incorrectly-executed">Go/Nogo-Task nicht korrekt durchführbar.</label>
-        </div>
-        <div class="col-md-6">
-            <input type="checkbox" class="form-check-input" id="go-nogo-incorrectly-executed" name="go-nogo-incorrectly-executed" placeholder="">
-        </div>
-    </div>
-
-    <div class="row pt-4"><h5>Cologne Apraxie Screening (KAS)</h5></div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kas-pantomime-bukko-facial">Pantomime: Bukko-Facial<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="kas-pantomime-bukko-facial" name="kas-pantomime-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 20 erwartet.
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-total-errors">Anzahl Fehler insgesamt<span class="required-indicator">*</span></label>
             </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kas-pantomime-arm-hand">Pantomime: Arm-Hand<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="kas-pantomime-arm-hand" name="kas-pantomime-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 20 erwartet.
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kas-imitation-bukko-facial">Imitation: Bukko-Facial<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="kas-imitation-bukko-facial" name="kas-imitation-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 20 erwartet.
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="kas-imitation-arm-hand">Imitation: Arm-Hand<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="kas-imitation-arm-hand" name="kas-imitation-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 20 erwartet.
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-2">
-        <div class="col-md-6 entry-label">
-            <label for="kas-sum">KAS Summe</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="kas-sum" name="kas-sum" disabled>
-        </div>
-    </div>
-
-</div>
-
-
-<div class="container pt-5">
-
-    <div class="row"><h4>Neuropsychologische/kognitive Testung</h4></div>
-
-    <div class="row"><h5>Kölner neuropsychologisches Screening für Schlaganfallpatienten (KöpSS)</h5></div>
-
-    <div class="row pt-2">
-        <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="kopss-applicable">Durchführbar</label>
-        </div>
-        <div class="col-md-6">
-            <input type="checkbox" class="form-check-input" aria-expanded="false" id="kopss-applicable" name="kopss-applicable" onchange="kopssUpdateElement();">
-        </div>
-    </div>
-
-    <div class="collapse collapsed pt-3" id="kopss-collapse">   
-
-        <div class="row">
-            <div class="col-md-6 entry-label">
-            </div>
-            <div class="col-md-6 entry-value">
-                <div style="text-align: center;">Gewichteter Domänenwert</div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="kopss-orientation">Orientierung<span class="required-indicator">*</span></label>
-            </div>
-            <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback field-validity">
-                    Ganzzahl zwischen 0 und 9 erwartet.
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 60" required onchange="checkTotalErrors();">
+                <div class="invalid-feedback field-validity" id="go-nogo-total-errors-invalid-feedback">
+                    Ganzzahl zwischen 0 und 60 erwartet.
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="kopss-speech">Sprache<span class="required-indicator">*</span></label>
-            </div>
-            <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback field-validity">
-                    Ganzzahl zwischen 0 und 18 erwartet.
+
+        <div class="visually-hidden" id="go-nogo-error-display">
+
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
+                    <label for="go-nogo-recognized-errors">Anzahl erkannte Fehler<span class="required-indicator">*</span></label>
                 </div>
+                <div class="col-lg-6 entry-value">
+                    <input type="number" class="form-control" id="go-nogo-recognized-errors" name="go-nogo-recognized-errors" min="0" max="60" step="1" placeholder="0 - 60" required onchange="checkRecognizedErrors();">
+                    <div class="invalid-feedback field-validity" id="go-nogo-recognized-errors-invalid-feedback">
+                        Ganzzahl zwischen 0 und 60 erwartet.
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row visually-hidden" id="go-nogo-recognized-error-time-div">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5 entry-label">
+                    <label for="go-nogo-recognized-error-time">Reaktionszeit erkannte Fehler<span class="required-indicator">*</span></label>
+                </div>
+                <div class="col-lg-6 entry-value">
+                    <div class="input-group has-validation">
+                        <input type="number" class="form-control" id="go-nogo-recognized-error-time" name="go-nogo-recognized-error-time" min="50.0" max="800.0" step="any" placeholder="50.0 - 800.0" required disabled>
+                        <div class="input-group-text">ms</div>
+                        <div class="invalid-feedback field-validity">
+                            Zahlenwert zwischen 50.0 und 800.0 erwartet.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label class="form-check-label" for="go-nogo-incorrectly-executed">Go/Nogo-Task nicht korrekt durchführbar.</label>
+            </div>
+            <div class="col-md-6">
+                <input type="checkbox" class="form-check-input" id="go-nogo-incorrectly-executed" name="go-nogo-incorrectly-executed" placeholder="">
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="kopss-praxie">Praxie<span class="required-indicator">*</span></label>
+
+        <div class="row pt-4">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kas" checked>
             </div>
-            <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback field-validity">
-                    Ganzzahl zwischen 0 und 18 erwartet.
-                </div>
+            <div class="col-lg-11">
+                <h5>Cologne Apraxie Screening (KAS)</h5>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="kopss-visual-spatial-performance">Visuell Räumliche Leistung<span class="required-indicator">*</span></label>
-            </div>
-            <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-visual-spatial-performance" name="kopss-visual-spatial-performance" min="0" max="17" step="1" placeholder="0 - 17" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback field-validity">
-                    Ganzzahl zwischen 0 und 17 erwartet.
-                </div>
-            </div>
-        </div>
 
         <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="kopss-calculating">Rechnen<span class="required-indicator">*</span></label>
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kas" checked>
             </div>
-            <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback field-validity">
-                    Ganzzahl zwischen 0 und 8 erwartet.
-                </div>
+            <div class="col-lg-5">
+                <label for="kas-pantomime-bukko-facial">Pantomime: Bukko-Facial</label>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="kopss-executive-performance">Exekutive Leistung/Aufmerksamkeit<span class="required-indicator">*</span></label>
-            </div>
-            <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
-                <div class="invalid-feedback field-validity">
-                    Ganzzahl zwischen 0 und 18 erwartet.
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="kopss-memory">Gedächtnis<span class="required-indicator">*</span></label>
-            </div>
-            <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse" disabled>
+            <div class="col-lg-5 entry-value">
+                <input type="number" class="form-control" id="kas-pantomime-bukko-facial" name="kas-pantomime-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
                 <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 20 erwartet.
                 </div>
             </div>
         </div>
 
-        <div class="row pt-2">
-            <div class="col-md-6 entry-label">
-                <label for="kopss-sum">KöpSS Summe</label>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kas-pah" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="kas-pantomime-arm-hand">Pantomime: Arm-Hand</label>
             </div>
             <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="kas-pantomime-arm-hand" name="kas-pantomime-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 20 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kas-ipf" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="kas-imitation-bukko-facial">Imitation: Bukko-Facial</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="kas-imitation-bukko-facial" name="kas-imitation-bukko-facial" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 20 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kas-iah" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="kas-imitation-arm-hand">Imitation: Arm-Hand</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="kas-imitation-arm-hand" name="kas-imitation-arm-hand" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kasSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 20 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-2">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="kas-sum">KAS Summe</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="kas-sum" name="kas-sum" disabled>
+            </div>
+        </div>
+
+
+        <div class="row pt-5">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-11">
+                <h4>Neuropsychologische/kognitive Testung</h4>
+            </div>
+        </div>
+
+
+        <div class="row pt-3">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kopss" checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Kölner neuropsychologisches Screening für Schlaganfallpatienten (KöpSS)</h5>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 entry-label">
+            </div>
+            <div class="col-lg-5 entry-label">
+            </div>
+            <div class="col-md-6 entry-value">
+                <div style="text-align: center;">Gewichteter Domänenwert</div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kopss-orientation" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="kopss-orientation">Orientierung</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="kopss-orientation" name="kopss-orientation" min="0" max="9" step="1" placeholder="0 - 9" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 9 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kopss-speech" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="kopss-speech">Sprache</label>
+            </div>
+            <div class="col-lg-6">
+                <input type="number" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 18 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kopss-praxie" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="kopss-praxie">Praxie</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="kopss-praxie" name="kopss-praxie" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 18 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kopss-vsp" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="kopss-visual-spatial-performance">Visuell Räumliche Leistung</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="kopss-visual-spatial-performance" name="kopss-visual-spatial-performance" min="0" max="17" step="1" placeholder="0 - 17" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 17 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kopss-calc" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="kopss-calculating">Rechnen</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="kopss-calculating" name="kopss-calculating" min="0" max="8" step="1" placeholder="0 - 8" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 8 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kopss-epa" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="kopss-executive-performance">Exekutive Leistung/Aufmerksamkeit</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 18 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kopss-memory" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="kopss-memory">Gedächtnis</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="kopss-memory" name="kopss-memory" min="0" max="20" step="1" placeholder="0 - 20" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 20 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+            </div>
+            <div class="col-lg-5">
+                <label for="kopss-sum">KöpSS Summe</label>
+            </div>
+            <div class="col-lg-6 entry-value">
                 <input type="number" class="form-control" id="kopss-sum" name="kopss-sum" disabled>
             </div>
         </div>
 
-        <div class="row pt-3">
-            <div class="col-md-6 entry-label">
-                <label for="kopss-affect">Affekt<span class="required-indicator">*</span></label>
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kopss-affect" checked>
             </div>
-            <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-affect" name="kopss-affect" min="0" max="9" step="1" placeholder="0 - 9" required data-inm-collapse-id="kopss-collapse" disabled>
+            <div class="col-lg-5">
+                <label for="kopss-affect">Affekt</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="kopss-affect" name="kopss-affect" min="0" max="9" step="1" placeholder="0 - 9" required data-inm-collapse-id="kopss-collapse">
                 <div class="invalid-feedback field-validity">
                     Ganzzahl zwischen 0 und 9 erwartet.
                 </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-kopss-bo" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="kopss-behavior-observation">Verhaltensbeobachtung</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="kopss-behavior-observation" name="kopss-behavior-observation" min="0" max="9" step="1" placeholder="0 - 9" required data-inm-collapse-id="kopss-collapse">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 9 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-3">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-acl-k" checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Aphasia Check Liste (short version, ACL-K)</h5>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-5">
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div style="text-align: center;">Transformierte Punktzahl</div>
+            </div>
+        </div>
+    
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-acl-k-reading" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="acl-k-loud-reading">Lautes Lesen</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="acl-k-loud-reading" name="acl-k-loud-reading" min="0.0" max="9.0" step="any" placeholder="0.0 - 9.0" required oninput="aclKSum();">
+                <div class="invalid-feedback field-validity">
+                    Zahlenwert zwischen 0.0 und 9.0 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-acl-k-cst" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="acl-k-color-form-test">Farb-Figur-Test</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="acl-k-color-form-test" name="acl-k-color-form-test" min="0" max="12" step="1" placeholder="0 - 12" required oninput="aclKSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 12 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-acl-k-st" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="acl-k-supermarket-task">Supermarktaufgabe</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="acl-k-supermarket-task" name="acl-k-supermarket-task" min="0" max="10" step="1" placeholder="0 - 10" required oninput="aclKSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 10 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-acl-k-communication" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="acl-k-communication-ability">Kommunikationsfähigkeit</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="acl-k-communication-ability" name="acl-k-communication-ability" min="0" max="9" step="1" placeholder="0 - 9" required oninput="aclKSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 9 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-2">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="acl-k-sum">ACL-K Summe</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="acl-k-sum" name="acl-k-sum" disabled>
+            </div>
+        </div>
+
+
+        <div class="row pt-4">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-bdi-ii" checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Beck Depression Inventory (BDI II)</h5>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6 entry-label">
-                <label for="kopss-behavior-observation">Verhaltensbeobachtung<span class="required-indicator">*</span></label>
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-bdi-ii-score" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="bdi-ii-score">Punktzahl</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="number" class="form-control" id="kopss-behavior-observation" name="kopss-behavior-observation" min="0" max="9" step="1" placeholder="0 - 9" required data-inm-collapse-id="kopss-collapse" disabled>
+                <input type="number" class="form-control" id="bdi-ii-score" name="bdi-ii-score" min="0" max="63" step="1" placeholder="0 - 63" required>
                 <div class="invalid-feedback field-validity">
-                    Ganzzahl zwischen 0 und 9 erwartet.
+                    Ganzzahl zwischen 0 und 63 erwartet.
                 </div>
             </div>
         </div>
 
-    </div>
 
-    <div class="row pt-4"><h5>Aphasia Check Liste (short version, ACL-K)</h5></div>
-    
-    <div class="row">
-            <div class="col-md-6 entry-label">
+        <div class="row pt-4">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-madrs" checked>
             </div>
-            <div class="col-md-6 entry-value">
-                <div style="text-align: center;">Transformierte Punktzahl</div>
-            </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="acl-k-loud-reading">Lautes Lesen<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="acl-k-loud-reading" name="acl-k-loud-reading" min="0.0" max="9.0" step="any" placeholder="0.0 - 9.0" required oninput="aclKSum();">
-            <div class="invalid-feedback field-validity">
-                Zahlenwert zwischen 0.0 und 9.0 erwartet.
+            <div class="col-lg-11">
+                <h5>Montgomery-Asberg Depression rating Scale (MADRS)</h5>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="acl-k-color-form-test">Farb-Figur-Test<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="acl-k-color-form-test" name="acl-k-color-form-test" min="0" max="12" step="1" placeholder="0 - 12" required oninput="aclKSum();">
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 12 erwartet.
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-madrs-score" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="madrs-score">Punktzahl</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="madrs-score" name="madrs-score" min="0" max="60" step="1" placeholder="0 - 60" required>
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 60 erwartet.
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="acl-k-supermarket-task">Supermarktaufgabe<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="acl-k-supermarket-task" name="acl-k-supermarket-task" min="0" max="10" step="1" placeholder="0 - 10" required oninput="aclKSum();">
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 10 erwartet.
+
+        <div class="row pt-4">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-demtect" checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>DemTect</h5>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="acl-k-communication-ability">Kommunikationsfähigkeit<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="acl-k-communication-ability" name="acl-k-communication-ability" min="0" max="9" step="1" placeholder="0 - 9" required oninput="aclKSum();">
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 9 erwartet.
+
+        <div class="row">
+            <div class="col-lg-1">
             </div>
-        </div>
-    </div>
-
-    <div class="row pt-2">
-        <div class="col-md-6 entry-label">
-            <label for="acl-k-sum">ACL-K Summe</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="acl-k-sum" name="acl-k-sum" disabled>
-        </div>
-    </div>
-
-    <div class="row pt-3"><h5>Beck Depression Inventory (BDI II)</h5></div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="bdi-ii-score">Punktzahl<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="bdi-ii-score" name="bdi-ii-score" min="0" max="63" step="1" placeholder="0 - 63" required>
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 63 erwartet.
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-3"><h5>Montgomery-Asberg Depression rating Scale (MADRS)</h5></div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="madrs-score">Punktzahl<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="madrs-score" name="madrs-score" min="0" max="60" step="1" placeholder="0 - 60" required>
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 60 erwartet.
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-3"><h5>DemTect</h5></div>
-    
-    <div class="row">
-            <div class="col-md-6 entry-label">
+            <div class="col-lg-5">
             </div>
             <div class="col-md-6 entry-value">
                 <div style="text-align: center;">Punkte laut Umrechnungstabelle</div>
             </div>
-     </div>
-    
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="demtect-wordlist">Wortliste<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="demtect-wordlist" name="demtect-wordlist" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 3 erwartet.
-            </div>
-        </div>
-    </div>
+         </div>
 
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="demtect-convert-numbers">Zahlen umwandeln<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="demtect-convert-numbers" name="demtect-convert-numbers" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 3 erwartet.
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="demtect-supermarket-task">Supermarktaufgabe<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="demtect-supermarket-task" name="demtect-supermarket-task" min="0" max="4" step="1" placeholder="0 - 4" required oninput="demtectSum();">
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 4 erwartet.
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="demtect-numbers-reverse">Zahlenfolge rückwärts<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="demtect-numbers-reverse" name="demtect-numbers-reverse" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 3 erwartet.
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="demtect-wordlist-recall">Erneute Abfrage der Wortliste<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="demtect-wordlist-recall" name="demtect-wordlist-recall" min="0" max="5" step="1" placeholder="0 - 5" required oninput="demtectSum();">
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 5 erwartet.
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-2">
-        <div class="col-md-6 entry-label">
-            <label for="demtect-sum">DemTect Summe</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="demtect-sum" name="demtect-sum" disabled>
-        </div>
-    </div>
-
-    <div class="row pt-3"><h5>Trail Making Test (TMT)</h5></div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="time-tmt-a">Zeit TMT A<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <div class="input-group has-validation">
-                <input type="number" class="form-control" id="time-tmt-a" name="time-tmt-a" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 150.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="tmt-a-incorrectly-executed">TMT A trotz Zeitüberschreitung durchführbar.</label>
-        </div>
-        <div class="col-md-6">
-            <input type="checkbox" class="form-check-input" id="tmt-a-incorrectly-executed" name="tmt-a-incorrectly-executed" placeholder="">
-        </div>
-    </div>
-
-    <div class="row pt-3">
-        <div class="col-md-6 entry-label">
-            <label for="time-tmt-b">Zeit TMT B<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <div class="input-group has-validation">
-                <input type="number" class="form-control" id="time-tmt-b" name="time-tmt-b" min="0.0" max="300.0" step="any" placeholder="0.0 - 300.0" required>
-                <div class="input-group-text">s</div>
-                <div class="invalid-feedback field-validity">
-                    Zahlenwert zwischen 0.0 und 300.0 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="tmt-b-incorrectly-executed">TMT B trotz Zeitüberschreitung durchführbar.</label>
-        </div>
-        <div class="col-md-6">
-            <input type="checkbox" class="form-check-input" id="tmt-b-incorrectly-executed" name="tmt-b-incorrectly-executed" placeholder="">
-        </div>
-    </div>
-
-</div>
-
-
-<div class="container pt-5">
-
-    <div class="row"><h4>Allgemeine Scores</h4></div>
-
-    <div class="row"><h5>Modified Rankin scale (mRS)</h5></div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="mrs-score">Punktzahl<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="mrs-score" name="mrs-score" min="0" max="6" step="1" placeholder="0 - 6" required>
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 6 erwartet.
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-3"><h5>EuroQol 5 (5Q-5D)</h5></div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="euroqol-code">Code aus Antworten<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="text" class="form-control" id="euroqol-code" name="euroqol-code" pattern="[1-5]{5}" placeholder="XXXXX mit X jeweils aus 1 - 5" required>
-            <div class="invalid-feedback field-validity">
-                Antwort-Code ist nicht korrekt. Erwartet sind 5 Nummern aus 1 - 5, z.B. 31235
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="euroqol-vas">Visuelle Analogskala (VAS)<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <div class="input-group has-validation">
-                <input type="number" class="form-control" id="euroqol-vas" name="euroqol-vas" min="0" max="100" step="1" placeholder="0 - 100" required>
-                <div class="input-group-text">%</div>
-                <div class="invalid-feedback field-validity">
-                    Ganzzahl zwischen 0 und 100 erwartet.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row pt-3"><h5>Anzahl Ausbildungsjahre</h5></div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label for="isced-value">Zahlenwert nach ISCED<span class="required-indicator">*</span></label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="number" class="form-control" id="isced-value" name="isced-value" min="0" max="6" step="1" placeholder="0 - 6" required>
-            <div class="invalid-feedback field-validity">
-                Ganzzahl zwischen 0 und 6 erwartet.
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="container pt-5">
-
-    <div class="row"><h4 class="mb-3">Weitere Diagnostik</h4></div>
-
-    <div class="row">
-        <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="additional-mrt">MRT</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="checkbox" class="form-check-input" id="additional-mrt" name="additional-mrt" placeholder="" onchange="mrtUpdateElement();">
-        </div>
-    </div>
-
-    <div class="collapse pt-3" id="mrt-collapse">
 
         <div class="row">
-            <div class="col-md-6 entry-label">
-                <label class="visually-hidden" for="additional-mrt-url">Link zu MRT-Dateien</label>
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-demtect-wordlist" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="demtect-wordlist">Wortliste</label>
             </div>
             <div class="col-md-6 entry-value">
-                <input type="url" class="form-control" id="additional-mrt-url" name="additional-mrt-url" placeholder="Link zu MRT Dateien" disabled>
+                <input type="number" class="form-control" id="demtect-wordlist" name="demtect-wordlist" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 3 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-demtect-cn" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="demtect-convert-numbers">Zahlen umwandeln</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="demtect-convert-numbers" name="demtect-convert-numbers" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 3 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-demtect-supermarket" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="demtect-supermarket-task">Supermarktaufgabe</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="demtect-supermarket-task" name="demtect-supermarket-task" min="0" max="4" step="1" placeholder="0 - 4" required oninput="demtectSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 4 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-demtect-nr" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="demtect-numbers-reverse">Zahlenfolge rückwärts</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="demtect-numbers-reverse" name="demtect-numbers-reverse" min="0" max="3" step="1" placeholder="0 - 3" required oninput="demtectSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 3 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-demtect-recall" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="demtect-wordlist-recall">Erneute Abfrage der Wortliste<span class="required-indicator">*</span></label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="demtect-wordlist-recall" name="demtect-wordlist-recall" min="0" max="5" step="1" placeholder="0 - 5" required oninput="demtectSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 5 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-2">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-5">
+                <label for="demtect-sum">DemTect Summe</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="demtect-sum" name="demtect-sum" disabled>
+            </div>
+        </div>
+
+
+        <div class="row pt-3">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-tmt" checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Trail Making Test (TMT)</h5>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-tmt-a" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="time-tmt-a">Zeit TMT A</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input type="number" class="form-control" id="time-tmt-a" name="time-tmt-a" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 150.0 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label class="form-check-label" for="tmt-a-incorrectly-executed">TMT A trotz Zeitüberschreitung durchführbar.</label>
+            </div>
+            <div class="col-lg-6">
+                <input type="checkbox" class="form-check-input" id="tmt-a-incorrectly-executed" name="tmt-a-incorrectly-executed" placeholder="">
+            </div>
+        </div>
+
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-tmt-b" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="time-tmt-b">Zeit TMT B</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input type="number" class="form-control" id="time-tmt-b" name="time-tmt-b" min="0.0" max="300.0" step="any" placeholder="0.0 - 300.0" required>
+                    <div class="input-group-text">s</div>
+                    <div class="invalid-feedback field-validity">
+                        Zahlenwert zwischen 0.0 und 300.0 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label class="form-check-label" for="tmt-b-incorrectly-executed">TMT B trotz Zeitüberschreitung durchführbar.</label>
+            </div>
+            <div class="col-lg-6">
+                <input type="checkbox" class="form-check-input" id="tmt-b-incorrectly-executed" name="tmt-b-incorrectly-executed" placeholder="">
+            </div>
+        </div>
+
+
+        <div class="row pt-5">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-11">
+                <h4>Allgemeine Scores</h4>
+            </div>
+        </div>
+
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-mrs" checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Modified Rankin scale (mRS)</h5>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-mrs-score" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="mrs-score">Punktzahl</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="mrs-score" name="mrs-score" min="0" max="6" step="1" placeholder="0 - 6" required>
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 6 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-euroqol" checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>EuroQol 5 (5Q-5D)</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-euroqol-code" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="euroqol-code">Code aus Antworten</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="text" class="form-control" id="euroqol-code" name="euroqol-code" pattern="[1-5]{5}" placeholder="XXXXX mit X jeweils aus 1 - 5" required>
+                <div class="invalid-feedback field-validity">
+                    Antwort-Code ist nicht korrekt. Erwartet sind 5 Nummern aus 1 - 5, z.B. 31235
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-euroqol-vas" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="euroqol-vas">Visuelle Analogskala (VAS)</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <div class="input-group has-validation">
+                    <input type="number" class="form-control" id="euroqol-vas" name="euroqol-vas" min="0" max="100" step="1" placeholder="0 - 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 100 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-3">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-education" checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Anzahl Ausbildungsjahre</h5>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-education-isced" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="isced-value">Zahlenwert nach ISCED</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="isced-value" name="isced-value" min="0" max="6" step="1" placeholder="0 - 6" required>
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 6 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-5">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-ad" checked>
+            </div>
+            <div class="col-lg-11">
+                <h4 class="mb-3">Weitere Diagnostik</h4>
+            </div>
+        </div>
+
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-ad-mrt" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="additional-mrt-url">MRT-Dateien</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="url" class="form-control" id="additional-mrt-url" name="additional-mrt-url" placeholder="Link zu MRT-Dateien" disabled>
                 <div class="invalid-feedback field-validity">
                     Gültige URL erwartet.
                 </div>
             </div>
         </div>
 
+
         <div class="row">
-            <div class="col-md-6 entry-value">
+            <div class="col-lg-1 form-switch">
             </div>
-            <div class="col-md-6 entry-label">
+            <div class="col-lg-5">
+            </div>
+            <div class="col-lg-6 entry-label">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="additional-mrt-resting-state" name="additional-mrt-resting-state" disabled>
                     <label class="form-check-label" for="additional-mrt-resting-state">
@@ -1339,10 +1698,13 @@
             </div>
         </div>
 
+
         <div class="row">
-            <div class="col-md-6 entry-value">
+            <div class="col-lg-1 form-switch">
             </div>
-            <div class="col-md-6 entry-label">
+            <div class="col-lg-5">
+            </div>
+            <div class="col-lg-6 entry-label">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="additional-mrt-tapping-task" name="additional-mrt-tapping-task" disabled>
                     <label class="form-check-label" for="additional-mrt-tapping-task">
@@ -1352,10 +1714,13 @@
             </div>
         </div>
 
+
         <div class="row">
-            <div class="col-md-6 entry-value">
+            <div class="col-lg-1 form-switch">
             </div>
-            <div class="col-md-6 entry-label">
+            <div class="col-lg-5">
+            </div>
+            <div class="col-lg-6 entry-label">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="additional-mrt-anatomical-representation" name="additional-mrt-anatomical-representation" disabled>
                     <label class="form-check-label" for="additional-mrt-anatomical-representation">
@@ -1365,10 +1730,13 @@
             </div>
         </div>
 
+
         <div class="row">
-            <div class="col-md-6 entry-value">
+            <div class="col-lg-1 form-switch">
             </div>
-            <div class="col-md-6 entry-label">
+            <div class="col-lg-5">
+            </div>
+            <div class="col-lg-6 entry-label">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="additional-mrt-dti" name="additional-mrt-dti" disabled>
                     <label class="form-check-label" for="additional-mrt-dti">
@@ -1378,111 +1746,97 @@
             </div>
         </div>
 
-    </div>
 
-    <div class="row pt-3">
-        <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="additional-eeg">EEG</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="checkbox" class="form-check-input" id="additional-eeg" name="additional-eeg" placeholder="" onchange="eegUpdateElement();">
-        </div>
-        <div class="col-md-6 entry-label">
-            <label class="form-check-label visually-hidden" for="additional-eeg-url">Link zu EEG Dateien</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="url" class="form-control" id="additional-eeg-url" name="additional-eeg-url" placeholder="Link zu EEG Dateien" disabled>
-            <div class="invalid-feedback field-validity">
-                Gültige URL erwartet.
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-ad-eeg" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="additional-eeg-url">EEG-Dateien</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="url" class="form-control" id="additional-eeg-url" name="additional-eeg-url" placeholder="Link zu EEG-Dateien" disabled>
+                <div class="invalid-feedback field-validity">
+                    Gültige URL erwartet.
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row pt-3">
-        <div class="col-md-6 entry-label">
-            <label class="form-check-label" for="additional-blood-sampling">Blutproben</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="checkbox" class="form-check-input" id="additional-blood-sampling" name="additional-blood-sampling" placeholder="" onchange="bloodSamplingUpdateElement();">
-        </div>
-        <div class="col-md-6 entry-label">
-            <label class="form-check-label visually-hidden" for="additional-blood-sampling-url">Link zu Blutproben Dateien</label>
-        </div>
-        <div class="col-md-6 entry-value">
-            <input type="url" class="form-control" id="additional-blood-sampling-url" name="additional-blood-sampling-url" placeholder="Link zu Blutproben Dateien" disabled>
-            <div class="invalid-feedback field-validity">
-                Gültige URL erwartet.
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input" type="checkbox" id="enable-ad-blood" checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="additional-blood-sampling-url">Blutproben-Dateien</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="url" class="form-control" id="additional-blood-sampling-url" name="additional-blood-sampling-url" placeholder="Link zu Blutproben-Dateien" disabled>
+                <div class="invalid-feedback field-validity">
+                    Gültige URL erwartet.
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
 
-<div class="container pt-5">
-    <div class="row">
-        <h5 class="mb-3"><label for="additional-remarks">Weitere Anmerkungen</label></h5>
-    </div>
-
-    <div class="row">
-        <textarea rows="4" id="additional-remarks" name="additional-remarks" placeholder="Optionale Bemerkungen"></textarea>
-    </div>
-</div>
-
-
-<div class="container pt-5">
-    <div class="row">
-        <button class="btn btn-secondary btn-lg btn-block" type="button" id="verify-button" onclick="updateFingerPrint();">Eingaben prüfen</button>
-    </div>
-</div>
-
-
-<div class="container pt-5 visually-hidden" id="content-validation-errors" style="color: #dc3545;">
-
-    <div class="row">
-        <h5><label for="content-validation-error-messages">Folgende Fehler müssen vor dem Speichern korrigiert werden:</label></h5>
-    </div>
-
-    <div class="row" id="content-validation-error-messages">
-    </div>
-</div>
-
-
-<div class="container pt-5">
-
-    <div class="row">
-        <div class="col-md-3">
-            <h5 class="mb-3"><label for="finger-print">Fingerabdruck</label></h5>
+        <div class="row pt-5">
+            <h5 class="mb-3"><label for="additional-remarks">Weitere Anmerkungen</label></h5>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div id="finger-print">
+
+
+        <div class="row">
+            <textarea rows="4" id="additional-remarks" name="additional-remarks" placeholder="Optionale Bemerkungen"></textarea>
+        </div>
+
+
+        <div class="row pt-5">
+            <button class="btn btn-secondary btn-lg btn-block" type="button" id="verify-button" onclick="updateFingerPrint();">Eingaben prüfen</button>
+        </div>
+
+
+        <div class="pt-5 visually-hidden" id="content-validation-errors" style="color: #dc3545;">
+            <div class="row">
+                <h5><label for="content-validation-error-messages">Folgende Fehler müssen vor dem Speichern korrigiert werden:</label></h5>
+            </div>
+
+            <div class="row" id="content-validation-error-messages">
             </div>
         </div>
+
+
+        <div class="row pt-5">
+            <div class="col-md-3">
+                <h5 class="mb-3"><label for="finger-print">Fingerabdruck</label></h5>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="finger-print">
+                </div>
+            </div>
+        </div>
+
+
+        <input type="text" id="hashed-string" name="hashed-string" style="visibility: hidden;" value="">
+        <input type="text" id="hash-value" name="hash-value" style="visibility: hidden;" value="">
+
+
+        <div class="row pt-5">
+            <h5 class="mb-3"><label for="signature-data">Signaturdaten</label></h5>
+        </div>
+
+        <div class="row">
+            <textarea rows="4" id="signature-data" name="signature-data" placeholder="Signaturdaten" disabled></textarea>
+        </div>
+
+
+        <div class="row pt-5">
+            <button class="btn btn-primary btn-lg btn-block" type="submit" id="submit-button" formaction="https://sfb1451.inm7.de/store-data" formmethod="post" disabled>Daten speichern</button>
+        </div>
     </div>
 
-    <input type="text" id="hashed-string" name="hashed-string" style="visibility: hidden;" value="">
-    <input type="text" id="hash-value" name="hash-value" style="visibility: hidden;" value="">
-
-</div>
-
-
-<div class="container pt-5 ">
-    <div class="row">
-        <h5 class="mb-3"><label for="signature-data">Signaturdaten</label></h5>
-    </div>
-
-    <div class="row">
-        <textarea rows="4" id="signature-data" name="signature-data" placeholder="Signaturdaten" disabled></textarea>
-    </div>
-</div>
-
-
-<div class="container pt-5">
-    <div class="row">
-        <button class="btn btn-primary btn-lg btn-block" type="submit" id="submit-button" formaction="https://sfb1451.inm7.de/store-data" formmethod="post" disabled>Daten speichern</button>
-    </div>
-</div>
 
 </form>
 
