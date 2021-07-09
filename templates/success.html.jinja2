@@ -18,10 +18,10 @@
             <p>{{ description }}</p>
         </div>
         <div class="col-md-3">
-            <p><label>L:</label>&nbsp;<span>{{ record[value + "-left"] }}</span></p>
+            <p><label>L:</label>&nbsp;<span>{{ (record[value + "-left"] or "--") }}</span></p>
         </div>
         <div class="col-md-3">
-            <p><label>R:</label>&nbsp;<span>{{ record[value + "-right"] }}</span></p>
+            <p><label>R:</label>&nbsp;<span>{{ (record[value + "-right"] or "--") }}</span></p>
         </div>
     </div>
 {%  endmacro %}
@@ -34,7 +34,7 @@
             <p>{{ description }}</p>
         </div>
         <div class="col-md-6">
-            {{ record[key] }}
+            {{ (record[key] or "--") }}
         </div>
     </div>
 
@@ -108,7 +108,6 @@
 
     {{ render_number("Händigkeitsfragebogen: Lateralitäts-Quotient", "laterality-quotient") }}
     {{ render_lr("Maximale Fingertipp-Geschwindigkeit (FTF)", "maximum-ftf") }}
-    {{ render_string("Kein korrektes Tippen möglich", checkbox_message(record["ftf-incorrectly-executed"])) }}
     {{ render_lr("Maximale Griffkraft", "maximum-gs") }}
 </div>
 
@@ -122,6 +121,7 @@
 
     {{ render_lr("Anzahl gesteckter Stäbchen", "purdue-pegboard") }}
 
+
     <div class="row pt-3"><h5>Jebsen Taylor Hand Function Test (JTT)</h5></div>
 
     {{ render_lr("Kleine Gegenstände", "turn-cards") }}
@@ -130,6 +130,7 @@
     {{ render_lr("Damesteine stapeln", "checkers") }}
     {{ render_lr("Große, leichte Gegenstände", "large-light-things") }}
     {{ render_lr("Große, schwere Gegenstände", "large-heavy-things") }}
+
     {{ render_string("Aufgaben trotz Zeitüberschreitung durchführbar", checkbox_message(record["jtt-incorrectly-executed"])) }}
 
     <div class="row pt-4"><h5>Action Research Arm Test (ARAT)</h5></div>
@@ -143,9 +144,11 @@
     {{ render_string("aTUG trotz Zeitüberschreitung durchführbar", checkbox_message(record["tug-a-incorrectly-executed"])) }}
     {{ render_string("aTUG mit Hilfmittel durchführbar", checkbox_message(record["tug-a-tools-required"])) }}
     {{ render_number("vorgestellter TUG (vTUG)", "tug-imagined") }}
-    {{ render_string("vTUG nicht durchführbar", checkbox_message(record["tug-v-not-executable"])) }}
 
-    <div class="container pt-5">
+</div>
+
+
+<div class="container pt-5">
 
     <div class="row pt-5">
         <h4 class="mb-3">Motorische Testung: Kognitive Fähigkeiten</h4>
@@ -159,11 +162,11 @@
     {{ render_number("Reaktionszeit korrekte Antwort", "go-nogo-correct-answer-time") }}
     {{ render_number("Anzahl Fehler insgesamt", "go-nogo-total-errors") }}
 
-    {% if record["go-nogo-total-errors"] > 0 %}
+    {% if (record["go-nogo-total-errors"] or 0) > 0 %}
 
         {{ render_number("Anzahl erkannte Fehler", "go-nogo-recognized-errors") }}
 
-        {% if record["go-nogo-recognized-errors"] > 0 %}
+        {% if (record["go-nogo-recognized-errors"] or 0) > 0 %}
 
             {{ render_number("Reaktionszeit erkannte Fehler", "go-nogo-recognized-error-time") }}
 
@@ -190,29 +193,23 @@
 
     <div class="row"><h5>Kölner neuropsychologisches Screening für Schlaganfallpatienten (KöpSS)</h5></div>
 
-    {{ render_string("KöpSS durchführbar", checkbox_message(record["kopss-applicable"])) }}
-
-    {%  if record["kopss-applicable"] == True %}
-
-        <div class="row">
-            <div class="col-md-6 entry-label">
-            </div>
-            <div class="col-md-6 entry-value">
-                <div style="text-align: center;">Gewichteter Domänenwert</div>
-            </div>
+    <div class="row">
+        <div class="col-md-6 entry-label">
         </div>
+        <div class="col-md-6 entry-value">
+            <div style="text-align: center;">Gewichteter Domänenwert</div>
+        </div>
+    </div>
 
-        {{ render_number("Orientierung", "kopss-orientation") }}
-        {{ render_number("Sprache", "kopss-speech") }}
-        {{ render_number("Praxie", "kopss-praxie") }}
-        {{ render_number("Visuell Räumliche Leistung", "kopss-visual-spatial-performance") }}
-        {{ render_number("Rechnen", "kopss-calculating") }}
-        {{ render_number("Exekutive Leistung/Aufmerksamkeit", "kopss-executive-performance") }}
-        {{ render_number("Gedächtnis", "kopss-memory") }}
-        {{ render_number("Affekt", "kopss-affect") }}
-        {{ render_number("Verhaltensbeobachtung", "kopss-behavior-observation") }}
-
-    {% endif %}
+    {{ render_number("Orientierung", "kopss-orientation") }}
+    {{ render_number("Sprache", "kopss-speech") }}
+    {{ render_number("Praxie", "kopss-praxie") }}
+    {{ render_number("Visuell Räumliche Leistung", "kopss-visual-spatial-performance") }}
+    {{ render_number("Rechnen", "kopss-calculating") }}
+    {{ render_number("Exekutive Leistung/Aufmerksamkeit", "kopss-executive-performance") }}
+    {{ render_number("Gedächtnis", "kopss-memory") }}
+    {{ render_number("Affekt", "kopss-affect") }}
+    {{ render_number("Verhaltensbeobachtung", "kopss-behavior-observation") }}
 
     <div class="row pt-4"><h5>Aphasia Check Liste (short version, ACL-K)</h5></div>
 
@@ -291,24 +288,15 @@
 
     <div class="row"><h4 class="mb-3">Weitere Diagnostik</h4></div>
 
-    {{ render_string("MRT", checkbox_message(record["additional-mrt"])) }}
-    {% if record["additional-mrt"] == True %}
-        {{ render_number("Link zu MRT-Dateien", "additional-mrt-url") }}
-        {{ render_number("Resting-State", "additional-mrt-resting-state") }}
-        {{ render_number("Tapping-Task", "additional-mrt-tapping-task") }}
-        {{ render_number("Anatomische Darstellung", "additional-mrt-anatomical-representation") }}
-        {{ render_number("DTI", "additional-mrt-dti") }}
-    {% endif %}
+    {{ render_number("Link zu MRT-Dateien", "additional-mrt-url") }}
+    {{ render_number("Resting-State", "additional-mrt-resting-state") }}
+    {{ render_number("Tapping-Task", "additional-mrt-tapping-task") }}
+    {{ render_number("Anatomische Darstellung", "additional-mrt-anatomical-representation") }}
+    {{ render_number("DTI", "additional-mrt-dti") }}
 
-    {{ render_string("EEG", checkbox_message(record["additional-eeg"])) }}
-    {% if record["additional-eeg"] == True %}
-        {{ render_number("Link zu EEG Dateien", "additional-eeg-url") }}
-    {% endif %}
+    {{ render_number("Link zu EEG Dateien", "additional-eeg-url") }}
 
-    {{ render_string("Blutproben", checkbox_message(record["additional-blood-sampling"])) }}
-    {% if record["additional-eeg"] == True %}
-        {{ render_number("Link zu Blutproben Dateien", "additional-blood-sampling-url") }}
-    {% endif %}
+    {{ render_number("Link zu Blutproben Dateien", "additional-blood-sampling-url") }}
 
 </div>
 
