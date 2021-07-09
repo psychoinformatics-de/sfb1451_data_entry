@@ -38,7 +38,7 @@
 
 <form class="needs-validation" id="entry-form" novalidate>
 
-    <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="1.0">
+    <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="2.0">
     <input type="text" id="data-entry-domain" name="data-entry-domain" style="visibility: hidden;" value="de.sfb1451.z03">
 
 
@@ -1200,9 +1200,9 @@
                 <label for="kopss-speech">Sprache</label>
             </div>
             <div class="col-lg-6">
-                <input type="number" class="form-control" id="kopss-speech" name="kopss-speech" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <input type="number" class="form-control" id="kopss-speech" name="kopss-speech" min="0.0" max="18.0" step="any" placeholder="0.0 - 18.0" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
                 <div class="invalid-feedback field-validity">
-                    Ganzzahl zwischen 0 und 18 erwartet.
+                    Wert zwischen 0.0 und 18.0 erwartet.
                 </div>
             </div>
         </div>
@@ -1280,9 +1280,9 @@
                 <label for="kopss-executive-performance">Exekutive Leistung/Aufmerksamkeit</label>
             </div>
             <div class="col-lg-6 entry-value">
-                <input type="number" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0" max="18" step="1" placeholder="0 - 18" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
+                <input type="number" class="form-control" id="kopss-executive-performance" name="kopss-executive-performance" min="0.0" max="18.0" step="any" placeholder="0.0 - 18.0" required oninput="kopssSum();" data-inm-collapse-id="kopss-collapse">
                 <div class="invalid-feedback field-validity">
-                    Ganzzahl zwischen 0 und 18 erwartet.
+                    Wert zwischen 0.0 und 18.0 erwartet.
                 </div>
             </div>
         </div>
