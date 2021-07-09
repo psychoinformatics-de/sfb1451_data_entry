@@ -2084,7 +2084,10 @@
 
 
         <div class="row pt-5">
+            <!--
             <button class="btn btn-primary btn-lg btn-block" type="submit" id="submit-button" formaction="https://sfb1451.inm7.de/store-data" formmethod="post" disabled>Daten speichern</button>
+            -->
+            <button class="btn btn-primary btn-lg btn-block" type="submit" id="submit-button" formaction="http://localhost:8000" formmethod="post" disabled>Daten speichern</button>
         </div>
     </div>
 
@@ -2312,22 +2315,6 @@
     let patientCollapseElement = document.getElementById("patient-collapse");
     let patientCollapse = null;
 
-    let kopssCheckboxElement = document.getElementById("kopss-applicable");
-    let kopssCollapseElement = document.getElementById("kopss-collapse");
-    let kopssCollapse = null;
-
-    let tugCheckboxElement = document.getElementById("tug-applicable");
-    let tugCollapseElement = document.getElementById("tug-collapse");
-    let tugCollapse = null;
-
-    let mrtCheckboxElement = document.getElementById("additional-mrt");
-    let mrtCollapseElement = document.getElementById("mrt-collapse");
-    let mrtCollapse = null;
-
-    let eegCheckboxElement = document.getElementById("additional-eeg");
-
-    let bloodSamplingCheckboxElement = document.getElementById("additional-blood-sampling");
-
     function hideCollapsable(obj, element) {
         if (obj !== null) {
             obj.hide();
@@ -2365,56 +2352,6 @@
         }
     }
 
-    function kopssUpdateElement() {
-        if (kopssCheckboxElement.checked === true) {
-            if (kopssCollapse === null)
-                kopssCollapse = new bootstrap.Collapse(kopssCollapseElement, {hide: true});
-            showCollapsable(kopssCollapse, kopssCollapseElement);
-        }
-        else {
-            hideCollapsable(kopssCollapse, kopssCollapseElement);
-        }
-    }
-
-    function tugUpdateElement() {
-        if (tugCheckboxElement.checked === true) {
-            if (tugCollapse === null)
-                tugCollapse = new bootstrap.Collapse(tugCollapseElement, {hide: true});
-            showCollapsable(tugCollapse, tugCollapseElement);
-        }
-        else {
-            hideCollapsable(tugCollapse, tugCollapseElement);
-        }
-    }
-
-    function mrtUpdateElement() {
-        if (mrtCheckboxElement.checked === true) {
-            if (mrtCollapse === null)
-                mrtCollapse = new bootstrap.Collapse(mrtCollapseElement, {hide: true});
-            showCollapsable(mrtCollapse, mrtCollapseElement);
-        }
-        else {
-            hideCollapsable(mrtCollapse, mrtCollapseElement);
-        }
-    }
-
-    function eegUpdateElement() {
-        if (eegCheckboxElement.checked === true) {
-            document.getElementById("additional-eeg-url").disabled = false;
-        }
-        else {
-            document.getElementById("additional-eeg-url").disabled = true;
-        }
-    }
-
-    function bloodSamplingUpdateElement() {
-        if (bloodSamplingCheckboxElement.checked === true) {
-            document.getElementById("additional-blood-sampling-url").disabled = false;
-        }
-        else {
-            document.getElementById("additional-blood-sampling-url").disabled = true;
-        }
-    }
 
 </script>
 
@@ -2543,7 +2480,6 @@
             ["laterality-quotient", getNumberContent],
             ["maximum-ftf-left", getNumberContent],
             ["maximum-ftf-right", getNumberContent],
-            ["ftf-incorrectly-executed", getCheckboxContent],
             ["maximum-gs-left", getNumberContent],
             ["maximum-gs-right", getNumberContent],
             ["purdue-pegboard-left", getNumberContent],
@@ -2567,7 +2503,6 @@
             ["tug-a-incorrectly-executed", getCheckboxContent],
             ["tug-a-tools-required", getCheckboxContent],
             ["tug-imagined", getNumberContent],
-            ["tug-v-not-executable", getCheckboxContent],
             ["go-nogo-block-count", getNumberContent],
             ["go-nogo-total-errors", getNumberContent],
             ["go-nogo-recognized-errors", getNumberContent],
@@ -2578,7 +2513,6 @@
             ["kas-pantomime-arm-hand", getNumberContent],
             ["kas-imitation-bukko-facial", getNumberContent],
             ["kas-imitation-arm-hand", getNumberContent],
-            ["kopss-applicable", getCheckboxContent],
             ["kopss-orientation", getNumberContent],
             ["kopss-speech", getNumberContent],
             ["kopss-praxie", getNumberContent],
@@ -2607,15 +2541,12 @@
             ["euroqol-code", getStringContent],
             ["euroqol-vas", getNumberContent],
             ["isced-value", getNumberContent],
-            ["additional-mrt", getCheckboxContent],
             ["additional-mrt-url", getStringContent],
             ["additional-mrt-resting-state", getCheckboxContent],
             ["additional-mrt-tapping-task", getCheckboxContent],
             ["additional-mrt-anatomical-representation", getCheckboxContent],
             ["additional-mrt-dti", getCheckboxContent],
-            ["additional-eeg", getCheckboxContent],
             ["additional-eeg-url", getStringContent],
-            ["additional-blood-sampling", getCheckboxContent],
             ["additional-blood-sampling-url", getStringContent],
             ["additional-remarks", getStringContent]
         ];
