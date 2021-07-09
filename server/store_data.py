@@ -25,7 +25,6 @@ required_fields = [
     "laterality-quotient",
     "maximum-ftf-left",
     "maximum-ftf-right",
-    "ftf-incorrectly-executed",
     "maximum-gs-left",
     "maximum-gs-right",
     "purdue-pegboard-left",
@@ -49,7 +48,6 @@ required_fields = [
     "tug-a-incorrectly-executed",
     "tug-a-tools-required",
     "tug-imagined",
-    "tug-v-not-executable",
     "go-nogo-block-count",
     "go-nogo-total-errors",
     "go-nogo-recognized-errors",
@@ -60,7 +58,15 @@ required_fields = [
     "kas-pantomime-arm-hand",
     "kas-imitation-bukko-facial",
     "kas-imitation-arm-hand",
-    "kopss-applicable",
+    "kopss-orientation",
+    "kopss-speech",
+    "kopss-praxie",
+    "kopss-visual-spatial-performance",
+    "kopss-calculating",
+    "kopss-executive-performance",
+    "kopss-memory",
+    "kopss-affect",
+    "kopss-behavior-observation",
     "acl-k-loud-reading",
     "acl-k-color-form-test",
     "acl-k-supermarket-task",
@@ -80,73 +86,75 @@ required_fields = [
     "euroqol-code",
     "euroqol-vas",
     "isced-value",
-    "additional-mrt",
     "additional-mrt-url",
     "additional-mrt-resting-state",
     "additional-mrt-tapping-task",
     "additional-mrt-anatomical-representation",
     "additional-mrt-dti",
-    "additional-eeg",
     "additional-eeg-url",
-    "additional-blood-sampling",
     "additional-blood-sampling-url",
     "additional-remarks",
     "hash-value"
 ]
 
 
-dependent_fields = {
-    "kopss-applicable": {
-        "off": [],
-        "on": [
-            "kopss-orientation",
-            "kopss-speech",
-            "kopss-praxie",
-            "kopss-visual-spatial-performance",
-            "kopss-calculating",
-            "kopss-executive-performance",
-            "kopss-memory",
-            "kopss-affect",
-            "kopss-behavior-observation",
-        ]
-    },
-    "subject-group": {
-        "healthy": [],
-        "patient": [
-            "patient-main-disease",
-            "patient-stronger-impacted-hand",
-            "patient-year-first-symptom",
-            "patient-month-first-symptom",
-            "patient-day-first-symptom",
-            "patient-year-diagnosis",
-            "patient-month-diagnosis",
-            "patient-day-diagnosis"
-        ]
-    }
-}
-
 # Browsers might not send disabled or empty input fields at all.
 # All entries in auto_fields will be added to the incoming field
 # set, if they are not present.
 auto_fields = {
-    "patient-main-disease": [""],
-    "patient-stronger-impacted-hand": [""],
+    "repeated-test": ["off"],
+
     "patient-year-first-symptom": [""],
     "patient-month-first-symptom": [""],
     "patient-day-first-symptom": [""],
     "patient-year-diagnosis": [""],
     "patient-month-diagnosis": [""],
     "patient-day-diagnosis": [""],
-    "repeated-test": ["off"],
-    "ftf-incorrectly-executed": ["off"],
+    "patient-main-disease": [""],
+    "patient-stronger-impacted-hand": [""],
+
+    "laterality-quotient": [""],
+    "maximum-ftf-left": [""],
+    "maximum-ftf-right": [""],
+
+    "maximum-gs-left": [""],
+    "maximum-gs-right": [""],
+    "purdue-pegboard-left": [""],
+    "purdue-pegboard-right": [""],
+    "turn-cards-left": [""],
+    "turn-cards-right": [""],
+    "small-things-left": [""],
+    "small-things-right": [""],
+    "simulated-feeding-left": [""],
+    "simulated-feeding-right": [""],
+    "checkers-left": [""],
+    "checkers-right": [""],
+    "large-light-things-left": [""],
+    "large-light-things-right": [""],
+    "large-heavy-things-left": [""],
+    "large-heavy-things-right": [""],
     "jtt-incorrectly-executed": ["off"],
+
+    "arat-left": [""],
+    "arat-right": [""],
+
+    "tug-executed": [""],
     "tug-a-incorrectly-executed": ["off"],
     "tug-a-tools-required": ["off"],
-    "tug-v-not-executable": ["off"],
-    "go-nogo-incorrectly-executed": ["off"],
+    "tug-imagined": [""],
+
+    "go-nogo-block-count": ["1"],
+    "go-nogo-total-errors": [""],
     "go-nogo-recognized-errors": [""],
+    "go-nogo-correct-answer-time": [""],
     "go-nogo-recognized-error-time": [""],
-    "kopss-applicable": ["off"],
+    "go-nogo-incorrectly-executed": ["off"],
+
+    "kas-pantomime-bukko-facial": [""],
+    "kas-pantomime-arm-hand": [""],
+    "kas-imitation-bukko-facial": [""],
+    "kas-imitation-arm-hand": [""],
+
     "kopss-orientation": [""],
     "kopss-speech": [""],
     "kopss-praxie": [""],
@@ -156,21 +164,44 @@ auto_fields = {
     "kopss-memory": [""],
     "kopss-affect": [""],
     "kopss-behavior-observation": [""],
+
+    "acl-k-loud-reading": [""],
+    "acl-k-color-form-test": [""],
+    "acl-k-supermarket-task": [""],
+    "acl-k-communication-ability": [""],
+
+    "bdi-ii-score": [""],
+    "madrs-score": [""],
+
+    "demtect-wordlist": [""],
+    "demtect-convert-numbers": [""],
+    "demtect-supermarket-task": [""],
+    "demtect-numbers-reverse": [""],
+    "demtect-wordlist-recall": [""],
+
+    "time-tmt-a": [""],
     "tmt-a-incorrectly-executed": ["off"],
+    "time-tmt-b": [""],
     "tmt-b-incorrectly-executed": ["off"],
-    "additional-mrt": ["off"],
+
+    "mrs-score": [""],
+    "euroqol-code": [""],
+    "euroqol-vas": [""],
+    "isced-value": [""],
+
     "additional-mrt-url": [""],
     "additional-mrt-resting-state": ["off"],
     "additional-mrt-tapping-task": ["off"],
     "additional-mrt-anatomical-representation": ["off"],
     "additional-mrt-dti": ["off"],
-    "additional-eeg": ["off"],
+
     "additional-eeg-url": [""],
-    "additional-blood-sampling": ["off"],
+
     "additional-blood-sampling-url": [""],
+
     "additional-remarks": [""],
+
     "signature-data": [""],
-    "hash-value": [""]
 }
 
 
@@ -300,7 +331,6 @@ hashed_content_fields = [
     ["laterality-quotient", get_number_content],
     ["maximum-ftf-left", get_number_content],
     ["maximum-ftf-right", get_number_content],
-    ["ftf-incorrectly-executed", get_checkbox_content],
     ["maximum-gs-left", get_number_content],
     ["maximum-gs-right", get_number_content],
     ["purdue-pegboard-left", get_number_content],
@@ -324,7 +354,6 @@ hashed_content_fields = [
     ["tug-a-incorrectly-executed", get_checkbox_content],
     ["tug-a-tools-required", get_checkbox_content],
     ["tug-imagined", get_number_content],
-    ["tug-v-not-executable", get_checkbox_content],
     ["go-nogo-block-count", get_number_content],
     ["go-nogo-total-errors", get_number_content],
     ["go-nogo-recognized-errors", get_number_content],
@@ -335,7 +364,6 @@ hashed_content_fields = [
     ["kas-pantomime-arm-hand", get_number_content],
     ["kas-imitation-bukko-facial", get_number_content],
     ["kas-imitation-arm-hand", get_number_content],
-    ["kopss-applicable", get_checkbox_content],
     ["kopss-orientation", get_number_content],
     ["kopss-speech", get_number_content],
     ["kopss-praxie", get_number_content],
@@ -364,15 +392,12 @@ hashed_content_fields = [
     ["euroqol-code", get_string_content],
     ["euroqol-vas", get_number_content],
     ["isced-value", get_number_content],
-    ["additional-mrt", get_checkbox_content],
     ["additional-mrt-url", get_string_content],
     ["additional-mrt-resting-state", get_checkbox_content],
     ["additional-mrt-tapping-task", get_checkbox_content],
     ["additional-mrt-anatomical-representation", get_checkbox_content],
     ["additional-mrt-dti", get_checkbox_content],
-    ["additional-eeg", get_checkbox_content],
     ["additional-eeg-url", get_string_content],
-    ["additional-blood-sampling", get_checkbox_content],
     ["additional-blood-sampling-url", get_string_content],
     ["additional-remarks", get_string_content]
 ]
@@ -413,6 +438,7 @@ field_value_fetcher = {
     "sex": get_string_value,
     "date-of-test": get_string_value,
     "repeated-test": get_checkbox_value,
+    "subject-group": get_string_value,
     "patient-year-first-symptom": get_string_value,
     "patient-month-first-symptom": get_string_value,
     "patient-day-first-symptom": get_string_value,
@@ -424,7 +450,6 @@ field_value_fetcher = {
     "laterality-quotient": get_int_value,
     "maximum-ftf-left": get_float_value,
     "maximum-ftf-right": get_float_value,
-    "ftf-incorrectly-executed": get_checkbox_value,
     "maximum-gs-left": get_float_value,
     "maximum-gs-right": get_float_value,
     "purdue-pegboard-left": get_float_value,
@@ -538,6 +563,9 @@ def application(environ, start_response):
         posted_data_string = "\n".join(
             [f"{key}: {value}" for key, value in entered_data.items()])
 
+        import sys
+        print(posted_data_string, file=sys.stderr)
+
         # Check single results
         for value in entered_data.values():
             assert isinstance(value, list)
@@ -552,7 +580,13 @@ def application(environ, start_response):
         local_hash_string = get_canonic_content_string(entered_data)
         if local_hash_string != entered_data["hashed-string"][0]:
             status = "400 BAD REQUEST"
-            output = ["Hashed string does not match submitted values".encode("utf-8")]
+            output = [
+                "Local hash input-string does not match submitted values\n".encode("utf-8"),
+                ("LOCAL: " + local_hash_string + "\n").encode(),
+                ("SENT:  " + entered_data["hashed-string"][0] + "\n").encode(),
+                #(hashlib.sha256(local_hash_string.encode()).hexdigest() + "\n").encode(),
+                #f"==: {local_hash_string == entered_data['hashed-string'][0]}\n".encode()
+            ]
             output_length = sum([len(line) for line in output])
             response_headers = [('Content-type', 'text/plain; charset=utf-8'),
                                 ('Content-Length', str(output_length))]
@@ -576,12 +610,6 @@ def application(environ, start_response):
         for key in required_fields:
             # This will throw an error, if the key is not available
             json_object[key] = get_field_value(entered_data, key)
-
-        # Check for dependent keys:
-        for controlling_variable in dependent_fields:
-            control_value = entered_data[controlling_variable][0]
-            for key in dependent_fields[controlling_variable][control_value]:
-                json_object[key] = get_field_value(entered_data, key)
 
         time_stamp = time.time()
 
