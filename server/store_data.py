@@ -133,14 +133,14 @@ auto_fields = {
     "large-light-things-right": [""],
     "large-heavy-things-left": [""],
     "large-heavy-things-right": [""],
-    "jtt-incorrectly-executed": [""],
+    "jtt-incorrectly-executed": ["off"],
 
     "arat-left": [""],
     "arat-right": [""],
 
     "tug-executed": [""],
-    "tug-a-incorrectly-executed": [""],
-    "tug-a-tools-required": [""],
+    "tug-a-incorrectly-executed": ["off"],
+    "tug-a-tools-required": ["off"],
     "tug-imagined": [""],
 
     "go-nogo-block-count": [""],
@@ -148,7 +148,7 @@ auto_fields = {
     "go-nogo-recognized-errors": [""],
     "go-nogo-correct-answer-time": [""],
     "go-nogo-recognized-error-time": [""],
-    "go-nogo-incorrectly-executed": [""],
+    "go-nogo-incorrectly-executed": ["off"],
 
     "kas-pantomime-bukko-facial": [""],
     "kas-pantomime-arm-hand": [""],
@@ -180,9 +180,9 @@ auto_fields = {
     "demtect-wordlist-recall": [""],
 
     "time-tmt-a": [""],
-    "tmt-a-incorrectly-executed": [""],
+    "tmt-a-incorrectly-executed": ["off"],
     "time-tmt-b": [""],
-    "tmt-b-incorrectly-executed": [""],
+    "tmt-b-incorrectly-executed": ["off"],
 
     "mrs-score": [""],
     "euroqol-code": [""],
@@ -190,10 +190,10 @@ auto_fields = {
     "isced-value": [""],
 
     "additional-mrt-url": [""],
-    "additional-mrt-resting-state": [""],
-    "additional-mrt-tapping-task": [""],
-    "additional-mrt-anatomical-representation": [""],
-    "additional-mrt-dti": [""],
+    "additional-mrt-resting-state": ["off"],
+    "additional-mrt-tapping-task": ["off"],
+    "additional-mrt-anatomical-representation": ["off"],
+    "additional-mrt-dti": ["off"],
 
     "additional-eeg-url": [""],
 

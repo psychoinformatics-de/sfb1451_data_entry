@@ -767,7 +767,7 @@
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-jtt-incorrect"
-                       data-inm-controlled-inputs="jtt-incorrectly-executed"
+                       data-inm-controlled-inputs="jtt-incorrectly-executed;jtt-incorrectly-executed-valid"
                        checked>
             </div>
             <div class="col-lg-5">
@@ -775,6 +775,7 @@
             </div>
             <div class="col-lg-6">
                 <input type="checkbox" class="form-check-input" id="jtt-incorrectly-executed" name="jtt-incorrectly-executed" placeholder="">
+                <input type="text" id="jtt-incorrectly-executed-valid" name="jtt-incorrectly-executed-valid" style="visibility: hidden;" value="true">
             </div>
         </div>
 
@@ -847,7 +848,7 @@
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-tug-executed"
-                       data-inm-controlled-inputs="tug-executed;tug-a-incorrectly-executed;tug-a-tools-required"
+                       data-inm-controlled-inputs="tug-executed;tug-a-incorrectly-executed;tug-a-tools-required;tug-a-incorrectly-executed-valid;tug-a-tools-required-valid"
                        checked>
             </div>
             <div class="col-lg-5">
@@ -872,6 +873,7 @@
             </div>
             <div class="col-lg-6">
                 <input type="checkbox" class="form-check-input" id="tug-a-incorrectly-executed" name="tug-a-incorrectly-executed" placeholder="">
+                <input type="text" id="tug-a-incorrectly-executed-valid" name="tug-a-incorrectly-executed-valid" style="visibility: hidden;" value="true">
             </div>
         </div>
 
@@ -883,6 +885,7 @@
             </div>
             <div class="col-lg-6">
                 <input type="checkbox" class="form-check-input" id="tug-a-tools-required" name="tug-a-tools-required" placeholder="">
+                <input type="text" id="tug-a-tools-required-valid" name="tug-a-tools-required-valid" style="visibility: hidden;" value="true">
             </div>
         </div>
 
@@ -935,7 +938,7 @@
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-go-nogo"
-                       data-inm-controlled-inputs="go-nogo-block-count;go-nogo-correct-answer-time;go-nogo-total-errors;go-nogo-recognized-errors;go-nogo-recognized-error-time;go-nogo-incorrectly-executed"
+                       data-inm-controlled-inputs="go-nogo-block-count;go-nogo-correct-answer-time;go-nogo-total-errors;go-nogo-recognized-errors;go-nogo-recognized-error-time;go-nogo-incorrectly-executed;;go-nogo-incorrectly-executed-valid"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1035,6 +1038,7 @@
             </div>
             <div class="col-md-6">
                 <input type="checkbox" class="form-check-input" id="go-nogo-incorrectly-executed" name="go-nogo-incorrectly-executed" placeholder="">
+                <input type="text" id="go-nogo-incorrectly-executed-valid" name="go-nogo-incorrectly-executed-valid" style="visibility: hidden;" value="true">
             </div>
         </div>
 
@@ -2106,7 +2110,10 @@
 
 
         <div class="row pt-5">
+            <!--
             <button class="btn btn-primary btn-lg btn-block" type="submit" id="submit-button" formaction="https://sfb1451.inm7.de/store-data" formmethod="post" disabled>Daten speichern</button>
+            -->
+            <button class="btn btn-primary btn-lg btn-block" type="submit" id="submit-button" formaction="http://localhost:8000" formmethod="post" disabled>Daten speichern</button>
         </div>
     </div>
 
