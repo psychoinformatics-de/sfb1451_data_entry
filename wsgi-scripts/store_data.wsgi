@@ -190,10 +190,10 @@ auto_fields = {
     "isced-value": [""],
 
     "additional-mrt-url": [""],
-    "additional-mrt-resting-state": ["off"],
-    "additional-mrt-tapping-task": ["off"],
-    "additional-mrt-anatomical-representation": ["off"],
-    "additional-mrt-dti": ["off"],
+    "additional-mrt-resting-state": [""],
+    "additional-mrt-tapping-task": [""],
+    "additional-mrt-anatomical-representation": [""],
+    "additional-mrt-dti": [""],
 
     "additional-eeg-url": [""],
 
