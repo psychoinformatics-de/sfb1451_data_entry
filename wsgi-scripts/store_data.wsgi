@@ -133,22 +133,22 @@ auto_fields = {
     "large-light-things-right": [""],
     "large-heavy-things-left": [""],
     "large-heavy-things-right": [""],
-    "jtt-incorrectly-executed": ["off"],
+    "jtt-incorrectly-executed": [""],
 
     "arat-left": [""],
     "arat-right": [""],
 
     "tug-executed": [""],
-    "tug-a-incorrectly-executed": ["off"],
-    "tug-a-tools-required": ["off"],
+    "tug-a-incorrectly-executed": [""],
+    "tug-a-tools-required": [""],
     "tug-imagined": [""],
 
-    "go-nogo-block-count": ["1"],
+    "go-nogo-block-count": [""],
     "go-nogo-total-errors": [""],
     "go-nogo-recognized-errors": [""],
     "go-nogo-correct-answer-time": [""],
     "go-nogo-recognized-error-time": [""],
-    "go-nogo-incorrectly-executed": ["off"],
+    "go-nogo-incorrectly-executed": [""],
 
     "kas-pantomime-bukko-facial": [""],
     "kas-pantomime-arm-hand": [""],
@@ -180,9 +180,9 @@ auto_fields = {
     "demtect-wordlist-recall": [""],
 
     "time-tmt-a": [""],
-    "tmt-a-incorrectly-executed": ["off"],
+    "tmt-a-incorrectly-executed": [""],
     "time-tmt-b": [""],
-    "tmt-b-incorrectly-executed": ["off"],
+    "tmt-b-incorrectly-executed": [""],
 
     "mrs-score": [""],
     "euroqol-code": [""],
@@ -190,10 +190,10 @@ auto_fields = {
     "isced-value": [""],
 
     "additional-mrt-url": [""],
-    "additional-mrt-resting-state": ["off"],
-    "additional-mrt-tapping-task": ["off"],
-    "additional-mrt-anatomical-representation": ["off"],
-    "additional-mrt-dti": ["off"],
+    "additional-mrt-resting-state": [""],
+    "additional-mrt-tapping-task": [""],
+    "additional-mrt-anatomical-representation": [""],
+    "additional-mrt-dti": [""],
 
     "additional-eeg-url": [""],
 
@@ -245,7 +245,8 @@ def add_file_to_dataset(dataset_root: Path, file: Path, home: Path):
 def checkbox_message(value):
     return {
         True: "ja",
-        False: "nein"
+        False: "nein",
+        None: "--"
     }[value]
 
 
@@ -293,12 +294,11 @@ def get_string_content(_: str, field_content: List[str]) -> str:
 
 
 def get_checkbox_content(field_name: str, field_content: List[str]) -> str:
-    if field_content[0] == "off":
-        return "False"
-    elif field_content[0] == "on":
-        return "True"
-    raise ValueError(
-        f"illegal value for checkbox field {field_name}: {field_content[0]}")
+    return {
+        "": "",
+        "off": "False",
+        "on": "True"
+    }[field_content[0]]
 
 
 def get_number_content(_: str, field_content: List[str]) -> str:
@@ -424,7 +424,8 @@ def get_float_value(value: str):
 def get_checkbox_value(value: str):
     return {
         "on": True,
-        "off": False
+        "off": False,
+        "": None
     }[value]
 
 

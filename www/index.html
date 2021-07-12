@@ -494,7 +494,7 @@
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-pegboard-test"
-                       data-inm-switch-group="enable-pegboard-test-number"
+                       data-inm-controlled-inputs="purdue-pegboard-left;purdue-pegboard-right"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -505,11 +505,13 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
+                <!--
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-pegboard-test-number"
                        data-inm-controlled-inputs="purdue-pegboard-left;purdue-pegboard-right"
                        checked>
+                -->
             </div>
             <div class="col-lg-5">
                 <label for="purdue-pegboard-left">Anzahl gesteckter Stäbchen</label>
@@ -541,7 +543,7 @@
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-jtt"
-                       data-inm-switch-group="enable-jtt-turn-cards;enable-jtt-small-things;enable-jtt-simulated-feeding;enable-jtt-checkers;enable-jtt-llo;enable-jtt-lho"
+                       data-inm-switch-group="enable-jtt-turn-cards;enable-jtt-small-things;enable-jtt-simulated-feeding;enable-jtt-checkers;enable-jtt-llo;enable-jtt-lho;enable-jtt-incorrect"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -761,7 +763,13 @@
 
 
         <div class="row pt-1">
-            <div class="col-lg-1"></div>
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input"
+                       type="checkbox"
+                       id="enable-jtt-incorrect"
+                       data-inm-controlled-inputs="jtt-incorrectly-executed"
+                       checked>
+            </div>
             <div class="col-lg-5">
                 <label class="form-check-label" for="jtt-incorrectly-executed">Aufgaben trotz Zeitüberschreitung durchführbar</label>
             </div>
@@ -776,7 +784,7 @@
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-arat"
-                       data-inm-switch-group="enable-arat-score"
+                       data-inm-controlled-inputs="arat-left;arat-right"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -787,11 +795,13 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
+                <!--
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-arat-score"
                        data-inm-controlled-inputs="arat-left;arat-right"
                        checked>
+                 -->
             </div>
             <div class="col-lg-5">
                 <label for="arat-left">Punktzahl</label>
@@ -1481,7 +1491,7 @@
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-bdi-ii"
-                       data-inm-switch-group="enable-bdi-ii-score"
+                       data-inm-controlled-inputs="bdi-ii-score"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1492,11 +1502,13 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
+                <!--
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-bdi-ii-score"
                        data-inm-controlled-inputs="bdi-ii-score"
                        checked>
+                -->
             </div>
             <div class="col-lg-5">
                 <label for="bdi-ii-score">Punktzahl</label>
@@ -1515,7 +1527,7 @@
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-madrs"
-                       data-inm-switch-group="enable-madrs-score"
+                       data-inm-controlled-inputs="madrs-score"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1526,11 +1538,13 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
+                <!--
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-madrs-score"
                        data-inm-controlled-inputs="madrs-score"
                        checked>
+                -->
             </div>
             <div class="col-lg-5">
                 <label for="madrs-score">Punktzahl</label>
@@ -1776,7 +1790,7 @@
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-mrs"
-                       data-inm-switch-group="enable-mrs-score"
+                       data-inm-controlled-inputs="mrs-score"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1787,11 +1801,13 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
+                <!--
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-mrs-score"
                        data-inm-controlled-inputs="mrs-score"
                        checked>
+                -->
             </div>
             <div class="col-lg-5">
                 <label for="mrs-score">Punktzahl</label>
@@ -1810,7 +1826,7 @@
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-euroqol"
-                       data-inm-switch-group="enable-euroqol-code;enable-euroqol-vas"
+                       data-inm-controlled-inputs="euroqol-code;euroqol-vas"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1821,11 +1837,13 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
+                <!--
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-euroqol-code"
                        data-inm-controlled-inputs="euroqol-code"
                        checked>
+                -->
             </div>
             <div class="col-lg-5">
                 <label for="euroqol-code">Code aus Antworten</label>
@@ -1841,11 +1859,13 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
+                <!--
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-euroqol-vas"
                        data-inm-controlled-inputs="euroqol-vas"
                        checked>
+                -->
             </div>
             <div class="col-lg-5">
                 <label for="euroqol-vas">Visuelle Analogskala (VAS)</label>
@@ -1867,7 +1887,7 @@
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-education"
-                       data-inm-switch-group="enable-education-isced"
+                       data-inm-controlled-inputs="isced-value"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1878,11 +1898,13 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
+                <!--
                 <input class="form-check-input"
                        type="checkbox"
                        id="enable-education-isced"
                        data-inm-controlled-inputs="isced-value"
                        checked>
+                -->
             </div>
             <div class="col-lg-5">
                 <label for="isced-value">Zahlenwert nach ISCED</label>
@@ -2428,6 +2450,9 @@
 
     function getCheckboxContent(elementId) {
         let element = document.getElementById(elementId);
+        if (element.disabled === true)
+            return "";
+
         if (element.checked === true) {
             return "True";
         }
@@ -2436,6 +2461,10 @@
 
     function getNumberContent(elementId) {
         let element = document.getElementById(elementId);
+
+        if (element.disabled === true)
+            return "";
+
         let value = parseFloat(element.value);
         if (isNaN(value))
             return "";
@@ -2666,18 +2695,11 @@
     let groupLeaderIds = [
         "enable-acl-k",
         "enable-ad",
-        "enable-arat",
-        "enable-bdi-ii",
         "enable-demtect",
-        "enable-education",
-        "enable-euroqol",
         "enable-jtt",
         "enable-kas",
         "enable-kopss",
-        "enable-madrs",
         "enable-moto-test",
-        "enable-mrs",
-        "enable-pegboard-test",
         "enable-tmt",
         "enable-tug"
     ];
@@ -2711,16 +2733,15 @@
         "enable-ad-blood",
         "enable-ad-eeg",
         "enable-ad-mrt",
-        "enable-arat-score",
-        "enable-bdi-ii-score",
+        "enable-arat",
+        "enable-bdi-ii",
         "enable-demtect-cn",
         "enable-demtect-nr",
         "enable-demtect-recall",
         "enable-demtect-supermarket",
         "enable-demtect-wordlist",
-        "enable-education-isced",
-        "enable-euroqol-code",
-        "enable-euroqol-vas",
+        "enable-education",
+        "enable-euroqol",
         "enable-go-nogo",
         "enable-jtt-checkers",
         "enable-jtt-lho",
@@ -2728,6 +2749,7 @@
         "enable-jtt-simulated-feeding",
         "enable-jtt-small-things",
         "enable-jtt-turn-cards",
+        "enable-jtt-incorrect",
         "enable-kas-iah",
         "enable-kas-ipf",
         "enable-kas-pah",
@@ -2741,12 +2763,12 @@
         "enable-kopss-praxie",
         "enable-kopss-speech",
         "enable-kopss-vsp",
-        "enable-madrs-score",
+        "enable-madrs",
         "enable-moto-test-ftf",
         "enable-moto-test-lat",
         "enable-moto-test-mgf",
-        "enable-mrs-score",
-        "enable-pegboard-test-number",
+        "enable-mrs",
+        "enable-pegboard-test",
         "enable-tmt-a",
         "enable-tmt-b",
         "enable-tug-executed",
