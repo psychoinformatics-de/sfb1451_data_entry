@@ -205,6 +205,26 @@ auto_fields = {
 }
 
 
+optional_checkbox_fields = [
+    "jtt-incorrectly-executed",
+    "tug-a-incorrectly-executed",
+    "tug-a-tools-required",
+    "go-nogo-incorrectly-executed",
+    "tmt-a-incorrectly-executed",
+    "tmt-b-incorrectly-executed",
+    "additional-mrt-resting-state",
+    "additional-mrt-tapping-task",
+    "additional-mrt-anatomical-representation",
+    "additional-mrt-dti"
+]
+
+
+def correct_optional_checkbox_fields(data):
+    for name in optional_checkbox_fields:
+        if name + "-valid" not in data:
+            data[name] = [""]
+
+
 def convert_value(value: str) -> Union[str, float, int]:
     try:
         return int(value)
@@ -272,7 +292,6 @@ def date_message(year, month, day):
         for x in [year, month, day]
         if x is not None
     ])
-
 
 
 def create_result_page(commit_hash: str, time_stamp: float, json_top_data: dict, templates_directory: Path):
@@ -577,6 +596,9 @@ def application(environ, start_response):
             if key not in entered_data:
                 entered_data[key] = value
 
+        # Correct the optional checkbox fields
+        correct_optional_checkbox_fields(entered_data)
+
         # Check the hash value
         local_hash_string = get_canonic_content_string(entered_data)
         if local_hash_string != entered_data["hashed-string"][0]:
@@ -584,10 +606,7 @@ def application(environ, start_response):
             output = [
                 "Local hash input-string does not match submitted values\n".encode("utf-8"),
                 ("LOCAL: " + local_hash_string + "\n").encode(),
-                ("SENT:  " + entered_data["hashed-string"][0] + "\n").encode(),
-                #(hashlib.sha256(local_hash_string.encode()).hexdigest() + "\n").encode(),
-                #f"==: {local_hash_string == entered_data['hashed-string'][0]}\n".encode()
-            ]
+                ("SENT:  " + entered_data["hashed-string"][0] + "\n").encode()]
             output_length = sum([len(line) for line in output])
             response_headers = [('Content-type', 'text/plain; charset=utf-8'),
                                 ('Content-Length', str(output_length))]
