@@ -32,10 +32,57 @@
             background-color: lightskyblue;
         }
 
+        #svg{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10000px;
+            z-index: -100;
+        }
+
+        .inm-line{
+            stroke-width:2px;
+            stroke:lightblue;
+            z-index: 100;
+        }
+
     </style>
 </head>
 
-<body class="bg-light">
+<body class="bg-light" id="main-body">
+
+
+<svg id="svg">
+
+    <line class="inm-line" id="line-enable-acl-k-v"/>
+    <line class="inm-line" id="line-enable-acl-k-h"/>
+
+    <line class="inm-line" id="line-enable-ad-v"/>
+    <line class="inm-line" id="line-enable-ad-h"/>
+
+    <line class="inm-line" id="line-enable-demtect-v"/>
+    <line class="inm-line" id="line-enable-demtect-h"/>
+
+    <line class="inm-line" id="line-enable-jtt-v"/>
+    <line class="inm-line" id="line-enable-jtt-h"/>
+
+    <line class="inm-line" id="line-enable-kas-v"/>
+    <line class="inm-line" id="line-enable-kas-h"/>
+
+    <line class="inm-line" id="line-enable-kopss-v"/>
+    <line class="inm-line" id="line-enable-kopss-h"/>
+
+    <line class="inm-line" id="line-enable-moto-test-v"/>
+    <line class="inm-line" id="line-enable-moto-test-h"/>
+
+    <line class="inm-line" id="line-enable-tmt-v"/>
+    <line class="inm-line" id="line-enable-tmt-h"/>
+
+    <line class="inm-line" id="line-enable-tug-v"/>
+    <line class="inm-line" id="line-enable-tug-h"/>
+
+</svg>
 
 
 <div class="container">
@@ -49,7 +96,6 @@
         </p>
     </div>
 </div>
-
 
 
 <form class="needs-validation" id="entry-form" novalidate>
@@ -389,6 +435,8 @@
                        type="checkbox"
                        id="enable-moto-test"
                        data-inm-switch-group="enable-moto-test-lat;enable-moto-test-ftf;enable-moto-test-mgf"
+                       data-inm-lines="line-enable-moto-test-v;line-enable-moto-test-h"
+                       data-inm-line-end="enable-moto-test-mgf"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -563,6 +611,8 @@
                        type="checkbox"
                        id="enable-jtt"
                        data-inm-switch-group="enable-jtt-turn-cards;enable-jtt-small-things;enable-jtt-simulated-feeding;enable-jtt-checkers;enable-jtt-llo;enable-jtt-lho;enable-jtt-incorrect"
+                       data-inm-lines="line-enable-jtt-v;line-enable-jtt-h"
+                       data-inm-line-end="enable-jtt-incorrect"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -856,6 +906,8 @@
                        type="checkbox"
                        id="enable-tug"
                        data-inm-switch-group="enable-tug-executed;enable-tug-imagined"
+                       data-inm-lines="line-enable-tug-v;line-enable-tug-h"
+                       data-inm-line-end="enable-tug-imagined"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1072,6 +1124,8 @@
                        type="checkbox"
                        id="enable-kas"
                        data-inm-switch-group="enable-kas-pbf;enable-kas-pah;enable-kas-ipf;enable-kas-iah"
+                       data-inm-lines="line-enable-kas-v;line-enable-kas-h"
+                       data-inm-line-end="enable-kas-iah"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1187,6 +1241,8 @@
                        type="checkbox"
                        id="enable-kopss"
                        data-inm-switch-group="enable-kopss-affect;enable-kopss-bo;enable-kopss-calc;enable-kopss-epa;enable-kopss-memory;enable-kopss-orientation;enable-kopss-praxie;enable-kopss-speech;enable-kopss-vsp"
+                       data-inm-lines="line-enable-kopss-v;line-enable-kopss-h"
+                       data-inm-line-end="enable-kopss-bo"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1399,12 +1455,14 @@
 
 
         <!-- Aphasia Check Liste (short version, ACL-K) -->
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-lg-1 form-switch">
                 <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-acl-k"
                        data-inm-switch-group="enable-acl-k-reading;enable-acl-k-cst;enable-acl-k-st;enable-acl-k-communication"
+                       data-inm-lines="line-enable-acl-k-v;line-enable-acl-k-h"
+                       data-inm-line-end="enable-acl-k-communication"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1516,7 +1574,7 @@
 
 
         <!-- Beck Depression Inventory (BDI II) -->
-        <div class="row pt-4">
+        <div class="row pt-5">
             <div class="col-lg-1 form-switch">
                 <input class="form-check-input group-leader"
                        type="checkbox"
@@ -1553,7 +1611,7 @@
 
 
         <!-- Montgomery-Asberg Depression rating Scale (MADRS) -->
-        <div class="row pt-4">
+        <div class="row pt-5">
             <div class="col-lg-1 form-switch">
                 <input class="form-check-input group-leader"
                        type="checkbox"
@@ -1596,6 +1654,8 @@
                        type="checkbox"
                        id="enable-demtect"
                        data-inm-switch-group="enable-demtect-wordlist;enable-demtect-cn;enable-demtect-supermarket;enable-demtect-nr;enable-demtect-recall"
+                       data-inm-lines="line-enable-demtect-v;line-enable-demtect-h"
+                       data-inm-line-end="enable-demtect-recall"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1728,12 +1788,14 @@
 
 
         <!-- Trail Making Test (TMT) -->
-        <div class="row pt-3">
+        <div class="row pt-5">
             <div class="col-lg-1 form-switch">
                 <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-tmt"
                        data-inm-switch-group="enable-tmt-a;enable-tmt-b"
+                       data-inm-lines="line-enable-tmt-v;line-enable-tmt-h"
+                       data-inm-line-end="enable-tmt-b"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1961,7 +2023,9 @@
                 <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-ad"
-                       data-inm-switch-group="enable-ad-mrt;enable-ad-eeg;enable-ad-blood">
+                       data-inm-switch-group="enable-ad-mrt;enable-ad-eeg;enable-ad-blood"
+                       data-inm-lines="line-enable-ad-v;line-enable-ad-h"
+                       data-inm-line-end="enable-ad-blood">
             </div>
             <div class="col-lg-11">
                 <h4 class="mb-3">Weitere Diagnostik</h4>
@@ -2834,6 +2898,59 @@
             document.getElementById(leaderId).addEventListener("change", changeControlledInputs);
         }
     })();
+
+</script>
+
+
+<script>
+
+    const xOffset = 8;
+
+    let lineSwitches = [
+        "enable-acl-k",
+        "enable-ad",
+        "enable-demtect",
+        "enable-jtt",
+        "enable-kas",
+        "enable-kopss",
+        "enable-moto-test",
+        "enable-tmt",
+        "enable-tug"
+    ];
+
+    function updatedLines() {
+        for (let originId of lineSwitches) {
+            let element = document.getElementById(originId);
+
+            let lineIds = element.getAttribute("data-inm-lines").split(";");
+            let verticalLineElement = document.getElementById(lineIds[0]);
+            let horizontalLineElement = document.getElementById(lineIds[1]);
+            let endId = element.getAttribute("data-inm-line-end");
+            let endElement = document.getElementById(endId);
+
+            let x0 = element.offsetLeft + element.offsetWidth;
+            let x = element.offsetLeft + element.offsetWidth + xOffset;
+
+            x0 = element.offsetLeft;
+            x = element.offsetLeft - xOffset;
+
+            let y1 = element.offsetTop + (element.offsetHeight / 2.0);
+            let y2 = endElement.offsetTop + (element.offsetHeight);
+
+            verticalLineElement.setAttribute("x1", x.toString());
+            verticalLineElement.setAttribute("x2", x.toString());
+            verticalLineElement.setAttribute("y1", y1.toString());
+            verticalLineElement.setAttribute("y2", y2.toString());
+
+            horizontalLineElement.setAttribute("x1", x0.toString());
+            horizontalLineElement.setAttribute("x2", x.toString());
+            horizontalLineElement.setAttribute("y1", y1.toString());
+            horizontalLineElement.setAttribute("y2", y1.toString());
+        }
+    }
+
+    window.onresize = updatedLines;
+    updatedLines();
 
 </script>
 
