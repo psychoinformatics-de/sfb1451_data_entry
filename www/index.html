@@ -17,6 +17,17 @@
             font-weight: bold;
             visibility: visible;
         }
+
+        .group-leader:checked {
+            border-color: coral;
+            background-color: coral;
+        }
+        
+        .group-member:checked {
+            border-color: lightskyblue;
+            background-color: lightskyblue;
+        }
+
     </style>
 </head>
 
@@ -129,15 +140,15 @@
             </div>
             <div class="col-lg-6">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sex" id="sex-m" value="male" required>
+                        <input class="form-check-input group-member" type="radio" name="sex" id="sex-m" value="male" required>
                         <label class="form-check-label" for="sex-m">m</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sex" id="sex-f" value="female" required>
+                        <input class="form-check-input group-member" type="radio" name="sex" id="sex-f" value="female" required>
                         <label class="form-check-label" for="sex-f">w</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="sex" id="sex-d" value="diverse" required>
+                        <input class="form-check-input group-member" type="radio" name="sex" id="sex-d" value="diverse" required>
                         <label class="form-check-label" for="sex-d">d</label>
                         <div class="invalid-feedback field-validity">Geschlecht nicht ausgewählt.</div>
                     </div>
@@ -165,7 +176,7 @@
                 <label for="repeated-test">Wiederholte Testung</label>
             </div>
             <div class="col-lg-6">
-                <input type="checkbox" class="form-check-input" id="repeated-test" name="repeated-test">
+                <input type="checkbox" class="form-check-input group-member" id="repeated-test" name="repeated-test">
             </div>
         </div>
 
@@ -348,15 +359,15 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-left" data-inm-collapse-id="patient-collapse" value="left" required disabled>
+                        <input class="form-check-input group-member" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-left" data-inm-collapse-id="patient-collapse" value="left" required disabled>
                         <label class="form-check-label" for="patient-stronger-impacted-hand-left">Links</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-right" data-inm-collapse-id="patient-collapse" value="right" required disabled>
+                        <input class="form-check-input group-member" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-right" data-inm-collapse-id="patient-collapse" value="right" required disabled>
                         <label class="form-check-label" for="patient-stronger-impacted-hand-right">Rechts</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-none" data-inm-collapse-id="patient-collapse" value="none" required disabled>
+                        <input class="form-check-input group-member" type="radio" name="patient-stronger-impacted-hand" id="patient-stronger-impacted-hand-none" data-inm-collapse-id="patient-collapse" value="none" required disabled>
                         <label class="form-check-label" for="patient-stronger-impacted-hand-none">Keine</label>
                         <span class="invalid-feedback field-validity">Stärker betroffene Hand nicht ausgewählt.</span>
                     </div>
@@ -369,7 +380,7 @@
         <!-- Motorische Testung: Basisfähigkeiten -->
         <div class="row pt-5">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-moto-test"
                        data-inm-switch-group="enable-moto-test-lat;enable-moto-test-ftf;enable-moto-test-mgf"
@@ -383,7 +394,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-moto-test-lat"
                        data-inm-controlled-inputs="laterality-quotient"
@@ -403,7 +414,7 @@
 
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-moto-test-ftf"
                        data-inm-controlled-inputs="maximum-ftf-left;maximum-ftf-right"
@@ -441,7 +452,7 @@
                 <label class="form-check-label" for="ftf-incorrectly-executed">Kein korrektes Tippen möglich.</label>
             </div>
             <div class="col-md-6">
-                <input type="checkbox" class="form-check-input" id="ftf-incorrectly-executed" name="ftf-incorrectly-executed" placeholder="">
+                <input type="checkbox" class="form-check-input group-member" id="ftf-incorrectly-executed" name="ftf-incorrectly-executed" placeholder="">
             </div>
         </div>
         -->
@@ -449,7 +460,7 @@
 
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-moto-test-mgf"
                        data-inm-controlled-inputs="maximum-gs-left;maximum-gs-right"
@@ -493,7 +504,7 @@
         <!-- Purdue Pegboard Test -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-pegboard-test"
                        data-inm-controlled-inputs="purdue-pegboard-left;purdue-pegboard-right"
@@ -508,7 +519,7 @@
         <div class="row">
             <div class="col-lg-1 form-switch">
                 <!--
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-pegboard-test-number"
                        data-inm-controlled-inputs="purdue-pegboard-left;purdue-pegboard-right"
@@ -543,7 +554,7 @@
         <!-- Jebsen Taylor Hand Function Test (JTT) -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-jtt"
                        data-inm-switch-group="enable-jtt-turn-cards;enable-jtt-small-things;enable-jtt-simulated-feeding;enable-jtt-checkers;enable-jtt-llo;enable-jtt-lho;enable-jtt-incorrect"
@@ -557,7 +568,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-jtt-turn-cards"
                        data-inm-controlled-inputs="turn-cards-left;turn-cards-right"
@@ -592,7 +603,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-jtt-small-things"
                        data-inm-controlled-inputs="small-things-left;small-things-right"
@@ -627,7 +638,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-jtt-simulated-feeding"
                        data-inm-controlled-inputs="simulated-feeding-left;simulated-feeding-right"
@@ -662,7 +673,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-jtt-checkers"
                        data-inm-controlled-inputs="checkers-left;checkers-right"
@@ -697,7 +708,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-jtt-llo"
                        data-inm-controlled-inputs="large-light-things-left;large-light-things-right"
@@ -732,7 +743,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-jtt-lho"
                        data-inm-controlled-inputs="large-heavy-things-left;large-heavy-things-right"
@@ -767,7 +778,7 @@
 
         <div class="row pt-1">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-jtt-incorrect"
                        data-inm-controlled-inputs="jtt-incorrectly-executed;jtt-incorrectly-executed-valid"
@@ -777,7 +788,7 @@
                 <label class="form-check-label" for="jtt-incorrectly-executed">Aufgaben trotz Zeitüberschreitung durchführbar</label>
             </div>
             <div class="col-lg-6">
-                <input type="checkbox" class="form-check-input" id="jtt-incorrectly-executed" name="jtt-incorrectly-executed" placeholder="">
+                <input type="checkbox" class="form-check-input group-member" id="jtt-incorrectly-executed" name="jtt-incorrectly-executed" placeholder="">
                 <input type="text" id="jtt-incorrectly-executed-valid" name="jtt-incorrectly-executed-valid" style="visibility: hidden;" value="true">
             </div>
         </div>
@@ -786,7 +797,7 @@
         <!-- Action Research Arm Test (ARAT) -->
         <div class="row pt-4">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-arat"
                        data-inm-controlled-inputs="arat-left;arat-right"
@@ -801,7 +812,7 @@
         <div class="row">
             <div class="col-lg-1 form-switch">
                 <!--
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-arat-score"
                        data-inm-controlled-inputs="arat-left;arat-right"
@@ -836,7 +847,7 @@
         <!-- Timed Up-and-Go test (TUG) -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-tug"
                        data-inm-switch-group="enable-tug-executed;enable-tug-imagined"
@@ -850,7 +861,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-tug-executed"
                        data-inm-controlled-inputs="tug-executed;tug-a-incorrectly-executed;tug-a-tools-required;tug-a-incorrectly-executed-valid;tug-a-tools-required-valid"
@@ -877,7 +888,7 @@
                 <label class="form-check-label" for="tug-a-incorrectly-executed">aTUG trotz Zeitüberschreitung durchführbar.</label>
             </div>
             <div class="col-lg-6">
-                <input type="checkbox" class="form-check-input" id="tug-a-incorrectly-executed" name="tug-a-incorrectly-executed" placeholder="">
+                <input type="checkbox" class="form-check-input group-member" id="tug-a-incorrectly-executed" name="tug-a-incorrectly-executed" placeholder="">
                 <input type="text" id="tug-a-incorrectly-executed-valid" name="tug-a-incorrectly-executed-valid" style="visibility: hidden;" value="true">
             </div>
         </div>
@@ -889,7 +900,7 @@
                 <label class="form-check-label" for="tug-a-tools-required">aTUG mit Hilfmittel durchführbar.</label>
             </div>
             <div class="col-lg-6">
-                <input type="checkbox" class="form-check-input" id="tug-a-tools-required" name="tug-a-tools-required" placeholder="">
+                <input type="checkbox" class="form-check-input group-member" id="tug-a-tools-required" name="tug-a-tools-required" placeholder="">
                 <input type="text" id="tug-a-tools-required-valid" name="tug-a-tools-required-valid" style="visibility: hidden;" value="true">
             </div>
         </div>
@@ -897,7 +908,7 @@
 
         <div class="row pt-1">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-tug-imagined"
                        data-inm-controlled-inputs="tug-imagined"
@@ -924,7 +935,7 @@
                 <label class="form-check-label" for="tug-v-not-executable">vTUG nicht durchführbar.</label>
             </div>
             <div class="col-md-6">
-                <input type="checkbox" class="form-check-input" id="tug-v-not-executable" name="tug-v-not-executable" placeholder="">
+                <input type="checkbox" class="form-check-input group-member" id="tug-v-not-executable" name="tug-v-not-executable" placeholder="">
             </div>
         </div>
         -->
@@ -941,7 +952,7 @@
         <!-- Go/Nogo-Task -->
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-go-nogo"
                        data-inm-controlled-inputs="go-nogo-block-count;go-nogo-correct-answer-time;go-nogo-total-errors;go-nogo-recognized-errors;go-nogo-recognized-error-time;go-nogo-incorrectly-executed;go-nogo-incorrectly-executed-valid"
@@ -1043,7 +1054,7 @@
                 <label class="form-check-label" for="go-nogo-incorrectly-executed">Go/Nogo-Task nicht korrekt durchführbar.</label>
             </div>
             <div class="col-md-6">
-                <input type="checkbox" class="form-check-input" id="go-nogo-incorrectly-executed" name="go-nogo-incorrectly-executed" placeholder="">
+                <input type="checkbox" class="form-check-input group-member" id="go-nogo-incorrectly-executed" name="go-nogo-incorrectly-executed" placeholder="">
                 <input type="text" id="go-nogo-incorrectly-executed-valid" name="go-nogo-incorrectly-executed-valid" style="visibility: hidden;" value="true">
             </div>
         </div>
@@ -1052,7 +1063,7 @@
         <!-- Cologne Apraxie Screening (KAS) -->
         <div class="row pt-4">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-kas"
                        data-inm-switch-group="enable-kas-pbf;enable-kas-pah;enable-kas-ipf;enable-kas-iah"
@@ -1066,7 +1077,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kas-pbf"
                        data-inm-controlled-inputs="kas-pantomime-bukko-facial"
@@ -1086,7 +1097,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kas-pah"
                        data-inm-controlled-inputs="kas-pantomime-arm-hand"
@@ -1106,7 +1117,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kas-ipf"
                        data-inm-controlled-inputs="kas-imitation-bukko-facial"
@@ -1126,7 +1137,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kas-iah"
                        data-inm-controlled-inputs="kas-imitation-arm-hand"
@@ -1167,7 +1178,7 @@
         <!-- Kölner neuropsychologisches Screening für Schlaganfallpatienten (KöpSS) -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-kopss"
                        data-inm-switch-group="enable-kopss-affect;enable-kopss-bo;enable-kopss-calc;enable-kopss-epa;enable-kopss-memory;enable-kopss-orientation;enable-kopss-praxie;enable-kopss-speech;enable-kopss-vsp"
@@ -1192,7 +1203,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kopss-orientation"
                        data-inm-controlled-inputs="kopss-orientation"
@@ -1212,7 +1223,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kopss-speech"
                        data-inm-controlled-inputs="kopss-speech"
@@ -1232,7 +1243,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kopss-praxie"
                        data-inm-controlled-inputs="kopss-praxie"
@@ -1252,7 +1263,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kopss-vsp"
                        data-inm-controlled-inputs="kopss-visual-spatial-performance"
@@ -1272,7 +1283,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kopss-calc"
                        data-inm-controlled-inputs="kopss-calculating"
@@ -1292,7 +1303,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kopss-epa"
                        data-inm-controlled-inputs="kopss-executive-performance"
@@ -1312,7 +1323,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kopss-memory"
                        data-inm-controlled-inputs="kopss-memory"
@@ -1344,7 +1355,7 @@
 
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kopss-affect"
                        data-inm-controlled-inputs="kopss-affect"
@@ -1364,7 +1375,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-kopss-bo"
                        data-inm-controlled-inputs="kopss-behavior-observation"
@@ -1385,7 +1396,7 @@
         <!-- Aphasia Check Liste (short version, ACL-K) -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-acl-k"
                        data-inm-switch-group="enable-acl-k-reading;enable-acl-k-cst;enable-acl-k-st;enable-acl-k-communication"
@@ -1410,7 +1421,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-acl-k-reading"
                        data-inm-controlled-inputs="acl-k-loud-reading"
@@ -1430,7 +1441,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-acl-k-cst"
                        data-inm-controlled-inputs="acl-k-color-form-test"
@@ -1450,7 +1461,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-acl-k-st"
                        data-inm-controlled-inputs="acl-k-supermarket-task"
@@ -1470,7 +1481,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-acl-k-communication"
                        data-inm-controlled-inputs="acl-k-communication-ability"
@@ -1502,7 +1513,7 @@
         <!-- Beck Depression Inventory (BDI II) -->
         <div class="row pt-4">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-bdi-ii"
                        data-inm-controlled-inputs="bdi-ii-score"
@@ -1517,7 +1528,7 @@
         <div class="row">
             <div class="col-lg-1 form-switch">
                 <!--
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-bdi-ii-score"
                        data-inm-controlled-inputs="bdi-ii-score"
@@ -1539,7 +1550,7 @@
         <!-- Montgomery-Asberg Depression rating Scale (MADRS) -->
         <div class="row pt-4">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-madrs"
                        data-inm-controlled-inputs="madrs-score"
@@ -1554,7 +1565,7 @@
         <div class="row">
             <div class="col-lg-1 form-switch">
                 <!--
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-madrs-score"
                        data-inm-controlled-inputs="madrs-score"
@@ -1576,7 +1587,7 @@
         <!-- DemTect -->
         <div class="row pt-4">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-demtect"
                        data-inm-switch-group="enable-demtect-wordlist;enable-demtect-cn;enable-demtect-supermarket;enable-demtect-nr;enable-demtect-recall"
@@ -1601,7 +1612,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-demtect-wordlist"
                        data-inm-controlled-inputs="demtect-wordlist"
@@ -1621,7 +1632,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-demtect-cn"
                        data-inm-controlled-inputs="demtect-convert-numbers"
@@ -1641,7 +1652,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-demtect-supermarket"
                        data-inm-controlled-inputs="demtect-supermarket-task"
@@ -1661,7 +1672,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-demtect-nr"
                        data-inm-controlled-inputs="demtect-numbers-reverse"
@@ -1681,7 +1692,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-demtect-recall"
                        data-inm-controlled-inputs="demtect-wordlist-recall"
@@ -1714,7 +1725,7 @@
         <!-- Trail Making Test (TMT) -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-tmt"
                        data-inm-switch-group="enable-tmt-a;enable-tmt-b"
@@ -1728,7 +1739,7 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-tmt-a"
                        data-inm-controlled-inputs="time-tmt-a;tmt-a-incorrectly-executed;tmt-a-incorrectly-executed-valid"
@@ -1755,7 +1766,7 @@
                 <label class="form-check-label" for="tmt-a-incorrectly-executed">TMT A trotz Zeitüberschreitung durchführbar.</label>
             </div>
             <div class="col-lg-6">
-                <input type="checkbox" class="form-check-input" id="tmt-a-incorrectly-executed" name="tmt-a-incorrectly-executed" placeholder="">
+                <input type="checkbox" class="form-check-input group-member" id="tmt-a-incorrectly-executed" name="tmt-a-incorrectly-executed" placeholder="">
                 <input type="text" id="tmt-a-incorrectly-executed-valid" name="tmt-a-incorrectly-executed-valid" style="visibility: hidden;" value="true">
             </div>
         </div>
@@ -1763,7 +1774,7 @@
 
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-tmt-b"
                        data-inm-controlled-inputs="time-tmt-b;tmt-b-incorrectly-executed;tmt-b-incorrectly-executed-valid"
@@ -1790,7 +1801,7 @@
                 <label class="form-check-label" for="tmt-b-incorrectly-executed">TMT B trotz Zeitüberschreitung durchführbar.</label>
             </div>
             <div class="col-lg-6">
-                <input type="checkbox" class="form-check-input" id="tmt-b-incorrectly-executed" name="tmt-b-incorrectly-executed" placeholder="">
+                <input type="checkbox" class="form-check-input group-member" id="tmt-b-incorrectly-executed" name="tmt-b-incorrectly-executed" placeholder="">
                 <input type="text" id="tmt-b-incorrectly-executed-valid" name="tmt-b-incorrectly-executed-valid" style="visibility: hidden;" value="true">
             </div>
         </div>
@@ -1807,7 +1818,7 @@
         <!-- Modified Rankin scale (mRS) -->
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-mrs"
                        data-inm-controlled-inputs="mrs-score"
@@ -1822,7 +1833,7 @@
         <div class="row">
             <div class="col-lg-1 form-switch">
                 <!--
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-mrs-score"
                        data-inm-controlled-inputs="mrs-score"
@@ -1844,7 +1855,7 @@
         <!-- EuroQol 5 (5Q-5D) -->
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-euroqol"
                        data-inm-controlled-inputs="euroqol-code;euroqol-vas"
@@ -1859,7 +1870,7 @@
         <div class="row">
             <div class="col-lg-1 form-switch">
                 <!--
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-euroqol-code"
                        data-inm-controlled-inputs="euroqol-code"
@@ -1881,7 +1892,7 @@
         <div class="row">
             <div class="col-lg-1 form-switch">
                 <!--
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-euroqol-vas"
                        data-inm-controlled-inputs="euroqol-vas"
@@ -1906,7 +1917,7 @@
         <!-- Anzahl Ausbildungsjahre -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-education"
                        data-inm-controlled-inputs="isced-value"
@@ -1921,7 +1932,7 @@
         <div class="row">
             <div class="col-lg-1 form-switch">
                 <!--
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-education-isced"
                        data-inm-controlled-inputs="isced-value"
@@ -1942,7 +1953,7 @@
         <!-- Weitere Diagnostik -->
         <div class="row pt-5">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input h5"
+                <input class="form-check-input"
                        type="checkbox"
                        id="enable-ad"
                        data-inm-switch-group="enable-ad-mrt;enable-ad-eeg;enable-ad-blood">
@@ -1955,7 +1966,7 @@
 
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-ad-mrt"
                        data-inm-controlled-inputs="additional-mrt-url;additional-mrt-resting-state;additional-mrt-tapping-task;additional-mrt-anatomical-representation;additional-mrt-dti;additional-mrt-resting-state-valid;additional-mrt-tapping-task-valid;additional-mrt-anatomical-representation-valid;additional-mrt-dti-valid">
@@ -1979,7 +1990,7 @@
             </div>
             <div class="col-lg-6 entry-label">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="additional-mrt-resting-state" name="additional-mrt-resting-state" disabled>
+                    <input class="form-check-input group-member" type="checkbox" id="additional-mrt-resting-state" name="additional-mrt-resting-state" disabled>
                     <label class="form-check-label" for="additional-mrt-resting-state">
                         Resting-State
                     </label>
@@ -1996,7 +2007,7 @@
             </div>
             <div class="col-lg-6 entry-label">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="additional-mrt-tapping-task" name="additional-mrt-tapping-task" disabled>
+                    <input class="form-check-input group-member" type="checkbox" id="additional-mrt-tapping-task" name="additional-mrt-tapping-task" disabled>
                     <label class="form-check-label" for="additional-mrt-tapping-task">
                         Tapping-Task
                     </label>
@@ -2013,7 +2024,7 @@
             </div>
             <div class="col-lg-6 entry-label">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="additional-mrt-anatomical-representation" name="additional-mrt-anatomical-representation" disabled>
+                    <input class="form-check-input group-member" type="checkbox" id="additional-mrt-anatomical-representation" name="additional-mrt-anatomical-representation" disabled>
                     <label class="form-check-label" for="additional-mrt-anatomical-representation">
                         Anatomische Darstellung
                     </label>
@@ -2030,7 +2041,7 @@
             </div>
             <div class="col-lg-6 entry-label">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="additional-mrt-dti" name="additional-mrt-dti" disabled>
+                    <input class="form-check-input group-member" type="checkbox" id="additional-mrt-dti" name="additional-mrt-dti" disabled>
                     <label class="form-check-label" for="additional-mrt-dti">
                         DTI
                     </label>
@@ -2042,7 +2053,7 @@
 
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-ad-eeg"
                        data-inm-controlled-inputs="additional-eeg-url">
@@ -2061,7 +2072,7 @@
 
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-ad-blood"
                        data-inm-controlled-inputs="additional-blood-sampling-url">
