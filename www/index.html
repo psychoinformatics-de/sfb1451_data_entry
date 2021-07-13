@@ -18,11 +18,15 @@
             visibility: visible;
         }
 
-        .group-leader:checked {
-            border-color: coral;
-            background-color: coral;
+        .group-leader {
+            background-color: #ececec;
         }
-        
+
+        .group-leader:checked {
+            border-color: cornflowerblue;
+            background-color: cornflowerblue;
+        }
+
         .group-member:checked {
             border-color: lightskyblue;
             background-color: lightskyblue;
@@ -380,7 +384,7 @@
         <!-- Motorische Testung: Basisfähigkeiten -->
         <div class="row pt-5">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-moto-test"
                        data-inm-switch-group="enable-moto-test-lat;enable-moto-test-ftf;enable-moto-test-mgf"
@@ -504,7 +508,7 @@
         <!-- Purdue Pegboard Test -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-pegboard-test"
                        data-inm-controlled-inputs="purdue-pegboard-left;purdue-pegboard-right"
@@ -554,7 +558,7 @@
         <!-- Jebsen Taylor Hand Function Test (JTT) -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-jtt"
                        data-inm-switch-group="enable-jtt-turn-cards;enable-jtt-small-things;enable-jtt-simulated-feeding;enable-jtt-checkers;enable-jtt-llo;enable-jtt-lho;enable-jtt-incorrect"
@@ -797,7 +801,7 @@
         <!-- Action Research Arm Test (ARAT) -->
         <div class="row pt-4">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-arat"
                        data-inm-controlled-inputs="arat-left;arat-right"
@@ -847,7 +851,7 @@
         <!-- Timed Up-and-Go test (TUG) -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-tug"
                        data-inm-switch-group="enable-tug-executed;enable-tug-imagined"
@@ -952,7 +956,7 @@
         <!-- Go/Nogo-Task -->
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-go-nogo"
                        data-inm-controlled-inputs="go-nogo-block-count;go-nogo-correct-answer-time;go-nogo-total-errors;go-nogo-recognized-errors;go-nogo-recognized-error-time;go-nogo-incorrectly-executed;go-nogo-incorrectly-executed-valid"
@@ -1063,7 +1067,7 @@
         <!-- Cologne Apraxie Screening (KAS) -->
         <div class="row pt-4">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-kas"
                        data-inm-switch-group="enable-kas-pbf;enable-kas-pah;enable-kas-ipf;enable-kas-iah"
@@ -1178,7 +1182,7 @@
         <!-- Kölner neuropsychologisches Screening für Schlaganfallpatienten (KöpSS) -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-kopss"
                        data-inm-switch-group="enable-kopss-affect;enable-kopss-bo;enable-kopss-calc;enable-kopss-epa;enable-kopss-memory;enable-kopss-orientation;enable-kopss-praxie;enable-kopss-speech;enable-kopss-vsp"
@@ -1396,7 +1400,7 @@
         <!-- Aphasia Check Liste (short version, ACL-K) -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-acl-k"
                        data-inm-switch-group="enable-acl-k-reading;enable-acl-k-cst;enable-acl-k-st;enable-acl-k-communication"
@@ -1513,7 +1517,7 @@
         <!-- Beck Depression Inventory (BDI II) -->
         <div class="row pt-4">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-bdi-ii"
                        data-inm-controlled-inputs="bdi-ii-score"
@@ -1550,7 +1554,7 @@
         <!-- Montgomery-Asberg Depression rating Scale (MADRS) -->
         <div class="row pt-4">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-madrs"
                        data-inm-controlled-inputs="madrs-score"
@@ -1587,7 +1591,7 @@
         <!-- DemTect -->
         <div class="row pt-4">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-demtect"
                        data-inm-switch-group="enable-demtect-wordlist;enable-demtect-cn;enable-demtect-supermarket;enable-demtect-nr;enable-demtect-recall"
@@ -1725,7 +1729,7 @@
         <!-- Trail Making Test (TMT) -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-tmt"
                        data-inm-switch-group="enable-tmt-a;enable-tmt-b"
@@ -1818,7 +1822,7 @@
         <!-- Modified Rankin scale (mRS) -->
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-mrs"
                        data-inm-controlled-inputs="mrs-score"
@@ -1855,7 +1859,7 @@
         <!-- EuroQol 5 (5Q-5D) -->
         <div class="row pt-2">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-euroqol"
                        data-inm-controlled-inputs="euroqol-code;euroqol-vas"
@@ -1917,7 +1921,7 @@
         <!-- Anzahl Ausbildungsjahre -->
         <div class="row pt-3">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-education"
                        data-inm-controlled-inputs="isced-value"
@@ -1953,7 +1957,7 @@
         <!-- Weitere Diagnostik -->
         <div class="row pt-5">
             <div class="col-lg-1 form-switch">
-                <input class="form-check-input"
+                <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-ad"
                        data-inm-switch-group="enable-ad-mrt;enable-ad-eeg;enable-ad-blood">
