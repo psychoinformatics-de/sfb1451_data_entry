@@ -3,13 +3,16 @@
 set -x -e
 
 
+destination_root="www"
 local_part="z03-db"
 
 
+create_switch_page=""
 if [ "X${local_part}" != "X" ]; then
-  destination_dir="www/${local_part}"
+  destination_dir="${destination_root}/${local_part}"
+  create_switch_page="1"
 else
-  destination_dir="www"
+  destination_dir="${destination_root}"
 fi
 
 
@@ -56,6 +59,13 @@ git cat-file blob master:entry.html >"${destination_dir}/${html_file}"
 
 git add "${destination_dir}"
 git add "${destination_dir}/${html_file}"
+
+
+# Generate switch page if necessary
+if [ "X${create_switch_page}" != "X" ]; then
+  git cat-file blob master:switch.html >"${destination_root}/index.html"
+  git add "${destination_root}/index.html"
+fi
 
 
 # Generate WSGI directory
