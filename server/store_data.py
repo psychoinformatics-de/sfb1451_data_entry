@@ -280,6 +280,13 @@ def sex_message(value):
     }[value]
 
 
+def subject_group_message(value):
+    return {
+        "healthy": "Gesund",
+        "patient": "Patient"
+    }[value]
+
+
 def hand_message(value):
     return {
         "left": "links",
@@ -307,6 +314,7 @@ def create_result_page(commit_hash: str, time_stamp: float, json_top_data: dict,
         date_message=date_message,
         hand_message=hand_message,
         sex_message=sex_message,
+        subject_group_message=subject_group_message,
         checkbox_message=checkbox_message)
 
 
