@@ -1055,15 +1055,29 @@
             </div>
         </div>
 
-
+        
+        
         <div class="row pt-1">
             <div class="col-lg-1"></div>
             <div class="col-lg-5">
                 <label for="go-nogo-total-errors">Anzahl Fehler insgesamt<span class="required-indicator">*</span></label>
             </div>
             <div class="col-lg-6 entry-value">
-                <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 60" required onchange="checkTotalErrors();">
+                <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 360" required onchange="checkTotalErrors();">
                 <div class="invalid-feedback field-validity" id="go-nogo-total-errors-invalid-feedback">
+                    Ganzzahl zwischen 0 und 360 erwartet.
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-total-errors">Anzahl falsche NoGo-Reaktion Fehler<span class="required-indicator">*</span></label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="nogo-total-errors" name="nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 60" required onchange="checkTotalErrors();">
+                <div class="invalid-feedback field-validity" id="nogo-total-errors-invalid-feedback">
                     Ganzzahl zwischen 0 und 60 erwartet.
                 </div>
             </div>
