@@ -86,7 +86,7 @@
     {{ render_number("Test-Datum", "date-of-test") }}
     {{ render_string("Wiederholte Testung", checkbox_message(record["repeated-test"])) }}
 
-    {{ render_string("Probandengruppe", subject_group_message("subject-group")) }}
+    {{ render_string("Probandengruppe", subject_group_message(record["subject-group"])) }}
 
     {% if record["subject-group"] == "patient" %}
 
