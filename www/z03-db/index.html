@@ -1073,7 +1073,7 @@
         <div class="row pt-1">
             <div class="col-lg-1"></div>
             <div class="col-lg-5">
-                <label for="go-nogo-total-errors">Anzahl falsche NoGo-Reaktion Fehler<span class="required-indicator">*</span></label>
+                <label for="go-nogo-wrong-errors">Anzahl falsche NoGo-Reaktion Fehler<span class="required-indicator">*</span></label>
             </div>
             <div class="col-lg-6 entry-value">
                 <input type="number" class="form-control" id="go-nogo-wrong-errors" name="go-nogo-wrong-errors" min="0" max="60" step="1" placeholder="0 - 60" required onchange="checkTotalErrors();">
@@ -2427,12 +2427,17 @@
 
     function validateGoNogoErrors() {
         let totalErrors = parseInt(document.getElementById("go-nogo-total-errors").value);
-        if (totalErrors != null && totalErrors > 0) {
+        let wrongErrors = parseInt(document.getElementById("go-nogo-wrong-errors").value);
+
+        totalErrors = (totalErrors === null) ? 0: totalErrors;
+        wrongErrors = (wrongErrors === null) ? 0: wrongErrors;
+
+        if (totalErrors > 0 || wrongErrors > 0) {
             let recognizedErrorsElement = document.getElementById("go-nogo-recognized-errors");
             const recognizedErrors = parseInt(recognizedErrorsElement.value);
             if (recognizedErrors != null && recognizedErrors > 0) {
-                if (recognizedErrors > totalErrors) {
-                    return ["Go/Nogo-Task: die Anzahl der erkannten Fehler muß kleiner oder gleich zur Anzahl der Fehler insgesamt sein"];
+                if (recognizedErrors > (totalErrors + wrongErrors)) {
+                    return ["Go/Nogo-Task: die Anzahl der erkannten Fehler muß kleiner oder gleich zur Summe von 'Fehler insgesamt' und 'falsche NoGo-Reaktion' sein"];
                 }
             }
         }
@@ -2775,9 +2780,14 @@
 
     function checkTotalErrors() {
         let totalErrors = parseInt(document.getElementById("go-nogo-total-errors").value);
+        let wrongErrors = parseInt(document.getElementById("go-nogo-wrong-errors").value);
+
+        totalErrors = (totalErrors === null) ? 0: totalErrors;
+        wrongErrors = (wrongErrors === null) ? 0: wrongErrors;
+
         let goNogoErrorBlock = document.getElementById("go-nogo-error-display");
         let recognizedErrors = document.getElementById("go-nogo-recognized-errors");
-        if (totalErrors != null && totalErrors > 0) {
+        if ((totalErrors + wrongErrors) > 0) {
             goNogoErrorBlock.classList.remove("visually-hidden");
             recognizedErrors.removeAttribute("disabled");
             updatedLines();
