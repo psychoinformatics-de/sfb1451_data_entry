@@ -1062,9 +1062,9 @@
                 <label for="go-nogo-total-errors">Anzahl Fehler insgesamt<span class="required-indicator">*</span></label>
             </div>
             <div class="col-lg-6 entry-value">
-                <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 360" required onchange="checkTotalErrors();">
+                <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 60" required onchange="checkTotalErrors();">
                 <div class="invalid-feedback field-validity" id="go-nogo-total-errors-invalid-feedback">
-                    Ganzzahl zwischen 0 und 360 erwartet.
+                    Ganzzahl zwischen 0 und 60 erwartet.
                 </div>
             </div>
         </div>
@@ -2803,9 +2803,11 @@
 <script>
     function updateGoNogoBlockCount() {
         let totalErrors = document.getElementById("go-nogo-total-errors");
+        let wrongErrors = document.getElementById("go-nogo-wrong-errors");
         let recognizedErrors = document.getElementById("go-nogo-recognized-errors");
 
         let totalErrorFeedback = document.getElementById("go-nogo-total-errors-invalid-feedback");
+        let wrongErrorFeedback = document.getElementById("go-nogo-wrong-errors-invalid-feedback");
         let recognizedErrorFeedback = document.getElementById("go-nogo-recognized-errors-invalid-feedback");
 
         const blockCountSelector = document.getElementById("go-nogo-block-count");
@@ -2815,11 +2817,15 @@
         const maxNumberString = maxNumber.toString()
 
         totalErrors.max = maxNumberString;
+        wrongErrors.max = maxNumberString;
         recognizedErrors.max = maxNumberString;
+
         totalErrors.placeholder = "0 - " + maxNumberString;
+        wrongErrors.placeholder = "0 - " + maxNumberString;
         recognizedErrors.placeholder = "0 - " + maxNumberString;
 
         totalErrorFeedback.innerText = "Ganzzahl zwischen 0 und " + (blockCount * 60).toString() + " erwartet";
+        wrongErrorFeedback.innerText = "Ganzzahl zwischen 0 und " + (blockCount * 60).toString() + " erwartet";
         recognizedErrorFeedback.innerText = "Ganzzahl zwischen 0 und " + (blockCount * 60).toString() + " erwartet";
     }
 
