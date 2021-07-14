@@ -100,7 +100,7 @@
 
 <form class="needs-validation" id="entry-form" novalidate>
 
-    <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="2.1">
+    <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="2.2">
     <input type="text" id="data-entry-domain" name="data-entry-domain" style="visibility: hidden;" value="de.sfb1451.z03">
 
 
@@ -250,7 +250,7 @@
         </div>
 
 
-        <div class="collapse collapsed pt-3" id="patient-collapse">
+        <div class="collapse pt-3" id="patient-collapse">
 
             <div class="row">
                 <div class="col-lg-1"></div>
@@ -1012,7 +1012,7 @@
                 <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-go-nogo"
-                       data-inm-controlled-inputs="go-nogo-block-count;go-nogo-correct-answer-time;go-nogo-total-errors;go-nogo-recognized-errors;go-nogo-recognized-error-time;go-nogo-incorrectly-executed;go-nogo-incorrectly-executed-valid"
+                       data-inm-controlled-inputs="go-nogo-block-count;go-nogo-correct-answer-time;go-nogo-total-errors;go-nogo-wrong-errors;go-nogo-recognized-errors;go-nogo-recognized-error-time;go-nogo-incorrectly-executed;go-nogo-incorrectly-executed-valid"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1062,8 +1062,22 @@
                 <label for="go-nogo-total-errors">Anzahl Fehler insgesamt<span class="required-indicator">*</span></label>
             </div>
             <div class="col-lg-6 entry-value">
-                <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 60" required onchange="checkTotalErrors();">
+                <input type="number" class="form-control" id="go-nogo-total-errors" name="go-nogo-total-errors" min="0" max="60" step="1" placeholder="0 - 360" required onchange="checkTotalErrors();">
                 <div class="invalid-feedback field-validity" id="go-nogo-total-errors-invalid-feedback">
+                    Ganzzahl zwischen 0 und 360 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-total-errors">Anzahl falsche NoGo-Reaktion Fehler<span class="required-indicator">*</span></label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="number" class="form-control" id="go-nogo-wrong-errors" name="go-nogo-wrong-errors" min="0" max="60" step="1" placeholder="0 - 60" required onchange="checkTotalErrors();">
+                <div class="invalid-feedback field-validity" id="go-nogo-wrong-errors-invalid-feedback">
                     Ganzzahl zwischen 0 und 60 erwartet.
                 </div>
             </div>
@@ -2440,6 +2454,15 @@
     let patientCollapseElement = document.getElementById("patient-collapse");
     let patientCollapse = null;
 
+    patientCollapseElement.addEventListener("shown.bs.collapse", function () {
+        let x = 1;
+        updatedLines();
+    })
+    patientCollapseElement.addEventListener("hidden.bs.collapse", function () {
+        let x = 1;
+        updatedLines();
+    })
+
     function hideCollapsable(obj, element) {
         if (obj !== null) {
             obj.hide();
@@ -2637,6 +2660,7 @@
             ["tug-imagined", getNumberContent],
             ["go-nogo-block-count", getNumberContent],
             ["go-nogo-total-errors", getNumberContent],
+            ["go-nogo-wrong-errors", getNumberContent],
             ["go-nogo-recognized-errors", getNumberContent],
             ["go-nogo-correct-answer-time", getNumberContent],
             ["go-nogo-recognized-error-time", getNumberContent],
@@ -2741,9 +2765,11 @@
         if (recognizedErrors != null && recognizedErrors > 0) {
             recognizedErrorsReactionTimeDiv.classList.remove("visually-hidden");
             recognizedErrorsReactionTime.removeAttribute("disabled");
+            updatedLines();
         } else {
             recognizedErrorsReactionTimeDiv.classList.add("visually-hidden");
             recognizedErrorsReactionTime.setAttribute("disabled", "");
+            updatedLines();
         }
     }
 
@@ -2754,9 +2780,11 @@
         if (totalErrors != null && totalErrors > 0) {
             goNogoErrorBlock.classList.remove("visually-hidden");
             recognizedErrors.removeAttribute("disabled");
+            updatedLines();
         } else {
             goNogoErrorBlock.classList.add("visually-hidden");
             recognizedErrors.setAttribute("disabled", "");
+            updatedLines();
         }
     }
 

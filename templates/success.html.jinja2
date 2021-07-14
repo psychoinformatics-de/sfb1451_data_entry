@@ -161,6 +161,7 @@
     {{ render_number("Durchgeführte Blöcke", "go-nogo-block-count") }}
     {{ render_number("Reaktionszeit korrekte Antwort", "go-nogo-correct-answer-time") }}
     {{ render_number("Anzahl Fehler insgesamt", "go-nogo-total-errors") }}
+    {{ render_number("Anzahl falsche NoGo-Reaktion Fehler", "go-nogo-wrong-errors") }}
 
     {% if (record["go-nogo-total-errors"] or 0) > 0 %}
 
