@@ -2983,7 +2983,11 @@
     }
 
     window.onresize = updatedLines;
+    let observer = new ResizeObserver(updatedLines);
+    observer.observe(document.getElementById("main-body"));
+
     updatedLines();
+
 
 </script>
 
