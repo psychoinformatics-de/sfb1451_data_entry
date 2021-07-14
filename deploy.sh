@@ -3,11 +3,10 @@
 set -x -e
 
 
-local_part=z03
-local_part=""
+local_part="z03-db"
 
 
-if [ "X${local_part}" != "X"]; then
+if [ "X${local_part}" != "X" ]; then
   destination_dir="www/${local_part}"
 else
   destination_dir="www"
@@ -28,6 +27,8 @@ done
 
 
 git checkout deploy
+git pull
+
 
 master_version_file=master-version${suffix}
 touch ${master_version_file}
