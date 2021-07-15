@@ -2031,6 +2031,7 @@
             </div>
         </div>
 
+
         <!-- Weitere Diagnostik -->
         <div class="row pt-5">
             <div class="col-lg-1 form-switch">
@@ -2055,10 +2056,10 @@
                        data-inm-controlled-inputs="additional-mrt-url;additional-mrt-resting-state;additional-mrt-tapping-task;additional-mrt-anatomical-representation;additional-mrt-dti;additional-mrt-resting-state-valid;additional-mrt-tapping-task-valid;additional-mrt-anatomical-representation-valid;additional-mrt-dti-valid">
             </div>
             <div class="col-lg-5">
-                <label for="additional-mrt-url">MRT-Dateien</label>
+                <label for="additional-mrt-url">MRT-Dateien<span class="required-indicator">*</span></label>
             </div>
             <div class="col-lg-6 entry-value">
-                <input type="url" class="form-control" id="additional-mrt-url" name="additional-mrt-url" placeholder="Link zu MRT-Dateien" disabled>
+                <input type="url" class="form-control" id="additional-mrt-url" name="additional-mrt-url" placeholder="Link zu MRT-Dateien" disabled required>
                 <div class="invalid-feedback field-validity">
                     Gültige URL erwartet.
                 </div>
@@ -2145,7 +2146,7 @@
                 <label for="additional-eeg-url">EEG-Dateien</label>
             </div>
             <div class="col-lg-6 entry-value">
-                <input type="url" class="form-control" id="additional-eeg-url" name="additional-eeg-url" placeholder="Link zu EEG-Dateien" disabled>
+                <input type="url" class="form-control" id="additional-eeg-url" name="additional-eeg-url" placeholder="Link zu EEG-Dateien" disabled required>
                 <div class="invalid-feedback field-validity">
                     Gültige URL erwartet.
                 </div>
@@ -2164,7 +2165,7 @@
                 <label for="additional-blood-sampling-url">Blutproben-Dateien</label>
             </div>
             <div class="col-lg-6 entry-value">
-                <input type="url" class="form-control" id="additional-blood-sampling-url" name="additional-blood-sampling-url" placeholder="Link zu Blutproben-Dateien" disabled>
+                <input type="url" class="form-control" id="additional-blood-sampling-url" name="additional-blood-sampling-url" placeholder="Link zu Blutproben-Dateien" disabled required>
                 <div class="invalid-feedback field-validity">
                     Gültige URL erwartet.
                 </div>
@@ -2226,7 +2227,10 @@
 
 
         <div class="row pt-5">
+            <!--
             <button class="btn btn-primary btn-lg btn-block" type="submit" id="submit-button" formaction="https://sfb1451.inm7.de/store-data" formmethod="post" disabled>Daten speichern</button>
+            -->
+            <button class="btn btn-primary btn-lg btn-block" type="submit" id="submit-button" formaction="http://localhost:8000" formmethod="post" disabled>Daten speichern</button>
         </div>
     </div>
 
@@ -2959,7 +2963,7 @@
         "enable-kopss",
         "enable-moto-test",
         "enable-tmt",
-        "enable-tug"
+        "enable-tug",
     ];
 
     function updatedLines() {

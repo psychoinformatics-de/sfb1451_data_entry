@@ -290,10 +290,10 @@
     <div class="row"><h4 class="mb-3">Weitere Diagnostik</h4></div>
 
     {{ render_number("Link zu MRT-Dateien", "additional-mrt-url") }}
-    {{ render_number("Resting-State", "additional-mrt-resting-state") }}
-    {{ render_number("Tapping-Task", "additional-mrt-tapping-task") }}
-    {{ render_number("Anatomische Darstellung", "additional-mrt-anatomical-representation") }}
-    {{ render_number("DTI", "additional-mrt-dti") }}
+    {{ render_string("Resting-State", checkbox_message(record["additional-mrt-resting-state"])) }}
+    {{ render_string("Tapping-Task", checkbox_message(record["additional-mrt-tapping-task"])) }}
+    {{ render_string("Anatomische Darstellung", checkbox_message(record["additional-mrt-anatomical-representation"])) }}
+    {{ render_string("DTI", checkbox_message(record["additional-mrt-dti"])) }}
 
     {{ render_number("Link zu EEG Dateien", "additional-eeg-url") }}
 
