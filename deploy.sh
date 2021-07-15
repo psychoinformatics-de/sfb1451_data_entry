@@ -53,12 +53,14 @@ git add ${master_version_file}
 html_file=index${suffix}.html
 
 mkdir -p "${destination_dir}"
+mkdir -p "${destination_dir}/images"
 
 git cat-file blob master:entry.html >"${destination_dir}/${html_file}"
+git cat-file blob master:images/logo-moto-crc-1451.png >"${destination_dir}/images/logo-moto-crc-1451.png"
 
 
-git add "${destination_dir}"
 git add "${destination_dir}/${html_file}"
+git add "${destination_dir}/images/logo-moto-crc-1451.png"
 
 
 # Generate switch page if necessary
