@@ -192,10 +192,10 @@ auto_fields = {
     "isced-value": [""],
 
     "additional-mrt-url": [""],
-    "additional-mrt-resting-state": [""],
-    "additional-mrt-tapping-task": [""],
-    "additional-mrt-anatomical-representation": [""],
-    "additional-mrt-dti": [""],
+    "additional-mrt-resting-state": ["off"],
+    "additional-mrt-tapping-task": ["off"],
+    "additional-mrt-anatomical-representation": ["off"],
+    "additional-mrt-dti": ["off"],
 
     "additional-eeg-url": [""],
 
@@ -595,9 +595,6 @@ def application(environ, start_response):
         posted_data_string = "\n".join(
             [f"{key}: {value}" for key, value in entered_data.items()])
 
-        import sys
-        print(posted_data_string, file=sys.stderr)
-
         # Check single results
         for value in entered_data.values():
             assert isinstance(value, list)
@@ -660,9 +657,6 @@ def application(environ, start_response):
             },
             "data": json_object
         }
-
-        import sys
-        print(repr(json_object), file=sys.stderr)
 
         directory = dataset_root / "input" / json_data["source"]["version"]
         directory.mkdir(parents=True, exist_ok=True)
