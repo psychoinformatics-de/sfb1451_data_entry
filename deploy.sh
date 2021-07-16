@@ -63,6 +63,12 @@ git add "${destination_dir}/${html_file}"
 git add "${destination_dir}/images/logo-moto-crc-1451.png"
 
 
+# General image directory in destination root (this is currently used by jinja-generated result pages)
+mkdir -p "${destination_root}/images"
+git cat-file blob master:images/logo-moto-crc-1451.png >"${destination_root}/images/logo-moto-crc-1451.png"
+git add "${destination_root}/images/logo-moto-crc-1451.png"
+
+
 # Generate switch page if necessary
 if [ "X${create_switch_page}" != "X" ]; then
   git cat-file blob master:switch.html >"${destination_root}/index.html"
