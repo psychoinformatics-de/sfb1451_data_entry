@@ -49,6 +49,11 @@ echo "${new_master}" > ${master_version_file}
 git add ${master_version_file}
 
 
+# Generate favicon.ico
+git cat-file blob master:images/favicon.ico >"${destination_dir}/favicon.ico"
+git add "${destination_dir}/favicon.ico"
+
+
 # Generate document root
 html_file=index${suffix}.html
 
