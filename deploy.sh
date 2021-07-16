@@ -50,8 +50,8 @@ git add ${master_version_file}
 
 
 # Generate favicon.ico
-git cat-file blob master:images/favicon.ico >"${destination_dir}/favicon.ico"
-git add "${destination_dir}/favicon.ico"
+git cat-file blob master:images/favicon.ico >"${destination_root}/favicon.ico"
+git add "${destination_root}/favicon.ico"
 
 
 # Generate document root
