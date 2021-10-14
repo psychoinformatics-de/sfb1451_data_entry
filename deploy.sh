@@ -87,10 +87,10 @@ git cat-file blob master:server/store_data.py >wsgi-scripts/store_data.wsgi
 git add wsgi-scripts
 git add wsgi-scripts/store_data.wsgi
 
-mkdir -p templates
-git cat-file blob master:templates/success.html.jinja2 >templates/success.html.jinja2
-git add templates
-git add templates/success.html.jinja2
+mkdir -p "${destination_root}/templates"
+git cat-file blob master:templates/success.html.jinja2 >"${destination_root}/templates/success.html.jinja2"
+git add "${destination_root}/templates"
+git add "${destination_root}/templates/success.html.jinja2"
 
 
 git commit -m "pre-deploy${suffix} commit "
