@@ -90,7 +90,7 @@
 
     {% if record["subject-group"] == "patient" %}
 
-        {{ render_number("Haupterkrankung", "patient-main-disease") }}
+        {{ render_string("Haupterkrankung", disease_message(record["patient-main-disease"])) }}
         {{ render_string("Datum Erstsymptom", date_message(record["patient-year-first-symptom"], record["patient-month-first-symptom"], record["patient-day-first-symptom"])) }}
         {{ render_string("Datum Diagnose", date_message(record["patient-year-diagnosis"], record["patient-month-diagnosis"], record["patient-day-diagnosis"])) }}
         {{ render_string("Stärker betroffene Hand", hand_message(record["patient-stronger-impacted-hand"])) }}
