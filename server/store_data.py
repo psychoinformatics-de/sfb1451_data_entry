@@ -99,6 +99,18 @@ required_fields = [
 ]
 
 
+required_patient_fields = [
+    "patient-year-first-symptom",
+    "patient-month-first-symptom",
+    "patient-day-first-symptom",
+    "patient-year-diagnosis",
+    "patient-month-diagnosis",
+    "patient-day-diagnosis",
+    "patient-main-disease",
+    "patient-stronger-impacted-hand"
+]
+
+
 # Browsers might not send disabled or empty input fields at all.
 # All entries in auto_fields will be added to the incoming field
 # set, if they are not present.
@@ -295,6 +307,16 @@ def hand_message(value):
     }[value]
 
 
+def disease_message(value):
+    return {
+        "stroke": "Schlaganfall",
+        "parkinson": "Parkinson",
+        "tic": "Tic",
+        "depression": "Depression",
+        "alzheimer": "Alzheimer",
+    }[value]
+
+
 def date_message(year, month, day):
     return "-".join([
         str(x)
@@ -312,6 +334,7 @@ def create_result_page(commit_hash: str, time_stamp: float, json_top_data: dict,
         reference=f"{time_stamp}-{commit_hash}",
         record=json_top_data["data"],
         date_message=date_message,
+        disease_message=disease_message,
         hand_message=hand_message,
         sex_message=sex_message,
         subject_group_message=subject_group_message,
@@ -639,6 +662,12 @@ def application(environ, start_response):
         for key in required_fields:
             # This will throw an error, if the key is not available
             json_object[key] = get_field_value(entered_data, key)
+
+        # Read keys dependent on subject-group
+        if json_object["subject-group"] == "patient":
+            for key in required_patient_fields:
+                # This will throw an error, if the key is not available
+                json_object[key] = get_field_value(entered_data, key)
 
         time_stamp = time.time()
 
