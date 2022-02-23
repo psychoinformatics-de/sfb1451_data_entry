@@ -272,7 +272,10 @@ def add_file_to_dataset(dataset_root: Path, file: Path, home: Path):
             str(file)
         ],
         check=True,
-        env={"HOME": str(home)})
+        env={
+            **os.environ,
+            "HOME": str(home)
+        })
 
     return subprocess.run(
         [
