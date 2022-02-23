@@ -1,12 +1,14 @@
 import hashlib
 import json
+import sys
 import time
 import subprocess
 from pathlib import Path
+from traceback import format_exception
 from typing import Dict, List, Union
 from urllib.parse import parse_qs
 
-from jinja2 import Environment, PackageLoader, select_autoescape
+from jinja2 import Environment, select_autoescape
 
 
 # Those fields are required in the user input. They can either
@@ -325,7 +327,10 @@ def date_message(year, month, day):
     ])
 
 
-def create_result_page(commit_hash: str, time_stamp: float, json_top_data: dict, templates_directory: Path):
+def create_result_page(commit_hash: str,
+                       time_stamp: float,
+                       json_top_data: dict,
+                       templates_directory: Path):
 
     jinja_template_path = templates_directory / "success.html.jinja2"
     jinja_template = Environment(autoescape=select_autoescape()).from_string(jinja_template_path.read_text())
@@ -345,7 +350,7 @@ def get_string_content(_: str, field_content: List[str]) -> str:
     return field_content[0]
 
 
-def get_checkbox_content(field_name: str, field_content: List[str]) -> str:
+def get_checkbox_content(_: str, field_content: List[str]) -> str:
     return {
         "": "",
         "off": "False",
@@ -597,132 +602,147 @@ def get_canonic_content_string(field_set: Dict[str, List[str]]) -> str:
     return ";".join(field_strings)
 
 
+def encode_result_strings(result_strings: List[str]) -> List[bytes]:
+    return [element.encode("utf-8") for element in result_strings]
+
+
 def application(environ, start_response):
+
+    try:
+        request_body_size = int(environ.get("CONTENT_LENGTH", 0))
+        request_body = environ["wsgi.input"].read(request_body_size).decode("utf-8")
+    except (ValueError, KeyError):
+        request_body_size = 0
+        request_body = ""
+
+    try:
+        status, content_type, content = protected_application(environ, request_body)
+    except:
+        status = "500 INTERNAL ERROR"
+        content_type = "text/plain; charset=utf-8"
+        content_strings = [
+            "An unexpected error occured during processing. If this error\n",
+            "persists, please send an email with the following information\n",
+            "to <c.moench@fz-juelich.de> or <m.szczepanik@fz-juelich.de>:\n",
+            "\n",
+            "--------\n",
+            "1. Stacktrace:\n",
+            "".join(format_exception(*sys.exc_info())),
+            "2. Environment:\n",
+            str(environ),
+            "\n",
+            f"3. WSGI input data ({request_body_size}):\n",
+            request_body,
+            "\n",
+            "--------\n"
+        ]
+        content = encode_result_strings(content_strings)
+
+    content_length = sum([len(line) for line in content])
+    response_headers = [
+        ('Content-type', content_type),
+        ('Content-Length', str(content_length))]
+
+    start_response(status, response_headers)
+    return content
+
+
+def protected_application(environ, request_body):
+
+    request_method = environ["REQUEST_METHOD"]
+    if request_method != "POST":
+        return (
+            "400 BAD REQUEST",
+            "text/plain; charset=utf-8",
+            encode_result_strings(["Only POST is supported\n"])
+        )
 
     dataset_root = Path(environ["de.inm7.sfb1451.entry.dataset_root"])
     home = Path(environ["de.inm7.sfb1451.entry.home"])
     template_directory = Path(environ["de.inm7.sfb1451.entry.templates"])
 
-    request_method = environ["REQUEST_METHOD"]
-    if request_method == "POST":
-        try:
-            request_body_size = int(environ.get("CONTENT_LENGTH", 0))
-        except ValueError:
-            request_body_size = 0
+    entered_data = parse_qs(request_body)
 
-        environment = [f"{key}: {value}" for key, value in environ.items()]
+    # Check single results
+    for value in entered_data.values():
+        assert isinstance(value, list)
+        assert len(value) == 1
 
-        request_body = environ["wsgi.input"].read(request_body_size).decode("utf-8")
-        entered_data = parse_qs(request_body)
+    # Add auto fields to the entered data, if they are not already present
+    for key, value in auto_fields.items():
+        if key not in entered_data:
+            entered_data[key] = value
 
-        posted_data_string = "\n".join(
-            [f"{key}: {value}" for key, value in entered_data.items()])
+    # Correct the optional checkbox fields
+    correct_optional_checkbox_fields(entered_data)
 
-        # Check single results
-        for value in entered_data.values():
-            assert isinstance(value, list)
-            assert len(value) == 1
+    # Check the hash value
+    local_hash_string = get_canonic_content_string(entered_data)
+    if local_hash_string != entered_data["hashed-string"][0]:
+        return (
+            "400 BAD REQUEST",
+            "text/plain; charset=utf-8",
+            encode_result_strings([
+                "Local hash input-string does not match submitted values\n",
+                "LOCAL: " + local_hash_string + "\n",
+                "SENT:  " + entered_data["hashed-string"][0] + "\n"
+            ])
+        )
 
-        # Add auto fields to the entered data, if they are not already present
-        for key, value in auto_fields.items():
-            if key not in entered_data:
-                entered_data[key] = value
+    local_hash_value = hashlib.sha256(local_hash_string.encode()).hexdigest()
+    if local_hash_value != entered_data["hash-value"][0]:
+        return (
+            "400 BAD REQUEST",
+            "text/plain; charset=utf-8",
+            encode_result_strings([
+                "Server side hash value does not match submitted hash value\n"
+            ])
+        )
 
-        # Correct the optional checkbox fields
-        correct_optional_checkbox_fields(entered_data)
+    # Create posted data dictionary
+    json_object = dict()
 
-        # Check the hash value
-        local_hash_string = get_canonic_content_string(entered_data)
-        if local_hash_string != entered_data["hashed-string"][0]:
-            status = "400 BAD REQUEST"
-            output = [
-                "Local hash input-string does not match submitted values\n".encode("utf-8"),
-                ("LOCAL: " + local_hash_string + "\n").encode(),
-                ("SENT:  " + entered_data["hashed-string"][0] + "\n").encode()]
-            output_length = sum([len(line) for line in output])
-            response_headers = [('Content-type', 'text/plain; charset=utf-8'),
-                                ('Content-Length', str(output_length))]
-            start_response(status, response_headers)
-            return output
+    # Read the mandatory keys
+    for key in required_fields:
+        # This will throw an error, if the key is not available
+        json_object[key] = get_field_value(entered_data, key)
 
-        local_hash_value = hashlib.sha256(local_hash_string.encode()).hexdigest()
-        if local_hash_value != entered_data["hash-value"][0]:
-            status = "400 BAD REQUEST"
-            output = ["Server side hash value does not match submitted hash value".encode("utf-8")]
-            output_length = sum([len(line) for line in output])
-            response_headers = [('Content-type', 'text/plain; charset=utf-8'),
-                                ('Content-Length', str(output_length))]
-            start_response(status, response_headers)
-            return output
-
-        # Create posted data dictionary
-        json_object = dict()
-
-        # Read the mandatory keys
-        for key in required_fields:
+    # Read keys dependent on subject-group
+    if json_object["subject-group"] == "patient":
+        for key in required_patient_fields:
             # This will throw an error, if the key is not available
             json_object[key] = get_field_value(entered_data, key)
 
-        # Read keys dependent on subject-group
-        if json_object["subject-group"] == "patient":
-            for key in required_patient_fields:
-                # This will throw an error, if the key is not available
-                json_object[key] = get_field_value(entered_data, key)
+    time_stamp = time.time()
 
-        time_stamp = time.time()
+    json_data = {
+        "source": {
+            "time_stamp": time_stamp,
+            "version": entered_data["form-data-version"][0],
+            "remote_address": environ["REMOTE_ADDR"],
+            "hashed-string": entered_data["hashed-string"][0],
+            "hash-value": entered_data["hash-value"][0],
+            "signature-data": (
+                None
+                if entered_data["signature-data"][0] == ""
+                else entered_data["signature-data"][0]
+            )
+        },
+        "data": json_object
+    }
 
-        json_data = {
-            "source": {
-                "time_stamp": time_stamp,
-                "version": entered_data["form-data-version"][0],
-                "remote_address": environ["REMOTE_ADDR"],
-                "hashed-string": entered_data["hashed-string"][0],
-                "hash-value": entered_data["hash-value"][0],
-                "signature-data": (
-                    None
-                    if entered_data["signature-data"][0] == ""
-                    else entered_data["signature-data"][0]
-                )
-            },
-            "data": json_object
-        }
+    directory = dataset_root / "input" / json_data["source"]["version"]
+    directory.mkdir(parents=True, exist_ok=True)
 
-        directory = dataset_root / "input" / json_data["source"]["version"]
-        directory.mkdir(parents=True, exist_ok=True)
+    output_file = directory / (str(time_stamp) + ".json")
+    with output_file.open("x") as f:
+        json.dump(json_data, f)
 
-        output_file = directory / (str(time_stamp) + ".json")
-        with output_file.open("x") as f:
-            json.dump(json_data, f)
+    commit_hash = add_file_to_dataset(dataset_root, directory / output_file, home)
 
-        commit_hash = add_file_to_dataset(dataset_root, directory / output_file, home)
-
-        result_message = create_result_page(commit_hash, time_stamp, json_data, template_directory)
-
-        status = "200 OK"
-
-        output = [
-            result_message.encode(),
-            #"2-------------\n".encode(),
-            #("\n".join(environment) + "\n").encode("utf-8"),
-            #"3-------------\n".encode(),
-            #(posted_data_string + "\n").encode("utf-8"),
-            #"4-------------\n".encode(),
-            #json.dumps(json_data, indent=4).encode(),
-            #"5-------------\n".encode(),
-            #(local_hash_string + "\n").encode(),
-            #(entered_data["hashed-string"][0] + "\n").encode(),
-            #(hashlib.sha256(local_hash_string.encode()).hexdigest() + "\n").encode(),
-            #f"==: {local_hash_string == entered_data['hashed-string'][0]}\n".encode()
-        ]
-
-    else:
-
-        status = "400 BAD REQUEST"
-        output = ["Only post method allowed".encode("utf-8")]
-
-    output_length = sum([len(line) for line in output])
-    response_headers = [('Content-type', 'text/html; charset=utf-8'),
-                        ('Content-Length', str(output_length))]
-    start_response(status, response_headers)
-
-    return output
+    result_message = create_result_page(commit_hash, time_stamp, json_data, template_directory)
+    return (
+        "200 OK",
+        "text/html; charset=utf-8",
+        encode_result_strings([result_message])
+    )
