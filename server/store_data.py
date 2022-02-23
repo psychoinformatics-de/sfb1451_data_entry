@@ -1,5 +1,6 @@
 import hashlib
 import json
+import os
 import sys
 import time
 import subprocess
@@ -11,7 +12,12 @@ from urllib.parse import parse_qs
 from jinja2 import Environment, select_autoescape
 
 
-# Those fields are required in the user input. They can either
+DATASET_ROOT_KEY = "de.inm7.sfb1451.entry.dataset_root"
+HOME_KEY = "de.inm7.sfb1451.entry.home"
+TEMPLATE_DIRECTORY_KEY = "de.inm7.sfb1451.entry.templates"
+
+
+# The following fields are required in the user input. They can either
 # come from the posted data or from the auto_fields-array.
 required_fields = [
     "form-data-version",
@@ -101,6 +107,7 @@ required_fields = [
 ]
 
 
+# Fields that are required, if subject-group == "patient" is True
 required_patient_fields = [
     "patient-year-first-symptom",
     "patient-month-first-symptom",
@@ -606,6 +613,13 @@ def encode_result_strings(result_strings: List[str]) -> List[bytes]:
     return [element.encode("utf-8") for element in result_strings]
 
 
+def add_auto_fields(existing_fields: dict):
+    """Add auto fields to existing_fields, if they are not already present"""
+    for key, value in auto_fields.items():
+        if key not in existing_fields:
+            existing_fields[key] = value
+
+
 def application(environ, start_response):
 
     try:
@@ -657,23 +671,20 @@ def protected_application(environ, request_body):
             encode_result_strings(["Only POST is supported\n"])
         )
 
-    dataset_root = Path(environ["de.inm7.sfb1451.entry.dataset_root"])
-    home = Path(environ["de.inm7.sfb1451.entry.home"])
-    template_directory = Path(environ["de.inm7.sfb1451.entry.templates"])
+    dataset_root = Path(environ[DATASET_ROOT_KEY])
+    home = Path(environ[HOME_KEY])
+    template_directory = Path(environ[TEMPLATE_DIRECTORY_KEY])
 
+    # Parse data and check value structure
     entered_data = parse_qs(request_body)
-
-    # Check single results
     for value in entered_data.values():
-        assert isinstance(value, list)
-        assert len(value) == 1
+        if not isinstance(value, list) or not len(value) == 1:
+            raise ValueError(f"expected list of length one, got: {repr(value)}")
 
-    # Add auto fields to the entered data, if they are not already present
-    for key, value in auto_fields.items():
-        if key not in entered_data:
-            entered_data[key] = value
+    # Add auto fields to the entered data
+    add_auto_fields(entered_data)
 
-    # Correct the optional checkbox fields
+    # Correct the optional checkbox field in the entered data
     correct_optional_checkbox_fields(entered_data)
 
     # Check the hash value
@@ -686,8 +697,7 @@ def protected_application(environ, request_body):
                 "Local hash input-string does not match submitted values\n",
                 "LOCAL: " + local_hash_string + "\n",
                 "SENT:  " + entered_data["hashed-string"][0] + "\n"
-            ])
-        )
+            ]))
 
     local_hash_value = hashlib.sha256(local_hash_string.encode()).hexdigest()
     if local_hash_value != entered_data["hash-value"][0]:
@@ -696,26 +706,23 @@ def protected_application(environ, request_body):
             "text/plain; charset=utf-8",
             encode_result_strings([
                 "Server side hash value does not match submitted hash value\n"
-            ])
-        )
+            ]))
 
-    # Create posted data dictionary
-    json_object = dict()
-
-    # Read the mandatory keys
+    # Read the mandatory keys into the result dictionary
+    entered_data_object = dict()
     for key in required_fields:
-        # This will throw an error, if the key is not available
-        json_object[key] = get_field_value(entered_data, key)
+        # This will throw a KeyError, if the key is not available, therefore
+        # all mandatory keys are present if we go beyond this loop
+        entered_data_object[key] = get_field_value(entered_data, key)
 
-    # Read keys dependent on subject-group
-    if json_object["subject-group"] == "patient":
+    # Read mandatory keys in optional dependent on subject-group
+    if entered_data_object["subject-group"] == "patient":
         for key in required_patient_fields:
-            # This will throw an error, if the key is not available
-            json_object[key] = get_field_value(entered_data, key)
+            entered_data_object[key] = get_field_value(entered_data, key)
 
     time_stamp = time.time()
 
-    json_data = {
+    result_object = {
         "source": {
             "time_stamp": time_stamp,
             "version": entered_data["form-data-version"][0],
@@ -728,21 +735,20 @@ def protected_application(environ, request_body):
                 else entered_data["signature-data"][0]
             )
         },
-        "data": json_object
+        "data": entered_data_object
     }
 
-    directory = dataset_root / "input" / json_data["source"]["version"]
+    directory = dataset_root / "input" / result_object["source"]["version"]
     directory.mkdir(parents=True, exist_ok=True)
 
     output_file = directory / (str(time_stamp) + ".json")
     with output_file.open("x") as f:
-        json.dump(json_data, f)
+        json.dump(result_object, f)
 
     commit_hash = add_file_to_dataset(dataset_root, directory / output_file, home)
 
-    result_message = create_result_page(commit_hash, time_stamp, json_data, template_directory)
+    result_message = create_result_page(commit_hash, time_stamp, result_object, template_directory)
     return (
         "200 OK",
         "text/html; charset=utf-8",
-        encode_result_strings([result_message])
-    )
+        encode_result_strings([result_message]))
