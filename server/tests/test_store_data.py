@@ -58,9 +58,9 @@ class TestFileTree(unittest.TestCase):
             app_tester=app_tester,
             params="Hello",
             extra_environ={
-               DATASET_ROOT_KEY: "",
-               HOME_KEY: "",
-               TEMPLATE_DIRECTORY_KEY: ""
+                DATASET_ROOT_KEY: "",
+                HOME_KEY: "",
+                TEMPLATE_DIRECTORY_KEY: ""
             },
             patterns=[
                 "keys are missing",
@@ -81,10 +81,10 @@ class TestFileTree(unittest.TestCase):
                     url="/store-data",
                     params=minimal_form_data,
                     extra_environ={
-                       DATASET_ROOT_KEY: temp_dir,
-                       HOME_KEY: os.environ["HOME"],
-                       TEMPLATE_DIRECTORY_KEY: str(template_dir),
-                       "REMOTE_ADDR": "1.2.3.4"
+                        DATASET_ROOT_KEY: temp_dir,
+                        HOME_KEY: os.environ["HOME"],
+                        TEMPLATE_DIRECTORY_KEY: str(template_dir),
+                        "REMOTE_ADDR": "1.2.3.4"
                     })
 
             expected_path = Path(temp_dir) / "input/2.2/0.0.json"
@@ -103,9 +103,9 @@ class TestFileTree(unittest.TestCase):
                 url="/store-data",
                 params=minimal_form_data,
                 extra_environ={
-                   DATASET_ROOT_KEY: str(dataset_path),
-                   HOME_KEY: os.environ["HOME"],
-                   TEMPLATE_DIRECTORY_KEY: str(template_dir),
-                   "REMOTE_ADDR": "1.2.3.4"
+                    DATASET_ROOT_KEY: str(dataset_path),
+                    HOME_KEY: os.environ["HOME"],
+                    TEMPLATE_DIRECTORY_KEY: str(template_dir),
+                    "REMOTE_ADDR": "1.2.3.4"
                 })
             print(dataset_path)
