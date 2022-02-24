@@ -97,7 +97,8 @@ class TestFileTree(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
 
             dataset_path = Path(temp_dir) / "dataset"
-            subprocess.run(["datalad", "create", str(dataset_path)])
+            subprocess.run(["datalad", "create", "-c", "text2git", str(dataset_path)])
+            subprocess.run(["datalad", "no-annex", "-d", str(dataset_path)])
 
             app_tester.post(
                 url="/store-data",

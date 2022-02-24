@@ -22,6 +22,11 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install datalad-installer
           datalad-installer datalad git-annex
+          export PATH="$PATH:/usr/share/miniconda/bin"
+          echo which git-annex
+          which git-annex
+          echo which datalad
+          which datalad
           if [ -f requirements-devel.txt ]; then pip install -r requirements-devel.txt; fi
       - name: Lint with flake8
         run: |
@@ -29,4 +34,7 @@ jobs:
           flake8 . --count --ignore E501,E722,E402 --show-source --statistics
       - name: Test with pytest
         run: |
+          export PATH="$PATH:/usr/share/miniconda/bin"
+          git config --global user.email "github-test@example.com"
+          git config --global user.name "Github Testscript"
           pytest
