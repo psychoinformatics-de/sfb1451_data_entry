@@ -2,4 +2,4 @@ webtest
 pytest
 flake8
 jinja2
-datalad
+
