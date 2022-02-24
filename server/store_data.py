@@ -6,7 +6,7 @@ import time
 import subprocess
 from pathlib import Path
 from traceback import format_exception
-from typing import Dict, List, Union
+from typing import Dict, List, Tuple, Union
 from urllib.parse import parse_qs
 
 from jinja2 import Environment, select_autoescape
@@ -623,6 +623,34 @@ def add_auto_fields(existing_fields: dict):
             existing_fields[key] = value
 
 
+def read_mandatory_fields(mandatory_fields: List[str],
+                          input_data: Dict
+                          ) -> Tuple[Dict[str, str], List[str]]:
+
+    resulting_data = dict()
+    missing_keys = []
+    for key in mandatory_fields:
+        if key not in input_data:
+            missing_keys.append(key)
+        else:
+            resulting_data[key] = get_field_value(input_data, key)
+    return resulting_data, missing_keys
+
+
+def create_bad_request_result(lines: List[str]):
+    return (
+        "400 BAD REQUEST",
+        "text/plain; charset=utf-8",
+        encode_result_strings(lines))
+
+
+def create_missing_key_result(missing_keys: List[str]):
+    return create_bad_request_result([
+        "The following keys are missing from the request:\n",
+        "\n".join(missing_keys),
+        "\n"])
+
+
 def application(environ, start_response):
 
     try:
@@ -668,74 +696,69 @@ def protected_application(environ, request_body):
 
     request_method = environ["REQUEST_METHOD"]
     if request_method != "POST":
-        return (
-            "400 BAD REQUEST",
-            "text/plain; charset=utf-8",
-            encode_result_strings(["Only POST is supported\n"])
-        )
+        return create_bad_request_result(["Only POST is supported\n"])
 
     dataset_root = Path(environ[DATASET_ROOT_KEY])
     home = Path(environ[HOME_KEY])
     template_directory = Path(environ[TEMPLATE_DIRECTORY_KEY])
 
     # Parse data and check value structure
-    entered_data = parse_qs(request_body)
-    for value in entered_data.values():
+    sent_data = parse_qs(request_body)
+    for value in sent_data.values():
         if not isinstance(value, list) or not len(value) == 1:
             raise ValueError(f"expected list of length one, got: {repr(value)}")
 
-    # Add auto fields to the entered data
-    add_auto_fields(entered_data)
+    # Add auto fields to the sent data
+    add_auto_fields(sent_data)
 
-    # Correct the optional checkbox field in the entered data
-    correct_optional_checkbox_fields(entered_data)
-
-    # Check the hash value
-    local_hash_string = get_canonic_content_string(entered_data)
-    if local_hash_string != entered_data["hashed-string"][0]:
-        return (
-            "400 BAD REQUEST",
-            "text/plain; charset=utf-8",
-            encode_result_strings([
-                "Local hash input-string does not match submitted values\n",
-                "LOCAL: " + local_hash_string + "\n",
-                "SENT:  " + entered_data["hashed-string"][0] + "\n"
-            ]))
-
-    local_hash_value = hashlib.sha256(local_hash_string.encode()).hexdigest()
-    if local_hash_value != entered_data["hash-value"][0]:
-        return (
-            "400 BAD REQUEST",
-            "text/plain; charset=utf-8",
-            encode_result_strings([
-                "Server side hash value does not match submitted hash value\n"
-            ]))
+    # Correct the optional checkbox field in the sent data
+    correct_optional_checkbox_fields(sent_data)
 
     # Read the mandatory keys into the result dictionary
-    entered_data_object = dict()
-    for key in required_fields:
-        # This will throw a KeyError, if the key is not available, therefore
-        # all mandatory keys are present if we go beyond this loop
-        entered_data_object[key] = get_field_value(entered_data, key)
+    entered_data_object, missing_keys = read_mandatory_fields(
+        required_fields,
+        sent_data)
 
-    # Read mandatory keys in optional dependent on subject-group
+    if missing_keys:
+        return create_missing_key_result(missing_keys)
+
     if entered_data_object["subject-group"] == "patient":
-        for key in required_patient_fields:
-            entered_data_object[key] = get_field_value(entered_data, key)
+        entered_patient_data, missing_patient_keys = read_mandatory_fields(
+            required_patient_fields,
+            sent_data)
+
+        entered_data_object.update(entered_patient_data)
+        missing_keys.extend(missing_patient_keys)
+
+    if missing_keys:
+        return create_missing_key_result(missing_keys)
+
+    # Check the hash value
+    local_hash_string = get_canonic_content_string(sent_data)
+    if local_hash_string != sent_data["hashed-string"][0]:
+        return create_bad_request_result([
+            "Local hash input-string does not match submitted values\n",
+            "LOCAL: " + local_hash_string + "\n",
+            "SENT:  " + sent_data["hashed-string"][0] + "\n"])
+
+    local_hash_value = hashlib.sha256(local_hash_string.encode()).hexdigest()
+    if local_hash_value != sent_data["hash-value"][0]:
+        return create_bad_request_result([
+            "Server side hash value does not match submitted hash value\n"])
 
     time_stamp = time.time()
 
     result_object = {
         "source": {
             "time_stamp": time_stamp,
-            "version": entered_data["form-data-version"][0],
+            "version": sent_data["form-data-version"][0],
             "remote_address": environ["REMOTE_ADDR"],
-            "hashed-string": entered_data["hashed-string"][0],
-            "hash-value": entered_data["hash-value"][0],
+            "hashed-string": sent_data["hashed-string"][0],
+            "hash-value": sent_data["hash-value"][0],
             "signature-data": (
                 None
-                if entered_data["signature-data"][0] == ""
-                else entered_data["signature-data"][0]
+                if sent_data["signature-data"][0] == ""
+                else sent_data["signature-data"][0]
             )
         },
         "data": entered_data_object

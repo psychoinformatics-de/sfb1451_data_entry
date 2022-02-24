@@ -63,8 +63,8 @@ class TestFileTree(unittest.TestCase):
                TEMPLATE_DIRECTORY_KEY: ""
             },
             patterns=[
-                "<c.moench@fz-juelich.de>",
-                "KeyError: 'form-data-version'"])
+                "keys are missing",
+                "project-code"])
 
     def test_data_storage(self):
         app_tester = TestApp(store_data.application)
