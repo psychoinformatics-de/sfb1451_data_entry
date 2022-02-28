@@ -100,13 +100,19 @@ class TestFileTree(unittest.TestCase):
             subprocess.run(["datalad", "create", "-c", "text2git", str(dataset_path)])
             subprocess.run(["datalad", "no-annex", "-d", str(dataset_path)])
 
-            app_tester.post(
-                url="/store-data",
-                params=minimal_form_data,
-                extra_environ={
-                    DATASET_ROOT_KEY: str(dataset_path),
-                    HOME_KEY: os.environ["HOME"],
-                    TEMPLATE_DIRECTORY_KEY: str(template_dir),
-                    "REMOTE_ADDR": "1.2.3.4"
-                })
-            print(dataset_path)
+            with patch("time.time") as time_mock:
+                time_mock.return_value = 0.0
+                app_tester.post(
+                    url="/store-data",
+                    params=minimal_form_data,
+                    extra_environ={
+                        DATASET_ROOT_KEY: str(dataset_path),
+                        HOME_KEY: os.environ["HOME"],
+                        TEMPLATE_DIRECTORY_KEY: str(template_dir),
+                        "REMOTE_ADDR": "1.2.3.4"
+                    })
+
+            expected_path = dataset_path / "input/2.2/0.0.json"
+            with expected_path.open() as f:
+                json_object = json.load(f)
+        print(json_object)
