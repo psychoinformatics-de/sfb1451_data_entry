@@ -480,9 +480,10 @@ def get_string_value(value: str):
 def get_int_value(value: str):
     if len(value) == 0:
         return None
-    float_value = float(value)
-    int_value = int(float_value)
-    return None if float_value != int_value else int_value
+    number = float(value)
+    if number != int(number):
+        raise ValueError(f"Not an integer: {value}")
+    return int(number)
 
 
 def get_float_value(value: str):
