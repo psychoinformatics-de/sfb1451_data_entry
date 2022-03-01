@@ -131,5 +131,6 @@ class TestStoreData(unittest.TestCase):
         # Empty fields should be mapped to None
         self.assertEqual(get_int_value(""), None)
 
-        # Non-int fields should be mapped to None
-        self.assertEqual(get_int_value("3.4"), None)
+        # Non-int should raise a ValueError
+        self.assertRaises(ValueError, get_int_value, "3.4")
+        self.assertRaises(ValueError, get_int_value, "a")
