@@ -705,21 +705,21 @@ def protected_application(environ, request_body):
     template_directory = Path(environ[TEMPLATE_DIRECTORY_KEY])
 
     # Parse data and check value structure
-    sent_data = parse_qs(request_body)
-    for value in sent_data.values():
+    received_data = parse_qs(request_body)
+    for value in received_data.values():
         if not isinstance(value, list) or not len(value) == 1:
             raise ValueError(f"expected list of length one, got: {repr(value)}")
 
-    # Add auto fields to the sent data
-    add_auto_fields(sent_data)
+    # Add auto fields to the received data
+    add_auto_fields(received_data)
 
-    # Correct the optional checkbox field in the sent data
-    correct_optional_checkbox_fields(sent_data)
+    # Correct the optional checkbox field in the received data
+    correct_optional_checkbox_fields(received_data)
 
     # Read the mandatory keys into the result dictionary
     entered_data_object, missing_keys = read_mandatory_fields(
         required_fields,
-        sent_data)
+        received_data)
 
     if missing_keys:
         return create_missing_key_result(missing_keys)
@@ -727,7 +727,7 @@ def protected_application(environ, request_body):
     if entered_data_object["subject-group"] == "patient":
         entered_patient_data, missing_patient_keys = read_mandatory_fields(
             required_patient_fields,
-            sent_data)
+            received_data)
 
         entered_data_object.update(entered_patient_data)
         missing_keys.extend(missing_patient_keys)
@@ -736,15 +736,15 @@ def protected_application(environ, request_body):
         return create_missing_key_result(missing_keys)
 
     # Check the hash value
-    local_hash_string = get_canonic_content_string(sent_data)
-    if local_hash_string != sent_data["hashed-string"][0]:
+    local_hash_string = get_canonic_content_string(received_data)
+    if local_hash_string != received_data["hashed-string"][0]:
         return create_bad_request_result([
             "Local hash input-string does not match submitted values\n",
             "LOCAL: " + local_hash_string + "\n",
-            "SENT:  " + sent_data["hashed-string"][0] + "\n"])
+            "SENT:  " + received_data["hashed-string"][0] + "\n"])
 
     local_hash_value = hashlib.sha256(local_hash_string.encode()).hexdigest()
-    if local_hash_value != sent_data["hash-value"][0]:
+    if local_hash_value != received_data["hash-value"][0]:
         return create_bad_request_result([
             "Server side hash value does not match submitted hash value\n"])
 
@@ -753,14 +753,14 @@ def protected_application(environ, request_body):
     result_object = {
         "source": {
             "time_stamp": time_stamp,
-            "version": sent_data["form-data-version"][0],
+            "version": received_data["form-data-version"][0],
             "remote_address": environ["REMOTE_ADDR"],
-            "hashed-string": sent_data["hashed-string"][0],
-            "hash-value": sent_data["hash-value"][0],
+            "hashed-string": received_data["hashed-string"][0],
+            "hash-value": received_data["hash-value"][0],
             "signature-data": (
                 None
-                if sent_data["signature-data"][0] == ""
-                else sent_data["signature-data"][0]
+                if received_data["signature-data"][0] == ""
+                else received_data["signature-data"][0]
             )
         },
         "data": entered_data_object
