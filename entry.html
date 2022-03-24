@@ -544,6 +544,16 @@
         </div>
 
 
+	<div class="row pt-1">
+          <div class="col-lg-1 form-switch">
+            <input class="form-check-input"
+                   type="checkbox"
+                   id="basisfaehig-laterality-check-override">
+          </div>
+	  <div class="col-lg-5"> Lateralitätsprüfung aufheben </div>
+	</div>
+
+
         <div class="row pt-5">
             <div class="col-lg-1"></div>
             <div class="col-lg-11">
@@ -600,6 +610,15 @@
                 </div>
             </div>
         </div>
+
+	<div class="row pt-1">
+          <div class="col-lg-1 form-switch">
+            <input class="form-check-input"
+                   type="checkbox"
+                   id="purdue-pegboard-laterality-check-override">
+          </div>
+	  <div class="col-lg-5"> Lateralitätsprüfung aufheben </div>
+	</div>
 
 
         <!-- Jebsen Taylor Hand Function Test (JTT) -->
@@ -847,6 +866,16 @@
         </div>
 
 
+	<div class="row pt-1">
+          <div class="col-lg-1 form-switch">
+            <input class="form-check-input"
+                   type="checkbox"
+                   id="jtt-laterality-check-override">
+          </div>
+	  <div class="col-lg-5"> Lateralitätsprüfung aufheben </div>
+	</div>
+
+
         <!-- Action Research Arm Test (ARAT) -->
         <div class="row pt-5">
             <div class="col-lg-1 form-switch">
@@ -895,6 +924,16 @@
                 </div>
             </div>
         </div>
+
+
+	<div class="row pt-1">
+          <div class="col-lg-1 form-switch">
+            <input class="form-check-input"
+                   type="checkbox"
+                   id="arat-laterality-check-override">
+          </div>
+	  <div class="col-lg-5"> Lateralitätsprüfung aufheben </div>
+	</div>
 
 
         <!-- Timed Up-and-Go test (TUG) -->
@@ -2402,19 +2441,47 @@
         if (affectedHand[1] === true)
             factor = -1.0;
 
-        let checkPairs = [
-            ["Maximale Fingertipp-Geschwindigkeit", "maximum-ftf-left", "maximum-ftf-right", 1.0],
-            ["Maximale Griffkraft", "maximum-gs-left", "maximum-gs-right", 1.0],
-            ["Purdue Pegboard Test: Anzahl gesteckter Stäbchen", "purdue-pegboard-left", "purdue-pegboard-right", 1.0],
-            ["JTT: Karten drehen", "turn-cards-left", "turn-cards-right", -1.0],
-            ["JTT: kleine Gegenstände", "small-things-left", "small-things-right", -1.0],
-            ["JTT: simuliertes Füttern", "simulated-feeding-left", "simulated-feeding-right", -1.0],
-            ["JTT: Damesteine stappeln", "checkers-left", "checkers-right", -1.0],
-            ["JTT: große, leichte Gegenstände", "large-light-things-left", "large-light-things-right", -1.0],
-            ["JTT: große, schwere Gegenstände", "large-heavy-things-left", "large-heavy-things-right", -1.0],
-            ["ARAT: Punktzahl", "arat-left", "arat-right", 1.0]
-        ];
 
+	// allow conditional ovverriding of some checks
+	let BFoverride = document.getElementById("basisfaehig-laterality-check-override").checked;
+	let PPToverride = document.getElementById("purdue-pegboard-laterality-check-override").checked;
+	let JTToverride = document.getElementById("jtt-laterality-check-override").checked;
+	let ARAToverride = document.getElementById("arat-laterality-check-override").checked;
+
+	// make a list of pairs to be checked, accounting for the above overrides
+	let checkPairs = [];
+
+	if (!BFoverride) {
+	    checkPairs = checkPairs.concat([
+		["Maximale Fingertipp-Geschwindigkeit", "maximum-ftf-left", "maximum-ftf-right", 1.0],
+		["Maximale Griffkraft", "maximum-gs-left", "maximum-gs-right", 1.0]
+	    ]);
+	}
+
+	if (!PPToverride) {
+            checkPairs = checkPairs.concat([
+		["Purdue Pegboard Test: Anzahl gesteckter Stäbchen", "purdue-pegboard-left", "purdue-pegboard-right", 1.0]
+	    ]);
+	}
+
+	if (!JTToverride) {
+	    checkPairs = checkPairs.concat([
+		["JTT: Karten drehen", "turn-cards-left", "turn-cards-right", -1.0],
+		["JTT: kleine Gegenstände", "small-things-left", "small-things-right", -1.0],
+		["JTT: simuliertes Füttern", "simulated-feeding-left", "simulated-feeding-right", -1.0],
+		["JTT: Damesteine stappeln", "checkers-left", "checkers-right", -1.0],
+		["JTT: große, leichte Gegenstände", "large-light-things-left", "large-light-things-right", -1.0],
+		["JTT: große, schwere Gegenstände", "large-heavy-things-left", "large-heavy-things-right", -1.0]
+	    ]);
+	}
+
+	if (!ARAToverride) {
+	    checkPairs = checkPairs.concat([
+		["ARAT: Punktzahl", "arat-left", "arat-right", 1.0]
+	    ]);
+	}
+
+	// perform the checks
         let messages = [];
         for (let checkPair of checkPairs) {
             messages = messages.concat(checkLeftRight(checkPair[1], checkPair[2], checkPair[3] * factor, checkPair[0]));
