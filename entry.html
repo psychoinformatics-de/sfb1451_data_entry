@@ -2266,6 +2266,12 @@
         <div class="row pt-5">
             <button class="btn btn-primary btn-lg btn-block" type="submit" id="submit-button" formaction="https://sfb1451.inm7.de/store-data" formmethod="post" disabled>Daten speichern</button>
         </div>
+
+        <div class="row pt-5">
+	  <!-- Eine lokale Kopie der Formulardaten speichern -->
+            <button class="btn btn-primary btn-lg btn-block" type="button" id="local-save-button">Daten lokal speichern</button>
+        </div>
+
     </div>
 
 
@@ -3082,6 +3088,25 @@
 
 </script>
 
+<script>
+    // This is a draft for local save
+    lsb = document.getElementById('local-save-button');
+    // lsb.onclick = function() { alert('You clicked the local save button'); return false; }
+
+    console.log(getContentString());
+    console.log(getContentObj());
+
+    lsb.onclick = function() {
+	let savedObject = getContentObj();
+	let fname = savedObject['subject-pseudonym'] + ".json"  // use Pseudonym as filename
+	var bb = new Blob([JSON.stringify(savedObject)], { type: "text/json;charset=utf-8" });
+	var a = document.createElement('a');
+	a.setAttribute('download', fname)
+	a.setAttribute('href', URL.createObjectURL(bb))
+	a.click();
+	return false;
+    }
+</script>
 
 </body>
 </html>
