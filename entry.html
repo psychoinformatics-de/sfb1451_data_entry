@@ -2681,7 +2681,7 @@
         return "";
     }
 
-    function getContentString() {
+    function getContentArray() {
         let nameArray = [
             ["form-data-version", getStringContent],
             ["data-entry-domain", getStringContent],
@@ -2777,16 +2777,25 @@
             ["additional-blood-sampling-url", getStringContent],
             ["additional-remarks", getStringContent]
         ];
-        let valueArray = nameArray.map(spec => {
-            if (spec.length === 2) {
-                return spec[0] + ":" + spec[1].apply(null, [spec[0]]);
-            }
-            return spec[0] + ":" + spec[1].apply(null, [spec[2]]);
-        });
+	let contentArray = nameArray.map(spec => {
+	    if (spec.length === 2) {
+		return [spec[0], spec[1].apply(null, [spec[0]])];
+	    }
+	    return [spec[0], spec[1].apply(null, [spec[2]])];
+	});
+	return contentArray;
+    }
 
-        let contentString = valueArray.join(";");
-        console.log("contentString: " + contentString);
-        return contentString;
+    function getContentString() {
+	let keyValueArray = getContentArray();
+	let contentString = Array.from(keyValueArray, kvpair => kvpair.join(":")).join(";");
+	return contentString;
+    }
+
+    function getContentObj() {
+	let keyValueArray = getContentArray();
+	let contentObj = Object.fromEntries(keyValueArray);
+	return contentObj;
     }
 
     async function digestMessage(message) {
