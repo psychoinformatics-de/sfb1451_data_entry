@@ -2272,6 +2272,11 @@
             <button class="btn btn-primary btn-lg btn-block" type="button" id="local-save-button">Daten lokal speichern</button>
         </div>
 
+	<div class="row pt-5">
+	    <!-- Eine lokale Kopie der Formulardaten laden -->
+            <button class="btn btn-primary btn-lg btn-block" type="button" id="local-load-button">Lokale Daten laden</button>
+        </div>
+
     </div>
 
 
@@ -3106,6 +3111,73 @@
 	a.click();
 	return false;
     }
+</script>
+
+<script>
+    // This is a draft for local load
+    llb = document.getElementById('local-load-button');
+
+    function loadData() {
+
+	const [dataFile] = this.files;  // let dataFile = this.files[0];
+	const reader = new FileReader();
+
+	reader.addEventListener("load", () => {
+	    // this will run after file is loaded
+	    // asynchronous - do everything here
+	    let obj = JSON.parse(reader.result);
+
+	    for (let [key, value] of Object.entries(obj)) {
+		let element = document.getElementById(key);  // will be null if key not present
+
+		if (element !== null) {
+		    let elType = element.getAttribute("type")
+		    if (elType === "text" | elType === "date" | elType === "url") {
+			element.value = value;
+		    } else if (elType === "number") {
+			if (value === "") {
+			    // disabled or NaN - Todo (probably can write "")
+			} else {
+			    element.value = parseFloat(value)
+			}
+		    } else if (elType === "checkbox") {
+			if (value === "True") {
+			    element.checked = true;
+			} else if (value === "False") {
+			    element.checked = false;
+			}
+			// note: "" <-> checkbox was disabled; todo
+		    }
+		} else {
+		    // element with given id not found, probably radiobox
+		    // assuming the coding is done with name & value proprerties
+		    document.getElementsByName(key).forEach(elem =>{
+			// assuming type === radio, might check
+			if (elem.getAttribute("value") === value) {
+			    elem.checked = true;
+			} else {
+			    elem.checked = false;
+			}});
+		}
+	    }
+	}, false);
+
+	if (dataFile) {
+	    reader.readAsText(dataFile);
+	}
+    }
+
+    llb.onclick = function() {
+	var inputElement = document.createElement("input");
+	// consider creating hidden input in html
+	// https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications
+	inputElement.setAttribute("type", "file");
+	inputElement.setAttribute("accept", ".json");
+	inputElement.addEventListener("change", loadData);
+	inputElement.dispatchEvent(new MouseEvent("click"));
+	return false;
+    }
+
 </script>
 
 </body>
