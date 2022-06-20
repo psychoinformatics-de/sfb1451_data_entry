@@ -2806,6 +2806,7 @@
     function getContentObj() {
 	let keyValueArray = getContentArray();
 	let contentObj = Object.fromEntries(keyValueArray);
+	contentObj['subject-group'] = getStringContent('subject-group');  // not present in getContentString
 	return contentObj;
     }
 
