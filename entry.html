@@ -3118,6 +3118,11 @@
     // This is a draft for local load
     llb = document.getElementById('local-load-button');
 
+    function insertSubjectGroup(groupName) {
+	document.getElementById('subject-group').value = groupName;
+	patientUpdateElement();  // required to display or hide patient-specific fields
+    }
+
     function loadData() {
 
 	const [dataFile] = this.files;  // let dataFile = this.files[0];
@@ -3128,7 +3133,18 @@
 	    // asynchronous - do everything here
 	    let obj = JSON.parse(reader.result);
 
+	    // console.log(document.getElementById("entry-form"));
+	    document.getElementById("entry-form").reset();
+	    // return false;
+
+	    // TODO: re-enable or re-disable fields
+	    // TODO: Set Go-noGo (actions display fields) and Weitere Diagnostik (disabled by default) separately
+
+	    let handledSeparately = ['subject-group'];
+	    insertSubjectGroup(obj['subject-group']);
+
 	    for (let [key, value] of Object.entries(obj)) {
+		if (handledSeparately.includes(key)) continue;
 		let element = document.getElementById(key);  // will be null if key not present
 
 		if (element !== null) {
@@ -3147,7 +3163,16 @@
 			} else if (value === "False") {
 			    element.checked = false;
 			}
-			// note: "" <-> checkbox was disabled; todo
+			// note: (value === "") <-> checkbox was disabled; do nothing
+		    } else if (element.type === "textarea") {
+			// textarea doesn't work with getAttribute()
+			element.value = value;
+		    }
+		    else if (element.getAttribute("class") == "form-select") {
+			element.value = value;
+		    } else {
+			// catch those that didn't match - shouldn't be any
+			console.log("unmatched", element.getAttribute("class"), elType, element);
 		    }
 		} else {
 		    // element with given id not found, probably radiobox
