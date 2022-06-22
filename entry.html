@@ -2274,6 +2274,7 @@
 
 	<div class="row pt-5">
 	    <!-- Eine lokale Kopie der Formulardaten laden -->
+	    <input type="file" id="local-load-input" accept=".json" style="display:none">
             <button class="btn btn-primary btn-lg btn-block" type="button" id="local-load-button">Lokale Daten laden</button>
         </div>
 
@@ -3095,12 +3096,8 @@
 </script>
 
 <script>
-    // This is a draft for local save
-    lsb = document.getElementById('local-save-button');
-    // lsb.onclick = function() { alert('You clicked the local save button'); return false; }
-
-    console.log(getContentString());
-    console.log(getContentObj());
+    // Local save
+    const lsb = document.getElementById('local-save-button');
 
     lsb.onclick = function() {
 	let savedObject = getContentObj();
@@ -3115,8 +3112,7 @@
 </script>
 
 <script>
-    // This is a draft for local load
-    llb = document.getElementById('local-load-button');
+    // Local load
 
     function resetTheForm(fieldsToWrite) {
 	// call reset() to clear the form
@@ -3201,99 +3197,98 @@
 	} else if (loadedData["go-nogo-incorrectly-executed"] === "False") {
 	    document.getElementById("go-nogo-incorrectly-executed").checked = false;
 	}
-    };
+    }
 
     function loadData() {
 
+	let obj = JSON.parse(this.result);  // when used as event handler, this = element on which is placed
+
+	// set the state to a clean sheet
+	resetTheForm(Object.keys(obj));
+
+	// some fields need to trigger their events and need more than just value update
+	let handledSeparately = [/subject-group/, /go-nogo-*/];
+	insertSubjectGroup(obj["subject-group"]);
+	insertGoNogo(obj);
+
+	// iterate through all the loaded values and put remaining values into the form
+	for (let [key, value] of Object.entries(obj)) {
+	    if (handledSeparately.some(x => key.match(x))) continue;
+	    let element = document.getElementById(key);  // will be null if key not present
+
+	    if (element !== null) {
+		let elType = element.getAttribute("type")
+		if (elType === "text" | elType === "date" | elType === "url") {
+		    element.value = value;
+		} else if (elType === "number") {
+		    if (value === "") {
+			// disabled or NaN - don't change (relies on the form being reset by this function)
+		    } else {
+			element.value = parseFloat(value)
+		    }
+		} else if (elType === "checkbox") {
+		    if (value === "True") {
+			element.checked = true;
+		    } else if (value === "False") {
+			element.checked = false;
+		    }
+		    // note: (value === "") <-> checkbox was disabled; do nothing
+		} else if (element.type === "textarea") {
+		    // for textarea, getAttribute() doesn't work
+		    element.value = value;
+		}
+		else if (element.getAttribute("class") == "form-select") {
+		    element.value = value;
+		} else {
+		    // catch those that didn't match - shouldn't be any
+		    console.log("unmatched", element.getAttribute("class"), elType, element);
+		}
+	    } else {
+		// element with given id not found, probably radiobox
+		// assuming the coding is done with name & value proprerties
+		document.getElementsByName(key).forEach(elem =>{
+		    // assuming type === radio, might check
+		    if (elem.getAttribute("value") === value) {
+			elem.checked = true;
+		    } else {
+			elem.checked = false;
+		    }});
+	    }
+	}
+
+	// Weitere Diagnostik starts disabled, enable if needed
+	if (obj["additional-mrt-url"] !== "" || obj["additional-eeg-url"] !== "" || obj["additional-blood-sampling-url"] != "") {
+	    document.getElementById("enable-ad").click();
+	}
+
+	// update sum fields
+	kasSum();
+	kopssSum();
+	aclKSum();
+	demtectSum();
+    }
+
+    function readSavedJSON() {
 	const [dataFile] = this.files;  // let dataFile = this.files[0];
 	const reader = new FileReader();
 
-	reader.addEventListener("load", () => {
-	    // this will run after file is loaded
-	    // asynchronous - do everything here
-	    let obj = JSON.parse(reader.result);
-
-	    // set the state to a clean sheet
-	    resetTheForm(Object.keys(obj));
-
-	    // some fields need to trigger their events and need more than just value update
-	    let handledSeparately = [/subject-group/, /go-nogo-*/];
-	    insertSubjectGroup(obj["subject-group"]);
-	    insertGoNogo(obj);
-
-	    // iterate through all the loaded values and put remaining values into the form
-	    for (let [key, value] of Object.entries(obj)) {
-		if (handledSeparately.some(x => key.match(x))) continue;
-		let element = document.getElementById(key);  // will be null if key not present
-
-		if (element !== null) {
-		    let elType = element.getAttribute("type")
-		    if (elType === "text" | elType === "date" | elType === "url") {
-			element.value = value;
-		    } else if (elType === "number") {
-			if (value === "") {
-			    // disabled or NaN - don't change (relies on the form being reset by this function)
-			} else {
-			    element.value = parseFloat(value)
-			}
-		    } else if (elType === "checkbox") {
-			if (value === "True") {
-			    element.checked = true;
-			} else if (value === "False") {
-			    element.checked = false;
-			}
-			// note: (value === "") <-> checkbox was disabled; do nothing
-		    } else if (element.type === "textarea") {
-			// textarea doesn't work with getAttribute()
-			element.value = value;
-		    }
-		    else if (element.getAttribute("class") == "form-select") {
-			element.value = value;
-		    } else {
-			// catch those that didn't match - shouldn't be any
-			console.log("unmatched", element.getAttribute("class"), elType, element);
-		    }
-		} else {
-		    // element with given id not found, probably radiobox
-		    // assuming the coding is done with name & value proprerties
-		    document.getElementsByName(key).forEach(elem =>{
-			// assuming type === radio, might check
-			if (elem.getAttribute("value") === value) {
-			    elem.checked = true;
-			} else {
-			    elem.checked = false;
-			}});
-		}
-	    }
-
-	    // Weitere Diagnostik starts disabled, enable if needed
-	    if (obj["additional-mrt-url"] !== "" || obj["additional-eeg-url"] !== "" || obj["additional-blood-sampling-url"] != "") {
-		document.getElementById("enable-ad").click();
-	    }
-
-	    // update sum fields
-	    kasSum();
-	    kopssSum();
-	    aclKSum();
-	    demtectSum();
-
-	}, false);
-
+	reader.addEventListener("load", loadData, false);
 	if (dataFile) {
 	    reader.readAsText(dataFile);
 	}
     }
 
-    llb.onclick = function() {
-	var inputElement = document.createElement("input");
-	// consider creating hidden input in html
-	// https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications
-	inputElement.setAttribute("type", "file");
-	inputElement.setAttribute("accept", ".json");
-	inputElement.addEventListener("change", loadData);
-	inputElement.dispatchEvent(new MouseEvent("click"));
-	return false;
-    }
+    const fileSelect = document.getElementById("local-load-button");
+    const fileElem = document.getElementById("local-load-input");
+
+    fileSelect.addEventListener("click", function (e) {
+	if (fileElem) {
+	    fileElem.click();
+	}
+    }, false);
+
+    fileElem.addEventListener("change", readSavedJSON, false);
+
 
 </script>
 
