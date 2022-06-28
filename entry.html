@@ -3092,33 +3092,38 @@
 
     updatedLines();
 
-
 </script>
+
 
 <script>
     // Local save
-    const lsb = document.getElementById('local-save-button');
+    const lsb = document.getElementById("local-save-button");
 
-    lsb.onclick = function() {
-	let savedObject = getContentObj();
+    lsb.onclick = function () {
+        let savedObject = getContentObj();
 
-	// refuse to save without subject pseudonym
-	if (savedObject["subject-pseudonym"] === "") {
-	    window.alert("Vor dem Speichern bitte Probanden-Pseudonym eingeben");
-	    return false;
-	}
+        // refuse to save without subject pseudonym
+        if (savedObject["subject-pseudonym"] === "") {
+            window.alert(
+                "Vor dem Speichern bitte Probanden-Pseudonym eingeben"
+            );
+            return false;
+        }
 
-	// save using pseudonym as filename
-	let fname = savedObject["subject-pseudonym"] + ".json";
-	var bb = new Blob([JSON.stringify(savedObject)], { type: "text/json;charset=utf-8" });
-	var a = document.createElement('a');
-	a.setAttribute('download', fname)
-	a.setAttribute('href', URL.createObjectURL(bb))
-	a.click();
-	a.remove();
-	return false;
-    }
+        // save using pseudonym as filename
+        let fname = savedObject["subject-pseudonym"] + ".json";
+        var bb = new Blob([JSON.stringify(savedObject)], {
+            type: "text/json;charset=utf-8",
+        });
+        var a = document.createElement("a");
+        a.setAttribute("download", fname);
+        a.setAttribute("href", URL.createObjectURL(bb));
+        a.click();
+        a.remove();
+        return false;
+    };
 </script>
+
 
 <script>
     // Local load
