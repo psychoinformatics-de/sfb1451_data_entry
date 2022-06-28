@@ -2268,13 +2268,13 @@
         </div>
 
         <div class="row pt-5">
-	  <!-- Eine lokale Kopie der Formulardaten speichern -->
+            <!-- Eine lokale Kopie der Formulardaten speichern -->
             <button class="btn btn-primary btn-lg btn-block" type="button" id="local-save-button">Daten lokal speichern</button>
         </div>
 
-	<div class="row pt-5">
-	    <!-- Eine lokale Kopie der Formulardaten laden -->
-	    <input type="file" id="local-load-input" accept=".json" style="display:none">
+        <div class="row pt-5">
+            <!-- Eine lokale Kopie der Formulardaten laden -->
+            <input type="file" id="local-load-input" accept=".json" style="display:none">
             <button class="btn btn-primary btn-lg btn-block" type="button" id="local-load-button">Lokale Daten laden</button>
         </div>
 
@@ -2789,26 +2789,26 @@
             ["additional-blood-sampling-url", getStringContent],
             ["additional-remarks", getStringContent]
         ];
-	let contentArray = nameArray.map(spec => {
-	    if (spec.length === 2) {
-		return [spec[0], spec[1].apply(null, [spec[0]])];
-	    }
-	    return [spec[0], spec[1].apply(null, [spec[2]])];
-	});
-	return contentArray;
+        let contentArray = nameArray.map(spec => {
+            if (spec.length === 2) {
+                return [spec[0], spec[1].apply(null, [spec[0]])];
+            }
+            return [spec[0], spec[1].apply(null, [spec[2]])];
+        });
+        return contentArray;
     }
 
     function getContentString() {
-	let keyValueArray = getContentArray();
-	let contentString = Array.from(keyValueArray, kvpair => kvpair.join(":")).join(";");
-	return contentString;
+        let keyValueArray = getContentArray();
+        let contentString = Array.from(keyValueArray, kvpair => kvpair.join(":")).join(";");
+        return contentString;
     }
 
     function getContentObj() {
-	let keyValueArray = getContentArray();
-	let contentObj = Object.fromEntries(keyValueArray);
-	contentObj['subject-group'] = getStringContent('subject-group');  // not present in getContentString
-	return contentObj;
+        let keyValueArray = getContentArray();
+        let contentObj = Object.fromEntries(keyValueArray);
+        contentObj['subject-group'] = getStringContent('subject-group');  // not present in getContentString
+        return contentObj;
     }
 
     async function digestMessage(message) {
