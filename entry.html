@@ -3129,182 +3129,235 @@
     // Local load
 
     function resetTheForm(fieldsToWrite) {
-	// call reset() to clear the form
-	document.getElementById("entry-form").reset();
+        // call reset() to clear the form
+        document.getElementById("entry-form").reset();
 
-	// while reset affects the sliders used to enable/disable fields,
-	// it does not change the field's disabled status
-	// looks like we need to do this explicitly
-	let shouldBeDisabled = [
-	    "patient-main-disease",
-	    "patient-stronger-impacted-hand-left",
-	    "patient-stronger-impacted-hand-right",
-	    "patient-stronger-impacted-hand-none",
-	    "go-nogo-recognized-error-time",
-	    "kas-sum",
-	    "kopss-sum",
-	    "acl-k-sum",
-	    "demtect-sum",
-	    "additional-mrt-url",
-	    "additional-mrt-resting-state",
-	    "additional-mrt-resting-state-valid",
-	    "additional-mrt-tapping-task",
-	    "additional-mrt-tapping-task-valid",
-	    "additional-mrt-anatomical-representation",
-	    "additional-mrt-dti",
-	    "additional-mrt-dti-valid",
-	    "additional-eeg-url",
-	    "additional-blood-sampling-url",
-	    "submit-button",
-	];
+        // while reset affects the sliders used to enable/disable fields,
+        // it does not change the field's disabled status
+        // looks like we need to do this explicitly
+        let shouldBeDisabled = [
+            "patient-main-disease",
+            "patient-stronger-impacted-hand-left",
+            "patient-stronger-impacted-hand-right",
+            "patient-stronger-impacted-hand-none",
+            "go-nogo-recognized-error-time",
+            "kas-sum",
+            "kopss-sum",
+            "acl-k-sum",
+            "demtect-sum",
+            "additional-mrt-url",
+            "additional-mrt-resting-state",
+            "additional-mrt-resting-state-valid",
+            "additional-mrt-tapping-task",
+            "additional-mrt-tapping-task-valid",
+            "additional-mrt-anatomical-representation",
+            "additional-mrt-dti",
+            "additional-mrt-dti-valid",
+            "additional-eeg-url",
+            "additional-blood-sampling-url",
+            "submit-button",
+        ];
 
-	// disable all fields which should be disabled
-	shouldBeDisabled.forEach((fieldId) => {
-	    let elem = document.getElementById(fieldId);
-	    if ( !elem.disabled ) {
-		elem.disabled = true;
-	    }});
+        // disable all fields which should be disabled
+        shouldBeDisabled.forEach((fieldId) => {
+            let elem = document.getElementById(fieldId);
+            if (!elem.disabled) {
+                elem.disabled = true;
+            }
+        });
 
-	// enable all fields which should be enabled
-	fieldsToWrite.forEach((fieldId) => {
-	    let elem = document.getElementById(fieldId);
-	    // note: this won't catch radio buttons, but presently they cannot get disabled
-	    if (elem !== null && elem.disabled && ! shouldBeDisabled.includes(fieldId)) {
-		elem.disabled = false;
-	    }});
+        // enable all fields which should be enabled
+        fieldsToWrite.forEach((fieldId) => {
+            let elem = document.getElementById(fieldId);
+            // note: this won't catch radio buttons, but presently they cannot get disabled
+            if (
+                elem !== null &&
+                elem.disabled &&
+                !shouldBeDisabled.includes(fieldId)
+            ) {
+                elem.disabled = false;
+            }
+        });
     }
 
     function insertSubjectGroup(groupName) {
-	document.getElementById('subject-group').value = groupName;
-	patientUpdateElement();  // required to display or hide patient-specific fields
+        document.getElementById("subject-group").value = groupName;
+        patientUpdateElement(); // required to display or hide patient-specific fields
     }
 
     function insertGoNogo(loadedData) {
+        function updateAndDispatch(obj, key, evt, parseFun) {
+            // helper to update a field and trigger an event if obj[key] is nonempty
+            let elem = document.getElementById(key);
+            if (obj[key] !== "") {
+                if (parseFun === undefined) {
+                    elem.value = obj[key];
+                } else {
+                    elem.value = parseFun(obj[key]);
+                }
+                elem.dispatchEvent(evt);
+            }
+        }
 
-	function updateAndDispatch(obj, key, evt, parseFun) {
-	    // helper to update a field and trigger an event if obj[key] is nonempty
-	    let elem = document.getElementById(key);
-	    if (obj[key] !== "") {
-		if (parseFun === undefined) {
-		    elem.value = obj[key];
-		} else {
-		    elem.value = parseFun(obj[key]);
-		}
-		elem.dispatchEvent(evt);
-	    }
-	}
+        let syntheticChangeEvent = new UIEvent("change");
 
-	let syntheticChangeEvent = new UIEvent("change");
+        // update block count, reaction times, and error counts
+        updateAndDispatch(
+            loadedData,
+            "go-nogo-block-count",
+            syntheticChangeEvent
+        );
+        updateAndDispatch(
+            loadedData,
+            "go-nogo-correct-answer-time",
+            syntheticChangeEvent,
+            parseFloat
+        );
+        updateAndDispatch(
+            loadedData,
+            "go-nogo-total-errors",
+            syntheticChangeEvent,
+            parseInt
+        );
+        updateAndDispatch(
+            loadedData,
+            "go-nogo-wrong-errors",
+            syntheticChangeEvent,
+            parseInt
+        );
+        updateAndDispatch(
+            loadedData,
+            "go-nogo-recognized-errors",
+            syntheticChangeEvent,
+            parseInt
+        );
+        updateAndDispatch(
+            loadedData,
+            "go-nogo-recognized-error-time",
+            syntheticChangeEvent,
+            parseFloat
+        );
+        // note *-time fields have no onChange event, but that shouldn't be a problem
 
-	// update block count, reaction times, and error counts
-	updateAndDispatch(loadedData, "go-nogo-block-count", syntheticChangeEvent)
-	updateAndDispatch(loadedData, "go-nogo-correct-answer-time", syntheticChangeEvent, parseFloat)
-	updateAndDispatch(loadedData, "go-nogo-total-errors", syntheticChangeEvent, parseInt)
-	updateAndDispatch(loadedData, "go-nogo-wrong-errors", syntheticChangeEvent, parseInt)
-	updateAndDispatch(loadedData, "go-nogo-recognized-errors", syntheticChangeEvent, parseInt)
-	updateAndDispatch(loadedData, "go-nogo-recognized-error-time", syntheticChangeEvent, parseFloat)
-	// note *-time fields have no onChange event, but that shouldn't be a problem
-
-	// update checkbox
-	if (loadedData["go-nogo-incorrectly-executed"] === "True") {
-	    document.getElementById("go-nogo-incorrectly-executed").checked = true;
-	} else if (loadedData["go-nogo-incorrectly-executed"] === "False") {
-	    document.getElementById("go-nogo-incorrectly-executed").checked = false;
-	}
+        // update checkbox
+        if (loadedData["go-nogo-incorrectly-executed"] === "True") {
+            document.getElementById(
+                "go-nogo-incorrectly-executed"
+            ).checked = true;
+        } else if (loadedData["go-nogo-incorrectly-executed"] === "False") {
+            document.getElementById(
+                "go-nogo-incorrectly-executed"
+            ).checked = false;
+        }
     }
 
     function loadData() {
+        let obj = JSON.parse(this.result); // when used as event handler, this = element on which is placed
 
-	let obj = JSON.parse(this.result);  // when used as event handler, this = element on which is placed
+        // set the state to a clean sheet
+        resetTheForm(Object.keys(obj));
 
-	// set the state to a clean sheet
-	resetTheForm(Object.keys(obj));
+        // some fields need to trigger their events and need more than just value update
+        let handledSeparately = [/subject-group/, /go-nogo-*/];
+        insertSubjectGroup(obj["subject-group"]);
+        insertGoNogo(obj);
 
-	// some fields need to trigger their events and need more than just value update
-	let handledSeparately = [/subject-group/, /go-nogo-*/];
-	insertSubjectGroup(obj["subject-group"]);
-	insertGoNogo(obj);
+        // iterate through all the loaded values and put remaining values into the form
+        for (let [key, value] of Object.entries(obj)) {
+            if (handledSeparately.some((x) => key.match(x))) continue;
+            let element = document.getElementById(key); // will be null if key not present
 
-	// iterate through all the loaded values and put remaining values into the form
-	for (let [key, value] of Object.entries(obj)) {
-	    if (handledSeparately.some(x => key.match(x))) continue;
-	    let element = document.getElementById(key);  // will be null if key not present
+            if (element !== null) {
+                let elType = element.getAttribute("type");
+                if (
+                    (elType === "text") |
+                    (elType === "date") |
+                    (elType === "url")
+                ) {
+                    element.value = value;
+                } else if (elType === "number") {
+                    if (value === "") {
+                        // disabled or NaN - don't change (relies on the form being reset by this function)
+                    } else {
+                        element.value = parseFloat(value);
+                    }
+                } else if (elType === "checkbox") {
+                    if (value === "True") {
+                        element.checked = true;
+                    } else if (value === "False") {
+                        element.checked = false;
+                    }
+                    // note: (value === "") <-> checkbox was disabled; do nothing
+                } else if (element.type === "textarea") {
+                    // for textarea, getAttribute() doesn't work
+                    element.value = value;
+                } else if (element.getAttribute("class") == "form-select") {
+                    element.value = value;
+                } else {
+                    // catch those that didn't match - shouldn't be any
+                    console.log(
+                        "unmatched",
+                        element.getAttribute("class"),
+                        elType,
+                        element
+                    );
+                }
+            } else {
+                // element with given id not found, probably radiobox
+                // assuming the coding is done with name & value proprerties
+                document.getElementsByName(key).forEach((elem) => {
+                    // assuming type === radio, might check
+                    if (elem.getAttribute("value") === value) {
+                        elem.checked = true;
+                    } else {
+                        elem.checked = false;
+                    }
+                });
+            }
+        }
 
-	    if (element !== null) {
-		let elType = element.getAttribute("type")
-		if (elType === "text" | elType === "date" | elType === "url") {
-		    element.value = value;
-		} else if (elType === "number") {
-		    if (value === "") {
-			// disabled or NaN - don't change (relies on the form being reset by this function)
-		    } else {
-			element.value = parseFloat(value)
-		    }
-		} else if (elType === "checkbox") {
-		    if (value === "True") {
-			element.checked = true;
-		    } else if (value === "False") {
-			element.checked = false;
-		    }
-		    // note: (value === "") <-> checkbox was disabled; do nothing
-		} else if (element.type === "textarea") {
-		    // for textarea, getAttribute() doesn't work
-		    element.value = value;
-		}
-		else if (element.getAttribute("class") == "form-select") {
-		    element.value = value;
-		} else {
-		    // catch those that didn't match - shouldn't be any
-		    console.log("unmatched", element.getAttribute("class"), elType, element);
-		}
-	    } else {
-		// element with given id not found, probably radiobox
-		// assuming the coding is done with name & value proprerties
-		document.getElementsByName(key).forEach(elem =>{
-		    // assuming type === radio, might check
-		    if (elem.getAttribute("value") === value) {
-			elem.checked = true;
-		    } else {
-			elem.checked = false;
-		    }});
-	    }
-	}
+        // Weitere Diagnostik starts disabled, enable if needed
+        if (
+            obj["additional-mrt-url"] !== "" ||
+            obj["additional-eeg-url"] !== "" ||
+            obj["additional-blood-sampling-url"] != ""
+        ) {
+            document.getElementById("enable-ad").click();
+        }
 
-	// Weitere Diagnostik starts disabled, enable if needed
-	if (obj["additional-mrt-url"] !== "" || obj["additional-eeg-url"] !== "" || obj["additional-blood-sampling-url"] != "") {
-	    document.getElementById("enable-ad").click();
-	}
-
-	// update sum fields
-	kasSum();
-	kopssSum();
-	aclKSum();
-	demtectSum();
+        // update sum fields
+        kasSum();
+        kopssSum();
+        aclKSum();
+        demtectSum();
     }
 
     function readSavedJSON() {
-	const [dataFile] = this.files;  // let dataFile = this.files[0];
-	const reader = new FileReader();
+        const [dataFile] = this.files; // let dataFile = this.files[0];
+        const reader = new FileReader();
 
-	reader.addEventListener("load", loadData, false);
-	if (dataFile) {
-	    reader.readAsText(dataFile);
-	}
+        reader.addEventListener("load", loadData, false);
+        if (dataFile) {
+            reader.readAsText(dataFile);
+        }
     }
 
     const fileSelect = document.getElementById("local-load-button");
     const fileElem = document.getElementById("local-load-input");
 
-    fileSelect.addEventListener("click", function (e) {
-	if (fileElem) {
-	    fileElem.click();
-	}
-    }, false);
+    fileSelect.addEventListener(
+        "click",
+        function (e) {
+            if (fileElem) {
+                fileElem.click();
+            }
+        },
+        false
+    );
 
     fileElem.addEventListener("change", readSavedJSON, false);
-
-
 </script>
+
 
 </body>
 </html>
