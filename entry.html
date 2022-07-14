@@ -2341,6 +2341,38 @@
 
 
 <script>
+    const submitButtonToggler = {
+        // a global object to track whether the save button can be enabled
+        // and to toggle its state when needed
+        // we require data to be validated and only allow submitting after
+        // the local save has been done
+        dataValid: false,
+        dataSaved: false,
+        update: function () {
+            let submitButton = document.getElementById("submit-button");
+            if (this.dataValid && this.dataSaved) {
+                submitButton.removeAttribute("disabled");
+            } else {
+                submitButton.setAttribute("disabled", "");
+            }
+        },
+        toggle: function (property, value) {
+            console.assert(
+                typeof value === "boolean",
+                "Toggle called with non-boolean value"
+            );
+            console.assert(
+                this.hasOwnProperty(property),
+                "Unknown property: " + property
+            );
+            this[property] = value;
+            this.update();
+        },
+    };
+</script>
+
+
+<script>
     function getContentOfElementNamed(name) {
         const elementArray = document.getElementsByName(name);
         if (elementArray.length === 1)
@@ -2824,14 +2856,14 @@
     function updateFingerPrint() {
         let fingerPrintElement = document.getElementById("finger-print");
         let entryForm = document.getElementById("entry-form");
-        let submitButton = document.getElementById("submit-button");
+        // let submitButton = document.getElementById("submit-button");  delegated to submitButtonToggler
         let hashedStringElement = document.getElementById("hashed-string");
         let hashValueElement = document.getElementById("hash-value");
         let signatureDataElement = document.getElementById("signature-data");
 
         if (validateForm(entryForm) === false) {
             fingerPrintElement.innerHTML = "Fingerabruck nicht verfügbar, da Eingaben ungültig sind.";
-            submitButton.setAttribute("disabled", "");
+            submitButtonToggler.toggle("dataValid", false)
             signatureDataElement.setAttribute("disabled", "");
         } else {
             const contentString = getContentString();
@@ -2841,11 +2873,11 @@
                 console.log(hashHex);
                 fingerPrintElement.innerHTML = hashHex;
                 hashValueElement.value = hashHex;
-                submitButton.removeAttribute("disabled");
+                submitButtonToggler.toggle("dataValid", true)
             }).catch(err => {
                 console.log(err);
                 fingerPrintElement.innerHTML = "Fingerabruck nicht verfügbar: " + err;
-                submitButton.setAttribute("disabled", "");
+                submitButtonToggler.toggle("dataValid", false)
             });
         }
     }
@@ -3122,6 +3154,9 @@
         a.setAttribute("href", URL.createObjectURL(bb));
         a.click();
         a.remove();
+
+        // allow submit button to be enabled
+        submitButtonToggler.toggle("dataSaved", true);
         return false;
     };
 </script>
