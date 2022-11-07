@@ -282,8 +282,7 @@ def add_file_to_dataset(dataset_root: Path, file: Path, home: Path):
             "datalad",
             "push",
             "-d", str(dataset_root),
-            "--to", "entrystore",
-            str(file)
+            "--to", "entrystore"
         ],
         check=True,
         env={
