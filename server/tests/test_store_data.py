@@ -103,8 +103,20 @@ class TestStoreData(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp_dir:
 
             dataset_path = Path(temp_dir) / "dataset"
-            subprocess.run(["datalad", "create", "-c", "text2git", str(dataset_path)])
-            subprocess.run(["datalad", "no-annex", "-d", str(dataset_path)])
+            subprocess.run(
+                ["datalad", "create", "--no-annex", str(dataset_path)],
+                check=True
+            )
+
+            sibling_path = Path(temp_dir) / "entrystore"
+            sibling_path.mkdir()
+            subprocess.run(
+                [
+                    "datalad", "create-sibling", "-d", str(dataset_path), "-s",
+                    "entrystore", str(sibling_path)
+                ],
+                check=True
+            )
 
             with patch("time.time") as time_mock:
                 time_mock.return_value = 0.0
@@ -120,8 +132,11 @@ class TestStoreData(unittest.TestCase):
 
             expected_path = dataset_path / "input/2.2/0.0.json"
             with expected_path.open() as f:
-                json_object = json.load(f)
-        print(json_object)
+                json_object_1 = json.load(f)
+            expected_sibling_path = sibling_path / "input/2.2/0.0.json"
+            with expected_sibling_path.open() as f:
+                json_object_2 = json.load(f)
+            assert json_object_1 == json_object_2
 
     def test_get_int(self):
         self.assertEqual(get_int_value(".0"), 0)
