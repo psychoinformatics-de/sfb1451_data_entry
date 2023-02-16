@@ -82,6 +82,9 @@
     <line class="inm-line" id="line-enable-tug-v"/>
     <line class="inm-line" id="line-enable-tug-h"/>
 
+    <line class="inm-line" id="line-enable-psqi-v"/>
+    <line class="inm-line" id="line-enable-psqi-h"/>
+
 </svg>
 
 
@@ -98,7 +101,7 @@
 
 <form class="needs-validation" id="entry-form" novalidate>
 
-    <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="2.2">
+    <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="2.3">
     <input type="text" id="data-entry-domain" name="data-entry-domain" style="visibility: hidden;" value="de.sfb1451.z03">
 
 
@@ -2069,6 +2072,173 @@
             </div>
         </div>
 
+        <!-- PSQI -->
+        <div class="row pt-4">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-leader"
+                       type="checkbox"
+                       id="enable-psqi"
+                       data-inm-switch-group="enable-psqi-sleep-quality;enable-psqi-sleep-latency;enable-psqi-sleep-duration;enable-psqi-sleep-efficiency;enable-psqi-sleep-disturbance;enable-psqi-meds;enable-psqi-day-dysfunction"
+                       data-inm-lines="line-enable-psqi-v;line-enable-psqi-h"
+                       data-inm-line-end="enable-psqi-day-dysfunction"
+                       checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>PSQI</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-psqi-sleep-quality"
+                       data-inm-controlled-inputs="psqi-sleep-quality"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="psqi-sleep-quality">Schlafqualität</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="psqi-sleep-quality" name="psqi-sleep-quality" min="0" max="3" step="1" placeholder="0 - 3" required oninput="psqiSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 3 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-psqi-sleep-latency"
+                       data-inm-controlled-inputs="psqi-sleep-latency"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="psqi-sleep-latency">Schlaflatenz</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="psqi-sleep-latency" name="psqi-sleep-latency" min="0" max="3" step="1" placeholder="0 - 3" required oninput="psqiSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 3 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-psqi-sleep-duration"
+                       data-inm-controlled-inputs="psqi-sleep-duration"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="psqi-sleep-duration">Schlafdauer</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="psqi-sleep-duration" name="psqi-sleep-duration" min="0" max="3" step="1" placeholder="0 - 3" required oninput="psqiSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 3 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-psqi-sleep-efficiency"
+                       data-inm-controlled-inputs="psqi-sleep-efficiency"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="psqi-sleep-efficiency">Schlafeffizienz</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="psqi-sleep-efficiency" name="psqi-sleep-efficiency" min="0" max="3" step="1" placeholder="0 - 3" required oninput="psqiSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 3 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-psqi-sleep-disturbance"
+                       data-inm-controlled-inputs="psqi-sleep-disturbance"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="psqi-sleep-disturbance">Schlafstörungen</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="psqi-sleep-disturbance" name="psqi-sleep-disturbance" min="0" max="3" step="1" placeholder="0 - 3" required oninput="psqiSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 3 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-psqi-meds"
+                       data-inm-controlled-inputs="psqi-meds"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="psqi-meds">Schlafmittelkonsum</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="psqi-meds" name="psqi-meds" min="0" max="3" step="1" placeholder="0 - 3" required oninput="psqiSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 3 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-psqi-day-dysfunction"
+                       data-inm-controlled-inputs="psqi-day-dysfunction"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="psqi-day-dysfunction">Tagesmüdigkeit</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="psqi-day-dysfunction" name="psqi-day-dysfunction" min="0" max="3" step="1" placeholder="0 - 3" required oninput="psqiSum();">
+                <div class="invalid-feedback field-validity">
+                    Ganzzahl zwischen 0 und 3 erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-2">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-5">
+                <label for="psqi-sum">PSQI Gesamtsumme</label>
+            </div>
+            <div class="col-md-6 entry-value">
+                <input type="number" class="form-control" id="psqi-sum" name="psqi-sum" disabled>
+            </div>
+        </div>
+
 
         <!-- Weitere Diagnostik -->
         <div class="row pt-5">
@@ -2688,6 +2858,21 @@
         dest_element.value = sumString;
     }
 
+    function psqiSum() {
+        let source_elements = [
+            document.getElementById("psqi-sleep-quality"),
+            document.getElementById("psqi-sleep-latency"),
+            document.getElementById("psqi-sleep-duration"),
+            document.getElementById("psqi-sleep-efficiency"),
+            document.getElementById("psqi-sleep-disturbance"),
+            document.getElementById("psqi-meds"),
+            document.getElementById("psqi-day-dysfunction"),
+        ];
+        let sumString = sumInputs(source_elements);
+        let dest_element = document.getElementById("psqi-sum");
+        dest_element.value = sumString;
+    }
+
 </script>
 
 <script>
@@ -2815,6 +3000,13 @@
             ["euroqol-code", getStringContent],
             ["euroqol-vas", getNumberContent],
             ["isced-value", getNumberContent],
+            ["psqi-sleep-quality", getNumberContent],
+            ["psqi-sleep-latency", getNumberContent],
+            ["psqi-sleep-duration", getNumberContent],
+            ["psqi-sleep-efficiency", getNumberContent],
+            ["psqi-sleep-disturbance", getNumberContent],
+            ["psqi-meds", getNumberContent],
+            ["psqi-day-dysfunction", getNumberContent],
             ["additional-mrt-url", getStringContent],
             ["additional-mrt-resting-state", getCheckboxContent],
             ["additional-mrt-tapping-task", getCheckboxContent],
@@ -2973,7 +3165,8 @@
         "enable-kopss",
         "enable-moto-test",
         "enable-tmt",
-        "enable-tug"
+        "enable-tug",
+        "enable-psqi"
     ];
 
     function changeGroupedSwitches(changeEvent) {
@@ -3044,7 +3237,14 @@
         "enable-tmt-a",
         "enable-tmt-b",
         "enable-tug-executed",
-        "enable-tug-imagined"
+        "enable-tug-imagined",
+        "enable-psqi-sleep-quality",
+        "enable-psqi-sleep-latency",
+        "enable-psqi-sleep-duration",
+        "enable-psqi-sleep-efficiency",
+        "enable-psqi-sleep-disturbance",
+        "enable-psqi-meds",
+        "enable-psqi-day-dysfunction"
     ];
 
     function changeControlledInputs(changeEvent) {
@@ -3082,6 +3282,7 @@
         "enable-moto-test",
         "enable-tmt",
         "enable-tug",
+        "enable-psqi",
     ];
 
     function updatedLines() {
@@ -3182,6 +3383,7 @@
             "kopss-sum",
             "acl-k-sum",
             "demtect-sum",
+            "psqi-sum",
             "additional-mrt-url",
             "additional-mrt-resting-state",
             "additional-mrt-resting-state-valid",
@@ -3367,6 +3569,7 @@
         kopssSum();
         aclKSum();
         demtectSum();
+        psqiSum();
     }
 
     function readSavedJSON() {
