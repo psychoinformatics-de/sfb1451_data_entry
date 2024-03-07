@@ -1,5 +1,6 @@
 import hashlib
 import json
+import locale
 import os
 import sys
 import time
@@ -724,7 +725,11 @@ def application(environ, start_response):
             f"3. WSGI input data ({request_body_size}):\n",
             request_body,
             "\n",
-            "--------\n"
+            "--------\n",
+            "4. Locale encoding:\n",
+            locale.getencoding(),
+            "\n",
+            "--------\n",
         ]
         content = encode_result_strings(content_strings)
 
