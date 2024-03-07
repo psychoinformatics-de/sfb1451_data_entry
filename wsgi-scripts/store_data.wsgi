@@ -372,7 +372,9 @@ def create_result_page(commit_hash: str,
                        templates_directory: Path):
 
     jinja_template_path = templates_directory / "success.html.jinja2"
-    jinja_template = Environment(autoescape=select_autoescape()).from_string(jinja_template_path.read_text())
+    jinja_template = Environment(autoescape=select_autoescape()).from_string(
+        jinja_template_path.read_text(encoding="utf-8")
+    )
     return jinja_template.render(
         sub_project="Z03",
         reference=f"{time_stamp}-{commit_hash}",
