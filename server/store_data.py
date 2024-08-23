@@ -306,6 +306,20 @@ def add_file_to_dataset(dataset_root: Path, file: Path, home: Path):
             "HOME": str(home)
         })
 
+    subprocess.run(
+        [
+            "datalad",
+            "drop",
+            "--what", "filecontent",
+            "-d", str(dataset_root),
+            str(file)
+        ],
+        check=True,
+        env={
+            **os.environ,
+            "HOME": str(home)
+        })
+
     return subprocess.run(
         [
             "git",
