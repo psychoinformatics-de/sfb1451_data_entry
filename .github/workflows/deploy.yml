@@ -19,7 +19,7 @@ jobs:
     steps:
 
       - name: Checkout tools repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
           repository: psychoinformatics-de/sfb1451_data_entry
           path: sfb1451_data_entry
