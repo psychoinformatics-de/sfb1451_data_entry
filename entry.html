@@ -1078,7 +1078,7 @@
                        checked>
             </div>
             <div class="col-lg-11">
-                <h5>Go/Nogo-Task</h5>
+                <h5>Go/Nogo-Task Niessen</h5>
             </div>
         </div>
 
@@ -1189,6 +1189,134 @@
             <div class="col-md-6">
                 <input type="checkbox" class="form-check-input group-member" id="go-nogo-incorrectly-executed" name="go-nogo-incorrectly-executed" placeholder="">
                 <input type="text" id="go-nogo-incorrectly-executed-valid" name="go-nogo-incorrectly-executed-valid" style="visibility: hidden;" value="true">
+            </div>
+        </div>
+
+        <!-- New Go/Nogo-Task (Untertest Go/NoGo – Variante: 2 aus 5) -->
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-leader"
+                       type="checkbox"
+                       id="enable-go-nogo-variant"
+                       data-inm-controlled-inputs="go-nogo-variant-hand;go-nogo-variant-reaction-time-median;go-nogo-variant-reaction-time-pct-rank;go-nogo-variant-errors;go-nogo-variant-errors-pct-rank;go-nogo-variant-omissions;go-nogo-variant-omissions-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Untertest Go/NoGo – Variante: 2 aus 5</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-hand">Verwendete Hand</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <select class="form-select" name="go-nogo-variant-hand" id="go-nogo-variant-hand" required>
+                    <option value="" selected disabled hidden>Bitte auswählen</option>
+                    <option value="1">links</option>
+                    <option value="2">rechts</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-reaction-time-median">Reaktionszeit Median</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input id="go-nogo-variant-reaction-time-median" class="form-control" type="number" name="go-nogo-variant-reaction-time-median" min="0" max="4416" step="1" placeholder="0 – 4416" required>
+                    <div class="input-group-text">ms</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 4416 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-reaction-time-pct-rank">Reaktionszeit Prozentrang</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input id="go-nogo-variant-reaction-time-pct-rank" class="form-control" type="text" name="go-nogo-variant-reaction-time-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-errors">Fehler Anzahl</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input id="go-nogo-variant-errors" class="form-control" type="number" name="go-nogo-variant-errors" min="0" max="36" step="1" placeholder="0 – 36" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 36 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-errors-pct-rank">Fehler Prozentrang</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input id="go-nogo-variant-errors-pct-rank" class="form-control" type="text" name="go-nogo-variant-errors-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-omissions">Auslassungen Anzahl</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input id="go-nogo-variant-omissions" class="form-control" type="number" name="go-nogo-variant-omissions" min="0" max="36" step="1" placeholder="0 – 36" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 36 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-omissions-pct-rank">Auslassungen Prozentrang</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input id="go-nogo-variant-omissions-pct-rank" class="form-control" type="text" name="go-nogo-variant-omissions-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -3247,6 +3375,7 @@
         "enable-education",
         "enable-euroqol",
         "enable-go-nogo",
+        "enable-go-nogo-variant",
         "enable-jtt-checkers",
         "enable-jtt-lho",
         "enable-jtt-llo",
