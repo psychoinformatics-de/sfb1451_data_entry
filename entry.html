@@ -67,6 +67,9 @@
     <line class="inm-line" id="line-enable-jtt-v"/>
     <line class="inm-line" id="line-enable-jtt-h"/>
 
+    <line class="inm-line" id="line-enable-dual-task-v"/>
+    <line class="inm-line" id="line-enable-dual-task-h"/>
+
     <line class="inm-line" id="line-enable-kas-v"/>
     <line class="inm-line" id="line-enable-kas-h"/>
 
@@ -1320,6 +1323,243 @@
             </div>
         </div>
 
+
+        <!-- Geteilte Aufmerksamkeit – Variante: Doppelaufgabe I -->
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-leader"
+                       type="checkbox"
+                       id="enable-dual-task"
+                       data-inm-switch-group="enable-dual-task-hand;enable-dual-task-reaction-time-audio;enable-dual-task-reaction-time-visual;enable-dual-task-omissions-audio;enable-dual-task-omissions-visual;enable-dual-task-errors-total;enable-dual-task-omissions-total"
+                       data-inm-lines="line-enable-dual-task-v;line-enable-dual-task-h"
+                       data-inm-line-end="enable-dual-task-omissions-total"
+                       checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Geteilte Aufmerksamkeit – Variante: Doppelaufgabe I</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-hand"
+                       data-inm-controlled-inputs="dual-task-hand"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-hand">Verwendete Hand</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <select class="form-select" name="dual-task-hand" id="dual-task-hand" required>
+                    <option value="" selected disabled hidden>Bitte auswählen</option>
+                    <option value="1">links</option>
+                    <option value="2">rechts</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-reaction-time-audio"
+                       data-inm-controlled-inputs="dual-task-reaction-time-audio-median;dual-task-reaction-time-audio-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-reaction-time-audio-median">Reaktionszeit auditiv</label>
+                <label class="visually-hidden" for="dual-task-reaction-time-audio-pct-rank">Reaktionszeit auditiv</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Median</div>
+                    <input type="number" class="form-control" id="dual-task-reaction-time-audio-median" name="dual-task-reaction-time-audio-median" min="0" max="1000" step="1" placeholder="0 – 1000" required>
+                    <div class="input-group-text">ms</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 1000 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Prozentrang</div>
+                    <input type="text" class="form-control" id="dual-task-reaction-time-audio-pct-rank" name="dual-task-reaction-time-audio-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-reaction-time-visual"
+                       data-inm-controlled-inputs="dual-task-reaction-time-visual-median;dual-task-reaction-time-visual-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-reaction-time-visual-median">Reaktionszeit visuell</label>
+                <label class="visually-hidden" for="dual-task-reaction-time-visual-pct-rank">Reaktionszeit visuell</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Median</div>
+                    <input type="number" class="form-control" id="dual-task-reaction-time-visual-median" name="dual-task-reaction-time-visual-median" min="0" max="1000" step="1" placeholder="0 – 1000" required>
+                    <div class="input-group-text">ms</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 1000 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Prozentrang</div>
+                    <input type="text" class="form-control" id="dual-task-reaction-time-visual-pct-rank" name="dual-task-reaction-time-visual-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-omissions-audio"
+                       data-inm-controlled-inputs="dual-task-omissions-audio;dual-task-omissions-audio-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-omissions-audio">Auslassungen auditiv</label>
+                <label class="visually-hidden" for="dual-task-omissions-audio-pct-rank">Auslassungen auditiv</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Anzahl</div>
+                    <input type="number" class="form-control" id="dual-task-omissions-audio" name="dual-task-omissions-audio" min="0" max="16" step="1" placeholder="0 – 16" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 16 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Prozentrang</div>
+                    <input type="text" class="form-control" id="dual-task-omissions-audio-pct-rank" name="dual-task-omissions-audio-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-omissions-visual"
+                       data-inm-controlled-inputs="dual-task-omissions-visual;dual-task-omissions-visual-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-omissions-visual">Auslassungen visuell</label>
+                <label class="visually-hidden" for="dual-task-omissions-visual-pct-rank">Auslassungen visuell</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Anzahl</div>
+                    <input type="number" class="form-control" id="dual-task-omissions-visual" name="dual-task-omissions-visual" min="0" max="17" step="1" placeholder="0 – 17" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 17 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Prozentrang</div>
+                    <input type="text" class="form-control" id="dual-task-omissions-visual-pct-rank" name="dual-task-omissions-visual-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-errors-total"
+                       data-inm-controlled-inputs="dual-task-errors-total;dual-task-errors-total-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-errors-total">Fehler gesamt</label>
+                <label class="visually-hidden" for="dual-task-errors-total-pct-rank">Fehler gesamt</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Anzahl</div>
+                    <input type="number" class="form-control" id="dual-task-errors-total" name="dual-task-errors-total" min="0" max="267" step="1" placeholder="0 – 267" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 267 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Prozentrang</div>
+                    <input type="text" class="form-control" id="dual-task-errors-total-pct-rank" name="dual-task-errors-total-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-omissions-total"
+                       data-inm-controlled-inputs="dual-task-omissions-total;dual-task-omissions-total-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-omissions-total">Auslassungen gesamt</label>
+                <label class="visually-hidden" for="dual-task-omissions-total-pct-rank">Auslassungen gesamt</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Anzahl</div>
+                    <input type="number" class="form-control" id="dual-task-omissions-total" name="dual-task-omissions-total" min="0" max="33" step="1" placeholder="0 – 33" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 33 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Prozentrang</div>
+                    <input type="text" class="form-control" id="dual-task-omissions-total-pct-rank" name="dual-task-omissions-total-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Cologne Apraxie Screening (KAS) -->
         <div class="row pt-4">
@@ -3328,6 +3568,7 @@
         "enable-ad",
         "enable-demtect",
         "enable-jtt",
+        "enable-dual-task",
         "enable-kas",
         "enable-kopss",
         "enable-moto-test",
@@ -3383,6 +3624,13 @@
         "enable-jtt-small-things",
         "enable-jtt-turn-cards",
         "enable-jtt-incorrect",
+        "enable-dual-task-hand",
+        "enable-dual-task-reaction-time-audio",
+        "enable-dual-task-reaction-time-visual",
+        "enable-dual-task-omissions-audio",
+        "enable-dual-task-omissions-visual",
+        "enable-dual-task-errors-total",
+        "enable-dual-task-omissions-total",
         "enable-kas-iah",
         "enable-kas-ipf",
         "enable-kas-pah",
@@ -3445,6 +3693,7 @@
         "enable-ad",
         "enable-demtect",
         "enable-jtt",
+        "enable-dual-task",
         "enable-kas",
         "enable-kopss",
         "enable-moto-test",
