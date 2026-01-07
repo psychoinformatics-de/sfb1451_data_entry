@@ -113,7 +113,7 @@
 
 <form class="needs-validation" id="entry-form" novalidate>
 
-    <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="2.3">
+    <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="2.4">
     <input type="text" id="data-entry-domain" name="data-entry-domain" style="visibility: hidden;" value="de.sfb1451.z03">
 
 
@@ -3571,6 +3571,26 @@
             ["go-nogo-correct-answer-time", getNumberContent],
             ["go-nogo-recognized-error-time", getNumberContent],
             ["go-nogo-incorrectly-executed", getCheckboxContent],
+            ["go-nogo-variant-hand", getStringContent],
+            ["go-nogo-variant-reaction-time-median", getNumberContent],
+            ["go-nogo-variant-reaction-time-pct-rank", getStringContent],
+            ["go-nogo-variant-errors", getNumberContent],
+            ["go-nogo-variant-errors-pct-rank", getStringContent],
+            ["go-nogo-variant-omissions", getNumberContent],
+            ["go-nogo-variant-omissions-pct-rank", getStringContent],
+            ["dual-task-hand", getStringContent],
+            ["dual-task-reaction-time-audio-median", getNumberContent],
+            ["dual-task-reaction-time-audio-pct-rank", getStringContent],
+            ["dual-task-reaction-time-visual-median", getNumberContent],
+            ["dual-task-reaction-time-visual-pct-rank", getStringContent],
+            ["dual-task-omissions-audio", getNumberContent],
+            ["dual-task-omissions-audio-pct-rank", getStringContent],
+            ["dual-task-omissions-visual", getNumberContent],
+            ["dual-task-omissions-visual-pct-rank", getStringContent],
+            ["dual-task-errors-total", getNumberContent],
+            ["dual-task-errors-total-pct-rank", getStringContent],
+            ["dual-task-omissions-total", getNumberContent],
+            ["dual-task-omissions-total-pct-rank", getStringContent],
             ["kas-pantomime-bukko-facial", getNumberContent],
             ["kas-pantomime-arm-hand", getNumberContent],
             ["kas-imitation-bukko-facial", getNumberContent],
@@ -3590,11 +3610,20 @@
             ["acl-k-communication-ability", getNumberContent],
             ["bdi-ii-score", getNumberContent],
             ["madrs-score", getNumberContent],
+            ["logical-memory-variant", getRadioButtonContent, [
+                "logical-memory-variant-ab",
+                "logical-memory-variant-bc"]],
+            ["logical-memory-immediate-recall", getNumberContent],
+            ["logical-memory-immediate-recall-scaled", getNumberContent],
+            ["logical-memory-delayed-recall", getNumberContent],
+            ["logical-memory-delayed-recall-scaled", getNumberContent],
             ["demtect-wordlist", getNumberContent],
             ["demtect-convert-numbers", getNumberContent],
             ["demtect-supermarket-task", getNumberContent],
             ["demtect-numbers-reverse", getNumberContent],
             ["demtect-wordlist-recall", getNumberContent],
+            ["vosp-cube-analysis-score", getNumberContent],
+            ["vosp-cube-analysis-pct-rank", getStringContent],
             ["time-tmt-a", getNumberContent],
             ["tmt-a-incorrectly-executed", getCheckboxContent],
             ["time-tmt-b", getNumberContent],
