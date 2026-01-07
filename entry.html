@@ -64,6 +64,9 @@
     <line class="inm-line" id="line-enable-demtect-v"/>
     <line class="inm-line" id="line-enable-demtect-h"/>
 
+    <line class="inm-line" id="line-enable-euroqol-v"/>
+    <line class="inm-line" id="line-enable-euroqol-h"/>
+
     <line class="inm-line" id="line-enable-jtt-v"/>
     <line class="inm-line" id="line-enable-jtt-h"/>
 
@@ -2563,7 +2566,9 @@
                 <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-euroqol"
-                       data-inm-controlled-inputs="euroqol-code;euroqol-vas"
+                       data-inm-switch-group="enable-euroqol-code;enable-euroqol-vas"
+                       data-inm-lines="line-enable-euroqol-v;line-enable-euroqol-h"
+                       data-inm-line-end="enable-euroqol-vas"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -2574,13 +2579,12 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <!--
                 <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-euroqol-code"
                        data-inm-controlled-inputs="euroqol-code"
                        checked>
-                -->
+
             </div>
             <div class="col-lg-5">
                 <label for="euroqol-code">Code aus Antworten</label>
@@ -2596,13 +2600,11 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <!--
                 <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-euroqol-vas"
                        data-inm-controlled-inputs="euroqol-vas"
                        checked>
-                -->
             </div>
             <div class="col-lg-5">
                 <label for="euroqol-vas">Visuelle Analogskala (VAS)</label>
@@ -3783,6 +3785,7 @@
         "enable-acl-k",
         "enable-ad",
         "enable-demtect",
+        "enable-euroqol",
         "enable-jtt",
         "enable-dual-task",
         "enable-kas",
@@ -3832,7 +3835,8 @@
         "enable-demtect-supermarket",
         "enable-demtect-wordlist",
         "enable-education",
-        "enable-euroqol",
+        "enable-euroqol-code",
+        "enable-euroqol-vas",
         "enable-go-nogo",
         "enable-go-nogo-variant",
         "enable-jtt-checkers",
@@ -3919,6 +3923,7 @@
         "enable-demtect",
         "enable-jtt",
         "enable-dual-task",
+        "enable-euroqol",
         "enable-kas",
         "enable-kopss",
         "enable-moto-test",
