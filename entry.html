@@ -88,6 +88,9 @@
     <line class="inm-line" id="line-enable-psqi-v"/>
     <line class="inm-line" id="line-enable-psqi-h"/>
 
+    <line class="inm-line" id="line-enable-vosp-v"/>
+    <line class="inm-line" id="line-enable-vosp-h"/>
+
     <line class="inm-line" id="line-enable-wms-v"/>
     <line class="inm-line" id="line-enable-wms-h"/>
 
@@ -2361,6 +2364,67 @@
         </div>
 
 
+        <!-- Testbatterie für visuelle Objekt- und Raumwahrnehmung (VOSP) – Subtest 8: „Würfelanzahl analysieren“: -->
+
+        <div class="row pt-4">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-leader"
+                       type="checkbox"
+                       id="enable-vosp"
+                       data-inm-switch-group="enable-vosp-cube-analysis-score;enable-vosp-cube-analysis-pct-rank"
+                       data-inm-lines="line-enable-vosp-v;line-enable-vosp-h"
+                       data-inm-line-end="enable-vosp-cube-analysis-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Testbatterie für visuelle Objekt- und Raumwahrnehmung (VOSP) – Subtest 8: „Würfelanzahl analysieren“</h5>
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-vosp-cube-analysis-score"
+                       data-inm-controlled-inputs="vosp-cube-analysis-score"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="vosp-cube-analysis-score">Punktzahl</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input type="number" class="form-control" id="vosp-cube-analysis-score" name="vosp-cube-analysis-score" min="0" max="10" step="1" placeholder="0 – 10" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 10 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-vosp-cube-analysis-pct-rank"
+                       data-inm-controlled-inputs="vosp-cube-analysis-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="vosp-cube-analysis-pct-rank">Prozentrang</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input type="text" class="form-control" id="vosp-cube-analysis-pct-rank" name="vosp-cube-analysis-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <!-- Trail Making Test (TMT) -->
         <div class="row pt-5">
             <div class="col-lg-1 form-switch">
@@ -3727,6 +3791,7 @@
         "enable-tmt",
         "enable-tug",
         "enable-psqi",
+        "enable-vosp",
         "enable-wms",
     ];
 
@@ -3818,7 +3883,9 @@
         "enable-psqi-sleep-efficiency",
         "enable-psqi-sleep-disturbance",
         "enable-psqi-meds",
-        "enable-psqi-day-dysfunction"
+        "enable-psqi-day-dysfunction",
+        "enable-vosp-cube-analysis-score",
+        "enable-vosp-cube-analysis-pct-rank"
     ];
 
     function changeControlledInputs(changeEvent) {
@@ -3858,6 +3925,7 @@
         "enable-tmt",
         "enable-tug",
         "enable-psqi",
+        "enable-vosp",
         "enable-wms",
     ];
 
