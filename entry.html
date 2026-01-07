@@ -2125,11 +2125,11 @@
             </div>
             <div class="col-lg-6">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input group-member" type="radio" name="logical-memory-variant" id="logical-memory-variant-ab" value="A+B" required>
+                    <input class="form-check-input group-member" type="radio" name="logical-memory-variant" id="logical-memory-variant-ab" value="A+B" title=">65 Jahre" required onchange="updateWechslerRanges();">
                     <label class="form-check-label" for="logical-memory-variant-ab">A+B</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input group-member" type="radio" name="logical-memory-variant" id="logical-memory-variant-bc" value="B+C" required>
+                    <input class="form-check-input group-member" type="radio" name="logical-memory-variant" id="logical-memory-variant-bc" value="B+C" title="≤65 Jahre" required onchange="updateWechslerRanges();">
                     <label class="form-check-label" for="logical-memory-variant-bc">B+C</label>
                     <div class="invalid-feedback field-validity">Variante nicht ausgewählt.</div>
                 </div>
@@ -2150,8 +2150,7 @@
             <div class="col-lg-6 entry-value">
                 <div class="input-group has-validation">
                     <input type="number" class="form-control" id="logical-memory-immediate-recall" name="logical-memory-immediate-recall" min="0" max="53" step="1" placeholder="0 – 50/53" required>
-                    <!-- TODO: make range dependent on selected version (A+B / A+C) -->
-                    <div class="invalid-feedback field-validity">
+                    <div class="invalid-feedback field-validity" id="logical-memory-immediate-recall-feedback">
                         Ganzzahl zwischen 0 und 50 oder 53 erwartet.
                     </div>
                 </div>
@@ -2193,8 +2192,7 @@
             <div class="col-lg-6 entry-value">
                 <div class="input-group has-validation">
                     <input type="number" class="form-control" id="logical-memory-delayed-recall" name="logical-memory-delayed-recall" min="0" max="50" step="1" placeholder="0 – 50/39" required>
-                    <!-- TODO: make range dependent on selected version (A+B / A+C) -->
-                    <div class="invalid-feedback field-validity">
+                    <div class="invalid-feedback field-validity" id="logical-memory-delayed-recall-feedback">
                         Ganzzahl zwischen 0 und 50 oder 39 erwartet.
                     </div>
                 </div>
@@ -3684,6 +3682,28 @@
 
 </script>
 
+<script>
+    function updateWechslerRanges() {
+        let immediateRecall = document.getElementById("logical-memory-immediate-recall");
+        let immediateRecallFeedback = document.getElementById("logical-memory-immediate-recall-feedback");
+        let delayedRecall = document.getElementById("logical-memory-delayed-recall");
+        let delayedRecallFeedback = document.getElementById("logical-memory-delayed-recall-feedback");
+        if (event.target.id == "logical-memory-variant-ab"){
+            var irMax = 53;
+            var drMax = 39;
+        } else if (event.target.id == "logical-memory-variant-bc"){
+            var irMax = 50;
+            var drMax = 50;
+        }
+
+        immediateRecall.setAttribute("max", irMax);
+        immediateRecall.setAttribute("placeholder", `0 – ${irMax}`);
+        immediateRecallFeedback.innerText = `Ganzzahl zwischen 0 und ${irMax} erwartet.`;
+        delayedRecall.setAttribute("max", drMax);
+        delayedRecall.setAttribute("placeholder", `0 – ${drMax}`);
+        delayedRecallFeedback.innerText = `Ganzzahl zwischen 0 und ${drMax} erwartet.`;
+    }
+</script>
 
 <script>
 
