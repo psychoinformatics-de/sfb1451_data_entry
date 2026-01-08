@@ -194,7 +194,7 @@
 
     <div class="row pt-4"><h5>Untertest Go/NoGo – Variante: 2 aus 5</h5></div>
 
-    {{ render_string("Verwendete Hand", "go-nogo-variant-hand") }}
+    {{ render_string("Verwendete Hand", hand_message(record["go-nogo-variant-hand"])) }}
     {{ render_number("Reaktionszeit Median", "go-nogo-variant-reaction-time-median") }}
     {{ render_string("Reaktionszeit Prozentrang", record["go-nogo-variant-reaction-time-pct-rank"]) }}
     {{ render_number("Fehler Anzahl", "go-nogo-variant-errors") }}
@@ -204,7 +204,7 @@
 
     <div class="row pt-4"><h5>Geteilte Aufmerksamkeit – Variante: Doppelaufgabe I</h5></div>
 
-    {{ render_string("Verwendete Hand", "dual-task-hand") }}
+    {{ render_string("Verwendete Hand", hand_message(record["dual-task-hand"])) }}
     {{ render_pct_rank("", "dual-task-reaction-time-audio", "-median") }}
     {{ render_pct_rank("", "dual-task-reaction-time-visual", "-median") }}
     {{ render_pct_rank("", "dual-task-omissions-audio") }}
