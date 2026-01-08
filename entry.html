@@ -4175,7 +4175,7 @@
         resetTheForm(Object.keys(obj));
 
         // some fields need to trigger their events and need more than just value update
-        let handledSeparately = [/subject-group/, /go-nogo-*/];
+        let handledSeparately = [/subject-group/, /go-nogo-(?!variant)/];
         insertSubjectGroup(obj["subject-group"]);
         insertGoNogo(obj);
 
@@ -4249,6 +4249,17 @@
         aclKSum();
         demtectSum();
         psqiSum();
+
+        // wechsler variant choice requires updating ranges
+
+        if (obj["logical-memory-variant"] === "A+B") {
+            let event = new Event("change");
+            document.getElementById("logical-memory-variant-ab").dispatchEvent(event);
+        } else if (obj["logical-memory-variant"] === "B+C") {
+            let event = new Event("change");
+            document.getElementById("logical-memory-variant-bc").dispatchEvent(event);
+        }
+
     }
 
     function readSavedJSON() {
