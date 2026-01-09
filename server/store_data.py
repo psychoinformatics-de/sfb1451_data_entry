@@ -416,7 +416,7 @@ def hand_message(value):
     return {
         "left": "links",
         "right": "rechts",
-        "": "keine",
+        None: "keine",
         "none": "keine"
     }[value]
 
