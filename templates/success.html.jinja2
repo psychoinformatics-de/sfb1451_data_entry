@@ -70,6 +70,20 @@
 {%  endmacro %}
 
 
+{% macro render_string_key(description, key) %}
+
+    <div class="row">
+        <div class="col-md-6 entry-label">
+        <p>{{ description }}</p>
+        </div>
+        <div class="col-md-6">
+            {{ record[key] or "--" }}
+        </div>
+    </div>
+
+{%  endmacro %}    
+
+
 <body class="bg-light">
 
 <div class="container">
@@ -196,11 +210,11 @@
 
     {{ render_string("Verwendete Hand", hand_message(record["go-nogo-variant-hand"])) }}
     {{ render_number("Reaktionszeit Median", "go-nogo-variant-reaction-time-median") }}
-    {{ render_string("Reaktionszeit Prozentrang", record["go-nogo-variant-reaction-time-pct-rank"]) }}
+    {{ render_string_key("Reaktionszeit Prozentrang", "go-nogo-variant-reaction-time-pct-rank") }}
     {{ render_number("Fehler Anzahl", "go-nogo-variant-errors") }}
-    {{ render_string("Fehler Prozentrang", record["go-nogo-variant-errors-pct-rank"]) }}
+    {{ render_string_key("Fehler Prozentrang", "go-nogo-variant-errors-pct-rank") }}
     {{ render_number("Auslassungen Anzahl", "go-nogo-variant-omissions") }}
-    {{ render_string("Auslassungen Prozentrang", record["go-nogo-variant-omissions-pct-rank"]) }}
+    {{ render_string_key("Auslassungen Prozentrang", "go-nogo-variant-omissions-pct-rank") }}
 
     <div class="row pt-4"><h5>Geteilte Aufmerksamkeit – Variante: Doppelaufgabe I</h5></div>
 
@@ -274,7 +288,7 @@
 
     <div class="row pt-3"><h5>Wechsler Memory Scale (WMS) – logisches Gedächtnis</h5></div>
 
-    {{ render_string("Variante", record["logical-memory-variant"]) }}
+    {{ render_string_key("Variante", "logical-memory-variant") }}
     {{ render_number("Unmittelbare Wiedergabe: Summenwert (Rohwert)", "logical-memory-immediate-recall") }}
     {{ render_number("Unmittelbare Wiedergabe: Wertpunkte", "logical-memory-immediate-recall-scaled") }}
     {{ render_number("Abruf nach Verzögerung: Summenwert (Rohwert)", "logical-memory-delayed-recall") }}
@@ -301,7 +315,7 @@
     <div class="row pt-3"><h5>Testbatterie für visuelle Objekt- und Raumwahrnehmung (VOSP) – Subtest 8: „Würfelanzahl analysieren“</h5></div>
 
     {{ render_number("Punktzahl", "vosp-cube-analysis-score") }}
-    {{ render_string("Prozentrang", record["vosp-cube-analysis-pct-rank"]) }}
+    {{ render_string_key("Prozentrang", "vosp-cube-analysis-pct-rank") }}
 
 
     <div class="row pt-3"><h5>Trail Making Test (TMT)</h5></div>
