@@ -64,8 +64,14 @@
     <line class="inm-line" id="line-enable-demtect-v"/>
     <line class="inm-line" id="line-enable-demtect-h"/>
 
+    <line class="inm-line" id="line-enable-euroqol-v"/>
+    <line class="inm-line" id="line-enable-euroqol-h"/>
+
     <line class="inm-line" id="line-enable-jtt-v"/>
     <line class="inm-line" id="line-enable-jtt-h"/>
+
+    <line class="inm-line" id="line-enable-dual-task-v"/>
+    <line class="inm-line" id="line-enable-dual-task-h"/>
 
     <line class="inm-line" id="line-enable-kas-v"/>
     <line class="inm-line" id="line-enable-kas-h"/>
@@ -85,6 +91,12 @@
     <line class="inm-line" id="line-enable-psqi-v"/>
     <line class="inm-line" id="line-enable-psqi-h"/>
 
+    <line class="inm-line" id="line-enable-vosp-v"/>
+    <line class="inm-line" id="line-enable-vosp-h"/>
+
+    <line class="inm-line" id="line-enable-wms-v"/>
+    <line class="inm-line" id="line-enable-wms-h"/>
+
 </svg>
 
 
@@ -101,7 +113,7 @@
 
 <form class="needs-validation" id="entry-form" novalidate>
 
-    <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="2.3">
+    <input type="text" id="form-data-version" name="form-data-version" style="visibility: hidden;" value="2.4">
     <input type="text" id="data-entry-domain" name="data-entry-domain" style="visibility: hidden;" value="de.sfb1451.z03">
 
 
@@ -657,7 +669,7 @@
             <div class="col-lg-3 entry-value">
                 <div class="input-group has-validation">
                     <div class="input-group-text">Links</div>
-                    <input type="number" class="form-control" id="turn-cards-left" name="turn-cards-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <input type="number" class="form-control" id="turn-cards-left" name="turn-cards-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required oninput="jttSum();">
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 150.0 erwartet.
@@ -667,7 +679,7 @@
             <div class="col-lg-3 entry-value">
                 <div class="input-group has-validation">
                     <div class="input-group-text">Rechts</div>
-                    <input type="number" class="form-control" id="turn-cards-right" name="turn-cards-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <input type="number" class="form-control" id="turn-cards-right" name="turn-cards-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required oninput="jttSum();">
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 150.0 erwartet.
@@ -692,7 +704,7 @@
             <div class="col-lg-3 entry-value">
                 <div class="input-group has-validation">
                     <div class="input-group-text">Links</div>
-                    <input type="number" class="form-control" id="small-things-left" name="small-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <input type="number" class="form-control" id="small-things-left" name="small-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required oninput="jttSum();">
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 150.0 erwartet.
@@ -702,7 +714,7 @@
             <div class="col-lg-3 entry-value">
                 <div class="input-group has-validation">
                     <div class="input-group-text">Rechts</div>
-                    <input type="number" class="form-control" id="small-things-right" name="small-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <input type="number" class="form-control" id="small-things-right" name="small-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required oninput="jttSum();">
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 150.0 erwartet.
@@ -727,7 +739,7 @@
             <div class="col-lg-3 entry-value">
                 <div class="input-group has-validation">
                     <div class="input-group-text">Links</div>
-                    <input type="number" class="form-control" id="simulated-feeding-left" name="simulated-feeding-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <input type="number" class="form-control" id="simulated-feeding-left" name="simulated-feeding-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required oninput="jttSum();">
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 150.0 erwartet.
@@ -737,7 +749,7 @@
             <div class="col-lg-3 entry-value">
                 <div class="input-group has-validation">
                     <div class="input-group-text">Rechts</div>
-                    <input type="number" class="form-control" id="simulated-feeding-right" name="simulated-feeding-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <input type="number" class="form-control" id="simulated-feeding-right" name="simulated-feeding-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required oninput="jttSum();">
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 150.0 erwartet.
@@ -762,7 +774,7 @@
             <div class="col-lg-3 entry-value">
                 <div class="input-group has-validation">
                     <div class="input-group-text">Links</div>
-                    <input type="number" class="form-control" id="checkers-left" name="checkers-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <input type="number" class="form-control" id="checkers-left" name="checkers-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required oninput="jttSum();">
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 150.0 erwartet.
@@ -772,7 +784,7 @@
             <div class="col-lg-3 entry-value">
                 <div class="input-group has-validation">
                     <div class="input-group-text">Rechts</div>
-                    <input type="number" class="form-control" id="checkers-right" name="checkers-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <input type="number" class="form-control" id="checkers-right" name="checkers-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required oninput="jttSum();">
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 150.0 erwartet.
@@ -797,7 +809,7 @@
             <div class="col-lg-3 entry-value">
                 <div class="input-group has-validation">
                     <div class="input-group-text">Links</div>
-                    <input type="number" class="form-control" id="large-light-things-left" name="large-light-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <input type="number" class="form-control" id="large-light-things-left" name="large-light-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required oninput="jttSum();">
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 150.0 erwartet.
@@ -807,7 +819,7 @@
             <div class="col-lg-3 entry-value">
                 <div class="input-group has-validation">
                     <div class="input-group-text">Rechts</div>
-                    <input type="number" class="form-control" id="large-light-things-right" name="large-light-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <input type="number" class="form-control" id="large-light-things-right" name="large-light-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required oninput="jttSum();">
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 150.0 erwartet.
@@ -832,7 +844,7 @@
             <div class="col-lg-3 entry-value">
                 <div class="input-group has-validation">
                     <div class="input-group-text">Links</div>
-                    <input type="number" class="form-control" id="large-heavy-things-left" name="large-heavy-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <input type="number" class="form-control" id="large-heavy-things-left" name="large-heavy-things-left" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required oninput="jttSum();">
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 150.0 erwartet.
@@ -842,7 +854,7 @@
             <div class="col-lg-3 entry-value">
                 <div class="input-group has-validation">
                     <div class="input-group-text">Rechts</div>
-                    <input type="number" class="form-control" id="large-heavy-things-right" name="large-heavy-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required>
+                    <input type="number" class="form-control" id="large-heavy-things-right" name="large-heavy-things-right" min="0.0" max="150.0" step="any" placeholder="0.0 - 150.0" required oninput="jttSum();">
                     <div class="input-group-text">s</div>
                     <div class="invalid-feedback field-validity">
                         Zahlenwert zwischen 0.0 und 150.0 erwartet.
@@ -851,6 +863,27 @@
             </div>
         </div>
 
+        <div class="row pt-2">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="jtt-sum-left">JTT Summe</label>
+                <label class="visually-hidden" for="jtt-sum-right">JTT Summe</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group">
+                    <div class="input-group-text">Links</div>
+                    <input type="number" class="form-control" id="jtt-sum-left" name="jtt-sum-left" disabled>
+                    <div class="input-group-text">s</div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group">
+                    <div class="input-group-text">Rechts</div>
+                    <input type="number" class="form-control" id="jtt-sum-right" name="jtt-sum-right" disabled>
+                    <div class="input-group-text">s</div>
+                </div>
+            </div>
+        </div>
 
         <div class="row pt-1">
             <div class="col-lg-1 form-switch">
@@ -1057,7 +1090,7 @@
                        checked>
             </div>
             <div class="col-lg-11">
-                <h5>Go/Nogo-Task</h5>
+                <h5>Go/Nogo-Task Niessen</h5>
             </div>
         </div>
 
@@ -1171,6 +1204,371 @@
             </div>
         </div>
 
+        <!-- New Go/Nogo-Task (Untertest Go/NoGo – Variante: 2 aus 5) -->
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-leader"
+                       type="checkbox"
+                       id="enable-go-nogo-variant"
+                       data-inm-controlled-inputs="go-nogo-variant-hand;go-nogo-variant-reaction-time-median;go-nogo-variant-reaction-time-pct-rank;go-nogo-variant-errors;go-nogo-variant-errors-pct-rank;go-nogo-variant-omissions;go-nogo-variant-omissions-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Untertest Go/NoGo – Variante: 2 aus 5</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-hand">Verwendete Hand</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <select class="form-select" name="go-nogo-variant-hand" id="go-nogo-variant-hand" required>
+                    <option value="" selected disabled hidden>Bitte auswählen</option>
+                    <option value="left">links</option>
+                    <option value="right">rechts</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-reaction-time-median">Reaktionszeit Median</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input id="go-nogo-variant-reaction-time-median" class="form-control" type="number" name="go-nogo-variant-reaction-time-median" min="0" max="4416" step="1" placeholder="0 – 4416" required>
+                    <div class="input-group-text">ms</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 4416 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-reaction-time-pct-rank">Reaktionszeit Prozentrang</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input id="go-nogo-variant-reaction-time-pct-rank" class="form-control" type="text" name="go-nogo-variant-reaction-time-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-errors">Fehler Anzahl</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input id="go-nogo-variant-errors" class="form-control" type="number" name="go-nogo-variant-errors" min="0" max="36" step="1" placeholder="0 – 36" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 36 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-errors-pct-rank">Fehler Prozentrang</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input id="go-nogo-variant-errors-pct-rank" class="form-control" type="text" name="go-nogo-variant-errors-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-omissions">Auslassungen Anzahl</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input id="go-nogo-variant-omissions" class="form-control" type="number" name="go-nogo-variant-omissions" min="0" max="36" step="1" placeholder="0 – 36" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 36 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-1">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <label for="go-nogo-variant-omissions-pct-rank">Auslassungen Prozentrang</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input id="go-nogo-variant-omissions-pct-rank" class="form-control" type="text" name="go-nogo-variant-omissions-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Geteilte Aufmerksamkeit – Variante: Doppelaufgabe I -->
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-leader"
+                       type="checkbox"
+                       id="enable-dual-task"
+                       data-inm-switch-group="enable-dual-task-hand;enable-dual-task-reaction-time-audio;enable-dual-task-reaction-time-visual;enable-dual-task-omissions-audio;enable-dual-task-omissions-visual;enable-dual-task-errors-total;enable-dual-task-omissions-total"
+                       data-inm-lines="line-enable-dual-task-v;line-enable-dual-task-h"
+                       data-inm-line-end="enable-dual-task-omissions-total"
+                       checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Geteilte Aufmerksamkeit – Variante: Doppelaufgabe I</h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-hand"
+                       data-inm-controlled-inputs="dual-task-hand"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-hand">Verwendete Hand</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <select class="form-select" name="dual-task-hand" id="dual-task-hand" required>
+                    <option value="" selected disabled hidden>Bitte auswählen</option>
+                    <option value="left">links</option>
+                    <option value="right">rechts</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-reaction-time-audio"
+                       data-inm-controlled-inputs="dual-task-reaction-time-audio-median;dual-task-reaction-time-audio-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-reaction-time-audio-median">Reaktionszeit auditiv</label>
+                <label class="visually-hidden" for="dual-task-reaction-time-audio-pct-rank">Reaktionszeit auditiv</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Median</div>
+                    <input type="number" class="form-control" id="dual-task-reaction-time-audio-median" name="dual-task-reaction-time-audio-median" min="0" max="1000" step="1" placeholder="0 – 1000" required>
+                    <div class="input-group-text">ms</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 1000 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Prozentrang</div>
+                    <input type="text" class="form-control" id="dual-task-reaction-time-audio-pct-rank" name="dual-task-reaction-time-audio-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-reaction-time-visual"
+                       data-inm-controlled-inputs="dual-task-reaction-time-visual-median;dual-task-reaction-time-visual-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-reaction-time-visual-median">Reaktionszeit visuell</label>
+                <label class="visually-hidden" for="dual-task-reaction-time-visual-pct-rank">Reaktionszeit visuell</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Median</div>
+                    <input type="number" class="form-control" id="dual-task-reaction-time-visual-median" name="dual-task-reaction-time-visual-median" min="0" max="1000" step="1" placeholder="0 – 1000" required>
+                    <div class="input-group-text">ms</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 1000 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Prozentrang</div>
+                    <input type="text" class="form-control" id="dual-task-reaction-time-visual-pct-rank" name="dual-task-reaction-time-visual-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-omissions-audio"
+                       data-inm-controlled-inputs="dual-task-omissions-audio;dual-task-omissions-audio-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-omissions-audio">Auslassungen auditiv</label>
+                <label class="visually-hidden" for="dual-task-omissions-audio-pct-rank">Auslassungen auditiv</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Anzahl</div>
+                    <input type="number" class="form-control" id="dual-task-omissions-audio" name="dual-task-omissions-audio" min="0" max="16" step="1" placeholder="0 – 16" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 16 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Prozentrang</div>
+                    <input type="text" class="form-control" id="dual-task-omissions-audio-pct-rank" name="dual-task-omissions-audio-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-omissions-visual"
+                       data-inm-controlled-inputs="dual-task-omissions-visual;dual-task-omissions-visual-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-omissions-visual">Auslassungen visuell</label>
+                <label class="visually-hidden" for="dual-task-omissions-visual-pct-rank">Auslassungen visuell</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Anzahl</div>
+                    <input type="number" class="form-control" id="dual-task-omissions-visual" name="dual-task-omissions-visual" min="0" max="17" step="1" placeholder="0 – 17" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 17 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Prozentrang</div>
+                    <input type="text" class="form-control" id="dual-task-omissions-visual-pct-rank" name="dual-task-omissions-visual-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-errors-total"
+                       data-inm-controlled-inputs="dual-task-errors-total;dual-task-errors-total-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-errors-total">Fehler gesamt</label>
+                <label class="visually-hidden" for="dual-task-errors-total-pct-rank">Fehler gesamt</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Anzahl</div>
+                    <input type="number" class="form-control" id="dual-task-errors-total" name="dual-task-errors-total" min="0" max="267" step="1" placeholder="0 – 267" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 267 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Prozentrang</div>
+                    <input type="text" class="form-control" id="dual-task-errors-total-pct-rank" name="dual-task-errors-total-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-dual-task-omissions-total"
+                       data-inm-controlled-inputs="dual-task-omissions-total;dual-task-omissions-total-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="dual-task-omissions-total">Auslassungen gesamt</label>
+                <label class="visually-hidden" for="dual-task-omissions-total-pct-rank">Auslassungen gesamt</label>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Anzahl</div>
+                    <input type="number" class="form-control" id="dual-task-omissions-total" name="dual-task-omissions-total" min="0" max="33" step="1" placeholder="0 – 33" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 33 erwartet.
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 entry-value">
+                <div class="input-group has-validation">
+                    <div class="input-group-text">Prozentrang</div>
+                    <input type="text" class="form-control" id="dual-task-omissions-total-pct-rank" name="dual-task-omissions-total-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Cologne Apraxie Screening (KAS) -->
         <div class="row pt-4">
@@ -1702,6 +2100,133 @@
         </div>
 
 
+        <!-- Wechsler Memory Scale (WMS) - logical memory -->
+
+        <div class="row pt-4">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-leader"
+                       type="checkbox"
+                       id="enable-wms"
+                       data-inm-switch-group="enable-logical-memory-variant;enable-logical-memory-immediate-recall;enable-logical-memory-immediate-recall-scaled;enable-logical-memory-delayed-recall;enable-logical-memory-delayed-recall-scaled"
+                       data-inm-lines="line-enable-wms-v;line-enable-wms-h"
+                       data-inm-line-end="enable-logical-memory-delayed-recall-scaled"
+                       checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Wechsler Memory Scale (WMS) – logisches Gedächtnis</h5>
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-logical-memory-variant"
+                       data-inm-controlled-inputs="logical-memory-variant-ab;logical-memory-variant-bc"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="logical-memory-variant-ab">Variante</label>
+                <label class="visually-hidden" for="logical-memory-variant-bc">Variante</label>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input group-member" type="radio" name="logical-memory-variant" id="logical-memory-variant-ab" value="A+B" title=">65 Jahre" required onchange="updateWechslerRanges();">
+                    <label class="form-check-label" for="logical-memory-variant-ab">A+B</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input group-member" type="radio" name="logical-memory-variant" id="logical-memory-variant-bc" value="B+C" title="≤65 Jahre" required onchange="updateWechslerRanges();">
+                    <label class="form-check-label" for="logical-memory-variant-bc">B+C</label>
+                    <div class="invalid-feedback field-validity">Variante nicht ausgewählt.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-logical-memory-immediate-recall"
+                       data-inm-controlled-inputs="logical-memory-immediate-recall"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="logical-memory-immediate-recall">Unmittelbare Wiedergabe: Summenwert (Rohwert)</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input type="number" class="form-control" id="logical-memory-immediate-recall" name="logical-memory-immediate-recall" min="0" max="53" step="1" placeholder="0 – 50/53" required>
+                    <div class="invalid-feedback field-validity" id="logical-memory-immediate-recall-feedback">
+                        Ganzzahl zwischen 0 und 50 oder 53 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-logical-memory-immediate-recall-scaled"
+                       data-inm-controlled-inputs="logical-memory-immediate-recall-scaled"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="logical-memory-immediate-recall-scaled">Unmittelbare Wiedergabe: Wertpunkte</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input type="number" class="form-control" id="logical-memory-immediate-recall-scaled" name="logical-memory-immediate-recall-scaled" min="1" max="19" step="1" placeholder="1 – 19" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 19 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-logical-memory-delayed-recall"
+                       data-inm-controlled-inputs="logical-memory-delayed-recall"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="logical-memory-delayed-recall">Abruf nach Verzögerung: Summenwert (Rohwert)</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input type="number" class="form-control" id="logical-memory-delayed-recall" name="logical-memory-delayed-recall" min="0" max="50" step="1" placeholder="0 – 50/39" required>
+                    <div class="invalid-feedback field-validity" id="logical-memory-delayed-recall-feedback">
+                        Ganzzahl zwischen 0 und 50 oder 39 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-logical-memory-delayed-recall-scaled"
+                       data-inm-controlled-inputs="logical-memory-delayed-recall-scaled"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="logical-memory-delayed-recall-scaled">Abruf nach Verzögerung: Wertpunkte</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input type="number" class="form-control" id="logical-memory-delayed-recall-scaled" name="logical-memory-delayed-recall-scaled" min="1" max="19" step="1" placeholder="1 – 19" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 19 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+
         <!-- DemTect -->
         <div class="row pt-4">
             <div class="col-lg-1 form-switch">
@@ -1838,6 +2363,67 @@
             </div>
             <div class="col-md-6 entry-value">
                 <input type="number" class="form-control" id="demtect-sum" name="demtect-sum" disabled>
+            </div>
+        </div>
+
+
+        <!-- Testbatterie für visuelle Objekt- und Raumwahrnehmung (VOSP) – Subtest 8: „Würfelanzahl analysieren“: -->
+
+        <div class="row pt-4">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-leader"
+                       type="checkbox"
+                       id="enable-vosp"
+                       data-inm-switch-group="enable-vosp-cube-analysis-score;enable-vosp-cube-analysis-pct-rank"
+                       data-inm-lines="line-enable-vosp-v;line-enable-vosp-h"
+                       data-inm-line-end="enable-vosp-cube-analysis-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-11">
+                <h5>Testbatterie für visuelle Objekt- und Raumwahrnehmung (VOSP) – Subtest 8: „Würfelanzahl analysieren“</h5>
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-vosp-cube-analysis-score"
+                       data-inm-controlled-inputs="vosp-cube-analysis-score"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="vosp-cube-analysis-score">Punktzahl</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input type="number" class="form-control" id="vosp-cube-analysis-score" name="vosp-cube-analysis-score" min="0" max="10" step="1" placeholder="0 – 10" required>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 0 und 10 erwartet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-1">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-vosp-cube-analysis-pct-rank"
+                       data-inm-controlled-inputs="vosp-cube-analysis-pct-rank"
+                       checked>
+            </div>
+            <div class="col-lg-5">
+                <label for="vosp-cube-analysis-pct-rank">Prozentrang</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <div class="input-group has-validation">
+                    <input type="text" class="form-control" id="vosp-cube-analysis-pct-rank" name="vosp-cube-analysis-pct-rank" pattern="^([<>] )?([1-9]|[1-9][0-9]|100)$" placeholder="(<>) 1 – 100" required>
+                    <div class="input-group-text">%</div>
+                    <div class="invalid-feedback field-validity">
+                        Ganzzahl zwischen 1 und 100, mit optionalem Präfix "< " oder "> " (einschließlich Leerzeichen), erwartet.
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -1980,7 +2566,9 @@
                 <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-euroqol"
-                       data-inm-controlled-inputs="euroqol-code;euroqol-vas"
+                       data-inm-switch-group="enable-euroqol-code;enable-euroqol-vas"
+                       data-inm-lines="line-enable-euroqol-v;line-enable-euroqol-h"
+                       data-inm-line-end="enable-euroqol-vas"
                        checked>
             </div>
             <div class="col-lg-11">
@@ -1991,13 +2579,12 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <!--
                 <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-euroqol-code"
                        data-inm-controlled-inputs="euroqol-code"
                        checked>
-                -->
+
             </div>
             <div class="col-lg-5">
                 <label for="euroqol-code">Code aus Antworten</label>
@@ -2013,13 +2600,11 @@
 
         <div class="row">
             <div class="col-lg-1 form-switch">
-                <!--
                 <input class="form-check-input group-member"
                        type="checkbox"
                        id="enable-euroqol-vas"
                        data-inm-controlled-inputs="euroqol-vas"
                        checked>
-                -->
             </div>
             <div class="col-lg-5">
                 <label for="euroqol-vas">Visuelle Analogskala (VAS)</label>
@@ -2806,6 +3391,23 @@
         return result.toString();
     }
 
+    function jttSum() {
+        const hands = ["left", "right"];
+        for (const hand of hands) {            
+            let source_elements = [
+                document.getElementById(`turn-cards-${hand}`),
+                document.getElementById(`small-things-${hand}`),
+                document.getElementById(`simulated-feeding-${hand}`),
+                document.getElementById(`checkers-${hand}`),
+                document.getElementById(`large-light-things-${hand}`),
+                document.getElementById(`large-heavy-things-${hand}`),
+            ];
+            let sumString = sumInputs(source_elements);
+            let dest_element = document.getElementById(`jtt-sum-${hand}`);
+            dest_element.value = sumString;
+        }
+    }
+
     function kasSum() {
         let source_elements = [
             document.getElementById("kas-pantomime-bukko-facial"),
@@ -2968,6 +3570,26 @@
             ["go-nogo-correct-answer-time", getNumberContent],
             ["go-nogo-recognized-error-time", getNumberContent],
             ["go-nogo-incorrectly-executed", getCheckboxContent],
+            ["go-nogo-variant-hand", getStringContent],
+            ["go-nogo-variant-reaction-time-median", getNumberContent],
+            ["go-nogo-variant-reaction-time-pct-rank", getStringContent],
+            ["go-nogo-variant-errors", getNumberContent],
+            ["go-nogo-variant-errors-pct-rank", getStringContent],
+            ["go-nogo-variant-omissions", getNumberContent],
+            ["go-nogo-variant-omissions-pct-rank", getStringContent],
+            ["dual-task-hand", getStringContent],
+            ["dual-task-reaction-time-audio-median", getNumberContent],
+            ["dual-task-reaction-time-audio-pct-rank", getStringContent],
+            ["dual-task-reaction-time-visual-median", getNumberContent],
+            ["dual-task-reaction-time-visual-pct-rank", getStringContent],
+            ["dual-task-omissions-audio", getNumberContent],
+            ["dual-task-omissions-audio-pct-rank", getStringContent],
+            ["dual-task-omissions-visual", getNumberContent],
+            ["dual-task-omissions-visual-pct-rank", getStringContent],
+            ["dual-task-errors-total", getNumberContent],
+            ["dual-task-errors-total-pct-rank", getStringContent],
+            ["dual-task-omissions-total", getNumberContent],
+            ["dual-task-omissions-total-pct-rank", getStringContent],
             ["kas-pantomime-bukko-facial", getNumberContent],
             ["kas-pantomime-arm-hand", getNumberContent],
             ["kas-imitation-bukko-facial", getNumberContent],
@@ -2987,11 +3609,20 @@
             ["acl-k-communication-ability", getNumberContent],
             ["bdi-ii-score", getNumberContent],
             ["madrs-score", getNumberContent],
+            ["logical-memory-variant", getRadioButtonContent, [
+                "logical-memory-variant-ab",
+                "logical-memory-variant-bc"]],
+            ["logical-memory-immediate-recall", getNumberContent],
+            ["logical-memory-immediate-recall-scaled", getNumberContent],
+            ["logical-memory-delayed-recall", getNumberContent],
+            ["logical-memory-delayed-recall-scaled", getNumberContent],
             ["demtect-wordlist", getNumberContent],
             ["demtect-convert-numbers", getNumberContent],
             ["demtect-supermarket-task", getNumberContent],
             ["demtect-numbers-reverse", getNumberContent],
             ["demtect-wordlist-recall", getNumberContent],
+            ["vosp-cube-analysis-score", getNumberContent],
+            ["vosp-cube-analysis-pct-rank", getStringContent],
             ["time-tmt-a", getNumberContent],
             ["tmt-a-incorrectly-executed", getCheckboxContent],
             ["time-tmt-b", getNumberContent],
@@ -3145,6 +3776,28 @@
 
 </script>
 
+<script>
+    function updateWechslerRanges() {
+        let immediateRecall = document.getElementById("logical-memory-immediate-recall");
+        let immediateRecallFeedback = document.getElementById("logical-memory-immediate-recall-feedback");
+        let delayedRecall = document.getElementById("logical-memory-delayed-recall");
+        let delayedRecallFeedback = document.getElementById("logical-memory-delayed-recall-feedback");
+        if (event.target.id == "logical-memory-variant-ab"){
+            var irMax = 53;
+            var drMax = 39;
+        } else if (event.target.id == "logical-memory-variant-bc"){
+            var irMax = 50;
+            var drMax = 50;
+        }
+
+        immediateRecall.setAttribute("max", irMax);
+        immediateRecall.setAttribute("placeholder", `0 – ${irMax}`);
+        immediateRecallFeedback.innerText = `Ganzzahl zwischen 0 und ${irMax} erwartet.`;
+        delayedRecall.setAttribute("max", drMax);
+        delayedRecall.setAttribute("placeholder", `0 – ${drMax}`);
+        delayedRecallFeedback.innerText = `Ganzzahl zwischen 0 und ${drMax} erwartet.`;
+    }
+</script>
 
 <script>
 
@@ -3160,13 +3813,17 @@
         "enable-acl-k",
         "enable-ad",
         "enable-demtect",
+        "enable-euroqol",
         "enable-jtt",
+        "enable-dual-task",
         "enable-kas",
         "enable-kopss",
         "enable-moto-test",
         "enable-tmt",
         "enable-tug",
-        "enable-psqi"
+        "enable-psqi",
+        "enable-vosp",
+        "enable-wms",
     ];
 
     function changeGroupedSwitches(changeEvent) {
@@ -3206,8 +3863,10 @@
         "enable-demtect-supermarket",
         "enable-demtect-wordlist",
         "enable-education",
-        "enable-euroqol",
+        "enable-euroqol-code",
+        "enable-euroqol-vas",
         "enable-go-nogo",
+        "enable-go-nogo-variant",
         "enable-jtt-checkers",
         "enable-jtt-lho",
         "enable-jtt-llo",
@@ -3215,6 +3874,13 @@
         "enable-jtt-small-things",
         "enable-jtt-turn-cards",
         "enable-jtt-incorrect",
+        "enable-dual-task-hand",
+        "enable-dual-task-reaction-time-audio",
+        "enable-dual-task-reaction-time-visual",
+        "enable-dual-task-omissions-audio",
+        "enable-dual-task-omissions-visual",
+        "enable-dual-task-errors-total",
+        "enable-dual-task-omissions-total",
         "enable-kas-iah",
         "enable-kas-ipf",
         "enable-kas-pah",
@@ -3228,6 +3894,11 @@
         "enable-kopss-praxie",
         "enable-kopss-speech",
         "enable-kopss-vsp",
+        "enable-logical-memory-variant",
+        "enable-logical-memory-immediate-recall",
+        "enable-logical-memory-immediate-recall-scaled",
+        "enable-logical-memory-delayed-recall",
+        "enable-logical-memory-delayed-recall-scaled",
         "enable-madrs",
         "enable-moto-test-ftf",
         "enable-moto-test-lat",
@@ -3244,7 +3915,9 @@
         "enable-psqi-sleep-efficiency",
         "enable-psqi-sleep-disturbance",
         "enable-psqi-meds",
-        "enable-psqi-day-dysfunction"
+        "enable-psqi-day-dysfunction",
+        "enable-vosp-cube-analysis-score",
+        "enable-vosp-cube-analysis-pct-rank"
     ];
 
     function changeControlledInputs(changeEvent) {
@@ -3277,12 +3950,16 @@
         "enable-ad",
         "enable-demtect",
         "enable-jtt",
+        "enable-dual-task",
+        "enable-euroqol",
         "enable-kas",
         "enable-kopss",
         "enable-moto-test",
         "enable-tmt",
         "enable-tug",
         "enable-psqi",
+        "enable-vosp",
+        "enable-wms",
     ];
 
     function updatedLines() {
@@ -3497,7 +4174,7 @@
         resetTheForm(Object.keys(obj));
 
         // some fields need to trigger their events and need more than just value update
-        let handledSeparately = [/subject-group/, /go-nogo-*/];
+        let handledSeparately = [/subject-group/, /go-nogo-(?!variant)/];
         insertSubjectGroup(obj["subject-group"]);
         insertGoNogo(obj);
 
@@ -3565,11 +4242,23 @@
         }
 
         // update sum fields
+        jttSum();
         kasSum();
         kopssSum();
         aclKSum();
         demtectSum();
         psqiSum();
+
+        // wechsler variant choice requires updating ranges
+
+        if (obj["logical-memory-variant"] === "A+B") {
+            let event = new Event("change");
+            document.getElementById("logical-memory-variant-ab").dispatchEvent(event);
+        } else if (obj["logical-memory-variant"] === "B+C") {
+            let event = new Event("change");
+            document.getElementById("logical-memory-variant-bc").dispatchEvent(event);
+        }
+
     }
 
     function readSavedJSON() {
