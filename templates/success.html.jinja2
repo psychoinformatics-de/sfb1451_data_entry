@@ -27,6 +27,21 @@
 {%  endmacro %}
 
 
+{% macro render_pct_rank(description, value, leftsuffix = "", rightsuffix = "-pct-rank") %}
+    <div class="row">
+        <div class="col-md-6">
+            <p>{{ description }}</p>
+        </div>
+        <div class="col-md-3">
+            <p><label>Rohwert: </label>&nbsp;<span>{{ (record[value + leftsuffix] or "--") }}</span></p>
+        </div>
+        <div class="col-md-3">
+            <p><label>Prozentrang: </label>&nbsp;<span>{{ (record[value + rightsuffix] or "--") }}</span></p>
+        </div>
+    </div>
+{% endmacro %}
+
+
 {%  macro render_number(description, key) %}
 
     <div class="row">
@@ -155,7 +170,7 @@
     </div>
 
     <div class="row">
-        <h5>Go/Nogo-Task</h5>
+        <h5>Go/Nogo-Task Niessen</h5>
     </div>
 
     {{ render_number("Durchgeführte Blöcke", "go-nogo-block-count") }}
@@ -177,6 +192,25 @@
 
     {{ render_string("Go/Nogo-Task nicht korrekt durchführbar", checkbox_message(record["go-nogo-incorrectly-executed"])) }}
 
+    <div class="row pt-4"><h5>Untertest Go/NoGo – Variante: 2 aus 5</h5></div>
+
+    {{ render_string("Verwendete Hand", hand_message(record["go-nogo-variant-hand"])) }}
+    {{ render_number("Reaktionszeit Median", "go-nogo-variant-reaction-time-median") }}
+    {{ render_string("Reaktionszeit Prozentrang", record["go-nogo-variant-reaction-time-pct-rank"]) }}
+    {{ render_number("Fehler Anzahl", "go-nogo-variant-errors") }}
+    {{ render_string("Fehler Prozentrang", record["go-nogo-variant-errors-pct-rank"]) }}
+    {{ render_number("Auslassungen Anzahl", "go-nogo-variant-omissions") }}
+    {{ render_string("Auslassungen Prozentrang", record["go-nogo-variant-omissions-pct-rank"]) }}
+
+    <div class="row pt-4"><h5>Geteilte Aufmerksamkeit – Variante: Doppelaufgabe I</h5></div>
+
+    {{ render_string("Verwendete Hand", hand_message(record["dual-task-hand"])) }}
+    {{ render_pct_rank("", "dual-task-reaction-time-audio", "-median") }}
+    {{ render_pct_rank("", "dual-task-reaction-time-visual", "-median") }}
+    {{ render_pct_rank("", "dual-task-omissions-audio") }}
+    {{ render_pct_rank("", "dual-task-omissions-visual") }}
+    {{ render_pct_rank("", "dual-task-errors-total") }}
+    {{ render_pct_rank("", "dual-task-omissions-total") }}
 
     <div class="row pt-4"><h5>Cologne Apraxie Screening (KAS)</h5></div>
 
@@ -238,6 +272,15 @@
     {{ render_number("MADRS Punktzahl", "madrs-score") }}
 
 
+    <div class="row pt-3"><h5>Wechsler Memory Scale (WMS) – logisches Gedächtnis</h5></div>
+
+    {{ render_string("Variante", record["logical-memory-variant"]) }}
+    {{ render_number("Unmittelbare Wiedergabe: Summenwert (Rohwert)", "logical-memory-immediate-recall") }}
+    {{ render_number("Unmittelbare Wiedergabe: Wertpunkte", "logical-memory-immediate-recall-scaled") }}
+    {{ render_number("Abruf nach Verzögerung: Summenwert (Rohwert)", "logical-memory-delayed-recall") }}
+    {{ render_number("Abruf nach Verzögerung: Wertpunkte", "logical-memory-delayed-recall-scaled") }}
+
+
     <div class="row pt-3"><h5>DemTect</h5></div>
 
     <div class="row">
@@ -253,6 +296,12 @@
     {{ render_number("Supermarktaufgabe", "demtect-supermarket-task") }}
     {{ render_number("Zahlenfolge rückwärts", "demtect-numbers-reverse") }}
     {{ render_number("Erneute Abfrage der Wortliste", "demtect-wordlist-recall") }}
+
+
+    <div class="row pt-3"><h5>Testbatterie für visuelle Objekt- und Raumwahrnehmung (VOSP) – Subtest 8: „Würfelanzahl analysieren“</h5></div>
+
+    {{ render_number("Punktzahl", "vosp-cube-analysis-score") }}
+    {{ render_string("Prozentrang", record["vosp-cube-analysis-pct-rank"]) }}
 
 
     <div class="row pt-3"><h5>Trail Making Test (TMT)</h5></div>
