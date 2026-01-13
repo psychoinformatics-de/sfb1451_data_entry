@@ -352,15 +352,14 @@
 
     <div class="row"><h4 class="mb-3">Weitere Diagnostik</h4></div>
 
-    {{ render_number("Link zu MRT-Dateien", "additional-mrt-url") }}
+    {{ render_string_key("Link zu MRT-Dateien", "additional-mrt-url") }}
     {{ render_string("Resting-State", checkbox_message(record["additional-mrt-resting-state"])) }}
     {{ render_string("Tapping-Task", checkbox_message(record["additional-mrt-tapping-task"])) }}
     {{ render_string("Anatomische Darstellung", checkbox_message(record["additional-mrt-anatomical-representation"])) }}
     {{ render_string("DTI", checkbox_message(record["additional-mrt-dti"])) }}
-
-    {{ render_number("Link zu EEG Dateien", "additional-eeg-url") }}
-
-    {{ render_number("Link zu Blutproben Dateien", "additional-blood-sampling-url") }}
+    {{ render_string_key("Link zu EEG Dateien", "additional-eeg-url") }}
+    {{ render_string_key("Link zu Blutproben Dateien", "additional-blood-sampling-url") }}
+    {{ render_string_key("Link zu Ganglabor Dateien", "additional-gait-lab-url") }}
 
 </div>
 
