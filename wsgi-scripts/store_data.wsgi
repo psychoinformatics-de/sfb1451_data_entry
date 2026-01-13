@@ -137,6 +137,7 @@ required_fields = [
     "additional-mrt-dti",
     "additional-eeg-url",
     "additional-blood-sampling-url",
+    "additional-gait-lab-url",
     "additional-remarks",
     "hash-value"
 ]
@@ -295,6 +296,8 @@ auto_fields = {
     "additional-eeg-url": [""],
 
     "additional-blood-sampling-url": [""],
+
+    "additional-gait-lab-url": [""],
 
     "additional-remarks": [""],
 
@@ -605,6 +608,7 @@ hashed_content_fields = [
     ["additional-mrt-dti", get_checkbox_content],
     ["additional-eeg-url", get_string_content],
     ["additional-blood-sampling-url", get_string_content],
+    ["additional-gait-lab-url", get_string_content],
     ["additional-remarks", get_string_content]
 ]
 
@@ -768,6 +772,8 @@ field_value_fetcher = {
     "additional-eeg-url": get_string_value,
     "additional-blood-sampling": get_checkbox_value,
     "additional-blood-sampling-url": get_string_value,
+    "additional-gait-lab": get_checkbox_value,
+    "additional-gait-lab-url": get_string_value,
     "additional-remarks": get_string_value
 }
 

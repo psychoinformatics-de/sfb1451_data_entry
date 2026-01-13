@@ -2831,9 +2831,9 @@
                 <input class="form-check-input group-leader"
                        type="checkbox"
                        id="enable-ad"
-                       data-inm-switch-group="enable-ad-mrt;enable-ad-eeg;enable-ad-blood"
+                       data-inm-switch-group="enable-ad-mrt;enable-ad-eeg;enable-ad-blood;enable-ad-gait-lab"
                        data-inm-lines="line-enable-ad-v;line-enable-ad-h"
-                       data-inm-line-end="enable-ad-blood">
+                       data-inm-line-end="enable-ad-gait-lab">
             </div>
             <div class="col-lg-11">
                 <h4 class="mb-3">Weitere Diagnostik</h4>
@@ -2959,6 +2959,25 @@
             </div>
             <div class="col-lg-6 entry-value">
                 <input type="url" class="form-control" id="additional-blood-sampling-url" name="additional-blood-sampling-url" placeholder="Link zu Blutproben-Dateien" disabled required>
+                <div class="invalid-feedback field-validity">
+                    Gültige URL erwartet.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row pt-2">
+            <div class="col-lg-1 form-switch">
+                <input class="form-check-input group-member"
+                       type="checkbox"
+                       id="enable-ad-gait-lab"
+                       data-inm-controlled-inputs="additional-gait-lab-url">
+            </div>
+            <div class="col-lg-5">
+                <label for="additional-gait-lab-url">Ganglabor</label>
+            </div>
+            <div class="col-lg-6 entry-value">
+                <input type="url" class="form-control" id="additional-gait-lab-url" name="additional-gait-lab-url" placeholder="Link zu Ganglabor-Dateien" disabled required>
                 <div class="invalid-feedback field-validity">
                     Gültige URL erwartet.
                 </div>
@@ -3645,6 +3664,7 @@
             ["additional-mrt-dti", getCheckboxContent],
             ["additional-eeg-url", getStringContent],
             ["additional-blood-sampling-url", getStringContent],
+            ["additional-gait-lab-url", getStringContent],
             ["additional-remarks", getStringContent]
         ];
         let contentArray = nameArray.map(spec => {
@@ -3854,6 +3874,7 @@
         "enable-acl-k-st",
         "enable-ad-blood",
         "enable-ad-eeg",
+        "enable-ad-gait-lab",
         "enable-ad-mrt",
         "enable-arat",
         "enable-bdi-ii",
@@ -4071,6 +4092,7 @@
             "additional-mrt-dti-valid",
             "additional-eeg-url",
             "additional-blood-sampling-url",
+            "additional-gait-lab-url",
             "submit-button",
         ];
 
@@ -4236,7 +4258,8 @@
         if (
             obj["additional-mrt-url"] !== "" ||
             obj["additional-eeg-url"] !== "" ||
-            obj["additional-blood-sampling-url"] != ""
+            obj["additional-blood-sampling-url"] != "" ||
+            obj["additional-gait-lab-url"] != ""
         ) {
             document.getElementById("enable-ad").click();
         }
